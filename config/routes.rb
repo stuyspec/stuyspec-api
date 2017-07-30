@@ -1,5 +1,8 @@
 Rails.application.routes.draw do
   resources :sections do
+    resources :sections, path: :subsections do
+      resources :articles
+    end
     resources :articles
   end
 

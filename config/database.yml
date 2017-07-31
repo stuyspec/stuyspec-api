@@ -80,6 +80,8 @@ test:
 #
 production:
   <<: *default
-  database: stuy-spec-api_production
-  username: stuy-spec-api
-  password: <%= ENV['STUY-SPEC-API_DATABASE_PASSWORD'] %>
+  database: <%= ENV['RDS_DB_NAME'] %>
+  username: <%= ENV['RDS_USERNAME'] %>
+  host: <%= ENV['RDS_HOSTNAME']%>
+  password: <%= ENV['RDS_PASSWORD'] %>
+  port: <%= ENV['RDS_PORT'] %>

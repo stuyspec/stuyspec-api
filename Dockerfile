@@ -1,7 +1,6 @@
 # Dockerfile
 
-FROM phusion/passenger-ruby22:0.9.17
-
+FROM phusion/passenger-ruby24:latest
 # Set correct environment variables.
 ENV HOME /root
 
@@ -18,19 +17,18 @@ RUN rm -f /etc/service/nginx/down
 RUN rm /etc/nginx/sites-enabled/default
 
 #Enable env vars
-ADD ./app-env.conf /etc/nginx/main.d/app-env.conf
+ADD ./rails-env.conf /etc/nginx/main.d/rails-env.conf
 
 # Add the nginx site and config
-ADD ./webapp.conf /etc/nginx/sites-enabled/stuyspec_webapp.conf
+ADD ./stuyspec.conf /etc/nginx/sites-enabled/stuyspec.conf
 
 # Add the Rails app
-RUN mkdir /home/deploy/stuy-spec-api
-WORKDIR /home/deploy/stuy-spec-api
+RUN mkdir /home/app/stuy-spec-api
+WORKDIR /home/app/stuy-spec-api
 ADD . /home/app/stuy-spec-api
-RUN bundle install --binstubs --deployment --without test development
-RUN bundle exec rake assets:precompile
+RUN bundle install
 
-RUN chown -R deploy:deploy /home/deploy
+RUN chown -R app:app /home/app
 
 # Clean up APT and bundler when done.
 RUN apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*

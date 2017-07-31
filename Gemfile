@@ -5,9 +5,14 @@ git_source(:github) do |repo_name|
   "https://github.com/#{repo_name}.git"
 end
 
-
+# Nicer IDs
 gem 'friendly_id', '~> 5.1.0'
 
+# For authentication
+gem 'devise_token_auth'
+gem 'omniauth-google'
+
+# Fixes CORS issues
 gem 'rack-cors', :require => 'rack/cors'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 5.1.2'

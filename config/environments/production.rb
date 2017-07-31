@@ -63,8 +63,8 @@ Rails.application.configure do
     address:              'mail.gandi.net',
     port:                 587,
     domain:               'stuyspec.xyz',
-    user_name:            ENV['STUY-SPEC-MAIL_USERNAME'],
-    password:             ENV['STUY-SPEC-MAIL_PASSWORD'],
+    user_name:            ENV['STUY_SPEC_MAIL_USERNAME'],
+    password:             ENV['STUY_SPEC_MAIL_PASSWORD'],
     authentication:       'login',
     enable_starttls_auto: true
   }

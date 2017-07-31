@@ -23,8 +23,8 @@ module StuySpecApi
 
     config.middleware.insert_before 0, Rack::Cors do
       allow do
-        origins '*'
-        resource '*', :headers => :any, :methods => [:get, :post, :options]
+        origins '67.243.133.73'
+        resource '*', :headers => :any, :methods => [:get, :post, :options], :credentials => true
       end
     end
 

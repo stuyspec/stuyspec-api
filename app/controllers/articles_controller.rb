@@ -15,7 +15,9 @@ class ArticlesController < ApplicationController
   # POST /articles
   def create
     @section = Section.find(params[:section])
-    @article = @section.articles.build(article_params)
+    @article = @section.articles.build(
+      article_params.merge(is_draft: true)
+    )
 
    if @article.save
       render json: @article, status: :created, location: @article

@@ -3,4 +3,5 @@ class Article < ApplicationRecord
   friendly_id :title, use: :slugged
   belongs_to :section, optional: true
   has_many :users, through: :authorships
+  has_many :media
 end

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170802045342) do
+ActiveRecord::Schema.define(version: 20170802051859) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -47,6 +47,20 @@ ActiveRecord::Schema.define(version: 20170802045342) do
     t.index ["slug", "sluggable_type"], name: "index_friendly_id_slugs_on_slug_and_sluggable_type"
     t.index ["sluggable_id"], name: "index_friendly_id_slugs_on_sluggable_id"
     t.index ["sluggable_type"], name: "index_friendly_id_slugs_on_sluggable_type"
+  end
+
+  create_table "media", force: :cascade do |t|
+    t.bigint "user_id_id"
+    t.bigint "article_id_id"
+    t.string "url"
+    t.string "title"
+    t.text "caption"
+    t.boolean "is_featured"
+    t.string "type"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["article_id_id"], name: "index_media_on_article_id_id"
+    t.index ["user_id_id"], name: "index_media_on_user_id_id"
   end
 
   create_table "sections", force: :cascade do |t|

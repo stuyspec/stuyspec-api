@@ -8,9 +8,8 @@ Rails.application.routes.draw do
       resources :media
     end
   end
-
-  resources :authorships
   resources :articles do
+    resources :authorships
     resources :media
   end
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html

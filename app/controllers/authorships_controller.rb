@@ -3,8 +3,12 @@ class AuthorshipsController < ApplicationController
 
   # GET /authorships
   def index
-    @authorships = Authorship.all
-
+    if params[:article_id]
+      @article = Article.friendly.find(params[:article_id])
+      @authorships = Authorship.where("article_id = ?", @article.id)
+    else
+      @authorships = Authorship.all
+    end
     render json: @authorships
   end
 

@@ -14,7 +14,7 @@ class ArticlesController < ApplicationController
 
   # POST /articles
   def create
-    @section = Section.find(params[:section])
+    @section = Section.friendly.find(params[:section])
     # Can't let people publish by default
     @article = @section.articles.build(
       article_params.merge(is_draft: true)

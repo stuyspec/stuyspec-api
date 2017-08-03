@@ -1,24 +1,15 @@
-# README
+# Stuyvesant Spectator API
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+This is the official API for the Stuyvesant Spectator. Currently it is used as a backing service
+for the Spectator website, but there are plans in the future to publish it as a public API.
 
-Things you may want to cover:
+The application is a Rails application, with a Postgres database. Everything is published as JSON
+(in either camelCase or snake_case, using [Olive Branch](https://github.com/vigetlabs/olive_branch)). It is deployed on AWS using Elastic Beanstalk
 
-* Ruby version
+## Setting Up
+* Clone the repo (`git clone https://github.com/stuyspec/stuy-spec-api.git`)
+* Install Ruby. We highly suggest rbenv or rvm
+* Install Rails 5.1
+* Run `bundle install`
+* Run `bin/rails server`
 
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...

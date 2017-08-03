@@ -3,7 +3,12 @@ class ArticlesController < ApplicationController
 
   # GET /articles
   def index
-    @articles = Article.all
+    if params[:section_id]
+      @section = Section.friendly.find(params[:section_id])
+      @articles = Article.where("section_id = ?", @section.id)
+    else
+      @articles = Article.all
+    end
     render json: @articles
   end
 

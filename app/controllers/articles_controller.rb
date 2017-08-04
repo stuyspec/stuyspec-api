@@ -3,7 +3,12 @@ class ArticlesController < ApplicationController
 
   # GET /articles
   def index
-    @articles = Article.all
+    if params[:section_id]
+      @section = Section.friendly.find(params[:section_id])
+      @articles = Article.where("section_id = ?", @section.id)
+    else
+      @articles = Article.all
+    end
     render json: @articles
   end
 
@@ -14,7 +19,7 @@ class ArticlesController < ApplicationController
 
   # POST /articles
   def create
-    @section = Section.find(params[:section])
+    @section = Section.friendly.find(params[:section])
     # Can't let people publish by default
     @article = @section.articles.build(
       article_params.merge(is_draft: true)

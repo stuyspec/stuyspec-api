@@ -11,7 +11,7 @@ class ArticlesController < ApplicationController
     end
     if params[:limit]
       limit = params[:limit]
-      @articles = Article.first(limit)
+      @articles = @articles.first(limit)
     end
     render json: @articles
   end

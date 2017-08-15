@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170808033957) do
+ActiveRecord::Schema.define(version: 20170815210028) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -89,7 +89,7 @@ ActiveRecord::Schema.define(version: 20170808033957) do
     t.datetime "confirmation_sent_at"
     t.string "unconfirmed_email"
     t.string "first_name"
-    t.string "nickname"
+    t.string "username"
     t.string "image"
     t.string "email"
     t.json "tokens"
@@ -101,6 +101,7 @@ ActiveRecord::Schema.define(version: 20170808033957) do
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
     t.index ["uid", "provider"], name: "index_users_on_uid_and_provider", unique: true
+    t.index ["username"], name: "index_users_on_username", unique: true
   end
 
   add_foreign_key "articles", "sections"

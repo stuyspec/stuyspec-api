@@ -13,19 +13,32 @@ class CommentsController < ApplicationController
 
   # GET /comments/1
   def show
-    render json: @comment
-  end
+    if params[:article_id]
+      if @comment.article_id == params[:article_id]
+        render json: @comment
+      else
+        render json: @comment.errors, status: :unprocessable_entity
+      end
+    elsif params[:user_id]
+      if @comment.user_id == params[:user_id]
+        render json: @comment
+      else
+        render json: @comment.errors, status: :unprocessable_entity
+      end
+      else
+        render json: @comment
+      end
+    end
 
   # POST /comments
   def create
-    if params[:article_id]
-      @article = Article.friendly.find(params[:article_id])
-      @comment = @article.comments.create(comment_params)
-    elsif params[:user_id]
-      @user = User.friendly.find(params[:user_id])
-      @comment = @user.comments.create(comment_params)
+    @comment = Comment.new(comment_params)
+
+    if @comment.save
+      render json: @comment, status: :created, location: @comment
+    else
+      render json: @comment.errors, status: :unprocessable_entity
     end
-    @comment = Comment.create(comment_params)
   end
 
   # PATCH/PUT /comments/1

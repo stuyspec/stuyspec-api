@@ -9,6 +9,10 @@ class ArticlesController < ApplicationController
     else
       @articles = Article.all
     end
+    if params[:limit]
+      limit = params[:limit]
+      @articles = @articles.first(limit)
+    end
     render json: @articles
   end
 

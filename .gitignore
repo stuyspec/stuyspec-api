@@ -12,7 +12,7 @@
 /tmp/*
 !/log/.keep
 !/tmp/.keep
-
+/spec-env
 .byebug_history
 
 # Elastic Beanstalk Files

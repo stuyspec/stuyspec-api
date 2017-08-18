@@ -58,12 +58,13 @@ Rails.application.configure do
   # Set this to true and configure the email server for immediate delivery to raise delivery errors.
   # config.action_mailer.raise_delivery_errors = false
 
+  config.action_mailer.default_url_options = { :host => 'api.stuyspec.xyz' }
   config.action_mailer.delivery_method = :smtp
   config.action_mailer.smtp_settings = {
     address:              'mail.gandi.net',
     port:                 587,
-    domain:               'stuyspec.xyz',
     user_name:            ENV['STUY_SPEC_MAIL_USERNAME'],
+    domain:               'stuyspec.xyz',
     password:             ENV['STUY_SPEC_MAIL_PASSWORD'],
     authentication:       'login',
     enable_starttls_auto: true

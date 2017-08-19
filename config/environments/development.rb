@@ -37,17 +37,10 @@ Rails.application.configure do
   # Raise an error on page load if there are pending migrations.
   config.active_record.migration_error = :page_load
 
-  config.action_mailer.default_url_options = { :host => 'api.stuyspec.xyz' }
+  config.action_mailer.default_url_options = { :host => 'localhost' }
   config.action_mailer.delivery_method = :smtp
-  config.action_mailer.smtp_settings = {
-    address:              'mail.gandi.net',
-    port:                 587,
-    user_name:            ENV['STUY_SPEC_MAIL_USERNAME'],
-    domain:               'stuyspec.xyz',
-    password:             ENV['STUY_SPEC_MAIL_PASSWORD'],
-    authentication:       'login',
-    enable_starttls_auto: true
-  }
+  config.action_mailer.smtp_settings = { :address => "localhost", :port => 1025 }
+  
   # Raises error for missing translations
   # config.action_view.raise_on_missing_translations = true
 

@@ -69,6 +69,7 @@ Rails.application.configure do
     authentication:       'login',
     enable_starttls_auto: true
   }
+  config.mailer_sender = "info@stuyspec.xyz"
 
   # Enable locale fallbacks for I18n (makes lookups for any locale fall back to
   # the I18n.default_locale when a translation cannot be found).

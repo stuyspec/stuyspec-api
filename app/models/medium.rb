@@ -10,4 +10,7 @@ class Medium < ApplicationRecord
 
 
 
+  def s3_credentials
+    {:bucket => "stuy-spec-media" }
+  end
 end

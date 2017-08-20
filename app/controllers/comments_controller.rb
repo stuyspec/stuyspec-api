@@ -8,6 +8,10 @@ class CommentsController < ApplicationController
     elsif params[:user_id]
       @comments = User.friendly.find(params[:user_id]).comments
     end
+    if params[:limit]
+      limit = params[:limit]
+      @comments = @comments.first(limit)
+    end
     render json: @comments
   end
 

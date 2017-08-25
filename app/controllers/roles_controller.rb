@@ -5,7 +5,7 @@ class RolesController < ApplicationController
   def index
     @roles = Role.all
     if params[:user_id]
-      @roles = User.friendly.find(params[:user_id]).roles
+      @roles = User.find(params[:user_id]).roles
     end
     render json: @roles
   end

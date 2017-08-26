@@ -37,6 +37,10 @@ class SubscribersController < ApplicationController
   def destroy
     @subscriber.destroy
   end
+  #EMAIL /subscribers/1/email
+  def email
+    EmailSubscriberMailer.send_email(Subscriber.all, params[:subject], params[:content])
+  end
 
   private
     # Use callbacks to share common setup or constraints between actions.

@@ -5,7 +5,9 @@ Rails.application.routes.draw do
   resources :media
   resources :authorships
   mount_devise_token_auth_for 'User', at: 'auth'
-  resources :users
+  resources :users do
+    resources :user_roles
+  end
   resources :sections do
     resources :articles do
       resources :media

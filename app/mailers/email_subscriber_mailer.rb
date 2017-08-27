@@ -1,5 +1,5 @@
 class EmailSubscriberMailer < ApplicationMailer
-  default :from => 'any_from_address@example.com'
+  default :from => 'info@stuyspec.com'
 
   # send email
   def send_email(users, subject, content)

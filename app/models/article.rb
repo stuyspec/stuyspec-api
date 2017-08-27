@@ -4,4 +4,5 @@ class Article < ApplicationRecord
   belongs_to :section, optional: true
   has_many :users, through: :authorships
   has_many :media
+  has_many :comments
 end

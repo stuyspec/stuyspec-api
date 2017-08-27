@@ -23,7 +23,7 @@ class ArticlesController < ApplicationController
 
   # POST /articles
   def create
-    @section = Section.friendly.find(params[:section])
+    @section = Section.friendly.find(params[:section_id])
     # Can't let people publish by default
     @article = @section.articles.build(
       article_params.merge(is_draft: true)
@@ -58,6 +58,6 @@ class ArticlesController < ApplicationController
 
     # Only allow a trusted parameter "white list" through.
     def article_params
-      params.require(:article).permit(:title, :slug, :content, :volume, :issue, :is_published, :section, :rank)
+      params.require(:article).permit(:title, :slug, :content, :volume, :issue, :is_published, :section_id, :rank)
     end
 end

@@ -46,6 +46,6 @@ class SectionsController < ApplicationController
 
     # Only allow a trusted parameter "white list" through.
     def section_params
-      params.require(:section).permit(:name, :description, :slug, :parent_id)
+      params.require(:section).permit(:name, :description, :slug, :parent_id, :rank)
     end
 end

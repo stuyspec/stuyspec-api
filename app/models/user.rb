@@ -6,4 +6,6 @@ class User < ApplicationRecord
   include DeviseTokenAuth::Concerns::User
   has_many :articles, through: :authorships
   has_many :comments
+  has_many :user_roles
+  has_many :roles, through: :user_roles
 end

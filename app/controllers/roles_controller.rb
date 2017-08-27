@@ -48,6 +48,6 @@ class RolesController < ApplicationController
 
     # Only allow a trusted parameter "white list" through.
     def role_params
-      params.require(:role).permit(:user_id, :title, :slug)
+      params.require(:role).permit(:title, :slug)
     end
 end

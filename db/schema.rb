@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170826061308) do
+ActiveRecord::Schema.define(version: 20170827013603) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -21,7 +21,7 @@ ActiveRecord::Schema.define(version: 20170826061308) do
     t.text "content"
     t.integer "volume"
     t.integer "issue"
-    t.boolean "is_Published"
+    t.boolean "is_published"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.bigint "section_id"
@@ -41,7 +41,6 @@ ActiveRecord::Schema.define(version: 20170826061308) do
   create_table "comments", force: :cascade do |t|
     t.string "article_id"
     t.string "integer"
-    t.string "comment_id"
     t.string "user_id"
     t.text "content"
     t.datetime "created_at", null: false
@@ -100,7 +99,7 @@ ActiveRecord::Schema.define(version: 20170826061308) do
     t.integer "rank"
   end
 
-  create_table "userroles", force: :cascade do |t|
+  create_table "user_roles", force: :cascade do |t|
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "user_id"

@@ -1,4 +1,8 @@
 Rails.application.routes.draw do
+  resources :user_roles
+  resources :roles do
+    resources :user_roles
+  end
   resources :comments do
     resources :replies
   end
@@ -9,6 +13,7 @@ Rails.application.routes.draw do
   resources :users do
     resources :replies
     resources :comments
+    resources :user_roles
   end
   resources :sections do
     resources :articles do

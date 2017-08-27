@@ -5,4 +5,6 @@ class User < ApplicationRecord
           :confirmable, :omniauthable
   include DeviseTokenAuth::Concerns::User
   has_many :articles, through: :authorships
+  has_many :user_roles
+  has_many :roles, through: :user_roles
 end

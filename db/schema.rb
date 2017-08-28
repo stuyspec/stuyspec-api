@@ -25,7 +25,7 @@ ActiveRecord::Schema.define(version: 20170827074658) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.bigint "section_id"
-    t.integer "rank"
+    t.integer "rank", default: 1
     t.index ["section_id"], name: "index_articles_on_section_id"
   end
 
@@ -82,7 +82,6 @@ ActiveRecord::Schema.define(version: 20170827074658) do
   end
 
   create_table "roles", force: :cascade do |t|
-    t.integer "user_id"
     t.text "title"
     t.text "slug"
     t.datetime "created_at", null: false
@@ -96,14 +95,7 @@ ActiveRecord::Schema.define(version: 20170827074658) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "parent_id"
-    t.integer "rank"
-  end
-
-  create_table "user_roles", force: :cascade do |t|
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.integer "user_id"
-    t.integer "role_id"
+    t.integer "rank", default: 1
   end
 
   create_table "user_roles", force: :cascade do |t|
@@ -129,22 +121,19 @@ ActiveRecord::Schema.define(version: 20170827074658) do
     t.datetime "confirmed_at"
     t.datetime "confirmation_sent_at"
     t.string "unconfirmed_email"
-    t.string "first_name"
-    t.string "username"
+    t.string "name"
+    t.string "nickname"
     t.string "image"
     t.string "email"
     t.json "tokens"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "thumbnail"
-    t.string "last_name"
-    t.integer "role_id"
     t.string "slug"
     t.index ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
     t.index ["uid", "provider"], name: "index_users_on_uid_and_provider", unique: true
-    t.index ["username"], name: "index_users_on_username", unique: true
   end
 
   add_foreign_key "articles", "sections"

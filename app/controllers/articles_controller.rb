@@ -9,6 +9,9 @@ class ArticlesController < ApplicationController
     else
       @articles = Article.all
     end
+    if params[:sorted]
+      @articles = @articles.sort_by {|article| find_combined_rank(article)}.reverse
+    end
     if params[:limit]
       limit = params[:limit]
       @articles = @articles.first(limit)
@@ -59,5 +62,8 @@ class ArticlesController < ApplicationController
     # Only allow a trusted parameter "white list" through.
     def article_params
       params.require(:article).permit(:title, :slug, :content, :volume, :issue, :is_published, :section_id, :summary, :rank)
+    end
+    def find_combined_rank (article)
+      return article.rank + Section.friendly.find(1).rank * 1.5
     end
 end

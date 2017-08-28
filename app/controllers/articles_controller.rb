@@ -64,6 +64,6 @@ class ArticlesController < ApplicationController
       params.require(:article).permit(:title, :slug, :content, :volume, :issue, :is_published, :section_id, :summary, :rank)
     end
     def find_combined_rank (article)
-      return article.rank + Section.friendly.find(1).rank * 1.5
+      return article.rank + Section.friendly.find(article.section_id).rank * 1.5
     end
 end

@@ -9,8 +9,11 @@ class ArticlesController < ApplicationController
     else
       @articles = Article.all
     end
-    if params[:sorted]
-      @articles = @articles.sort_by {|article| find_combined_rank(article)}.reverse
+    if params[:order_by] == 'rank'
+      @articles = @articles.order {|article| find_combined_rank(article)}.reverse
+    end
+    if params[:order_by] == 'date'
+      @articles = @articles.reverse
     end
     if params[:limit]
       limit = params[:limit]

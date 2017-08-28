@@ -5,6 +5,6 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
-Article.create( title: 'Jerry is cool1', content: 'Jerry is amazing1', section_id: 2, rank: 1)
+Article.create( title: 'Jerry is cool1', content: 'Jerry is amazing1', section_id: 2, rank: 1000)
 #Comment.create( content: 'Jerry is cool', article_id: 2)
 Section.create( name: 'Jerry', slug: 'jerry', rank: 300)

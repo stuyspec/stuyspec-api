@@ -26,7 +26,7 @@ class ArticlesController < ApplicationController
     @section = Section.friendly.find(params[:section_id])
     # Can't let people publish by default
     @article = @section.articles.build(
-      article_params.merge(is_draft: true)
+      article_params.merge(is_published: false)
     )
 
    if @article.save

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170828021241) do
+ActiveRecord::Schema.define(version: 20170828183304) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -25,7 +25,7 @@ ActiveRecord::Schema.define(version: 20170828021241) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.bigint "section_id"
-    t.integer "rank", default: 1
+    t.integer "rank"
     t.index ["section_id"], name: "index_articles_on_section_id"
   end
 
@@ -96,7 +96,7 @@ ActiveRecord::Schema.define(version: 20170828021241) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "parent_id"
-    t.integer "rank", default: 1
+    t.integer "rank"
   end
 
   create_table "user_roles", force: :cascade do |t|
@@ -122,8 +122,8 @@ ActiveRecord::Schema.define(version: 20170828021241) do
     t.datetime "confirmed_at"
     t.datetime "confirmation_sent_at"
     t.string "unconfirmed_email"
-    t.string "name"
-    t.string "nickname"
+    t.string "first_name"
+    t.string "username"
     t.string "image"
     t.string "email"
     t.json "tokens"
@@ -132,6 +132,7 @@ ActiveRecord::Schema.define(version: 20170828021241) do
     t.string "thumbnail"
     t.string "slug"
     t.string "last_name"
+    t.string "description"
     t.index ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true

@@ -6,12 +6,12 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 puts "Creating sections"
-Section.create( name: 'News', slug: 'News', description:'News is a great department!')
-Section.create( name: 'Opinions', slug: 'Opinions', description: 'Opinions is a great department!')
-Section.create( name: 'Features', slug: 'Features', description: 'Features is a great department!')
-Section.create( name: 'Sports', slug: 'Sports', description: 'Sports is a great department!')
-Section.create( name: 'Arts and Entertainment', slug: 'Arts-and-Entertainment', description: 'Arts and Entertainment is a great department!')
-Section.create( name: 'Humor', slug: 'Humor', description: 'Humor is a great department!')
+Section.create( name: 'News', slug: 'news', description:'News is a great department!')
+Section.create( name: 'Opinions', slug: 'opinions', description: 'Opinions is a great department!')
+Section.create( name: 'Features', slug: 'features', description: 'Features is a great department!')
+Section.create( name: 'Sports', slug: 'sports', description: 'Sports is a great department!')
+Section.create( name: 'Arts and Entertainment', slug: 'ae', description: 'Arts and Entertainment is a great department!')
+Section.create( name: 'Humor', slug: 'humor', description: 'Humor is a great department!')
 puts "Finished creating sections"
 
 puts "Creating Articles"
@@ -31,7 +31,7 @@ Article.create( title: 'The Rooftop Garden: What Does Urban Growth Really Mean?'
 <p>By making the rooftop garden environment so personal, it offers a solution to this problem. “When you spend months taking care of this garden, you don’t wanna be throwing that out,” sophomore Secretary of the Environmental Club Kenny Wong said. </p>
 Along with the tomatoes and kale, the rooftop garden delivers an empowering sense of independence and awareness. “We have so little power over what we eat, especially as kids, and it’s so cool to take control of your life in this way,” Kunins-Berkowitz said. </p>
 <p>As New Yorkers and students, we are isolated from the origins and processes that go into the food we mindlessly consume, most of our knowledge coming from the inspiring stories on the back of cereal boxes. The rooftop garden is a rare opportunity to learn, and it is one that should be seized.</p>
-', slug: 'The-Rooftop-Garden:-What-Does-Urban-Growth-Really-Mean?', volume: '1', issue:'1',is_published: true, section_id: 3)
+', slug: 'The-Rooftop-Garden-What-Does-Urban-Growth-Really-Mean', volume: '1', issue:'1',is_published: true, section_id: 3)
 
 Article.create( title: 'Uncontested; Unelected?', content: '<p>An unopposed candidacy might signify incredible popularity, and a margin of victory of 100 percent. It could also signify a lack of opposition, and of civic engagement. In the worst case, the election may be coerced. James Monroe was elected President of the United States by a margin of 228-1 in 1820; Kim Jong-un was elected President of North Korea by a margin of 687-0 in 2014. From overwhelming approval to coercion, the most recent Student Union (SU) elections fall somewhere in between.</p>
 <p>Bitter liberals like to whine about the low democratic turnout in America’s presidential election, but Stuyvesant is much worse, routinely seeing only a minority of the student body vote. This year, the SU and Senior Caucus elections stooped to a new level of apathy, each featuring a single candidacy. Junior Kevin Boodram, who ran for caucus three times in the past, said, “ I don’t think people understand what the Student Union does. I think that discourages a lot people from running in the first place, even voting.” His older brother’s friends told him the SU was only good for planning parties.</p>
@@ -41,7 +41,7 @@ Article.create( title: 'Uncontested; Unelected?', content: '<p>An unopposed cand
 <p>Hostility directly discourages students from running. It is hard enough to break into the SU—incumbents have the advantage of knowing the organization’s inner-workings, evidenced by a six-year chain of SU Vice Presidents becoming President. Bullying is not only degrading, but makes the task impossible; Kahan gave up on running for Student Union, and eventually pulled out of the Junior Caucus race—his ideas were effectively silenced.</p>
 <p>Boodram added that it is very difficult for candidates to run after suffering a loss. “If you lose a campaign, and you try to do anything after that, people are always going to flame you and say you’re salty or whatever and criticize you for trying to run again,” he said, nodding vigorously when asked if he was bullied. Stuyvesant students are quick to transgress the boundary from debating policies to personal attacks.</p>
 <p>SU elections have always been meaningful; now it is time for the student body to treat them professionally. Innovation and competition are crucial to testing ideas and ensuring our Student Union provides us with the best experience they can, but this is only possible if we are open to new ideas and have the confidence that, when we choose to speak out, others will respect our voices.</p>
-', slug: 'Uncontested;-Unelected?', volume: '1', issue:'1',is_published: true, section_id: 2)
+', slug: 'Uncontested-Unelected', volume: '1', issue:'1',is_published: true, section_id: 2)
 
 Article.create( title: 'StuyHacks Hosts Its Fourth Hackathon', content: '<p>StuyHacks held its fourth hackathon, StuyHacks IV, on Saturday, May 27, and Sunday, May 28. The event provided an opportunity for 175 high-school students from the U.S. and Canada to learn about and to immerse themselves in computer science.</p>
 <p>A hackathon is an event where programmers can collaborate on a range of computer science projects. The hackathon organizers secured the sponsorship of a number of technology companies, including Facebook, MakeSchool, RedSeal, and ThoughtWorks, to subsidize the event. The event was held in the Midtown office of ThoughtWorks.</p>
@@ -67,21 +67,18 @@ Article.create( title: 'Student Wins Best Paper Award at CNERT Workshop', conten
 #Medium.create( url: 'http://www.stuyspec.com/wp-content/uploads/NEWS-Caleb-Smith-Salzberg-by-Tasdid-Khandaker-768x1149.jpg', article_id: 4)
 
 puts "Creating roles"
-Role.create(title: 'Features Writer', slug:'Features-Writer')
-Role.create(title: 'Opinions Writer', slug:'Opinions-Writer')
-Role.create(title: 'News Writer', slug:'News-Writer')
-Role.create(title: 'Humor Writer', slug:'Humor-Writer')
-Role.create(title: 'Sports Writer', slug:'Sports-Writer')
-Role.create(title: 'Arts and Entertainment Writer', slug:'Arts-and-Entertainment-Writer')
+Role.create(title: 'Contributor', slug:'contributors')
+Role.create(title: 'Illustrator', slug:'illustrators')
+Role.create(title: 'Photographer', slug: 'photographers')
 puts "Finished creating roles"
 
 puts "Creating users"
-User.create(username:'John Doe', email: 'john1@gmail.com', password: 'topsecret1', password_confirmation: 'topsecret1')
-User.create(username:'John Doe', email: 'john2@gmail.com', password: 'topsecret2', password_confirmation: 'topsecret2')
-User.create(username:'John Doe', email: 'john3@gmail.com', password: 'topsecret3', password_confirmation: 'topsecret3')
-User.create(username:'John Doe', email: 'john4@gmail.com', password: 'topsecret4', password_confirmation: 'topsecret4')
-User.create(username:'John Doe', email: 'john5@gmail.com', password: 'topsecret5', password_confirmation: 'topsecret5')
-User.create(username:'John Doe', email: 'john6@gmail.com', password: 'topsecret6', password_confirmation: 'topsecret6')
+User.create(first_name: 'John', last_name: 'DoeOne', username:'jdoe1', email: 'john1@gmail.com', password: 'topsecret1', password_confirmation: 'topsecret1', description: 'number one')
+User.create(first_name: 'John', last_name: 'DoeTwo', username:'jdoe2', email: 'john2@gmail.com', password: 'topsecret2', password_confirmation: 'topsecret2', description: 'number two')
+User.create(first_name: 'John', last_name: 'DoeThree', username:'jdoe3', email: 'john3@gmail.com', password: 'topsecret3', password_confirmation: 'topsecret3', description: 'number three')
+User.create(first_name: 'John', last_name: 'DoeFour', username:'jdoe4', email: 'john4@gmail.com', password: 'topsecret4', password_confirmation: 'topsecret4', description: 'number four')
+User.create(first_name: 'John', last_name: 'DoeFive', username:'jdoe5', email: 'john5@gmail.com', password: 'topsecret5', password_confirmation: 'topsecret5', description: 'number five')
+User.create(first_name: 'John', last_name: 'DoeSix', username:'jdoe6', email: 'john6@gmail.com', password: 'topsecret6', password_confirmation: 'topsecret6', description: 'number six')
 puts "Finished creating users"
 
 puts "Creating comments"
@@ -104,11 +101,7 @@ puts "Creating UserRoles"
 UserRole.create( user_id: 1, role_id: 1)
 UserRole.create( user_id: 2, role_id: 2)
 UserRole.create( user_id: 3, role_id: 3)
-UserRole.create( user_id: 4, role_id: 4)
-UserRole.create( user_id: 5, role_id: 5)
-UserRole.create( user_id: 6, role_id: 6)
+UserRole.create( user_id: 4, role_id: 1)
+UserRole.create( user_id: 5, role_id: 2)
+UserRole.create( user_id: 6, role_id: 3)
 puts "Finished creating UserRoles"
-
-
-
-

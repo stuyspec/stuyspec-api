@@ -10,6 +10,9 @@ The application is a Rails application, with a Postgres database. Everything is 
 * Clone the repo (`git clone https://github.com/stuyspec/stuy-spec-api.git`)
 * Install Ruby. We highly suggest rbenv or rvm
 * Install Rails 5.1
+* Install PostgreSQL (`brew install postgres` on Mac OS)
 * Run `bundle install`
-* Run `bin/rails server`
-
+* Run `rails db:create` to create the database
+* Run `rails db:migrate` to migrate the database
+* Run `rails db:seed` to add fake data for testing
+* Run `rails server` to run the server.

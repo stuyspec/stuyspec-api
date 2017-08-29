@@ -6,12 +6,12 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 puts "Creating sections"
-Section.create( name: 'News', slug: 'news', description:'News is a great department!')
-Section.create( name: 'Opinions', slug: 'opinions', description: 'Opinions is a great department!')
-Section.create( name: 'Features', slug: 'features', description: 'Features is a great department!')
-Section.create( name: 'Sports', slug: 'sports', description: 'Sports is a great department!')
-Section.create( name: 'Arts and Entertainment', slug: 'ae', description: 'Arts and Entertainment is a great department!')
-Section.create( name: 'Humor', slug: 'humor', description: 'Humor is a great department!')
+Section.create( name: 'News', slug: 'news', description:'News is a great department!', rank: 6)
+Section.create( name: 'Opinions', slug: 'opinions', description: 'Opinions is a great department!', rank:5)
+Section.create( name: 'Features', slug: 'features', description: 'Features is a great department!', rank:4)
+Section.create( name: 'Arts & Entertainment', slug: 'ae', description: 'A&E is a great department!', rank:3)
+Section.create( name: 'Humor', slug: 'humor', description: 'Humor is a great department!', rank:2)
+Section.create( name: 'Sports', slug: 'sports', description: 'Sports is a great department!', rank:1)
 puts "Finished creating sections"
 
 puts "Creating Articles"
@@ -31,7 +31,7 @@ Article.create( title: 'The Rooftop Garden: What Does Urban Growth Really Mean?'
 <p>By making the rooftop garden environment so personal, it offers a solution to this problem. “When you spend months taking care of this garden, you don’t wanna be throwing that out,” sophomore Secretary of the Environmental Club Kenny Wong said. </p>
 Along with the tomatoes and kale, the rooftop garden delivers an empowering sense of independence and awareness. “We have so little power over what we eat, especially as kids, and it’s so cool to take control of your life in this way,” Kunins-Berkowitz said. </p>
 <p>As New Yorkers and students, we are isolated from the origins and processes that go into the food we mindlessly consume, most of our knowledge coming from the inspiring stories on the back of cereal boxes. The rooftop garden is a rare opportunity to learn, and it is one that should be seized.</p>
-', slug: 'The-Rooftop-Garden-What-Does-Urban-Growth-Really-Mean', volume: '1', issue:'1',is_published: true, section_id: 3)
+', slug: 'The-Rooftop-Garden-What-Does-Urban-Growth-Really-Mean', volume: 108, issue:1,rank:5,is_published: true, section_id: 1)
 
 Article.create( title: 'Uncontested; Unelected?', content: '<p>An unopposed candidacy might signify incredible popularity, and a margin of victory of 100 percent. It could also signify a lack of opposition, and of civic engagement. In the worst case, the election may be coerced. James Monroe was elected President of the United States by a margin of 228-1 in 1820; Kim Jong-un was elected President of North Korea by a margin of 687-0 in 2014. From overwhelming approval to coercion, the most recent Student Union (SU) elections fall somewhere in between.</p>
 <p>Bitter liberals like to whine about the low democratic turnout in America’s presidential election, but Stuyvesant is much worse, routinely seeing only a minority of the student body vote. This year, the SU and Senior Caucus elections stooped to a new level of apathy, each featuring a single candidacy. Junior Kevin Boodram, who ran for caucus three times in the past, said, “ I don’t think people understand what the Student Union does. I think that discourages a lot people from running in the first place, even voting.” His older brother’s friends told him the SU was only good for planning parties.</p>
@@ -41,7 +41,7 @@ Article.create( title: 'Uncontested; Unelected?', content: '<p>An unopposed cand
 <p>Hostility directly discourages students from running. It is hard enough to break into the SU—incumbents have the advantage of knowing the organization’s inner-workings, evidenced by a six-year chain of SU Vice Presidents becoming President. Bullying is not only degrading, but makes the task impossible; Kahan gave up on running for Student Union, and eventually pulled out of the Junior Caucus race—his ideas were effectively silenced.</p>
 <p>Boodram added that it is very difficult for candidates to run after suffering a loss. “If you lose a campaign, and you try to do anything after that, people are always going to flame you and say you’re salty or whatever and criticize you for trying to run again,” he said, nodding vigorously when asked if he was bullied. Stuyvesant students are quick to transgress the boundary from debating policies to personal attacks.</p>
 <p>SU elections have always been meaningful; now it is time for the student body to treat them professionally. Innovation and competition are crucial to testing ideas and ensuring our Student Union provides us with the best experience they can, but this is only possible if we are open to new ideas and have the confidence that, when we choose to speak out, others will respect our voices.</p>
-', slug: 'Uncontested-Unelected', volume: '1', issue:'1',is_published: true, section_id: 2)
+', slug: 'Uncontested-Unelected', volume: 108, issue:1,rank:4,is_published: true, section_id: 2)
 
 Article.create( title: 'StuyHacks Hosts Its Fourth Hackathon', content: '<p>StuyHacks held its fourth hackathon, StuyHacks IV, on Saturday, May 27, and Sunday, May 28. The event provided an opportunity for 175 high-school students from the U.S. and Canada to learn about and to immerse themselves in computer science.</p>
 <p>A hackathon is an event where programmers can collaborate on a range of computer science projects. The hackathon organizers secured the sponsorship of a number of technology companies, including Facebook, MakeSchool, RedSeal, and ThoughtWorks, to subsidize the event. The event was held in the Midtown office of ThoughtWorks.</p>
@@ -50,9 +50,9 @@ Article.create( title: 'StuyHacks Hosts Its Fourth Hackathon', content: '<p>Stuy
 <p>Alongside the competitions, multiple workshops were held throughout the event to teach attendees different computer science skills and languages. For example, junior Shakil Rafi led the Android Development workshop, which taught participants how to code apps for the Android operating system. </p>
 <p>At the end of StuyHacks IV, a panel of judges evaluated the group projects and gave out multiple awards based off of them. Seniors Nicholas Ng, Anya Keller, Mikhail Kotlik, and Daniel Monteagudo came in third place for the best overall project award for their work on Politalk, a website inspired by the 2016 election that connects people with opposing political ideologies through a chat app.</p>
 <p>For future hackathons, StuyHacks organizers hope to increase funding to expand the event by reserving a larger venue and adding more workshops. Despite this, StuyHacks IV was well received by many of its attendees. “Having been to past StuyHacks, it is amazing to see all the improvements done over the years to benefit programmers,” senior Kevin Zhang said.</p>
-', slug: 'StuyHacks-Hosts-Its-Fourth-Hackathon', volume: '1', issue:'1',is_published: true, section_id:1)
+', slug: 'StuyHacks-Hosts-Its-Fourth-Hackathon', volume: 108, issue:1,rank:3,is_published: true, section_id:3)
 
-Article.create( title: 'Student Wins Best Paper Award at CNERT Workshop', content:'<p>Junior Caleb Smith-Salzberg won the Best Paper Award for his entry, “Bridging the Digital Divide Between Research and Home Networks,” at the IEEE International Conference on Computer Communications (INFOCOM) in Atlanta on May 1. He had previously presented his paper on April 21 at the New York University (NYU) Research Expo held at the Tandon School of Engineering. </p>
+Article.create( title: 'Student Wins English Paper Award at CNERT Workshop', content:'<p>Junior Caleb Smith-Salzberg won the Best Paper Award for his entry, “Bridging the Digital Divide Between Research and Home Networks,” at the IEEE International Conference on Computer Communications (INFOCOM) in Atlanta on May 1. He had previously presented his paper on April 21 at the New York University (NYU) Research Expo held at the Tandon School of Engineering. </p>
 <p>Smith-Salzberg’s project aims to narrow the gap between the top-notch internet connections that researchers usually have with the much poorer quality connections that average Americans have. “I created a tool that makes it easy for researchers to exactly mimic the internet speeds and connections of an actual U.S. household that is sampled from a dataset of over 10 thousand households,” Smith-Salzberg said in an e-mail interview. </p>
 <p>Last year, Smith-Salzberg was admitted into NYU’s ARISE program, which gives high school students an opportunity to conduct search over the summer with researchers. Here, he began his project that would eventually lead to his paper. “I wanted to challenge myself with different coding problems and expand my knowledge of graphing and using libraries of code. I also wanted to work with huge amounts of data,” he said. His mentor in the program was Fraida Fund of the Center for Advanced Technology in Telecommunications lab at NYU. </p>
 <p>Smith-Salzberg collaborated with Fund to finalize his research project during the summer. By the end of the program, he had programmed a successfully functioning script, and had completed his main goal. However, Smith-Salzberg and Fund continued to work extensively on the project after the program and the two worked together on Smith-Salzberg’s final paper.</p>
@@ -61,7 +61,7 @@ Article.create( title: 'Student Wins Best Paper Award at CNERT Workshop', conten
 <p>Many of Smith-Salzberg’s competitors were graduate students and possessed more experience in the field of research. “I was very prepared for the presentation at the conference because at that point I had been pitching my project for around nine months. Making a presentation for a more professional audience was not very difficult,” he said. “I did not think I was going to win, and was super excited when it was announced.”</p>
 <p>Smith-Salzberg  is eager to see people using and developing his tool. “All the code is open source, so anyone can suggest edits or built on it, “ he said. “I [learned] a great deal about the importance of reproducibility in research, and taking note of everything done.” </p>
 <p>He is excited about the future of the program and encourages more students to take advantage of the computer science program at Stuyvesant. “After spending the summer with many graduate students who major or minor in computer science, I can say Stuyvesant prepares you extraordinarily well for the field,” Smith-Salzberg said.</p>
-', slug: 'Student-Wins-Best-Paper-Award-at-CNERT-Workshop', volume: '2', issue:'2',is_published: true, section_id: 1)
+', slug: 'Student-Wins-Best-Paper-Award-at-CNERT-Workshop', volume: 108, issue:1,rank:2,is_published: true, section_id: 4)
 
 #Medium.create( url:'http://www.stuyspec.com/wp-content/uploads/Issue-16_Features_Stuyvesant-Rooftop-Gardening-Lillian-Xiao.png', article_id: 1)
 #Medium.create( url: 'http://www.stuyspec.com/wp-content/uploads/NEWS-Caleb-Smith-Salzberg-by-Tasdid-Khandaker-768x1149.jpg', article_id: 4)

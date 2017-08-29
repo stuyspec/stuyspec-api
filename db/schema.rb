@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170828183304) do
+ActiveRecord::Schema.define(version: 20170829125043) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -25,7 +25,7 @@ ActiveRecord::Schema.define(version: 20170828183304) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.bigint "section_id"
-    t.integer "rank"
+    t.integer "rank", default: 1
     t.index ["section_id"], name: "index_articles_on_section_id"
   end
 
@@ -39,9 +39,8 @@ ActiveRecord::Schema.define(version: 20170828183304) do
   end
 
   create_table "comments", force: :cascade do |t|
-    t.string "article_id"
-    t.string "integer"
-    t.string "user_id"
+    t.integer "article_id"
+    t.integer "user_id"
     t.text "content"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -96,7 +95,7 @@ ActiveRecord::Schema.define(version: 20170828183304) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "parent_id"
-    t.integer "rank"
+    t.integer "rank", default: 1
   end
 
   create_table "user_roles", force: :cascade do |t|
@@ -130,8 +129,8 @@ ActiveRecord::Schema.define(version: 20170828183304) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "thumbnail"
-    t.string "slug"
     t.string "last_name"
+    t.string "slug"
     t.string "description"
     t.index ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true
     t.index ["email"], name: "index_users_on_email", unique: true

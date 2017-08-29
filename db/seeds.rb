@@ -5,6 +5,16 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
+puts "Creating sections"
+Section.create( name: 'News', slug: 'News', description:'News is a great department!')
+Section.create( name: 'Opinions', slug: 'Opinions', description: 'Opinions is a great department!')
+Section.create( name: 'Features', slug: 'Features', description: 'Features is a great department!')
+Section.create( name: 'Sports', slug: 'Sports', description: 'Sports is a great department!')
+Section.create( name: 'Arts and Entertainment', slug: 'Arts-and-Entertainment', description: 'Arts and Entertainment is a great department!')
+Section.create( name: 'Humor', slug: 'Humor', description: 'Humor is a great department!')
+puts "Finished creating sections"
+
+puts "Creating Articles"
 Article.create( title: 'The Rooftop Garden: What Does Urban Growth Really Mean?', content: '<p>Through the balcony doors in the woodshop class on the 10th floor lies the rooftop garden. A small, bright space with quaint wooden crates and a mishmash of colorful planting supplies, Stuyvesant’s rooftop garden delivers fresh veggies and a dose of relaxation that is inevitable when sunshine, plants, and a gorgeous view are involved.</p>
 <p>When I went up to the rooftop garden, I was struck by what a welcome change the airy, carefree space was from the stress of Stuyvesant. Guided by biology teacher Marissa Maggio, my friends and I helped water the recently sprouted herbs and vegetables, soaking them with the long hose that we tugged around the garden and learning firsthand the importance of the rooftop garden in our urban landscape. </p>
 <p>The rooftop garden was created by the Environmental Club, inspired by Battery Urban Farm, an education farm in Battery Park that aims to teach students about sustainable farming and get them involved in growing their own food. The rooftop garden was created to expand those values to Stuyvesant by using the space available in our school to compensate for the limited room on the Battery Urban Farm plot.</p>
@@ -21,8 +31,8 @@ Article.create( title: 'The Rooftop Garden: What Does Urban Growth Really Mean?'
 <p>By making the rooftop garden environment so personal, it offers a solution to this problem. “When you spend months taking care of this garden, you don’t wanna be throwing that out,” sophomore Secretary of the Environmental Club Kenny Wong said. </p>
 Along with the tomatoes and kale, the rooftop garden delivers an empowering sense of independence and awareness. “We have so little power over what we eat, especially as kids, and it’s so cool to take control of your life in this way,” Kunins-Berkowitz said. </p>
 <p>As New Yorkers and students, we are isolated from the origins and processes that go into the food we mindlessly consume, most of our knowledge coming from the inspiring stories on the back of cereal boxes. The rooftop garden is a rare opportunity to learn, and it is one that should be seized.</p>
+', slug: 'The-Rooftop-Garden:-What-Does-Urban-Growth-Really-Mean?', volume: '1', issue:'1',is_published: true, section_id: 3)
 
-')
 Article.create( title: 'Uncontested; Unelected?', content: '<p>An unopposed candidacy might signify incredible popularity, and a margin of victory of 100 percent. It could also signify a lack of opposition, and of civic engagement. In the worst case, the election may be coerced. James Monroe was elected President of the United States by a margin of 228-1 in 1820; Kim Jong-un was elected President of North Korea by a margin of 687-0 in 2014. From overwhelming approval to coercion, the most recent Student Union (SU) elections fall somewhere in between.</p>
 <p>Bitter liberals like to whine about the low democratic turnout in America’s presidential election, but Stuyvesant is much worse, routinely seeing only a minority of the student body vote. This year, the SU and Senior Caucus elections stooped to a new level of apathy, each featuring a single candidacy. Junior Kevin Boodram, who ran for caucus three times in the past, said, “ I don’t think people understand what the Student Union does. I think that discourages a lot people from running in the first place, even voting.” His older brother’s friends told him the SU was only good for planning parties.</p>
 <p>Yet the SU organizes perhaps the biggest display of school spirit each year, SING!. The SU’s impressive budget of over $100,000 is what makes clubs and publications possible. And the President and Vice President routinely meet with school administration as the ones advocating for the student body. Perhaps it is time to pay more attention to election season.</p>
@@ -31,7 +41,8 @@ Article.create( title: 'Uncontested; Unelected?', content: '<p>An unopposed cand
 <p>Hostility directly discourages students from running. It is hard enough to break into the SU—incumbents have the advantage of knowing the organization’s inner-workings, evidenced by a six-year chain of SU Vice Presidents becoming President. Bullying is not only degrading, but makes the task impossible; Kahan gave up on running for Student Union, and eventually pulled out of the Junior Caucus race—his ideas were effectively silenced.</p>
 <p>Boodram added that it is very difficult for candidates to run after suffering a loss. “If you lose a campaign, and you try to do anything after that, people are always going to flame you and say you’re salty or whatever and criticize you for trying to run again,” he said, nodding vigorously when asked if he was bullied. Stuyvesant students are quick to transgress the boundary from debating policies to personal attacks.</p>
 <p>SU elections have always been meaningful; now it is time for the student body to treat them professionally. Innovation and competition are crucial to testing ideas and ensuring our Student Union provides us with the best experience they can, but this is only possible if we are open to new ideas and have the confidence that, when we choose to speak out, others will respect our voices.</p>
-')
+', slug: 'Uncontested;-Unelected?', volume: '1', issue:'1',is_published: true, section_id: 2)
+
 Article.create( title: 'StuyHacks Hosts Its Fourth Hackathon', content: '<p>StuyHacks held its fourth hackathon, StuyHacks IV, on Saturday, May 27, and Sunday, May 28. The event provided an opportunity for 175 high-school students from the U.S. and Canada to learn about and to immerse themselves in computer science.</p>
 <p>A hackathon is an event where programmers can collaborate on a range of computer science projects. The hackathon organizers secured the sponsorship of a number of technology companies, including Facebook, MakeSchool, RedSeal, and ThoughtWorks, to subsidize the event. The event was held in the Midtown office of ThoughtWorks.</p>
 <p>StuyHacks worked together with the computer science department and the Dojo, which is an afterschool community for computer science enthusiasts, to recruit mentors to help teach at the hackathon. “Mentors [were] generally college students who are majoring in Computer Science or Computer Engineering. Some mentors [were] also students from Stuyvesant who are currently taking post-AP level courses,” senior and StuyHacks logistics director Prangon Ghose said.</p>
@@ -39,58 +50,64 @@ Article.create( title: 'StuyHacks Hosts Its Fourth Hackathon', content: '<p>Stuy
 <p>Alongside the competitions, multiple workshops were held throughout the event to teach attendees different computer science skills and languages. For example, junior Shakil Rafi led the Android Development workshop, which taught participants how to code apps for the Android operating system. </p>
 <p>At the end of StuyHacks IV, a panel of judges evaluated the group projects and gave out multiple awards based off of them. Seniors Nicholas Ng, Anya Keller, Mikhail Kotlik, and Daniel Monteagudo came in third place for the best overall project award for their work on Politalk, a website inspired by the 2016 election that connects people with opposing political ideologies through a chat app.</p>
 <p>For future hackathons, StuyHacks organizers hope to increase funding to expand the event by reserving a larger venue and adding more workshops. Despite this, StuyHacks IV was well received by many of its attendees. “Having been to past StuyHacks, it is amazing to see all the improvements done over the years to benefit programmers,” senior Kevin Zhang said.</p>
-')
-Article.create( content:'<p>Junior Caleb Smith-Salzberg won the Best Paper Award for his entry, “Bridging the Digital Divide Between Research and Home Networks,” at the IEEE International Conference on Computer Communications (INFOCOM) in Atlanta on May 1. He had previously presented his paper on April 21 at the New York University (NYU) Research Expo held at the Tandon School of Engineering. </p>
+', slug: 'StuyHacks-Hosts-Its-Fourth-Hackathon', volume: '1', issue:'1',is_published: true, section_id:1)
+
+Article.create( title: 'Student Wins Best Paper Award at CNERT Workshop', content:'<p>Junior Caleb Smith-Salzberg won the Best Paper Award for his entry, “Bridging the Digital Divide Between Research and Home Networks,” at the IEEE International Conference on Computer Communications (INFOCOM) in Atlanta on May 1. He had previously presented his paper on April 21 at the New York University (NYU) Research Expo held at the Tandon School of Engineering. </p>
 <p>Smith-Salzberg’s project aims to narrow the gap between the top-notch internet connections that researchers usually have with the much poorer quality connections that average Americans have. “I created a tool that makes it easy for researchers to exactly mimic the internet speeds and connections of an actual U.S. household that is sampled from a dataset of over 10 thousand households,” Smith-Salzberg said in an e-mail interview. </p>
 <p>Last year, Smith-Salzberg was admitted into NYU’s ARISE program, which gives high school students an opportunity to conduct search over the summer with researchers. Here, he began his project that would eventually lead to his paper. “I wanted to challenge myself with different coding problems and expand my knowledge of graphing and using libraries of code. I also wanted to work with huge amounts of data,” he said. His mentor in the program was Fraida Fund of the Center for Advanced Technology in Telecommunications lab at NYU. </p>
 <p>Smith-Salzberg collaborated with Fund to finalize his research project during the summer. By the end of the program, he had programmed a successfully functioning script, and had completed his main goal. However, Smith-Salzberg and Fund continued to work extensively on the project after the program and the two worked together on Smith-Salzberg’s final paper.</p>
 <p>Smith-Salzberg was able to first present his findings to field professionals and professors at the NYU Research Expo in late April. “It was extremely useful in preparation for the [IEEE INFOCOM],” he said.</p>
-
 <p>A week later, Smith-Salzberg went to the IEEE INFOCOM conference to present his work. Out of the hundreds of participants, Smith-Salzberg competed directly against seven other presenters in his workshop, which focused on computer and networking experimental research. </p>
 <p>Many of Smith-Salzberg’s competitors were graduate students and possessed more experience in the field of research. “I was very prepared for the presentation at the conference because at that point I had been pitching my project for around nine months. Making a presentation for a more professional audience was not very difficult,” he said. “I did not think I was going to win, and was super excited when it was announced.”</p>
 <p>Smith-Salzberg  is eager to see people using and developing his tool. “All the code is open source, so anyone can suggest edits or built on it, “ he said. “I [learned] a great deal about the importance of reproducibility in research, and taking note of everything done.” </p>
 <p>He is excited about the future of the program and encourages more students to take advantage of the computer science program at Stuyvesant. “After spending the summer with many graduate students who major or minor in computer science, I can say Stuyvesant prepares you extraordinarily well for the field,” Smith-Salzberg said.</p>
-', title: 'Student Wins Best Paper Award at CNERT Workshop')
+', slug: 'Student-Wins-Best-Paper-Award-at-CNERT-Workshop', volume: '2', issue:'2',is_published: true, section_id: 1)
+
 #Medium.create( url:'http://www.stuyspec.com/wp-content/uploads/Issue-16_Features_Stuyvesant-Rooftop-Gardening-Lillian-Xiao.png', article_id: 1)
 #Medium.create( url: 'http://www.stuyspec.com/wp-content/uploads/NEWS-Caleb-Smith-Salzberg-by-Tasdid-Khandaker-768x1149.jpg', article_id: 4)
 
-Comment.create( content: 'test1', article_id: 1)
-Comment.create( content: 'test2', article_id: 1)
-Comment.create( content: 'test3', article_id: 1)
-Comment.create( content: 'test4', article_id: 1)
-Comment.create( content: 'test5', article_id: 1)
-Comment.create( content: 'test6', article_id: 1)
+puts "Creating roles"
+Role.create(title: 'Features Writer', slug:'Features-Writer')
+Role.create(title: 'Opinions Writer', slug:'Opinions-Writer')
+Role.create(title: 'News Writer', slug:'News-Writer')
+Role.create(title: 'Humor Writer', slug:'Humor-Writer')
+Role.create(title: 'Sports Writer', slug:'Sports-Writer')
+Role.create(title: 'Arts and Entertainment Writer', slug:'Arts-and-Entertainment-Writer')
+puts "Finished creating roles"
+
+puts "Creating users"
 User.create(username:'John Doe', email: 'john1@gmail.com', password: 'topsecret1', password_confirmation: 'topsecret1')
 User.create(username:'John Doe', email: 'john2@gmail.com', password: 'topsecret2', password_confirmation: 'topsecret2')
 User.create(username:'John Doe', email: 'john3@gmail.com', password: 'topsecret3', password_confirmation: 'topsecret3')
 User.create(username:'John Doe', email: 'john4@gmail.com', password: 'topsecret4', password_confirmation: 'topsecret4')
 User.create(username:'John Doe', email: 'john5@gmail.com', password: 'topsecret5', password_confirmation: 'topsecret5')
 User.create(username:'John Doe', email: 'john6@gmail.com', password: 'topsecret6', password_confirmation: 'topsecret6')
-Section.create( name: 'test1', slug: 'test1')
-Section.create( name: 'test2', slug: 'test2')
-Section.create( name: 'test3', slug: 'test3')
-Section.create( name: 'test4', slug: 'test4')
-Section.create( name: 'test5', slug: 'test5')
-Section.create( name: 'test6', slug: 'test6')
-Authorship.create(user_id:1, article_id: 1)
-Authorship.create(user_id:2, article_id: 2)
-Authorship.create(user_id:3, article_id: 3)
-Authorship.create(user_id:4, article_id: 3)
-Authorship.create(user_id:5, article_id: 3)
-Authorship.create(user_id:6, article_id: 3)
-Role.create(title: 'test1', slug:'test1')
-Role.create(title: 'test2', slug:'test2')
-Role.create(title: 'test3', slug:'test3')
-Role.create(title: 'test4', slug:'test4')
-Role.create(title: 'test5', slug:'test5')
-Role.create(title: 'test6', slug:'test6')
-UserRole.create(user_id: 1, role_id: 1)
-UserRole.create(user_id: 2, role_id: 2)
-UserRole.create(user_id: 3, role_id: 3)
-UserRole.create(user_id: 4, role_id: 4)
-UserRole.create(user_id: 5, role_id: 5)
-UserRole.create(user_id: 6, role_id: 6)
+puts "Finished creating users"
 
+puts "Creating comments"
+Comment.create( content: 'This is a great article!', article_id: 1, user_id: 1)
+Comment.create( content: 'This is a great article!', article_id: 2, user_id: 2)
+Comment.create( content: 'This is a great article!', article_id: 3, user_id: 3)
+Comment.create( content: 'This is a great article!', article_id: 4, user_id: 4)
+puts "Finished creating comments"
+
+puts "Creating Authorships"
+Authorship.create( user_id:1, article_id: 1)
+Authorship.create( user_id:2, article_id: 2)
+Authorship.create( user_id:3, article_id: 3)
+Authorship.create( user_id:4, article_id: 3)
+Authorship.create( user_id:5, article_id: 3)
+Authorship.create( user_id:6, article_id: 3)
+puts "Finished creating authorships"
+
+puts "Creating UserRoles"
+UserRole.create( user_id: 1, role_id: 1)
+UserRole.create( user_id: 2, role_id: 2)
+UserRole.create( user_id: 3, role_id: 3)
+UserRole.create( user_id: 4, role_id: 4)
+UserRole.create( user_id: 5, role_id: 5)
+UserRole.create( user_id: 6, role_id: 6)
+puts "Finished creating UserRoles"
 
 
 

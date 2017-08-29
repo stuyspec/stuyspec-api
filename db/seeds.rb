@@ -73,12 +73,12 @@ Role.create(title: 'Photographer', slug: 'photographers')
 puts "Finished creating roles"
 
 puts "Creating users"
-User.create(first_name: 'John', last_name: 'DoeOne', username:'jdoe1', email: 'john1@gmail.com', password: 'topsecret1', password_confirmation: 'topsecret1', description: 'number one')
-User.create(first_name: 'John', last_name: 'DoeTwo', username:'jdoe2', email: 'john2@gmail.com', password: 'topsecret2', password_confirmation: 'topsecret2', description: 'number two')
-User.create(first_name: 'John', last_name: 'DoeThree', username:'jdoe3', email: 'john3@gmail.com', password: 'topsecret3', password_confirmation: 'topsecret3', description: 'number three')
-User.create(first_name: 'John', last_name: 'DoeFour', username:'jdoe4', email: 'john4@gmail.com', password: 'topsecret4', password_confirmation: 'topsecret4', description: 'number four')
-User.create(first_name: 'John', last_name: 'DoeFive', username:'jdoe5', email: 'john5@gmail.com', password: 'topsecret5', password_confirmation: 'topsecret5', description: 'number five')
-User.create(first_name: 'John', last_name: 'DoeSix', username:'jdoe6', email: 'john6@gmail.com', password: 'topsecret6', password_confirmation: 'topsecret6', description: 'number six')
+User.create(first_name: 'John', last_name: 'DoeOne', slug: 'john-doeone', username:'jdoe1', email: 'john1@gmail.com', password: 'topsecret1', password_confirmation: 'topsecret1', description: 'number one')
+User.create(first_name: 'John', last_name: 'DoeTwo', slug: 'john-doetwo', username:'jdoe2', email: 'john2@gmail.com', password: 'topsecret2', password_confirmation: 'topsecret2', description: 'number two')
+User.create(first_name: 'John', last_name: 'DoeThree', slug: 'john-doethree', username:'jdoe3', email: 'john3@gmail.com', password: 'topsecret3', password_confirmation: 'topsecret3', description: 'number three')
+User.create(first_name: 'John', last_name: 'DoeFour', slug: 'john-doefour', username:'jdoe4', email: 'john4@gmail.com', password: 'topsecret4', password_confirmation: 'topsecret4', description: 'number four')
+User.create(first_name: 'John', last_name: 'DoeFive', slug: 'john-doefive', username:'jdoe5', email: 'john5@gmail.com', password: 'topsecret5', password_confirmation: 'topsecret5', description: 'number five')
+User.create(first_name: 'John', last_name: 'DoeSix', slug: 'john-doesix', username:'jdoe6', email: 'john6@gmail.com', password: 'topsecret6', password_confirmation: 'topsecret6', description: 'number six')
 puts "Finished creating users"
 
 puts "Creating comments"
@@ -93,15 +93,27 @@ Authorship.create( user_id:1, article_id: 1)
 Authorship.create( user_id:2, article_id: 2)
 Authorship.create( user_id:3, article_id: 3)
 Authorship.create( user_id:4, article_id: 3)
-Authorship.create( user_id:5, article_id: 3)
-Authorship.create( user_id:6, article_id: 3)
+Authorship.create( user_id:5, article_id: 4)
+Authorship.create( user_id:6, article_id: 4)
 puts "Finished creating authorships"
 
 puts "Creating UserRoles"
 UserRole.create( user_id: 1, role_id: 1)
-UserRole.create( user_id: 2, role_id: 2)
-UserRole.create( user_id: 3, role_id: 3)
+UserRole.create( user_id: 2, role_id: 1)
+UserRole.create( user_id: 3, role_id: 1)
 UserRole.create( user_id: 4, role_id: 1)
+UserRole.create( user_id: 5, role_id: 1)
+UserRole.create( user_id: 6, role_id: 1)
+UserRole.create( user_id: 1, role_id: 2)
+UserRole.create( user_id: 2, role_id: 2)
+UserRole.create( user_id: 3, role_id: 2)
+UserRole.create( user_id: 4, role_id: 2)
 UserRole.create( user_id: 5, role_id: 2)
+UserRole.create( user_id: 6, role_id: 2)
+UserRole.create( user_id: 1, role_id: 3)
+UserRole.create( user_id: 2, role_id: 3)
+UserRole.create( user_id: 3, role_id: 3)
+UserRole.create( user_id: 4, role_id: 3)
+UserRole.create( user_id: 5, role_id: 3)
 UserRole.create( user_id: 6, role_id: 3)
 puts "Finished creating UserRoles"

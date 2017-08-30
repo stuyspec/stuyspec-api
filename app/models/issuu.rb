@@ -1,0 +1,2 @@
+class Issuu < ApplicationRecord
+end

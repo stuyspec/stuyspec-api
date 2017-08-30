@@ -117,3 +117,6 @@ UserRole.create( user_id: 4, role_id: 3)
 UserRole.create( user_id: 5, role_id: 3)
 UserRole.create( user_id: 6, role_id: 3)
 puts "Finished creating UserRoles"
+
+puts"Creating Issuus"
+Issuu.create( config: 51459807, volume: 1, issue: 1)

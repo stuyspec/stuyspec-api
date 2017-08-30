@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :issuus
   resources :user_roles
   resources :roles do
     resources :user_roles

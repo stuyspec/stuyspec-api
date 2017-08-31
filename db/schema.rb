@@ -81,14 +81,6 @@ ActiveRecord::Schema.define(version: 20170830194155) do
     t.index ["user_id_id"], name: "index_media_on_user_id_id"
   end
 
-  create_table "replies", force: :cascade do |t|
-    t.integer "comment_id"
-    t.integer "user_id"
-    t.text "content"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
   create_table "roles", force: :cascade do |t|
     t.text "title"
     t.text "slug"

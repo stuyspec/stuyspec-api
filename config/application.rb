@@ -32,7 +32,7 @@ module StuySpecApi
                      :delete,
                      :options
                  ],
-                 :expose  => ['access-token', 'expiry', 'token-type', 'uid', 'client'],
+                 :expose  => ['access-token', 'expiry', 'token-type', 'uid', 'client']
       end
     end
     config.middleware.use OliveBranch::Middleware

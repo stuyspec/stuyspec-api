@@ -121,12 +121,3 @@ UserRole.create( user_id: 4, role_id: 3)
 UserRole.create( user_id: 5, role_id: 3)
 UserRole.create( user_id: 6, role_id: 3)
 puts "Finished creating UserRoles"
-
-puts "Creating Issuus"
-Issuu.create(config: 50114490, volume: 107, issue: 16)
-Issuu.create( config: 51459807, volume: 107, issue: 15)
-Issuu.create( config: 51459781, volume: 107, issue: 14)
-Issuu.create( config: 47828372, volume: 107, issue: 13)
-Issuu.create( config: 46812912, volume: 107, issue: 12)
-Issuu.create( config: 45720551, volume: 107, issue: 11)
-puts "Finished creating Issuus"

@@ -96,8 +96,9 @@ Authorship.create( user_id:1, article_id: 1)
 Authorship.create( user_id:2, article_id: 2)
 Authorship.create( user_id:3, article_id: 3)
 Authorship.create( user_id:4, article_id: 3)
+Authorship.create( user_id:4, article_id: 4)
 Authorship.create( user_id:5, article_id: 4)
-Authorship.create( user_id:6, article_id: 4)
+Authorship.create( user_id:6, article_id: 5)
 puts "Finished creating authorships"
 
 puts "Creating UserRoles"

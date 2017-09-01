@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170829125043) do
+ActiveRecord::Schema.define(version: 20170901152914) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -60,8 +60,8 @@ ActiveRecord::Schema.define(version: 20170829125043) do
   end
 
   create_table "media", force: :cascade do |t|
-    t.bigint "user_id_id"
-    t.bigint "article_id_id"
+    t.bigint "user_id"
+    t.bigint "article_id"
     t.string "url"
     t.string "title"
     t.text "caption"
@@ -69,8 +69,16 @@ ActiveRecord::Schema.define(version: 20170829125043) do
     t.string "type"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["article_id_id"], name: "index_media_on_article_id_id"
-    t.index ["user_id_id"], name: "index_media_on_user_id_id"
+    t.string "attachement_file_name"
+    t.string "attachement_content_type"
+    t.integer "attachement_file_size"
+    t.datetime "attachement_updated_at"
+    t.string "attachment_file_name"
+    t.string "attachment_content_type"
+    t.integer "attachment_file_size"
+    t.datetime "attachment_updated_at"
+    t.index ["article_id"], name: "index_media_on_article_id"
+    t.index ["user_id"], name: "index_media_on_user_id"
   end
 
   create_table "replies", force: :cascade do |t|

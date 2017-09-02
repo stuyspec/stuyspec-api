@@ -39,7 +39,7 @@ class SubscribersController < ApplicationController
   end
   #EMAIL /subscribers/1/email
   def email
-    EmailSubscriberMailer.send_email(Subscriber.all, params[:subject], params[:content])
+    EmailSubscriberMailer.send_email(Subscriber.all, params[:subject], params[:content]).deliver
   end
 
   private

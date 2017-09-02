@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
-  resources :subscribers
+  resources :subscribers do
+    get :email
+  end
   resources :comments do
     resources :replies
   end

@@ -3,8 +3,9 @@ class EmailSubscriberMailer < ApplicationMailer
 
   # send email
   def send_email(users, subject, content)
+
     @content = content
-    users.each do user
+    users.each do |user|
       @user = user
       mail( :to => @user.email,
           :subject => subject)

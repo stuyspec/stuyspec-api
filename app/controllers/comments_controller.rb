@@ -2,7 +2,7 @@ class CommentsController < ApplicationController
   before_action :set_comment, only: [:show, :update, :destroy]
   # GET /comments
   def index
-    @comments = Comment.all
+    @comments = Comment.where.not(published_at: nil).all
     if params[:article_id]
       @comments = Article.friendly.find(params[:article_id]).comments
     elsif params[:user_id]

@@ -4,10 +4,7 @@ Rails.application.routes.draw do
   resources :roles do
     resources :user_roles
   end
-  resources :comments do
-    resources :replies
-  end
-  resources :replies
+  resources :comments
   resources :media
   resources :authorships
   mount_devise_token_auth_for 'User', at: 'auth'

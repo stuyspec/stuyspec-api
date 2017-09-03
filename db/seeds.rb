@@ -28,10 +28,14 @@ Section.create( name: 'Television', slug: 'television', description: 'The A&E of
 Section.create( name: 'Music', slug: 'music', description: 'The A&E of Stuyvesant', parent_id: 4)
 Section.create( name: 'Thinkpiece', slug: 'thinkpiece', description: 'The A&E of Stuyvesant', parent_id: 4)
 Section.create( name: 'Spooktator', slug: 'spooktator', description: 'The humor of Stuyvesant', parent_id: 5)
-Section.create( name: 'VOICE', slug: 'voice', description: 'The features of Stuyvesant', parent_id: 3)
+Section.create( name: 'VOICES', slug: 'voices', description: 'The features of Stuyvesant', parent_id: 3)
 Section.create( name: '9/11', slug: '9/11', description: 'The features of Stuyvesant', parent_id: 3)
 Section.create( name: 'SING!', slug: 'sing!', description: 'The A&E of Stuyvesant', parent_id: 4) 
 Section.create( name: 'STC', slug: 'stc', description: 'The A&E of Stuyvesant', parent_id: 4)
+Section.create( name: 'Video', slug: 'video', description: 'The video of Stuyvesant')
+Section.create( name: 'Photo', slug: 'photo', description: 'The photo of Stuyvesant'_
+Section.create( name: 'Uncategorized', slug: 'uncategorized', description: 'The uncatgeorized of Stuyvesant')
+Section.create( name: 'Online Exclusives', slug: 'online exclusives', description: 'The online exclusives of Stuyvesant')
 puts "Finished creating subsections"
 
 puts "Creating Articles"

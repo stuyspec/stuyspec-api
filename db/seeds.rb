@@ -33,7 +33,7 @@ Section.create( name: '9/11', slug: '9/11', description: 'The features of Stuyve
 Section.create( name: 'SING!', slug: 'sing!', description: 'The A&E of Stuyvesant', parent_id: 4) 
 Section.create( name: 'STC', slug: 'stc', description: 'The A&E of Stuyvesant', parent_id: 4)
 Section.create( name: 'Video', slug: 'video', description: 'The video of Stuyvesant')
-Section.create( name: 'Photo', slug: 'photo', description: 'The photo of Stuyvesant'_
+Section.create( name: 'Photo', slug: 'photo', description: 'The photo of Stuyvesant')
 Section.create( name: 'Uncategorized', slug: 'uncategorized', description: 'The uncatgeorized of Stuyvesant')
 Section.create( name: 'Online Exclusives', slug: 'online exclusives', description: 'The online exclusives of Stuyvesant')
 puts "Finished creating subsections"

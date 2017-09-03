@@ -30,6 +30,8 @@ Section.create( name: 'Thinkpiece', slug: 'thinkpiece', description: 'The A&E of
 Section.create( name: 'Spooktator', slug: 'spooktator', description: 'The humor of Stuyvesant', parent_id: 5)
 Section.create( name: 'VOICE', slug: 'voice', description: 'The features of Stuyvesant', parent_id: 3)
 Section.create( name: '9/11', slug: '9/11', description: 'The features of Stuyvesant', parent_id: 3)
+Section.create( name: 'SING!', slug: 'sing!', description: 'The A&E of Stuyvesant', parent_id: 4) 
+Section.create( name: 'STC', slug: 'stc', description: 'The A&E of Stuyvesant', parent_id: 4)
 puts "Finished creating subsections"
 
 puts "Creating Articles"

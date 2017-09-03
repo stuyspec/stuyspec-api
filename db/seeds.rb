@@ -15,7 +15,7 @@ Section.create( name: 'Sports', slug: 'sports', description: 'The sports of Stuy
 puts "Finished creating sections"
 
 puts "Creating subsections"
-Section.create( name: '2017 Campaign Coverage', slug:'2017-campaign-coverage', description:'The news of Stuyvesant', parent_id: 1)
+Section.create( name: 'Campaign Coverage', slug:'campaign-coverage', description:'The news of Stuyvesant', parent_id: 1)
 Section.create( name: 'Staff Editorials', slug:'staff-ed', description: 'The opinions of Stuyvesant', parent_id: 2)
 Section.create( name: 'Disrespectator', slug: 'disrespectator', description: 'The humor of Stuyvesant', parent_id: 5)
 Section.create( name: 'Creative Writing', slug: 'creative writing', description: 'The features of Stuyvesant', parent_id: 3)
@@ -28,8 +28,6 @@ Section.create( name: 'Television', slug: 'television', description: 'The A&E of
 Section.create( name: 'Music', slug: 'music', description: 'The A&E of Stuyvesant', parent_id: 4)
 Section.create( name: 'Thinkpiece', slug: 'thinkpiece', description: 'The A&E of Stuyvesant', parent_id: 4)
 Section.create( name: 'Spooktator', slug: 'spooktator', description: 'The humor of Stuyvesant', parent_id: 5)
-Section.create( name: '2016 Campaign Coverage', slug:'2016-campaign-coverage', description:'The news of Stuyvesant', parent_id: 1)
-Section.create( name: '2014 Campaign Coverage', slug:'2014-campaign-coverage', description:'The news of Stuyvesant', parent_id: 1)
 Section.create( name: 'VOICE', slug: 'voice', description: 'The features of Stuyvesant', parent_id: 3)
 Section.create( name: '9/11', slug: '9/11', description: 'The features of Stuyvesant', parent_id: 3)
 puts "Finished creating subsections"

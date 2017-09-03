@@ -6,26 +6,32 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 puts "Creating sections"
-Section.create( name: 'News', slug: 'news', description:'News is a great department!', rank: 6)
-Section.create( name: 'Opinions', slug: 'opinions', description: 'Opinions is a great department!', rank: 5)
-Section.create( name: 'Features', slug: 'features', description: 'Features is a great department!', rank: 4)
-Section.create( name: 'Arts & Entertainment', slug: 'ae', description: 'A&E is a great department!', rank: 3)
-Section.create( name: 'Humor', slug: 'humor', description: 'Humor is a great department!', rank: 2)
-Section.create( name: 'Sports', slug: 'sports', description: 'Sports is a great department!', rank: 1)
+Section.create( name: 'News', slug: 'news', description:'The news of Stuyvesant', rank: 6)
+Section.create( name: 'Opinions', slug: 'opinions', description: 'The opinions of Stuyvesant', rank: 5)
+Section.create( name: 'Features', slug: 'features', description: 'The features of Stuyvesant', rank: 4)
+Section.create( name: 'Arts & Entertainment', slug: 'ae', description: 'The A&E of Stuyvesant', rank: 3)
+Section.create( name: 'Humor', slug: 'humor', description: 'The humor of Stuyvesant', rank: 2)
+Section.create( name: 'Sports', slug: 'sports', description: 'The sports of Stuyvesant', rank: 1)
 puts "Finished creating sections"
 
 puts "Creating subsections"
-
-Section.create( name: 'Campaign Coverage', slug:'campaign', description:'The news of Stuyvesant', parent_id: 1)
-Section.create( name: 'Staff Editorials', slug:'staff-ed', description: 'The news of Stuyvesant', parent_id: 2)
-Section.create( name: 'Disrespectator', slug: 'disrespectator', description: 'The news of Stuyvesant', parent_id: 5)
-Section.create( name: 'Creative Writing', slug: 'creative writing', description: 'The news of Stuyvesant', parent_id: 3)
-Section.create( name: 'College Essays', slug: 'college essays', description: 'The news of Stuyvesant', parent_id: 3)
-Section.create( name: 'Books', slug: 'books', description: 'The news of Stuyvesant', parent_id: 4)
-Section.create( name: 'Film', slug: 'film', description: 'The news of Stuyvesant', parent_id: 4)
-Section.create( name: 'Food', slug: 'food', description: 'The news of Stuyvesant', parent_id: 4)
-Section.create( name: 'Live Performances', slug: 'live performances', description: 'The news of Stuyvesant', parent_id: 4)
-Section.create( name: 'Television', slug: 'television', description: 'The news of Stuyvesant', parent_id: 4)
+Section.create( name: '2017 Campaign Coverage', slug:'2017-campaign-coverage', description:'The news of Stuyvesant', parent_id: 1)
+Section.create( name: 'Staff Editorials', slug:'staff-ed', description: 'The opinions of Stuyvesant', parent_id: 2)
+Section.create( name: 'Disrespectator', slug: 'disrespectator', description: 'The humor of Stuyvesant', parent_id: 5)
+Section.create( name: 'Creative Writing', slug: 'creative writing', description: 'The features of Stuyvesant', parent_id: 3)
+Section.create( name: 'College Essays', slug: 'college essays', description: 'The features of Stuyvesant', parent_id: 3)
+Section.create( name: 'Books', slug: 'books', description: 'The A&E of Stuyvesant', parent_id: 4)
+Section.create( name: 'Film', slug: 'film', description: 'The A&E of Stuyvesant', parent_id: 4)
+Section.create( name: 'Food', slug: 'food', description: 'The A&E of Stuyvesant', parent_id: 4)
+Section.create( name: 'Live Performances', slug: 'live performances', description: 'The A&E of Stuyvesant', parent_id: 4)
+Section.create( name: 'Television', slug: 'television', description: 'The A&E of Stuyvesant', parent_id: 4)
+Section.create( name: 'Music', slug: 'music', description: 'The A&E of Stuyvesant', parent_id: 4)
+Section.create( name: 'Thinkpiece', slug: 'thinkpiece', description: 'The A&E of Stuyvesant', parent_id: 4)
+Section.create( name: 'Spooktator', slug: 'spooktator', description: 'The humor of Stuyvesant', parent_id: 5)
+Section.create( name: '2016 Campaign Coverage', slug:'2016-campaign-coverage', description:'The news of Stuyvesant', parent_id: 1)
+Section.create( name: '2014 Campaign Coverage', slug:'2014-campaign-coverage', description:'The news of Stuyvesant', parent_id: 1)
+Section.create( name: 'VOICE', slug: 'voice', description: 'The features of Stuyvesant', parent_id: 3)
+Section.create( name: '9/11', slug: '9/11', description: 'The features of Stuyvesant', parent_id: 3)
 puts "Finished creating subsections"
 
 puts "Creating Articles"
@@ -231,7 +237,6 @@ Article.create( title: "The Composition of a Genius", content: '<p>To be truly i
 <p>For Sherlock, the new character presents a puzzle, an enigma. He is put in a situation he has never had to deal with before, and due to his emotional development throughout the show, we watch him empathize for the first time and be able to love and care for someone who hasn’t torn down his walls.</p>
 <p>This season, marking the coming-of-age of all the characters, would be perfect to end the show with. Sherlock has become a human, Watson is no longer perfect, and Mycroft is self-actualized. If the series continues any longer, there is a risk that it might become repetitive or seem stretched out. While there is nothing I would like more than more of the witty banter between Sherlock and Watson, this could be the end of an era.</p>
 ', slug: 'the-composition-of-a-genius', volume: 108, issue:1,rank:1,is_published: true, section_id: 16)
-
 #Medium.create( url:'http://www.stuyspec.com/wp-content/uploads/Issue-16_Features_Stuyvesant-Rooftop-Gardening-Lillian-Xiao.png', article_id: 1)
 #Medium.create( url: 'http://www.stuyspec.com/wp-content/uploads/NEWS-Caleb-Smith-Salzberg-by-Tasdid-Khandaker-768x1149.jpg', article_id: 4)
 

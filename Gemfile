@@ -54,3 +54,4 @@ gem "olive_branch"
 # OmniAuth
 gem 'omniauth-github'
 gem 'paperclip'
+gem 'aws-sdk'

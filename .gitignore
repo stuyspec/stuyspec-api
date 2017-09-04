@@ -14,7 +14,7 @@
 !/tmp/.keep
 /spec-env
 .byebug_history
-
+/public/system/media
 # Elastic Beanstalk Files
 .elasticbeanstalk/*
 !.elasticbeanstalk/*.cfg.yml

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170902194926) do
+ActiveRecord::Schema.define(version: 20170904052134) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -69,8 +69,8 @@ ActiveRecord::Schema.define(version: 20170902194926) do
   end
 
   create_table "media", force: :cascade do |t|
-    t.bigint "user_id_id"
-    t.bigint "article_id_id"
+    t.bigint "user_id"
+    t.bigint "article_id"
     t.string "url"
     t.string "title"
     t.text "caption"
@@ -135,7 +135,6 @@ ActiveRecord::Schema.define(version: 20170902194926) do
     t.datetime "confirmation_sent_at"
     t.string "unconfirmed_email"
     t.string "first_name"
-    t.string "username"
     t.string "image"
     t.string "email"
     t.json "tokens"

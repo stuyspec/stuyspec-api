@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170901152914) do
+ActiveRecord::Schema.define(version: 20170902194926) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -26,6 +26,7 @@ ActiveRecord::Schema.define(version: 20170901152914) do
     t.datetime "updated_at", null: false
     t.bigint "section_id"
     t.integer "rank", default: 1
+    t.string "summary"
     t.index ["section_id"], name: "index_articles_on_section_id"
   end
 
@@ -69,10 +70,6 @@ ActiveRecord::Schema.define(version: 20170901152914) do
     t.string "type"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.string "attachement_file_name"
-    t.string "attachement_content_type"
-    t.integer "attachement_file_size"
-    t.datetime "attachement_updated_at"
     t.string "attachment_file_name"
     t.string "attachment_content_type"
     t.integer "attachment_file_size"

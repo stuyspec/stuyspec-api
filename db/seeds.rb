@@ -15,28 +15,31 @@ Section.create( name: 'Sports', slug: 'sports', description: 'The sports of Stuy
 puts "Finished creating sections"
 
 puts "Creating subsections"
-Section.create( name: 'Campaign Coverage', slug:'campaign-coverage', description:'The news of Stuyvesant', parent_id: 1)
-Section.create( name: 'Staff Editorials', slug:'staff-ed', description: 'The opinions of Stuyvesant', parent_id: 2)
-Section.create( name: 'Disrespectator', slug: 'disrespectator', description: 'The humor of Stuyvesant', parent_id: 5)
-Section.create( name: 'Creative Writing', slug: 'creative writing', description: 'The features of Stuyvesant', parent_id: 3)
-Section.create( name: 'College Essays', slug: 'college essays', description: 'The features of Stuyvesant', parent_id: 3)
-Section.create( name: 'Books', slug: 'books', description: 'The A&E of Stuyvesant', parent_id: 4)
-Section.create( name: 'Film', slug: 'film', description: 'The A&E of Stuyvesant', parent_id: 4)
-Section.create( name: 'Food', slug: 'food', description: 'The A&E of Stuyvesant', parent_id: 4)
-Section.create( name: 'Live Performances', slug: 'live performances', description: 'The A&E of Stuyvesant', parent_id: 4)
-Section.create( name: 'Television', slug: 'television', description: 'The A&E of Stuyvesant', parent_id: 4)
-Section.create( name: 'Music', slug: 'music', description: 'The A&E of Stuyvesant', parent_id: 4)
-Section.create( name: 'Thinkpiece', slug: 'thinkpiece', description: 'The A&E of Stuyvesant', parent_id: 4)
-Section.create( name: 'Spooktator', slug: 'spooktator', description: 'The humor of Stuyvesant', parent_id: 5)
-Section.create( name: 'VOICES', slug: 'voices', description: 'The features of Stuyvesant', parent_id: 3)
-Section.create( name: '9/11', slug: '9/11', description: 'The features of Stuyvesant', parent_id: 3)
-Section.create( name: 'SING!', slug: 'sing!', description: 'The A&E of Stuyvesant', parent_id: 4) 
-Section.create( name: 'STC', slug: 'stc', description: 'The A&E of Stuyvesant', parent_id: 4)
+Section.create( name: 'Campaign Coverage', slug:'campaign-coverage', description:'The campaign of Stuyvesant', parent_id: 1)
+Section.create( name: 'Staff Editorials', slug:'staff-ed', description: 'The staff-ed of Stuyvesant', parent_id: 2)
+Section.create( name: 'Disrespectator', slug: 'disrespectator', description: 'The disrespectator of Stuyvesant', parent_id: 5)
+Section.create( name: 'Creative Writing', slug: 'creative writing', description: 'The creative writing of Stuyvesant', parent_id: 3)
+Section.create( name: 'College Essays', slug: 'college essays', description: 'The college essays of Stuyvesant', parent_id: 3)
+Section.create( name: 'Books', slug: 'books', description: 'The books of Stuyvesant', parent_id: 4)
+Section.create( name: 'Film', slug: 'film', description: 'The film of Stuyvesant', parent_id: 4)
+Section.create( name: 'Food', slug: 'food', description: 'The food of Stuyvesant', parent_id: 4)
+Section.create( name: 'Live Performances', slug: 'live performances', description: 'The live performances of Stuyvesant', parent_id: 4)
+Section.create( name: 'Television', slug: 'television', description: 'The television of Stuyvesant', parent_id: 4)
+Section.create( name: 'Music', slug: 'music', description: 'The music of Stuyvesant', parent_id: 4)
+Section.create( name: 'Thinkpiece', slug: 'thinkpiece', description: 'The thinkpiece of Stuyvesant', parent_id: 4)
+Section.create( name: 'Spooktator', slug: 'spooktator', description: 'The spooktator of Stuyvesant', parent_id: 5)
+Section.create( name: 'VOICES', slug: 'voices', description: 'The voices of Stuyvesant', parent_id: 3)
+Section.create( name: '9/11', slug: '9/11', description: 'The 9/11 features of Stuyvesant', parent_id: 3)
+Section.create( name: 'SING!', slug: 'sing!', description: 'The sing of Stuyvesant', parent_id: 4)
+Section.create( name: 'STC', slug: 'stc', description: 'The stc of Stuyvesant', parent_id: 4)
+puts "Finished creating subsections"
+
+puts "Creating more sections"
 Section.create( name: 'Video', slug: 'video', description: 'The video of Stuyvesant')
 Section.create( name: 'Photo', slug: 'photo', description: 'The photo of Stuyvesant')
 Section.create( name: 'Uncategorized', slug: 'uncategorized', description: 'The uncatgeorized of Stuyvesant')
 Section.create( name: 'Online Exclusives', slug: 'online exclusives', description: 'The online exclusives of Stuyvesant')
-puts "Finished creating subsections"
+puts "Finished creating more sections"
 
 puts "Creating Articles"
 #Articles for parent sections

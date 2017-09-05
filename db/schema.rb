@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170901165322) do
+ActiveRecord::Schema.define(version: 20170905065552) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -19,13 +19,13 @@ ActiveRecord::Schema.define(version: 20170901165322) do
     t.text "title"
     t.string "slug"
     t.text "content"
-    t.integer "volume"
-    t.integer "issue"
     t.boolean "is_published"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.bigint "section_id"
     t.integer "rank", default: 1
+    t.string "summary"
+    t.integer "newspaper_id"
     t.index ["section_id"], name: "index_articles_on_section_id"
   end
 
@@ -60,8 +60,8 @@ ActiveRecord::Schema.define(version: 20170901165322) do
   end
 
   create_table "media", force: :cascade do |t|
-    t.bigint "user_id_id"
-    t.bigint "article_id_id"
+    t.bigint "user_id"
+    t.bigint "article_id"
     t.string "url"
     t.string "title"
     t.text "caption"
@@ -69,8 +69,12 @@ ActiveRecord::Schema.define(version: 20170901165322) do
     t.string "type"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["article_id_id"], name: "index_media_on_article_id_id"
-    t.index ["user_id_id"], name: "index_media_on_user_id_id"
+    t.string "attachment_file_name"
+    t.string "attachment_content_type"
+    t.integer "attachment_file_size"
+    t.datetime "attachment_updated_at"
+    t.index ["article_id"], name: "index_media_on_article_id"
+    t.index ["user_id"], name: "index_media_on_user_id"
   end
 
   create_table "newspapers", force: :cascade do |t|

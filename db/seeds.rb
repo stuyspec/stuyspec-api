@@ -270,7 +270,7 @@ User.create(first_name: 'The Opinions', last_name: 'Department', slug: 'the-opin
 User.create(first_name: 'The Arts & Entertainment', last_name: 'Department', slug: 'the-A&E-department', username:'speca&e', email: 'Spectatorartsandentertainment@gmail.com', password: 'specae123', password_confirmation: 'specae123', description: 'This is the Spectator A&E Department')
 User.create(first_name: 'The Humor', last_name: 'Department', slug: 'the-humor-department', username:'spechumor', email: 'Spectatorhumor@gmail.com', password: 'spechumor123', password_confirmation: 'spechumor123', description: 'This is the Spectator Humor Department')
 User.create(first_name: 'The Opinions', last_name: 'Department', slug: 'the-opinions-department', username:'specopinions', email: 'Spectatoropinions@gmail.com', password: 'specopinions123', password_confirmation: 'specopinions123', description: 'This is the Spectator Opinions Department')
-
+User.create(first_name: 'The Editorial', last_name: 'Board', slug: 'the-editorial-board', username:'speceditorialboard', email: 'Spectatoreditorialboard@gmail.com', password: 'speceditorialboard123', password_confirmation: 'speceditorialboard123', description: 'This is the Spectator Editorial Board')
 puts "Finished creating users"
 
 puts "Creating comments"

@@ -260,6 +260,17 @@ User.create(first_name: 'John', last_name: 'DoeThree', slug: 'john-doethree', us
 User.create(first_name: 'John', last_name: 'DoeFour', slug: 'john-doefour', username:'jdoe4', email: 'john4@gmail.com', password: 'topsecret4', password_confirmation: 'topsecret4', description: 'number four')
 User.create(first_name: 'John', last_name: 'DoeFive', slug: 'john-doefive', username:'jdoe5', email: 'john5@gmail.com', password: 'topsecret5', password_confirmation: 'topsecret5', description: 'number five')
 User.create(first_name: 'John', last_name: 'DoeSix', slug: 'john-doesix', username:'jdoe6', email: 'john6@gmail.com', password: 'topsecret6', password_confirmation: 'topsecret6', description: 'number six')
+User.create(first_name: 'The Art', last_name: 'Department', slug: 'the-art-department', username:'specart', email: 'Spectatorart@gmail.com', password: 'specart123', password_confirmation: 'specart123', description: 'This is the Spectator Art Department')
+User.create(first_name: 'The Photo', last_name: 'Department', slug: 'the-photo-department', username:'specphoto', email: 'Spectatorphoto@gmail.com', password: 'specphoto123', password_confirmation: 'specphoto123', description: 'This is the Spectator Photo Department')
+User.create(first_name: 'The Features', last_name: 'Department', slug: 'the-features-department', username:'specfeatures', email: 'Spectatorfeatures@gmail.com', password: 'specfeatures123', password_confirmation: 'specfeatures123', description: 'This is the Spectator Features Department')
+User.create(first_name: 'The Sports', last_name: 'Department', slug: 'the-sports-department', username:'specsports', email: 'Spectatorsports@gmail.com', password: 'specsports123', password_confirmation: 'specsports123', description: 'This is the Spectator Sports Department')
+User.create(first_name: 'The Copy', last_name: 'Department', slug: 'the-copy-department', username:'speccopy', email: 'Spectatorcopy@gmail.com', password: 'speccopy123', password_confirmation: 'speccopy123', description: 'This is the Spectator Copy Department')
+User.create(first_name: 'The News', last_name: 'Department', slug: 'the-news-department', username:'specnews', email: 'Spectatornews@gmail.com', password: 'specnews123', password_confirmation: 'specnews123', description: 'This is the Spectator News Department')
+User.create(first_name: 'The Opinions', last_name: 'Department', slug: 'the-opinions-department', username:'specopinions', email: 'Spectatoropinions@gmail.com', password: 'specopinions123', password_confirmation: 'specopinions123', description: 'This is the Spectator Opinions Department')
+User.create(first_name: 'The Arts & Entertainment', last_name: 'Department', slug: 'the-A&E-department', username:'speca&e', email: 'Spectatorartsandentertainment@gmail.com', password: 'specae123', password_confirmation: 'specae123', description: 'This is the Spectator A&E Department')
+User.create(first_name: 'The Humor', last_name: 'Department', slug: 'the-humor-department', username:'spechumor', email: 'Spectatorhumor@gmail.com', password: 'spechumor123', password_confirmation: 'spechumor123', description: 'This is the Spectator Humor Department')
+User.create(first_name: 'The Opinions', last_name: 'Department', slug: 'the-opinions-department', username:'specopinions', email: 'Spectatoropinions@gmail.com', password: 'specopinions123', password_confirmation: 'specopinions123', description: 'This is the Spectator Opinions Department')
+
 puts "Finished creating users"
 
 puts "Creating comments"

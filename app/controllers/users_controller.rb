@@ -10,7 +10,12 @@ class UsersController < ApplicationController
 
   # GET /users/1
   def show
-    render json: @user
+    render json: @user.to_json(
+             :only => [:id, :username, :first_name, :last_name],
+             :methods => [:profile_url,
+                          :medium_profile_url,
+                          :thumb_profile_url]
+           )
   end
 
   # POST /users
@@ -46,6 +51,14 @@ class UsersController < ApplicationController
 
     # Only allow a trusted parameter "white list" through.
     def user_params
-      params.require(:user).permit(:first_name, :last_name, :username, :email, :description, :slug)
+      params.require(:user).permit(
+        :first_name,
+        :last_name,
+        :username,
+        :email,
+        :description,
+        :slug,
+        :profile
+      )
     end
 end

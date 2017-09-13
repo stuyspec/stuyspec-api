@@ -70,8 +70,12 @@ ActiveRecord::Schema.define(version: 20170904052134) do
     t.string "type"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["article_id_id"], name: "index_media_on_article_id_id"
-    t.index ["user_id_id"], name: "index_media_on_user_id_id"
+    t.string "attachment_file_name"
+    t.string "attachment_content_type"
+    t.integer "attachment_file_size"
+    t.datetime "attachment_updated_at"
+    t.index ["article_id"], name: "index_media_on_article_id"
+    t.index ["user_id"], name: "index_media_on_user_id"
   end
 
   create_table "replies", force: :cascade do |t|
@@ -132,6 +136,10 @@ ActiveRecord::Schema.define(version: 20170904052134) do
     t.string "last_name"
     t.string "slug"
     t.string "description"
+    t.string "profile_file_name"
+    t.string "profile_content_type"
+    t.integer "profile_file_size"
+    t.datetime "profile_updated_at"
     t.index ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true

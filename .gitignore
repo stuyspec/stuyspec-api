@@ -21,3 +21,4 @@
 !.elasticbeanstalk/*.global.yml
 
 .idea/*
+public/system

@@ -1,3 +1,4 @@
+# coding: utf-8
 # This file should contain all the record creation needed to seed the database with its default values.
 # The data can then be loaded with the rails db:seed command (or created alongside the database with db:setup).
 #
@@ -51,6 +52,26 @@ Article.create( title: 'StuyHacks Hosts Its Fourth Hackathon', content: '<p>Stuy
 <p>At the end of StuyHacks IV, a panel of judges evaluated the group projects and gave out multiple awards based off of them. Seniors Nicholas Ng, Anya Keller, Mikhail Kotlik, and Daniel Monteagudo came in third place for the best overall project award for their work on Politalk, a website inspired by the 2016 election that connects people with opposing political ideologies through a chat app.</p>
 <p>For future hackathons, StuyHacks organizers hope to increase funding to expand the event by reserving a larger venue and adding more workshops. Despite this, StuyHacks IV was well received by many of its attendees. “Having been to past StuyHacks, it is amazing to see all the improvements done over the years to benefit programmers,” senior Kevin Zhang said.</p>
 ', slug: 'StuyHacks-Hosts-Its-Fourth-Hackathon', volume: 108, issue:1,rank:3,is_published: true, section_id:1)
+
+Article.create( title: 'StuyHacks Hosts Its Fifth Hackathon (seed duplicate 1)', content: '<p>StuyHacks held its fourth hackathon, StuyHacks IV, on Saturday, May 27, and Sunday, May 28. The event provided an opportunity for 175 high-school students from the U.S. and Canada to learn about and to immerse themselves in computer science.</p>
+<p>A hackathon is an event where programmers can collaborate on a range of computer science projects. The hackathon organizers secured the sponsorship of a number of technology companies, including Facebook, MakeSchool, RedSeal, and ThoughtWorks, to subsidize the event. The event was held in the Midtown office of ThoughtWorks.</p>
+<p>StuyHacks worked together with the computer science department and the Dojo, which is an afterschool community for computer science enthusiasts, to recruit mentors to help teach at the hackathon. “Mentors [were] generally college students who are majoring in Computer Science or Computer Engineering. Some mentors [were] also students from Stuyvesant who are currently taking post-AP level courses,” senior and StuyHacks logistics director Prangon Ghose said.</p>
+<p>During the hackathon, attendees were organized into groups of two to four for a team-building session. These teams competed against one another as they worked on a variety of programming projects, from developing a mobile app to building a robot.</p>
+<p>Alongside the competitions, multiple workshops were held throughout the event to teach attendees different computer science skills and languages. For example, junior Shakil Rafi led the Android Development workshop, which taught participants how to code apps for the Android operating system. </p>
+<p>At the end of StuyHacks IV, a panel of judges evaluated the group projects and gave out multiple awards based off of them. Seniors Nicholas Ng, Anya Keller, Mikhail Kotlik, and Daniel Monteagudo came in third place for the best overall project award for their work on Politalk, a website inspired by the 2016 election that connects people with opposing political ideologies through a chat app.</p>
+<p>For future hackathons, StuyHacks organizers hope to increase funding to expand the event by reserving a larger venue and adding more workshops. Despite this, StuyHacks IV was well received by many of its attendees. “Having been to past StuyHacks, it is amazing to see all the improvements done over the years to benefit programmers,” senior Kevin Zhang said.</p>
+', slug: 'StuyHacks-Hosts-Its-Fourth-Hackathon', volume: 108, issue:1,rank:3,is_published: true, section_id:1)
+
+Article.create( title: 'StuyHacks Hosts Its sixth Hackathon (seed duplicate 2)', content: '<p>StuyHacks held its fourth hackathon, StuyHacks IV, on Saturday, May 27, and Sunday, May 28. The event provided an opportunity for 175 high-school students from the U.S. and Canada to learn about and to immerse themselves in computer science.</p>
+<p>A hackathon is an event where programmers can collaborate on a range of computer science projects. The hackathon organizers secured the sponsorship of a number of technology companies, including Facebook, MakeSchool, RedSeal, and ThoughtWorks, to subsidize the event. The event was held in the Midtown office of ThoughtWorks.</p>
+<p>StuyHacks worked together with the computer science department and the Dojo, which is an afterschool community for computer science enthusiasts, to recruit mentors to help teach at the hackathon. “Mentors [were] generally college students who are majoring in Computer Science or Computer Engineering. Some mentors [were] also students from Stuyvesant who are currently taking post-AP level courses,” senior and StuyHacks logistics director Prangon Ghose said.</p>
+<p>During the hackathon, attendees were organized into groups of two to four for a team-building session. These teams competed against one another as they worked on a variety of programming projects, from developing a mobile app to building a robot.</p>
+<p>Alongside the competitions, multiple workshops were held throughout the event to teach attendees different computer science skills and languages. For example, junior Shakil Rafi led the Android Development workshop, which taught participants how to code apps for the Android operating system. </p>
+<p>At the end of StuyHacks IV, a panel of judges evaluated the group projects and gave out multiple awards based off of them. Seniors Nicholas Ng, Anya Keller, Mikhail Kotlik, and Daniel Monteagudo came in third place for the best overall project award for their work on Politalk, a website inspired by the 2016 election that connects people with opposing political ideologies through a chat app.</p>
+<p>For future hackathons, StuyHacks organizers hope to increase funding to expand the event by reserving a larger venue and adding more workshops. Despite this, StuyHacks IV was well received by many of its attendees. “Having been to past StuyHacks, it is amazing to see all the improvements done over the years to benefit programmers,” senior Kevin Zhang said.</p>
+', slug: 'StuyHacks-Hosts-Its-Fourth-Hackathon', volume: 108, issue:1,rank:3,is_published: true, section_id:1)
+
+
 
 Article.create( title: 'Uncontested; Unelected?', content: '<p>An unopposed candidacy might signify incredible popularity, and a margin of victory of 100 percent. It could also signify a lack of opposition, and of civic engagement. In the worst case, the election may be coerced. James Monroe was elected President of the United States by a margin of 228-1 in 1820; Kim Jong-un was elected President of North Korea by a margin of 687-0 in 2014. From overwhelming approval to coercion, the most recent Student Union (SU) elections fall somewhere in between.</p>
 <p>Bitter liberals like to whine about the low democratic turnout in America’s presidential election, but Stuyvesant is much worse, routinely seeing only a minority of the student body vote. This year, the SU and Senior Caucus elections stooped to a new level of apathy, each featuring a single candidacy. Junior Kevin Boodram, who ran for caucus three times in the past, said, “ I don’t think people understand what the Student Union does. I think that discourages a lot people from running in the first place, even voting.” His older brother’s friends told him the SU was only good for planning parties.</p>
@@ -289,6 +310,19 @@ Authorship.create( user_id:4, article_id: 3)
 Authorship.create( user_id:4, article_id: 4)
 Authorship.create( user_id:5, article_id: 4)
 Authorship.create( user_id:6, article_id: 5)
+Authorship.create( user_id:1, article_id: 6)
+Authorship.create( user_id:2, article_id: 7)
+Authorship.create( user_id:3, article_id: 8)
+Authorship.create( user_id:4, article_id: 9)
+Authorship.create( user_id:4, article_id: 10)
+Authorship.create( user_id:5, article_id: 11)
+Authorship.create( user_id:6, article_id: 12)
+Authorship.create( user_id:1, article_id: 13)
+Authorship.create( user_id:2, article_id: 14)
+Authorship.create( user_id:3, article_id: 15)
+Authorship.create( user_id:4, article_id: 16)
+Authorship.create( user_id:4, article_id: 17)
+
 puts "Finished creating authorships"
 
 puts "Creating UserRoles"

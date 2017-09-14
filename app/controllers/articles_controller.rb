@@ -19,6 +19,9 @@ class ArticlesController < ApplicationController
       limit = params[:limit]
       @articles = @articles.first(limit)
     end
+    if params[:content] == 'false'
+      @articles = @articles.select(:id, :title, :slug,:volume, :issue, :is_published, :created_at, :updated_at, :section_id, :rank, :summary)
+    end
     render json: @articles
   end
 

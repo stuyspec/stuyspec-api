@@ -21,3 +21,5 @@
 !.elasticbeanstalk/*.global.yml
 
 .idea/*
+public/system
+config/aws.yml

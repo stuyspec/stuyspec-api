@@ -22,3 +22,4 @@
 
 .idea/*
 public/system
+config/aws.yml

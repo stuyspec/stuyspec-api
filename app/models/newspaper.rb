@@ -1,3 +1,3 @@
 class Newspaper < ApplicationRecord
-  belongs_to :article
+  has_many: articles
 end

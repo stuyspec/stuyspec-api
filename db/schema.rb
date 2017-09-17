@@ -24,7 +24,6 @@ ActiveRecord::Schema.define(version: 20170905065552) do
     t.datetime "updated_at", null: false
     t.bigint "section_id"
     t.integer "rank", default: 1
-    t.string "summary"
     t.integer "newspaper_id"
     t.index ["section_id"], name: "index_articles_on_section_id"
   end
@@ -60,8 +59,8 @@ ActiveRecord::Schema.define(version: 20170905065552) do
   end
 
   create_table "media", force: :cascade do |t|
-    t.bigint "user_id"
-    t.bigint "article_id"
+    t.bigint "user_id_id"
+    t.bigint "article_id_id"
     t.string "url"
     t.string "title"
     t.text "caption"
@@ -69,12 +68,8 @@ ActiveRecord::Schema.define(version: 20170905065552) do
     t.string "type"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.string "attachment_file_name"
-    t.string "attachment_content_type"
-    t.integer "attachment_file_size"
-    t.datetime "attachment_updated_at"
-    t.index ["article_id"], name: "index_media_on_article_id"
-    t.index ["user_id"], name: "index_media_on_user_id"
+    t.index ["article_id_id"], name: "index_media_on_article_id_id"
+    t.index ["user_id_id"], name: "index_media_on_user_id_id"
   end
 
   create_table "newspapers", force: :cascade do |t|

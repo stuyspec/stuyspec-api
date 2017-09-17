@@ -19,7 +19,16 @@ class ArticlesController < ApplicationController
       limit = params[:limit]
       @articles = @articles.first(limit)
     end
-    render json: @articles
+    @articles_with_volume_and_issue = []
+    @articles.each do |article|
+      volume = article.newspaper.volume
+      issue = article.newspaper.issue
+      article = article.attributes
+      article["volume"] = volume
+      article["issue"] = issue
+      @articles_with_volume_and_issue.append(article)
+    end
+    render json: @articles_with_volume_and_issue
   end
 
   # GET /articles/1

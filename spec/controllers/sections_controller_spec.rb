@@ -23,10 +23,10 @@ require 'rails_helper'
 # removed from Rails core in Rails 5, but can be added back in via the
 # `rails-controller-testing` gem.
 
-RSpec.describe RepliesController, type: :controller do
+RSpec.describe SectionsController, type: :controller do
 
   # This should return the minimal set of attributes required to create a valid
-  # Reply. As you add validations to Reply, be sure to
+  # Section. As you add validations to Section, be sure to
   # adjust the attributes here as well.
   let(:valid_attributes) {
     skip("Add a hash of attributes valid for your model")
@@ -38,12 +38,12 @@ RSpec.describe RepliesController, type: :controller do
 
   # This should return the minimal set of values that should be in the session
   # in order to pass any filters (e.g. authentication) defined in
-  # RepliesController. Be sure to keep this updated too.
+  # SectionsController. Be sure to keep this updated too.
   let(:valid_session) { {} }
 
   describe "GET #index" do
     it "returns a success response" do
-      reply = Reply.create! valid_attributes
+      section = Section.create! valid_attributes
       get :index, params: {}, session: valid_session
       expect(response).to be_success
     end
@@ -51,33 +51,33 @@ RSpec.describe RepliesController, type: :controller do
 
   describe "GET #show" do
     it "returns a success response" do
-      reply = Reply.create! valid_attributes
-      get :show, params: {id: reply.to_param}, session: valid_session
+      section = Section.create! valid_attributes
+      get :show, params: {id: section.to_param}, session: valid_session
       expect(response).to be_success
     end
   end
 
   describe "POST #create" do
     context "with valid params" do
-      it "creates a new Reply" do
+      it "creates a new Section" do
         expect {
-          post :create, params: {reply: valid_attributes}, session: valid_session
-        }.to change(Reply, :count).by(1)
+          post :create, params: {section: valid_attributes}, session: valid_session
+        }.to change(Section, :count).by(1)
       end
 
-      it "renders a JSON response with the new reply" do
+      it "renders a JSON response with the new section" do
 
-        post :create, params: {reply: valid_attributes}, session: valid_session
+        post :create, params: {section: valid_attributes}, session: valid_session
         expect(response).to have_http_status(:created)
         expect(response.content_type).to eq('application/json')
-        expect(response.location).to eq(reply_url(Reply.last))
+        expect(response.location).to eq(section_url(Section.last))
       end
     end
 
     context "with invalid params" do
-      it "renders a JSON response with errors for the new reply" do
+      it "renders a JSON response with errors for the new section" do
 
-        post :create, params: {reply: invalid_attributes}, session: valid_session
+        post :create, params: {section: invalid_attributes}, session: valid_session
         expect(response).to have_http_status(:unprocessable_entity)
         expect(response.content_type).to eq('application/json')
       end
@@ -90,27 +90,27 @@ RSpec.describe RepliesController, type: :controller do
         skip("Add a hash of attributes valid for your model")
       }
 
-      it "updates the requested reply" do
-        reply = Reply.create! valid_attributes
-        put :update, params: {id: reply.to_param, reply: new_attributes}, session: valid_session
-        reply.reload
+      it "updates the requested section" do
+        section = Section.create! valid_attributes
+        put :update, params: {id: section.to_param, section: new_attributes}, session: valid_session
+        section.reload
         skip("Add assertions for updated state")
       end
 
-      it "renders a JSON response with the reply" do
-        reply = Reply.create! valid_attributes
+      it "renders a JSON response with the section" do
+        section = Section.create! valid_attributes
 
-        put :update, params: {id: reply.to_param, reply: valid_attributes}, session: valid_session
+        put :update, params: {id: section.to_param, section: valid_attributes}, session: valid_session
         expect(response).to have_http_status(:ok)
         expect(response.content_type).to eq('application/json')
       end
     end
 
     context "with invalid params" do
-      it "renders a JSON response with errors for the reply" do
-        reply = Reply.create! valid_attributes
+      it "renders a JSON response with errors for the section" do
+        section = Section.create! valid_attributes
 
-        put :update, params: {id: reply.to_param, reply: invalid_attributes}, session: valid_session
+        put :update, params: {id: section.to_param, section: invalid_attributes}, session: valid_session
         expect(response).to have_http_status(:unprocessable_entity)
         expect(response.content_type).to eq('application/json')
       end
@@ -118,11 +118,11 @@ RSpec.describe RepliesController, type: :controller do
   end
 
   describe "DELETE #destroy" do
-    it "destroys the requested reply" do
-      reply = Reply.create! valid_attributes
+    it "destroys the requested section" do
+      section = Section.create! valid_attributes
       expect {
-        delete :destroy, params: {id: reply.to_param}, session: valid_session
-      }.to change(Reply, :count).by(-1)
+        delete :destroy, params: {id: section.to_param}, session: valid_session
+      }.to change(Section, :count).by(-1)
     end
   end
 

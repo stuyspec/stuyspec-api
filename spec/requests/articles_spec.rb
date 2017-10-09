@@ -11,6 +11,13 @@ RSpec.describe "Articles", type: :request do
         content: :string
       )
     end
+    it 'limits the number of articles correctly' do
+      articles = get articles_path,
+                     params: {
+                       limit: 10
+                     }
+      expect(articles.length).to be <= 10
+    end
   end
 
   describe "POST /articles" do
@@ -26,6 +33,29 @@ RSpec.describe "Articles", type: :request do
              },
              section_id: 1
            }
+    end
+  end
+
+  describe "PUT /articles" do
+    it "updates article" do
+      article = Article.first
+      put article_path(article),
+          params: {
+            article: {
+              title: 'My article',
+              content: 'This is my article',
+              volume: 1,
+              issue: 2,
+              is_published: false,
+            }
+          }
+    end
+  end
+
+  describe "DELETE /articles" do
+    it "deletes article" do
+      article = Article.first
+      delete article_path(article)
     end
   end
 end

@@ -79,14 +79,6 @@ ActiveRecord::Schema.define(version: 20171008191007) do
     t.index ["user_id"], name: "index_media_on_user_id"
   end
 
-  create_table "replies", force: :cascade do |t|
-    t.integer "comment_id"
-    t.integer "user_id"
-    t.text "content"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
   create_table "roles", force: :cascade do |t|
     t.text "title"
     t.text "slug"
@@ -138,10 +130,6 @@ ActiveRecord::Schema.define(version: 20171008191007) do
     t.string "last_name"
     t.string "slug"
     t.string "description"
-    t.string "profile_file_name"
-    t.string "profile_content_type"
-    t.integer "profile_file_size"
-    t.datetime "profile_updated_at"
     t.index ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true

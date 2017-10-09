@@ -440,5 +440,4 @@ end
 
 User.find_each do |user|
   UserRole.create(role_id: roles.sample.id, user_id: user.id)
-  index += 1
 end

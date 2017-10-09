@@ -1,11 +1,13 @@
 Rails.application.routes.draw do
-  resources :sections
-  resources :articles
-  resources :user_roles
-  resources :roles do
-    resources :user_roles
+  resources :newspapers do
+    resources :articles
   end
-  resources :comments
+  resources :user_roles
+  resources :roles
+  resources :comments do
+    resources :replies
+  end
+  resources :replies
   resources :media
   resources :authorships
   mount_devise_token_auth_for 'User', at: 'auth'
@@ -13,15 +15,7 @@ Rails.application.routes.draw do
       resources :comments
     resources :user_roles
   end
-  resources :sections do
-    resources :articles do
-      resources :media
-    end
-  end
-  resources :articles do
-    resources :authorships
-    resources :media
-    resources :comments
-  end
+  resources :sections
+  resources :articles
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end

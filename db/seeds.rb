@@ -80,10 +80,13 @@ Article.find_each do |article|
 end
 puts "Finished creating authorships"
 
-index = 0
+index = 1
 puts "Creating UserRoles"
 User.find_each do |user|
-  UserRole.create(role_id: index % 3, user_id: user.id)
+  UserRole.create(role_id: index, user_id: user.id)
   index += 1
+  if index == 4
+    index = 1
+  end
 end
 puts "Finished creating UserRoles"

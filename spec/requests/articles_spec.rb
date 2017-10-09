@@ -11,13 +11,6 @@ RSpec.describe "Articles", type: :request do
         content: :string
       )
     end
-    it 'limits the number of articles correctly' do
-      articles = get articles_path,
-                     params: {
-                       limit: 10
-                     }
-      expect(articles.length).to be <= 10
-    end
   end
 
   describe "POST /articles" do

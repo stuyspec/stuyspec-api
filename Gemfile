@@ -55,3 +55,4 @@ gem "olive_branch"
 gem 'omniauth-github'
 gem 'paperclip'
 gem 'aws-sdk'
+gem 'airborne'

@@ -1,4 +1,4 @@
-puts "Creating sections"
+# coding: utf-8
 Section.create( name: 'News', slug: 'news', description:'The news of Stuyvesant', rank: 6)
 Section.create( name: 'Opinions', slug: 'opinions', description: 'The opinions of Stuyvesant', rank: 5)
 Section.create( name: 'Features', slug: 'features', description: 'The features of Stuyvesant', rank: 4)
@@ -8,9 +8,7 @@ Section.create( name: 'Sports', slug: 'sports', description: 'The sports of Stuy
 Section.create( name: 'Art', slug: 'art', description: 'The art of Stuyvesant', rank: 1)
 Section.create( name: 'Video', slug: 'video', description: 'The video of Stuyvesant', rank: 1)
 Section.create( name: 'Photo', slug: 'photo', description: 'The photo of Stuyvesant', rank: 1)
-puts "Finished creating sections"
 
-puts "Creating subsections"
 Section.create( name: 'Campaign Coverage', slug:'campaign-coverage', description:'The campaign of Stuyvesant', parent_id: 1)
 Section.create( name: 'Staff Editorials', slug:'staff-ed', description: 'The staff-ed of Stuyvesant', parent_id: 2)
 Section.create( name: 'VOICES', slug: 'voices', description: 'The voices of Stuyvesant', parent_id: 3)
@@ -27,10 +25,8 @@ Section.create( name: 'SING!', slug: 'sing!', description: 'The sing of Stuyvesa
 Section.create( name: 'STC', slug: 'stc', description: 'The stc of Stuyvesant', parent_id: 4)
 Section.create( name: 'Disrespectator', slug: 'disrespectator', description: 'The disrespectator of Stuyvesant', parent_id: 5)
 Section.create( name: 'Spooktator', slug: 'spooktator', description: 'The spooktator of Stuyvesant', parent_id: 5)
-puts "Finished creating subsections"
 
 index = 0
-puts "Creating Articles"
 Section.find_each do |section|
   Article.create(title: section.name + ' Database Article With Index ' + index.to_s, outquotes: ["‘Homegoing’ is a grand and painful push both forward and back. It is the struggle toward a home that may not even exist and the exploration of the roots and history that have been forcibly excised."], summary: 'Unfortunately, all good things must come to an end. We came into Stuyvesant last September, saved from the unstructured summer.', section_id: section.id, rank: 1, slug: section.name + '-database-article-with-index-' + index.to_s, volume: 108, issue: 1, is_published: true, content: '<p>StuyHacks held its fourth hackathon, StuyHacks IV, on Saturday, May 27, and Sunday, May 28. The event provided an opportunity for 175 high-school students from the U.S. and Canada to learn about and to immerse themselves in computer science.</p><p>A hackathon is an event where programmers can collaborate on a range of computer science projects. The hackathon organizers secured the sponsorship of a number of technology companies, including Facebook, MakeSchool, RedSeal, and ThoughtWorks, to subsidize the event. The event was held in the Midtown office of ThoughtWorks.</p><p>StuyHacks worked together with the computer science department and the Dojo, which is an afterschool community for computer science enthusiasts, to recruit mentors to help teach at the hackathon. “Mentors [were] generally college students who are majoring in Computer Science or Computer Engineering. Some mentors [were] also students from Stuyvesant who are currently taking post-AP level courses,” senior and StuyHacks logistics director Prangon Ghose said.</p><p>During the hackathon, attendees were organized into groups of two to four for a team-building session. These teams competed against one another as they worked on a variety of programming projects, from developing a mobile app to building a robot.</p><p>Alongside the competitions, multiple workshops were held throughout the event to teach attendees different computer science skills and languages. For example, junior Shakil Rafi led the Android Development workshop, which taught participants how to code apps for the Android operating system. </p><p>At the end of StuyHacks IV, a panel of judges evaluated the group projects and gave out multiple awards based off of them. Seniors Nicholas Ng, Anya Keller, Mikhail Kotlik, and Daniel Monteagudo came in third place for the best overall project award for their work on Politalk, a website inspired by the 2016 election that connects people with opposing political ideologies through a chat app.</p><p>For future hackathons, StuyHacks organizers hope to increase funding to expand the event by reserving a larger venue and adding more workshops. Despite this, StuyHacks IV was well received by many of its attendees. “Having been to past StuyHacks, it is amazing to see all the improvements done over the years to benefit programmers,” senior Kevin Zhang said.</p>')
   Article.create(title: section.name + ' Database Article With Index ' + index.to_s + ' Numero Dos', outquotes: ["‘Homegoing’ is a grand and painful push both forward and back. It is the struggle toward a home that may not even exist and the exploration of the roots and history that have been forcibly excised."], summary: 'Unfortunately, all good things must come to an end. We came into Stuyvesant last September, saved from the unstructured summer.', section_id: section.id, rank: 1, slug: section.name + '-database-article-with-index-' + index.to_s + '-numero-dos', volume: 108, issue: 1, is_published: true, content: '<p>StuyHacks held its fourth hackathon, StuyHacks IV, on Saturday, May 27, and Sunday, May 28. The event provided an opportunity for 175 high-school students from the U.S. and Canada to learn about and to immerse themselves in computer science.</p><p>A hackathon is an event where programmers can collaborate on a range of computer science projects. The hackathon organizers secured the sponsorship of a number of technology companies, including Facebook, MakeSchool, RedSeal, and ThoughtWorks, to subsidize the event. The event was held in the Midtown office of ThoughtWorks.</p><p>StuyHacks worked together with the computer science department and the Dojo, which is an afterschool community for computer science enthusiasts, to recruit mentors to help teach at the hackathon. “Mentors [were] generally college students who are majoring in Computer Science or Computer Engineering. Some mentors [were] also students from Stuyvesant who are currently taking post-AP level courses,” senior and StuyHacks logistics director Prangon Ghose said.</p><p>During the hackathon, attendees were organized into groups of two to four for a team-building session. These teams competed against one another as they worked on a variety of programming projects, from developing a mobile app to building a robot.</p><p>Alongside the competitions, multiple workshops were held throughout the event to teach attendees different computer science skills and languages. For example, junior Shakil Rafi led the Android Development workshop, which taught participants how to code apps for the Android operating system. </p><p>At the end of StuyHacks IV, a panel of judges evaluated the group projects and gave out multiple awards based off of them. Seniors Nicholas Ng, Anya Keller, Mikhail Kotlik, and Daniel Monteagudo came in third place for the best overall project award for their work on Politalk, a website inspired by the 2016 election that connects people with opposing political ideologies through a chat app.</p><p>For future hackathons, StuyHacks organizers hope to increase funding to expand the event by reserving a larger venue and adding more workshops. Despite this, StuyHacks IV was well received by many of its attendees. “Having been to past StuyHacks, it is amazing to see all the improvements done over the years to benefit programmers,” senior Kevin Zhang said.</p>')
@@ -38,15 +34,11 @@ Section.find_each do |section|
   Article.create(title: section.name + ' Database Article With Index ' + index.to_s + ' Numero Cuatro', outquotes: ["‘Homegoing’ is a grand and painful push both forward and back. It is the struggle toward a home that may not even exist and the exploration of the roots and history that have been forcibly excised."], summary: 'Unfortunately, all good things must come to an end. We came into Stuyvesant last September, saved from the unstructured summer.', section_id: section.id, rank: 1, slug: section.name + '-database-article-with-index-' + index.to_s + '-numero-cuatro', volume: 108, issue: 1, is_published: true, content: '<p>StuyHacks held its fourth hackathon, StuyHacks IV, on Saturday, May 27, and Sunday, May 28. The event provided an opportunity for 175 high-school students from the U.S. and Canada to learn about and to immerse themselves in computer science.</p><p>A hackathon is an event where programmers can collaborate on a range of computer science projects. The hackathon organizers secured the sponsorship of a number of technology companies, including Facebook, MakeSchool, RedSeal, and ThoughtWorks, to subsidize the event. The event was held in the Midtown office of ThoughtWorks.</p><p>StuyHacks worked together with the computer science department and the Dojo, which is an afterschool community for computer science enthusiasts, to recruit mentors to help teach at the hackathon. “Mentors [were] generally college students who are majoring in Computer Science or Computer Engineering. Some mentors [were] also students from Stuyvesant who are currently taking post-AP level courses,” senior and StuyHacks logistics director Prangon Ghose said.</p><p>During the hackathon, attendees were organized into groups of two to four for a team-building session. These teams competed against one another as they worked on a variety of programming projects, from developing a mobile app to building a robot.</p><p>Alongside the competitions, multiple workshops were held throughout the event to teach attendees different computer science skills and languages. For example, junior Shakil Rafi led the Android Development workshop, which taught participants how to code apps for the Android operating system. </p><p>At the end of StuyHacks IV, a panel of judges evaluated the group projects and gave out multiple awards based off of them. Seniors Nicholas Ng, Anya Keller, Mikhail Kotlik, and Daniel Monteagudo came in third place for the best overall project award for their work on Politalk, a website inspired by the 2016 election that connects people with opposing political ideologies through a chat app.</p><p>For future hackathons, StuyHacks organizers hope to increase funding to expand the event by reserving a larger venue and adding more workshops. Despite this, StuyHacks IV was well received by many of its attendees. “Having been to past StuyHacks, it is amazing to see all the improvements done over the years to benefit programmers,” senior Kevin Zhang said.</p>')
   index += 1
 end
-puts "Finished creating articles"
 
-puts "Creating roles"
 Role.create(title: 'Contributor', slug:'contributors')
 Role.create(title: 'Illustrator', slug:'illustrators')
 Role.create(title: 'Photographer', slug: 'photographers')
-puts "Finished creating roles"
 
-puts "Creating users"
 User.create(first_name: 'John', last_name: 'DoeOne', slug: 'john-doeone', email: 'john1@gmail.com', password: 'topsecret1', password_confirmation: 'topsecret1', description: 'number one')
 User.create(first_name: 'John', last_name: 'DoeTwo', slug: 'john-doetwo', email: 'john2@gmail.com', password: 'topsecret2', password_confirmation: 'topsecret2', description: 'number two')
 User.create(first_name: 'John', last_name: 'DoeThree', slug: 'john-doethree', email: 'john3@gmail.com', password: 'topsecret3', password_confirmation: 'topsecret3', description: 'number three')
@@ -62,28 +54,22 @@ User.create(first_name: 'The Sports', last_name: 'Department', slug: 'the-sports
 User.create(first_name: 'The Art', last_name: 'Department', slug: 'the-art-department', email: 'art@stuyspec.com', password: 'specart123', password_confirmation: 'specart123', description: 'This is the Spectator Art Department')
 User.create(first_name: 'The Photo', last_name: 'Department', slug: 'the-photo-department', email: 'photo@stuyspec.com', password: 'specphoto123', password_confirmation: 'specphoto123', description: 'This is the Spectator Photo Department')
 User.create(first_name: 'The Editorial', last_name: 'Board', slug: 'the-editorial-board', email: 'anneandmatteo@gmail.com', password: 'speceditorialboard123', password_confirmation: 'speceditorialboard123', description: 'This is the Spectator Editorial Board')
-puts "Finished creating users"
 
-puts "Creating comments"
 Comment.create( content: 'This is a great article!', article_id: 1, user_id: 1)
 Comment.create( content: 'This is a great article!', article_id: 2, user_id: 2)
 Comment.create( content: 'This is a great article!', article_id: 3, user_id: 3)
 Comment.create( content: 'This is a great article!', article_id: 4, user_id: 4)
-puts "Finished creating comments"
 
 index = 0
-puts "Creating Authorships"
 Article.find_each do |article|
   Authorship.create(user_id: index % 15, article_id: article.id)
   Authorship.create(user_id: (index + 1) % 15, article_id: article.id)
   index += 1
 end
-puts "Finished creating authorships"
 
 index = 0
-puts "Creating UserRoles"
 User.find_each do |user|
   UserRole.create(role_id: index % 3, user_id: user.id)
   index += 1
 end
-puts "Finished creating UserRoles"
+

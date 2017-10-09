@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170915032724) do
+ActiveRecord::Schema.define(version: 20171008191007) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -102,6 +102,7 @@ ActiveRecord::Schema.define(version: 20170915032724) do
     t.datetime "updated_at", null: false
     t.integer "parent_id"
     t.integer "rank", default: 1
+    t.boolean "is_visible"
   end
 
   create_table "user_roles", force: :cascade do |t|

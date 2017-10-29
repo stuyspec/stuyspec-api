@@ -439,5 +439,7 @@ Article.find_each do |article|
 end
 
 User.find_each do |user|
-  UserRole.create(role_id: roles.sample.id, user_id: user.id)
+  Role.find_each do |role|
+    UserRole.create(role_id: role.id, user_id: user.id)
+  end
 end

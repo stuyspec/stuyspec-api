@@ -20,7 +20,19 @@ class ArticlesController < ApplicationController
       @articles = @articles.first(limit)
     end
     if params[:content] == 'false'
-      @articles = @articles.select(:id, :title, :slug,:volume, :issue, :is_published, :created_at, :updated_at, :section_id, :rank, :summary)
+      @articles = @articles.select(
+        :id,
+        :title,
+        :slug,
+        :volume,
+        :issue,
+        :is_published,
+        :created_at,
+        :updated_at,
+        :section_id,
+        :rank,
+        :summary
+      )
     end
     render json: @articles
   end
@@ -67,9 +79,19 @@ class ArticlesController < ApplicationController
 
     # Only allow a trusted parameter "white list" through.
     def article_params
-      params.require(:article).permit(:title, :slug, :content, :volume, :issue, :is_published, :section_id, :summary, :rank)
+      params.require(:article).permit(
+        :title,
+        :slug,
+        :content,
+        :volume,
+        :issue,
+        :is_published,
+        :section_id,
+        :summary,
+        :rank
+      )
     end
-    def find_combined_rank (article)
+    def find_combined_rank(article)
       return article.rank + Section.friendly.find(article.section_id).rank * 1.5
     end
 end

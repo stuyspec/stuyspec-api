@@ -6,16 +6,21 @@
 
 # Ignore bundler config.
 /.bundle
-
+.idea
 # Ignore all logfiles and tempfiles.
 /log/*
 /tmp/*
 !/log/.keep
 !/tmp/.keep
-
+/spec-env
 .byebug_history
-
+/public/system/media
 # Elastic Beanstalk Files
 .elasticbeanstalk/*
 !.elasticbeanstalk/*.cfg.yml
 !.elasticbeanstalk/*.global.yml
+
+.idea/*
+public/system
+config/aws.yml
+

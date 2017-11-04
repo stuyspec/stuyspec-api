@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170804210950) do
+ActiveRecord::Schema.define(version: 20170915032724) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -21,10 +21,13 @@ ActiveRecord::Schema.define(version: 20170804210950) do
     t.text "content"
     t.integer "volume"
     t.integer "issue"
-    t.boolean "is_draft"
+    t.boolean "is_published"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.bigint "section_id"
+    t.integer "rank", default: 1
+    t.string "summary"
+    t.string "outquotes", default: [], array: true
     t.index ["section_id"], name: "index_articles_on_section_id"
   end
 
@@ -35,6 +38,15 @@ ActiveRecord::Schema.define(version: 20170804210950) do
     t.datetime "updated_at", null: false
     t.index ["article_id"], name: "index_authorships_on_article_id"
     t.index ["user_id"], name: "index_authorships_on_user_id"
+  end
+
+  create_table "comments", force: :cascade do |t|
+    t.integer "article_id"
+    t.integer "user_id"
+    t.text "content"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string "published_at"
   end
 
   create_table "friendly_id_slugs", force: :cascade do |t|
@@ -50,8 +62,8 @@ ActiveRecord::Schema.define(version: 20170804210950) do
   end
 
   create_table "media", force: :cascade do |t|
-    t.bigint "user_id_id"
-    t.bigint "article_id_id"
+    t.bigint "user_id"
+    t.bigint "article_id"
     t.string "url"
     t.string "title"
     t.text "caption"
@@ -59,8 +71,27 @@ ActiveRecord::Schema.define(version: 20170804210950) do
     t.string "type"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["article_id_id"], name: "index_media_on_article_id_id"
-    t.index ["user_id_id"], name: "index_media_on_user_id_id"
+    t.string "attachment_file_name"
+    t.string "attachment_content_type"
+    t.integer "attachment_file_size"
+    t.datetime "attachment_updated_at"
+    t.index ["article_id"], name: "index_media_on_article_id"
+    t.index ["user_id"], name: "index_media_on_user_id"
+  end
+
+  create_table "replies", force: :cascade do |t|
+    t.integer "comment_id"
+    t.integer "user_id"
+    t.text "content"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "roles", force: :cascade do |t|
+    t.text "title"
+    t.text "slug"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "sections", force: :cascade do |t|
@@ -70,6 +101,14 @@ ActiveRecord::Schema.define(version: 20170804210950) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "parent_id"
+    t.integer "rank", default: 1
+  end
+
+  create_table "user_roles", force: :cascade do |t|
+    t.integer "user_id"
+    t.integer "role_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "users", force: :cascade do |t|
@@ -88,14 +127,20 @@ ActiveRecord::Schema.define(version: 20170804210950) do
     t.datetime "confirmed_at"
     t.datetime "confirmation_sent_at"
     t.string "unconfirmed_email"
-    t.string "name"
-    t.string "nickname"
+    t.string "first_name"
     t.string "image"
     t.string "email"
     t.json "tokens"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "thumbnail"
+    t.string "last_name"
+    t.string "slug"
+    t.string "description"
+    t.string "profile_file_name"
+    t.string "profile_content_type"
+    t.integer "profile_file_size"
+    t.datetime "profile_updated_at"
     t.index ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true

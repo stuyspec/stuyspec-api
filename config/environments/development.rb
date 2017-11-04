@@ -40,6 +40,12 @@ Rails.application.configure do
   config.action_mailer.default_url_options = { :host => 'localhost' }
   config.action_mailer.delivery_method = :smtp
   config.action_mailer.smtp_settings = { :address => "localhost", :port => 1025 }
+  config.paperclip_defaults = {
+    :storage => :s3,
+    :s3_region => "us-east-1",
+    :s3_host_name => 's3-website-us-east-1.amazonaws.com',
+    :bucket => 'stuy-spec-media'
+  }
   # Raises error for missing translations
   # config.action_view.raise_on_missing_translations = true
 

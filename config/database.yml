@@ -25,7 +25,7 @@ default: &default
 development:
   <<: *default
   database: stuy-spec-api_development
-  host: db
+#  host: db
   username: postgres
   password:
   # The specified database role being used to connect to postgres.

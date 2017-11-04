@@ -70,7 +70,13 @@ Rails.application.configure do
     enable_starttls_auto: true
   }
   config.mailer_sender = "info@stuyspec.xyz"
-
+  config.paperclip_defaults = {
+    :storage => :s3,
+    :s3_region => "us-east-1",
+    :s3_host_name => 's3-website-us-east-1.amazonaws.com',
+    :bucket => 'stuy-spec-media'
+  }
+  
   # Enable locale fallbacks for I18n (makes lookups for any locale fall back to
   # the I18n.default_locale when a translation cannot be found).
   config.i18n.fallbacks = true

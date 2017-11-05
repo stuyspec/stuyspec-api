@@ -1,0 +1,6 @@
+development:
+  access_key_id: AKIAIQRWS2PPGGM3T2EA
+  secret_access_key: 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
+production:
+  access_key_id: AKIAIM3ZWVXMT6T66GMA
+  secret_access_key: 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

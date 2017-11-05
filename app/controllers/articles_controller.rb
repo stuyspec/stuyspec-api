@@ -15,7 +15,7 @@ class ArticlesController < ApplicationController
                    .order("articles.rank + 3 * sections.rank")
     end
 
-    @articles = @articles.order(:created_at).reverse
+    @articles = @articles.order(:created_at).reverse if params[:order_by] == 'date'
 
     @articles = @articles.first(params[:limit].to_i) if params[:limit]
 

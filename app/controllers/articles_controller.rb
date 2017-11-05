@@ -5,35 +5,34 @@ class ArticlesController < ApplicationController
   def index
     if params[:section_id]
       @section = Section.friendly.find(params[:section_id])
-      @articles = Article.where("section_id = ?", @section.id)
+      @articles = Article
+                    .where("section_id = ?", @section.id)
+                    .joins("LEFT JOIN sections ON articles.id = sections.id")
+                    .order("articles.rank + 3 * sections.rank")
     else
-      @articles = Article.all
+      @articles = Article
+                   .joins("LEFT JOIN sections ON articles.id = sections.id")
+                   .order("articles.rank + 3 * sections.rank")
     end
-    if params[:order_by] == 'rank'
-      @articles = @articles.order {|article| find_combined_rank(article)}.reverse
-    end
-    if params[:order_by] == 'date'
-      @articles = @articles.reverse
-    end
-    if params[:limit]
-      limit = params[:limit]
-      @articles = @articles.first(limit)
-    end
-    if params[:content] == 'false'
-      @articles = @articles.select(
-        :id,
-        :title,
-        :slug,
-        :volume,
-        :issue,
-        :is_published,
-        :created_at,
-        :updated_at,
-        :section_id,
-        :rank,
-        :summary
-      )
-    end
+
+    @articles = @articles.order(:created_at).reverse if params[:order_by] == 'date'
+
+    @articles = @articles.first(params[:limit].to_i) if params[:limit]
+
+    @articles = @articles.select(
+      :id,
+      :title,
+      :slug,
+      :volume,
+      :issue,
+      :is_published,
+      :created_at,
+      :updated_at,
+      :section_id,
+      :rank,
+      :summary
+    ) if params[:content] == 'false'
+
     render json: @articles
   end
 

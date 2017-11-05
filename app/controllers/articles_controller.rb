@@ -7,15 +7,15 @@ class ArticlesController < ApplicationController
       @section = Section.friendly.find(params[:section_id])
       @articles = Article
                     .where("section_id = ?", @section.id)
-                    .joins("JOIN sections ON articles.id = sections.id")
+                    .joins("LEFT JOIN sections ON articles.id = sections.id")
                     .order("articles.rank + 3 * sections.rank")
     else
       @articles = Article
-                   .joins("JOIN sections ON articles.id = sections.id")
+                   .joins("LEFT JOIN sections ON articles.id = sections.id")
                    .order("articles.rank + 3 * sections.rank")
     end
 
-    @articles = @articles.order(:created_at).reverse
+    @articles = @articles.order(:created_at).reverse if params[:order_by] == 'date'
 
     @articles = @articles.first(params[:limit].to_i) if params[:limit]
 

@@ -11,8 +11,8 @@ The application is a Rails application, with a Postgres database. Everything is 
 * Install Ruby. We highly suggest rbenv or rvm
 * Install Rails 5.1
 * Install PostgreSQL (`brew install postgres` on Mac OS)
-* Run `bundle install`
-* Run `rails db:create` to create the database
-* Run `rails db:migrate` to migrate the database
-* Run `rails db:seed` to add fake data for testing
-* Run `rails server` to run the server.
+* Install Docker
+* Run `docker-compose build`
+* Run `docker-compose up`. If you get an error saying it can't connect to db, try stopping
+and rerunning
+* In a separate terminal instance, run `docker-compose run web rake db:create db:migrate db:seed`

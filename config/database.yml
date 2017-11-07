@@ -60,6 +60,7 @@ development:
 test:
   <<: *default
   user: postgres
+  host: localhost
   database: stuy-spec-api_test
 
 # As with config/secrets.yml, you never want to store sensitive information,

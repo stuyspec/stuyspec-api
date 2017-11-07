@@ -155,12 +155,6 @@ Section.find_each.with_index do |section, index|
   Article.create([
                    {
                      title: section.name + ' Database Article With Index ' + index.to_s,
-                     outquotes: [
-                       "‘Homegoing’ is a grand and painful push both forward and "\
-                       "back. It is the struggle toward a home that may not even "\
-                       "exist and the exploration of the roots and history that"\
-                       "have been forcibly excised."
-                     ],
                      summary: 'Unfortunately, all good things must come to an end'\
                               '. We came into Stuyvesant last September, saved'\
                               'from the unstructured summer.',
@@ -222,12 +216,6 @@ Section.find_each.with_index do |section, index|
                    },
                    {
                      title: section.name + ' Database Article With Index ' + index.to_s + ' Numero Dos',
-                     outquotes: [
-                       "‘Homegoing’ is a grand and painful push both forward and "\
-                       "back. It is the struggle toward a home that may not even "\
-                       "exist and the exploration of the roots and history that"\
-                       "have been forcibly excised."
-                     ],
                      summary: 'Unfortunately, all good things must come to an end'\
                               '. We came into Stuyvesant last September, saved'\
                               'from the unstructured summer.',
@@ -289,12 +277,6 @@ Section.find_each.with_index do |section, index|
                    },
                    {
                      title: section.name + ' Database Article With Index ' + index.to_s + ' Numero Tres',
-                    outquotes: [
-                      "‘Homegoing’ is a grand and painful push both forward and "\
-                      "back. It is the struggle toward a home that may not even "\
-                      "exist and the exploration of the roots and history that "\
-                      "have been forcibly excised."
-                    ],
                     summary: 'Unfortunately, all good things must come to an end.'\
                              'We came into Stuyvesant last September, saved from'\
                              'the unstructured summer.',
@@ -436,6 +418,14 @@ Comment.create(
 Article.find_each do |article|
   Authorship.create(user_id: users.sample.id, article_id: article.id)
   Authorship.create(user_id: users.sample.id % 15, article_id: article.id)
+end
+
+Article.find_each do |article|
+  Outquote.create(article_id: article.id,
+                  text:"‘Homegoing’ is a grand and painful push both forward and "\
+                       "back. It is the struggle toward a home that may not even "\
+                       "exist and the exploration of the roots and history that"\
+                       "have been forcibly excised.")
 end
 
 User.find_each do |user|

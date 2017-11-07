@@ -5,4 +5,5 @@ class Article < ApplicationRecord
   has_many :users, through: :authorships
   has_many :media
   has_many :comments
+  has_many :outquotes
 end

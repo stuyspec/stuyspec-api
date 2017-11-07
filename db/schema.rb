@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171008191007) do
+ActiveRecord::Schema.define(version: 20171107211226) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -27,7 +27,6 @@ ActiveRecord::Schema.define(version: 20171008191007) do
     t.bigint "section_id"
     t.integer "rank", default: 1
     t.string "summary"
-    t.string "outquotes", default: [], array: true
     t.index ["section_id"], name: "index_articles_on_section_id"
   end
 
@@ -77,6 +76,13 @@ ActiveRecord::Schema.define(version: 20171008191007) do
     t.datetime "attachment_updated_at"
     t.index ["article_id"], name: "index_media_on_article_id"
     t.index ["user_id"], name: "index_media_on_user_id"
+  end
+
+  create_table "outquotes", force: :cascade do |t|
+    t.integer "article_id"
+    t.text "text"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "roles", force: :cascade do |t|

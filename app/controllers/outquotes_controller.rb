@@ -4,7 +4,9 @@ class OutquotesController < ApplicationController
   # GET /outquotes
   def index
     @outquotes = Outquote.all
-
+    if params[:article_id]
+      @outquotes = Article.friendly.find(params[:article_id]).outquotes
+    end
     render json: @outquotes
   end
 

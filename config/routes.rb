@@ -20,6 +20,7 @@ Rails.application.routes.draw do
     end
   end
   resources :articles do
+    resources :outquotes
     resources :authorships
     resources :media
     resources :comments

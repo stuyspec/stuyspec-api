@@ -10,12 +10,7 @@ class MediaController < ApplicationController
 
   # GET /media/1
   def show
-    render json: @medium.to_json(
-        :only => [:id, :title, :caption],
-        :methods => [:attachment_url,
-                     :medium_attachment_url,
-                     :thumb_attachment_url]
-    )
+    render json: @medium
   end
 
   # POST /media
@@ -23,14 +18,7 @@ class MediaController < ApplicationController
     @medium = Medium.new(medium_params)
 
     if @medium.save
-      render json: @medium.to_json(
-               :only => [:id, :title, :caption],
-               :methods => [
-                   :attachment_url,
-                   :medium_attachment_url,
-                   :thumb_attachment_url
-               ]
-             ), status: :created, location: @medium
+      render json: @medium, status: :created, location: @medium
     else
       render json: @medium.errors, status: :unprocessable_entity
     end
@@ -58,15 +46,12 @@ class MediaController < ApplicationController
 
     # Only allow a trusted parameter "white list" through.
     def medium_params
-      params.require(:medium).permit(
-        :user_id,
-        :article_id,
-        :url,
-        :title,
-        :caption,
-        :is_featured,
-        :type,
-        :attachment
-      )
+      params.require(:medium).permit(:user_id,
+                                     :article_id,
+                                     :url,
+                                     :title,
+                                     :caption,
+                                     :is_featured,
+                                     :type)
     end
 end

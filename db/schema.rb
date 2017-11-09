@@ -71,12 +71,6 @@ ActiveRecord::Schema.define(version: 20171008191007) do
     t.string "type"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.string "attachment_file_name"
-    t.string "attachment_content_type"
-    t.integer "attachment_file_size"
-    t.datetime "attachment_updated_at"
-    t.index ["article_id"], name: "index_media_on_article_id"
-    t.index ["user_id"], name: "index_media_on_user_id"
   end
 
   create_table "roles", force: :cascade do |t|

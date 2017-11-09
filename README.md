@@ -16,3 +16,13 @@ The application is a Rails application, with a Postgres database. Everything is 
 * Run `docker-compose up`. If you get an error saying it can't connect to db, try stopping
 and rerunning
 * In a separate terminal instance, run `docker-compose run web rake db:create db:migrate db:seed`
+* To start the server, run `docker-compose run web rails server`.
+
+## Troubleshooting
+### Connection refused at `docker-compose`
+```
+could not connect to server: Connection refused
+	Is the server running on host "localhost" (127.0.0.1) and accepting
+	TCP/IP connections on port 5432?
+```
+You might have a server already running that has not shut down correctly. Run `brew services stop postgresql`, then re-run `docker-compose run web rake db:create db:migrate db:seed`.

@@ -25,4 +25,7 @@ could not connect to server: Connection refused
 	Is the server running on host "localhost" (127.0.0.1) and accepting
 	TCP/IP connections on port 5432?
 ```
-You might have a server already running that has not shut down correctly. Run `brew services stop postgresql`, then re-run `docker-compose run web rake db:create db:migrate db:seed`.
+You might have a server already running that has not shut down correctly. Run `brew services stop postgresql`
+On top of that error, there may be an explanation or status:
+1. `Created database 'stuy-spec-api_development'`
+The database has been created. Run 'docker-compose run web rake db:migrate db:seed', then visit [[http://localhost:3000/users]] to see if the API is working correctly.

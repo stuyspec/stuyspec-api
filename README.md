@@ -47,4 +47,4 @@ could not connect to server: Connection refused
 You might have a server already running that has not shut down correctly. Run `brew services stop postgresql`
 On top of that error, there may be an explanation or status:
 1. `Created database 'stuy-spec-api_development'`
-The database has been created. Run 'docker-compose run web rake db:migrate db:seed', then visit [[http://localhost:3000/users]] to see if the API is working correctly.
+The database has been created. Run `docker-compose run web rake db:migrate db:seed`, and those commands should work.

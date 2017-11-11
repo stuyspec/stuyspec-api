@@ -1,3 +1,4 @@
+![alt text](https://i.imgur.com/uti8BnI.png)
 # Stuyvesant Spectator API
 
 This is the official API for the Stuyvesant Spectator. Currently it is used as a backing service

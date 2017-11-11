@@ -44,12 +44,6 @@ Section.create(
       rank: 1
     },
     {
-      name: 'Video',
-      slug: 'video',
-      description: 'The video of Stuyvesant',
-      rank: 1
-    },
-    {
       name: 'Photo',
       slug: 'photo',
       description: 'The photo of Stuyvesant',
@@ -159,6 +153,32 @@ roles = Role.create(
     {title: 'Photographer', slug: 'photographers'}
   ]
 )
+
+editorial_board = User.create({
+  first_name: 'The Editorial Board',
+  last_name: '',
+  slug: 'the-editorial-board',
+  email: 'anneandmatteo@gmail.com',
+  password: 'we are the editorial board',
+  password_confirmation: 'we are the editorial board',
+  description: 'The Editorial Board'
+})    
+UserRole.create(role_id: 1, user_id: editorial_board.id)
+
+Section.find_each do |section|
+  if section.parent_id == nil
+    user = User.create({
+      first_name: 'The ' + section.name + ' Department',
+      last_name: '',
+      slug: 'the-' + section.slug + '-department',
+      email: section.slug + '@stuyspec.com',
+      password: section.description,
+      password_confirmation: section.description,
+      description: 'The ' + section.name + ' Department'
+    })    
+    UserRole.create(role_id: 1, user_id: user.id)
+  end
+end
 
 unless ENV['minimal']
   Section.find_each.with_index do |section, index|

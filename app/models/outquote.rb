@@ -1,3 +1,3 @@
 class Outquote < ApplicationRecord
-  belongs_to: :article
+  belongs_to :article
 end

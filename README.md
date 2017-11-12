@@ -45,6 +45,24 @@ could not connect to server: Connection refused
 	TCP/IP connections on port 5432?
 ```
 You might have a server already running that has not shut down correctly. Run `brew services stop postgresql`
-On top of that error, there may be an explanation or status:
-1. `Created database 'stuy-spec-api_development'`
-The database has been created. Run `docker-compose run web rake db:migrate db:seed`, and those commands should work.
+
+In general, if you run into this error, the command may have already worked. Look at the top of the error. If you tried to run `docker-compose run web rails db:create` and, on top of the Connection refusal, it says "Created database...", the command worked. It may have interrupted the `db:migrate`, so run `docker-compose run web rails db:migrate` as an individual function separated from the `db:create`.
+
+### Database drop/reset fails
+```
+Couldn't drop database 'stuy-spec-api_development'
+rails aborted!
+ActiveRecord::StatementInvalid: PG::ObjectInUse: ERROR:  database "stuy-spec-api_development" is being accessed by other users
+DETAIL:  There are {SOME_NUMBER} other sessions using the database.
+```
+There is a rake task for deleting these sessions in `lib/tasks/kill_postgres_connections.rake`. To run the task, do
+```sh
+docker-compose run web rake kill_postgres_connections
+```
+This should kill related postgres connections, and database drop/reset should now work.
+
+If dropping the database still does not work, use the initializer at `config/initializers/postgresql_database_tasks.rb` by adding an environment option to the rake task like so:
+```sh
+docker-compose run web rake environment db:drop
+```
+

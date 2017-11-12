@@ -185,12 +185,6 @@ unless ENV['minimal']
     Article.create([
                      {
                        title: section.name + ' Database Article With Index ' + index.to_s,
-                       outquotes: [
-                         "‘Homegoing’ is a grand and painful push both forward and "\
-                         "back. It is the struggle toward a home that may not even "\
-                         "exist and the exploration of the roots and history that"\
-                         "have been forcibly excised."
-                       ],
                        summary: 'Unfortunately, all good things must come to an end'\
                                 '. We came into Stuyvesant last September, saved'\
                                 'from the unstructured summer.',
@@ -252,12 +246,6 @@ unless ENV['minimal']
                      },
                      {
                        title: section.name + ' Database Article With Index ' + index.to_s + ' Numero Dos',
-                       outquotes: [
-                         "‘Homegoing’ is a grand and painful push both forward and "\
-                         "back. It is the struggle toward a home that may not even "\
-                         "exist and the exploration of the roots and history that"\
-                         "have been forcibly excised."
-                       ],
                        summary: 'Unfortunately, all good things must come to an end'\
                                 '. We came into Stuyvesant last September, saved'\
                                 'from the unstructured summer.',
@@ -319,12 +307,6 @@ unless ENV['minimal']
                      },
                      {
                        title: section.name + ' Database Article With Index ' + index.to_s + ' Numero Tres',
-                      outquotes: [
-                        "‘Homegoing’ is a grand and painful push both forward and "\
-                        "back. It is the struggle toward a home that may not even "\
-                        "exist and the exploration of the roots and history that "\
-                        "have been forcibly excised."
-                      ],
                       summary: 'Unfortunately, all good things must come to an end.'\
                                'We came into Stuyvesant last September, saved from'\
                                'the unstructured summer.',

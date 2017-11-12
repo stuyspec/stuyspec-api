@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :outquotes
   resources :sections
   resources :articles
   resources :user_roles
@@ -19,6 +20,7 @@ Rails.application.routes.draw do
     end
   end
   resources :articles do
+    resources :outquotes
     resources :authorships
     resources :media
     resources :comments

@@ -8,16 +8,17 @@ The application is a Rails application, with a Postgres database. Everything is 
 (in either camelCase or snake_case, using [Olive Branch](https://github.com/vigetlabs/olive_branch)). It is deployed on AWS using Elastic Beanstalk
 
 ## Setting Up
-* Clone the repo (`git clone https://github.com/stuyspec/stuy-spec-api.git`)
-* Install Ruby. We highly suggest rbenv or rvm
-* Install Rails 5.1
-* Install PostgreSQL (`brew install postgres` on Mac OS)
-* Install Docker
-* Run `docker-compose build`
-* Run `docker-compose up`. If you get an error saying it can't connect to db, try stopping
-and rerunning
-* In a separate terminal instance, run `docker-compose run web rake db:create db:migrate db:seed`
-* To start the server, run `docker-compose run web rails server`.
+1. Clone the repo (`git clone https://github.com/stuyspec/stuy-spec-api.git`)
+2. Install Ruby. We highly suggest rbenv or rvm
+3. Install Rails 5.1
+4. Install PostgreSQL (`brew install postgres` on Mac OS)
+5. Install Docker
+6. Run `docker-compose build`
+7. Run `docker-compose up`. If you get an error saying it can't connect to db, try stopping
+and rerunning.
+8. In a separate terminal instance, run `docker-compose run web rake db:create`. If there are a bunch of errors about being unable to connect to TCP/IP at 5432, just check the top of those errors to see if something like `Created database stuy-spec-api_development` was created. If so, then ignore the errors.
+9. Run `docker-compose run web db:migrate db:seed`
+10. To start the server, run `docker-compose run web rails server`.
 
 ## Troubleshooting
 
@@ -46,4 +47,4 @@ could not connect to server: Connection refused
 You might have a server already running that has not shut down correctly. Run `brew services stop postgresql`
 On top of that error, there may be an explanation or status:
 1. `Created database 'stuy-spec-api_development'`
-The database has been created. Run 'docker-compose run web rake db:migrate db:seed', then visit [[http://localhost:3000/users]] to see if the API is working correctly.
+The database has been created. Run `docker-compose run web rake db:migrate db:seed`, and those commands should work.

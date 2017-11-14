@@ -432,6 +432,7 @@ unless ENV['minimal']
   Article.find_each do |article|
     Authorship.create(user_id: users.sample.id, article_id: article.id)
     Authorship.create(user_id: users.sample.id % 15, article_id: article.id)
+    Outquote.create(article_id: article.id, text: 'Example outquote affecting the lives of many readers.')
   end
 
   User.find_each do |user|

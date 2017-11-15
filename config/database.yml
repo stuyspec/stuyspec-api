@@ -17,13 +17,13 @@
 default: &default
   adapter: postgresql
   encoding: unicode
+  host: db
   # For details on connection pooling, see Rails configuration guide
   # http://guides.rubyonrails.org/configuring.html#database-pooling
   pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
 
 development:
   <<: *default
-  host: db
   database: stuy-spec-api_development
   username: postgres
   password:
@@ -60,7 +60,6 @@ development:
 test:
   <<: *default
   user: postgres
-  host: db
   database: stuy-spec-api_test
 
 # As with config/secrets.yml, you never want to store sensitive information,

@@ -82,3 +82,10 @@ If dropping the database still does not work, use the initializer at `config/ini
 docker-compose run web rake environment db:drop
 ```
 
+### Cannot `bundle install`
+If you need to add gems and the `bundle install` is [repetitively failing](https://stackoverflow.com/questions/6971290/running-bundle-install-fails-and-asks-me-to-run-bundle-install), you need to rebuild your Docker image to update the `Gemfile.lock`.
+```
+$ docker run web bundle install
+$ docker build
+```
+

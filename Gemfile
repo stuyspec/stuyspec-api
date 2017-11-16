@@ -57,3 +57,4 @@ gem 'omniauth-github'
 gem 'paperclip'
 gem 'aws-sdk'
 gem 'airborne'
+gem 'dotenv-rails', groups: [:development, :test]

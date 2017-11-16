@@ -37,18 +37,18 @@ Section.create(
       description: 'The sports of Stuyvesant',
       rank: 1
     },
-    {
-      name: 'Art',
-      slug: 'art',
-      description: 'The art of Stuyvesant',
-      rank: 1
-    },
-    {
-      name: 'Photo',
-      slug: 'photo',
-      description: 'The photo of Stuyvesant',
-      rank: 1
-    },
+    # {
+    #   name: 'Art',
+    #   slug: 'art',
+    #   description: 'The art of Stuyvesant',
+    #   rank: 1
+    # },
+    # {
+    #   name: 'Photo',
+    #   slug: 'photo',
+    #   description: 'The photo of Stuyvesant',
+    #   rank: 1
+    # },
     {
       name: 'Campaign Coverage',
       slug:'campaign-coverage',

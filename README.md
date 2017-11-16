@@ -13,7 +13,7 @@ The application is a Rails application, with a Postgres database. Everything is 
 3. Install Rails 5.1
 4. Install PostgreSQL (`brew install postgres` on Mac OS)
 5. Install Docker
-6. Run `docker-compose build`
+6. Create a file with name `.env` in the repository and write in it: `PG_HOST-db`. Run `docker-compose build`
 7. Run `docker-compose up`. If you get an error saying it can't connect to db, try stopping
 and rerunning.
 8. In a separate terminal instance, run `docker-compose run web rake db:create`. If there are a bunch of errors about being unable to connect to TCP/IP at 5432, just check the top of those errors to see if something like `Created database stuy-spec-api_development` was created. If so, then ignore the errors.
@@ -63,6 +63,13 @@ could not connect to server: Connection refused
 You might have a server already running that has not shut down correctly. Run `brew services stop postgresql`
 
 In general, if you run into this error, the command may have already worked. Look at the top of the error. If you tried to run `docker-compose run web rails db:create` and, on top of the Connection refusal, it says "Created database...", the command worked. It may have interrupted the `db:migrate`, so run `docker-compose run web rails db:migrate` as an individual function separated from the `db:create`.
+
+If that is not the case, run `postgres -D /usr/local/var/postgres`. You may see something like this:
+```
+FATAL:  lock file "postmaster.pid" already exists
+HINT:  Is another postmaster (PID 15556) running in data directory "/usr/local/var/postgres"?
+```
+Run `kill -9 THE_PID`, and you should be good to go.
 
 ### Database drop/reset fails
 ```

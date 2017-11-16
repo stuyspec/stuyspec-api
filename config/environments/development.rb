@@ -44,7 +44,7 @@ Rails.application.configure do
     :storage => :s3,
     :s3_region => "us-east-1",
     :s3_host_name => 's3-website-us-east-1.amazonaws.com',
-    :bucket => 'stuy-spec-media'
+    :bucket => 'stuyspec-media'
   }
   # Raises error for missing translations
   # config.action_view.raise_on_missing_translations = true

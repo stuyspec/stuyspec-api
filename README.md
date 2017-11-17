@@ -1,4 +1,6 @@
-<img src="https://imgur.com/9S6V9Ng.png"/>
+<img src="https://imgur.com/aPbzogH.png"/>
+<br/>
+
 # Stuyvesant Spectator API
 This is the official API for the Stuyvesant Spectator. Currently it is used as a backing service
 for the Spectator website, but there are plans in the future to publish it as a public API.
@@ -35,15 +37,10 @@ production:
   secret_access_key: YOUR_SECRET_ACCESS_KEY
   bucket: stuyspec-media
 ```
-
-
-
-
-
-
-
-
 <!--
+
+
+
 ![alt text](https://i.imgur.com/uti8BnI.png))
 # Docker
 

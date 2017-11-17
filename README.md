@@ -18,6 +18,10 @@ $ echo PG_HOST:localhost > .env
 ```
 $ rails db:create db:migrate db;seed
 ```
+5. To start the server, run:
+```
+rails server
+```
 
 ## AWS
 If you are using our `cli-uploader`, you need to be able to POST media files. You will need to be an IAM user for the Spectator Web AWS account. Request an account by e-mailling [stuyspecweb@gmail.com](mailto:stuyspecweb@gmail.com) or by messaging one of the editors on Facebook.

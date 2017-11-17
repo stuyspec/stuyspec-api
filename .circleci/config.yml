@@ -5,6 +5,7 @@ jobs:
       - image: circleci/ruby:2.4.1-node
         environment:
           RAILS_ENV: test
+          PG_HOST: 127.0.0.1
       - image: circleci/postgres:9.4.12-alpine
     steps:
       - checkout

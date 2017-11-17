@@ -19,7 +19,7 @@ $ echo PG_HOST:localhost > .env
 $ rails db:create db:migrate db;seed
 ```
 
-### AWS
+## AWS
 If you are using our `cli-uploader`, you need to be able to POST media files. You will need to be an IAM user for the Spectator Web AWS account. Request an account by e-mailling [stuyspecweb@gmail.com](mailto:stuyspecweb@gmail.com) or by messaging one of the editors on Facebook.
 
 Once you have an IAM account, go to the AWS console and navigate to the service "IAM". Go to _Users_, in the sidebar, and click on your username. Click the _Security Credentials_ tab and create an Access Key. It will prompt you to download a file with your new access key and secret key. Download it.

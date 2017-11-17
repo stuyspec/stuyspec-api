@@ -20,6 +20,8 @@
 !.elasticbeanstalk/*.cfg.yml
 !.elasticbeanstalk/*.global.yml
 
+.DS_Store
+
 .idea/*
 /public/system
 /config/aws.yml

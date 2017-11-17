@@ -1,11 +1,51 @@
-![alt text](https://i.imgur.com/uti8BnI.png)
+<img src="https://imgur.com/9S6V9Ng.png"/>
 # Stuyvesant Spectator API
-
 This is the official API for the Stuyvesant Spectator. Currently it is used as a backing service
 for the Spectator website, but there are plans in the future to publish it as a public API.
 
-The application is a Rails application, with a Postgres database. Everything is published as JSON
-(in either camelCase or snake_case, using [Olive Branch](https://github.com/vigetlabs/olive_branch)). It is deployed on AWS using Elastic Beanstalk
+## Setting Up
+1. Clone the repo
+```
+$ git clone https://github.com/stuyspec/stuy-spec-api.git`)
+```
+2. Follow the directions below to set up Rails. Ignore the MySQL section; instead, only complete the PostgreSQL section: https://gorails.com/setup/
+3. In the `stuy-spec-api` repository, create your [dotenv](https://github.com/bkeepers/dotenv) file.
+```
+$ echo PG_HOST:localhost > .env
+```
+4. Create, migrate, and seed the database.
+```
+$ rails db:create db:migrate db;seed
+```
+
+### AWS
+If you are using our `cli-uploader`, you need to be able to POST media files. You will need to be an IAM user for the Spectator Web AWS account. Request an account by e-mailling [stuyspecweb@gmail.com](mailto:stuyspecweb@gmail.com) or by messaging one of the editors on Facebook.
+
+Once you have an IAM account, go to the AWS console and navigate to the service "IAM". Go to _Users_, in the sidebar, and click on your username. Click the _Security Credentials_ tab and create an Access Key. It will prompt you to download a file with your new access key and secret key. Download it.
+
+Create a file in `stuy-spec-api/config` called `aws.yml` and set up your file like so:
+```
+development:
+  access_key_id: YOUR_ACCESS_KEY_ID
+  secret_access_key: YOUR_SECRET_ACCESS_KEY
+  bucket: stuyspec-media-testing
+
+production:
+  access_key_id: YOUR_ACCESS_KEY_ID
+  secret_access_key: YOUR_SECRET_ACCESS_KEY
+  bucket: stuyspec-media
+```
+
+
+
+
+
+
+
+
+<!--
+![alt text](https://i.imgur.com/uti8BnI.png))
+# Docker
 
 ## Setting Up
 1. Clone the repo (`git clone https://github.com/stuyspec/stuy-spec-api.git`)
@@ -20,21 +60,6 @@ and rerunning.
 9. Run `docker-compose run web rails db:migrate db:seed`
 10. To start the server, run `docker-compose run web rails server`.
 
-### AWS
-If you are using our `cli-uploader`, you need to be able to POST media files. You will need to be an IAM user for the Spectator Web AWS account. Request an account by e-mailling [stuyspecweb@gmail.com](mailto:stuyspecweb@gmail.com) or by messaging one of the editors on Facebook.
-
-Once you have an IAM account, go to the AWS console and navigate to the service "IAM". Go to _Users_, in the sidebar, and click on your username. Click the _Security Credentials_ tab and create an Access Key. It will prompt you to download a file with your new access key and secret key. Download it.
-
-Create a file in `stuy-spec-api/config` called `aws.yml` and set up your file like so:
-```
-development:
-  access_key_id: YOUR_ACCESS_KEY_ID
-  secret_access_key: YOUR_SECRET_ACCESS_KEY
-
-production:
-  access_key_id: YOUR_ACCESS_KEY_ID
-  secret_access_key: YOUR_SECRET_ACCESS_KEY
-```
 
 ## Troubleshooting
 
@@ -95,4 +120,4 @@ If you need to add gems and the `bundle install` is [repetitively failing](https
 $ docker run web bundle install
 $ docker build
 ```
-
+-->

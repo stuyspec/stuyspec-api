@@ -43,7 +43,7 @@ Rails.application.configure do
   config.paperclip_defaults = {
     :storage => :s3,
     :s3_region => "us-east-1",
-    :s3_host_name => 's3-website-us-east-1.amazonaws.com',
+    :url => ":s3_domain_url",
     :bucket => 'stuyspec-media-testing'
   }
   # Raises error for missing translations

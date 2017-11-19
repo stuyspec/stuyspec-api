@@ -65,7 +65,7 @@ class MediaController < ApplicationController
         :title,
         :caption,
         :is_featured,
-        :type,
+        :media_type,
         :attachment
       )
     end

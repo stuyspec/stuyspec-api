@@ -35,6 +35,8 @@ module StuySpecApi
                  :expose  => ['access-token', 'expiry', 'token-type', 'uid', 'client']
       end
     end
+    config.time_zone = 'Eastern Time (US & Canada)'
+    config.active_record.default_timezone = :local
     config.middleware.use OliveBranch::Middleware
     config.session_store :cookie_store, key: '_interslice_session'
     config.middleware.use ActionDispatch::Cookies # Required for all session management

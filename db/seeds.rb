@@ -143,6 +143,18 @@ Section.create(
       description: 'The spooktator of Stuyvesant',
       parent_id: 5
     },
+    {
+      name: 'At Stuyvesant',
+      slug: 'at-stuyvesant',
+      description: 'The sports at Stuyvesant',
+      parent_id: 6
+    },
+    {
+      name: 'Professional Sports',
+      slug: 'professional-sports',
+      description: 'Professional sports',
+      parent_id: 6
+    },
   ]
 )
 

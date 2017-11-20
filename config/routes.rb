@@ -3,6 +3,7 @@ Rails.application.routes.draw do
   resources :sections
   resources :articles
   resources :user_roles
+  resources :subscribers
   resources :roles do
     resources :user_roles
   end

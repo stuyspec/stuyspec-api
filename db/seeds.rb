@@ -114,6 +114,12 @@ Section.create(
       parent_id: 4
     },
     {
+      name: 'Theater',
+      slug: 'theater',
+      description: 'The theater pieces of Stuyvesant',
+      parent_id: 4
+    },
+    {
       name: 'Thinkpiece',
       slug: 'thinkpiece',
       description: 'The thinkpiece of Stuyvesant',

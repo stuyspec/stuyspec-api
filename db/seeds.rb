@@ -85,12 +85,6 @@ Section.create(
       description: 'The college essays of Stuyvesant',
       parent_id: 3
     },
-    {
-      name: 'Books',
-      slug: 'books',
-      description: 'The books of Stuyvesant',
-      parent_id: 4
-    },
     { name: 'Film',
       slug: 'film',
       description: 'The film of Stuyvesant',
@@ -102,15 +96,21 @@ Section.create(
       parent_id: 4
     },
     {
-      name: 'Television',
-      slug: 'television',
-      description: 'The television of Stuyvesant',
+      name: 'Literature',
+      slug: 'literature',
+      description: 'The literature of Stuyvesant',
       parent_id: 4
     },
     {
       name: 'Music',
       slug: 'music',
       description: 'The music of Stuyvesant',
+      parent_id: 4
+    },
+    {
+      name: 'Television',
+      slug: 'television',
+      description: 'The television of Stuyvesant',
       parent_id: 4
     },
     {

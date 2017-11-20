@@ -69,7 +69,7 @@ Section.create(
     },
     {
       name: '9/11',
-      slug: '9/11',
+      slug: '9-11',
       description: 'The 9/11 features of Stuyvesant',
       parent_id: 3
     },

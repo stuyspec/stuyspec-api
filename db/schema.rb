@@ -143,4 +143,6 @@ ActiveRecord::Schema.define(version: 20171119060337) do
   end
 
   add_foreign_key "articles", "sections"
+  add_foreign_key "authorships", "articles"
+  add_foreign_key "authorships", "users"
 end

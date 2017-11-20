@@ -5,7 +5,11 @@ class MediaController < ApplicationController
   def index
     @media = Medium.all
 
-    render json: @media
+    render json: @media.to_json(methods: [
+                                  :attachment_url,
+                                  :medium_attachment_url,
+                                  :thumb_attachment_url
+                                ])
   end
 
   # GET /media/1

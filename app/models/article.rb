@@ -2,8 +2,9 @@ class Article < ApplicationRecord
   extend FriendlyId
   friendly_id :title, use: :slugged
   belongs_to :section, optional: true
-  has_many :users, through: :authorships
+  has_many :authorships
+  has_many :users, through: :authorships, dependent: :destroy
   has_many :media
-  has_many :comments
-  has_many :outquotes
+  has_many :comments, dependent: :destroy
+  has_many :outquotes, dependent: :destroy
 end

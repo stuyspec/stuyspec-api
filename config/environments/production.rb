@@ -59,24 +59,14 @@ Rails.application.configure do
   # config.action_mailer.raise_delivery_errors = false
 
   config.action_mailer.default_url_options = { :host => 'api.stuyspec.xyz' }
-  config.action_mailer.delivery_method = :smtp
-  config.action_mailer.smtp_settings = {
-    address:              'mail.gandi.net',
-    port:                 587,
-    user_name:            ENV['STUY_SPEC_MAIL_USERNAME'],
-    domain:               'stuyspec.xyz',
-    password:             ENV['STUY_SPEC_MAIL_PASSWORD'],
-    authentication:       'login',
-    enable_starttls_auto: true
-  }
-  config.mailer_sender = "info@stuyspec.xyz"
+
   config.paperclip_defaults = {
     :storage => :s3,
-    :s3_region => "us-east-2",
-    :s3_host_name => 's3-website-us-east-2.amazonaws.com',
-    :bucket => 'stuy-spec-media'
+    :s3_region => "us-east-1",
+    :url => ":s3_domain_url",
+    :bucket => 'stuyspec-media-testing',
+    :s3_protocol => "http"
   }
-  
   # Enable locale fallbacks for I18n (makes lookups for any locale fall back to
   # the I18n.default_locale when a translation cannot be found).
   config.i18n.fallbacks = true

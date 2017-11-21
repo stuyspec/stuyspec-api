@@ -1,5 +1,7 @@
 class CommentsController < ApplicationController
   before_action :set_comment, only: [:show, :update, :destroy]
+#  before_action :authenticate_user!, only: [:create, :update, :destroy]
+
   # GET /comments
   def index
     @comments = Comment.where.not(published_at: nil).all
@@ -18,21 +20,16 @@ class CommentsController < ApplicationController
   # GET /comments/1
   def show
     if params[:article_id]
-      if @comment.article_id == params[:article_id]
-        render json: @comment
-      else
+      if @comment.article_id != params[:article_id]
         render json: @comment.errors, status: :unprocessable_entity
       end
     elsif params[:user_id]
-      if @comment.user_id == params[:user_id]
-        render json: @comment
-      else
+      if @comment.user_id != params[:user_id]
         render json: @comment.errors, status: :unprocessable_entity
       end
-      else
-        render json: @comment
-      end
     end
+    render json: @comment
+  end
 
   # POST /comments
   def create

@@ -62,9 +62,9 @@ Rails.application.configure do
 
   config.paperclip_defaults = {
     :storage => :s3,
-    :s3_region => "us-east-1",
+    :s3_region => "us-east-2",
     :url => ":s3_domain_url",
-    :bucket => 'stuyspec-media-testing',
+    :bucket => 'stuyspec-media',
     :s3_protocol => "http"
   }
   # Enable locale fallbacks for I18n (makes lookups for any locale fall back to
@@ -89,10 +89,4 @@ Rails.application.configure do
 
   # Do not dump schema after migrations.
   config.active_record.dump_schema_after_migration = false
-
-  config.paperclip_defaults = {
-    :storage => :s3,
-    :s3_host_name => 's3-website-us-east-2.amazonaws.com',
-    :bucket => 'stuy-spec-media'
-  }
 end

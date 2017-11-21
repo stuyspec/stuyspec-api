@@ -45,7 +45,7 @@ Rails.application.configure do
     :s3_region => "us-east-1",
     :url => ":s3_domain_url",
     :bucket => 'stuyspec-media-testing',
-    :s3_protocol => "http"
+    :s3_protocol => "https"
   }
   # Raises error for missing translations
   # config.action_view.raise_on_missing_translations = true

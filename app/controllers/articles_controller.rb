@@ -88,7 +88,8 @@ class ArticlesController < ApplicationController
         :is_published,
         :section_id,
         :summary,
-        :rank
+        :rank,
+        :created_at
       )
     end
     def find_combined_rank(article)

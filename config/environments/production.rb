@@ -62,10 +62,10 @@ Rails.application.configure do
 
   config.paperclip_defaults = {
     :storage => :s3,
-    :s3_region => "us-east-2",
-    :s3_endpoint => 's3-us-east-2.amazonaws.com',
+    :s3_region => "us-east-1",
     :url => ":s3_domain_url",
-    :bucket => 'stuyspec-media',
+    :s3_endpoint => 's3-us-east-1.amazonaws.com',
+    :bucket => 'stuyspec-images',
     :s3_protocol => "https"
   }
   # Enable locale fallbacks for I18n (makes lookups for any locale fall back to

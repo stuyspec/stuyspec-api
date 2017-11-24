@@ -7,4 +7,9 @@ class Article < ApplicationRecord
   has_many :media, dependent: :destroy
   has_many :comments, dependent: :destroy
   has_many :outquotes, dependent: :destroy
+  after_initialize :init
+
+  def init
+    self.update(is_published: false)
+  end
 end

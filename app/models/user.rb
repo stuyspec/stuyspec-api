@@ -9,4 +9,9 @@ class User < ApplicationRecord
   has_many :comments, dependent: :destroy
   has_many :user_roles
   has_many :roles, through: :user_roles, dependent: :destroy
+  after_create :init
+
+  def init
+    self.update(security_level: 0)
+  end
 end

@@ -9,11 +9,13 @@ class ArticlesController < ApplicationController
       @articles = Article
                     .where("section_id = ?", @section.id)
                     .joins("LEFT JOIN sections ON articles.id = sections.id")
-                    .order("articles.rank + 3 * sections.rank + 12 * articles.issue + 192 * articles.volume")
+                    .order("articles.rank + 3 * sections.rank + 12 * "\
+                           "articles.issue + 192 * articles.volume")
     else
       @articles = Article
                    .joins("LEFT JOIN sections ON articles.id = sections.id")
-                   .order("articles.rank + 3 * sections.rank + 12 * articles.issue + 192 * articles.volume")
+                   .order("articles.rank + 3 * sections.rank + 12 * "\
+                          "articles.issue + 192 * articles.volume")
     end
 
     @articles = @articles.order(:created_at).reverse if params[:order_by] == 'date'
@@ -44,11 +46,11 @@ class ArticlesController < ApplicationController
 
   # POST /articles
   def create
+    render json: {
+             success: false,
+             errors: ["You do not have the relevant permissions to create articles"]
+           }, status: 401 if current_user.security_level < 1
     @section = Section.friendly.find(params[:section_id])
-    # Can't let people publish by default
-    @article = @section.articles.build(
-      article_params.merge(is_published: false)
-    )
 
    if @article.save
       render json: @article, status: :created, location: @article

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171120054722) do
+ActiveRecord::Schema.define(version: 20171124230849) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -22,7 +22,7 @@ ActiveRecord::Schema.define(version: 20171120054722) do
     t.integer "volume"
     t.integer "issue"
     t.boolean "is_published"
-    t.datetime "created_at", null: false
+    t.datetime "created_at", default: "2017-11-24 10:48:48", null: false
     t.datetime "updated_at", null: false
     t.bigint "section_id"
     t.integer "rank", default: 1
@@ -83,6 +83,15 @@ ActiveRecord::Schema.define(version: 20171120054722) do
     t.text "text"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "pg_search_documents", force: :cascade do |t|
+    t.text "content"
+    t.string "searchable_type"
+    t.bigint "searchable_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["searchable_type", "searchable_id"], name: "index_pg_search_documents_on_searchable_type_and_searchable_id"
   end
 
   create_table "roles", force: :cascade do |t|

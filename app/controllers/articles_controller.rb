@@ -16,6 +16,10 @@ class ArticlesController < ApplicationController
                    .order("articles.rank + 3 * sections.rank + 12 * articles.issue + 192 * articles.volume")
     end
 
+    if params[:query]
+      @articles = PgSearch.multisearch(params[:query])
+    end
+
     @articles = @articles.order(:created_at).reverse if params[:order_by] == 'date'
 
     @articles = @articles.first(params[:limit].to_i) if params[:limit]

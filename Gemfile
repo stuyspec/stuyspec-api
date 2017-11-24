@@ -61,3 +61,5 @@ gem 'aws-sdk'
 gem 'airborne'
 gem 'dotenv-rails', groups: [:development, :test]
 gem 'rack-throttle'
+
+gem 'pg_search'

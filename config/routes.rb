@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :newspapers
   resources :outquotes
   resources :sections
   resources :articles

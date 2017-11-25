@@ -1,7 +1,6 @@
 Rails.application.routes.draw do
   resources :outquotes
   resources :sections
-  resources :newspapers
   resources :articles
   resources :user_roles
   resources :subscribers

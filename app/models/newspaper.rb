@@ -1,0 +1,2 @@
+class Newspaper < ApplicationRecord
+end

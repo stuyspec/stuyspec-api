@@ -22,7 +22,7 @@ ActiveRecord::Schema.define(version: 20171124230849) do
     t.integer "volume"
     t.integer "issue"
     t.boolean "is_published"
-    t.datetime "created_at", default: "2017-11-24 10:48:48", null: false
+    t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.bigint "section_id"
     t.integer "rank", default: 1

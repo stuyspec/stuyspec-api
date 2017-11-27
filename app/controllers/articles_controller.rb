@@ -53,6 +53,8 @@ class ArticlesController < ApplicationController
     @article = @section.articles.build(
       article_params.merge(is_published: false)
     )
+    @tags = Tag.where(:id => params[:tag_id])
+    @article.tags << @tags
 
    if @article.save
       render json: @article, status: :created, location: @article
@@ -93,7 +95,8 @@ class ArticlesController < ApplicationController
         :section_id,
         :summary,
         :rank,
-        :created_at
+        :created_at,
+        :tag_id
       )
     end
     def find_combined_rank(article)

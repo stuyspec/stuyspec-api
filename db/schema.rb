@@ -10,10 +10,15 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171124230849) do
+ActiveRecord::Schema.define(version: 20171127180447) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "article_tags", force: :cascade do |t|
+    t.integer "article_id"
+    t.integer "tag_id"
+  end
 
   create_table "articles", force: :cascade do |t|
     t.text "title"
@@ -78,6 +83,14 @@ ActiveRecord::Schema.define(version: 20171124230849) do
     t.index ["user_id"], name: "index_media_on_user_id"
   end
 
+  create_table "newspapers", force: :cascade do |t|
+    t.integer "volume"
+    t.integer "issue"
+    t.integer "issuu_config"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "outquotes", force: :cascade do |t|
     t.integer "article_id"
     t.text "text"
@@ -118,6 +131,13 @@ ActiveRecord::Schema.define(version: 20171124230849) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "tags", force: :cascade do |t|
+    t.string "name"
+    t.string "description"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "user_roles", force: :cascade do |t|
     t.integer "user_id"
     t.integer "role_id"
@@ -151,7 +171,6 @@ ActiveRecord::Schema.define(version: 20171124230849) do
     t.string "last_name"
     t.string "slug"
     t.string "description"
-    t.integer "security_level", default: 0
     t.index ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true

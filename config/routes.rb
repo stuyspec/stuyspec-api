@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
   resources :outquotes
+  resources :tags
   resources :sections
   resources :articles
   resources :user_roles

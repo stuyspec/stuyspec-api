@@ -14,4 +14,8 @@ class User < ApplicationRecord
   def init
     self.update(security_level: 0)
   end
+
+  def is_admin?
+    self.security_level < 1
+  end
 end

@@ -1,6 +1,6 @@
 class ArticlesController < ApplicationController
   before_action :set_article, only: [:show, :update, :destroy]
-  before_action :authenticate_user!, only: [:create, :update, :destroy]
+  before_action :authenticate_admin!, only: [:create, :update, :destroy]
 
   # GET /articles
   def index
@@ -46,11 +46,8 @@ class ArticlesController < ApplicationController
 
   # POST /articles
   def create
-    render json: {
-             success: false,
-             errors: ["You do not have the relevant permissions to create articles"]
-           }, status: 401 if current_user.security_level < 1
     @section = Section.friendly.find(params[:section_id])
+    @article = @section.articles.build(article_params)
 
    if @article.save
       render json: @article, status: :created, location: @article

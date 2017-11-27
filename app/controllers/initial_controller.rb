@@ -16,7 +16,8 @@ class InitialController < ApplicationController
       :roles => Role.all,
       :user_roles => UserRole.all,
       :authorships => Authorship.all,
-      :outquotes => Outquote.all
+      :outquotes => Outquote.all,
+      :tags => Tag.all,
     }
   end
 end

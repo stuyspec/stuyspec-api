@@ -1,6 +1,6 @@
 class ArticlesController < ApplicationController
   before_action :set_article, only: [:show, :update, :destroy]
-#  before_action :authenticate_user!, only: [:create, :update, :destroy]
+  before_action :authenticate_admin!, only: [:create, :update, :destroy]
 
   # GET /articles
   def index
@@ -44,10 +44,7 @@ class ArticlesController < ApplicationController
   # POST /articles
   def create
     @section = Section.friendly.find(params[:section_id])
-    # Can't let people publish by default
-    @article = @section.articles.build(
-      article_params.merge(is_published: false)
-    )
+    @article = @section.articles.build(article_params)
 
    if @article.save
       render json: @article, status: :created, location: @article

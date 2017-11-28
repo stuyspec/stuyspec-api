@@ -10,7 +10,7 @@ class InitialController < ApplicationController
     render json: {
       :articles => Article.all,
       :sections => Section.all,
-      :comments => Comment.all,
+      :comments => Comment.where.not(published_at: nil).all,
       :media => media_with_urls,
       :users => User.all,
       :roles => Role.all,

@@ -14,4 +14,8 @@ class Article < ApplicationRecord
   def init
     self.update(is_published: false)
   end
+  
+  def ranking
+    self.rank + 3 * self.section.rank + 18 * self.issue + 288 * self.volume
+  end
 end

@@ -63,3 +63,4 @@ gem 'dotenv-rails', groups: [:development, :test]
 gem 'rack-throttle'
 
 gem 'pg_search'
+gem 'seed_dump'

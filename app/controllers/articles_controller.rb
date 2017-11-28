@@ -8,11 +8,11 @@ class ArticlesController < ApplicationController
       @section = Section.friendly.find(params[:section_id])
       @articles = Article
                     .where("section_id = ?", @section.id)
-                    .joins("LEFT JOIN sections ON articles.id = sections.id")
+                    .joins("LEFT JOIN sections ON articles.section_id = sections.id")
                     .order("articles.rank + 3 * sections.rank + 12 * articles.issue + 192 * articles.volume")
     else
       @articles = Article
-                   .joins("LEFT JOIN sections ON articles.id = sections.id")
+                   .joins("LEFT JOIN sections ON articles.section_id = sections.id")
                    .order("articles.rank + 3 * sections.rank + 12 * articles.issue + 192 * articles.volume")
     end
 

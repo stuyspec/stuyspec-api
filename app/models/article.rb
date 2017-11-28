@@ -9,4 +9,8 @@ class Article < ApplicationRecord
   has_many :media, dependent: :destroy
   has_many :comments, dependent: :destroy
   has_many :outquotes, dependent: :destroy
+
+  def ranking
+    self.rank + 3 * self.section.rank + 12 * self.issue + 192 * self.volume
+  end
 end

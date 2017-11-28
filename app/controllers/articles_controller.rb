@@ -9,11 +9,11 @@ class ArticlesController < ApplicationController
       @articles = Article
                     .where("section_id = ?", @section.id)
                     .joins("LEFT JOIN sections ON articles.section_id = sections.id")
-                    .order("articles.rank + 3 * sections.rank + 12 * articles.issue + 192 * articles.volume")
+                    .order("articles.rank + 3 * sections.rank + 12 * articles.issue + 192 * articles.volume DESC")
     else
       @articles = Article
                    .joins("LEFT JOIN sections ON articles.section_id = sections.id")
-                   .order("articles.rank + 3 * sections.rank + 12 * articles.issue + 192 * articles.volume")
+                   .order("articles.rank + 3 * sections.rank + 12 * articles.issue + 192 * articles.volume DESC")
     end
 
     if params[:query]

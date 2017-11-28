@@ -6,9 +6,14 @@ class ArticlesController < ApplicationController
   def index
     if params[:section_id]
       @section = Section.friendly.find(params[:section_id])
-      @articles = Article.where("section_id = ?", @section.id)
+      @articles = Article
+                    .where("section_id = ?", @section.id)
+                    .joins("LEFT JOIN sections ON articles.section_id = sections.id")
+                    .order("articles.rank + 3 * sections.rank + 12 * articles.issue + 192 * articles.volume")
     else
-      @articles = Article.all
+      @articles = Article
+                   .joins("LEFT JOIN sections ON articles.section_id = sections.id")
+                   .order("articles.rank + 3 * sections.rank + 12 * articles.issue + 192 * articles.volume")
     end
 
     if params[:query]
@@ -33,7 +38,7 @@ class ArticlesController < ApplicationController
       :summary
     ) if params[:content] == 'false'
 
-    render json: @articles, methods: [:ranking]
+    render json: @articles
   end
 
   # GET /articles/1

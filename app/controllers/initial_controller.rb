@@ -8,7 +8,9 @@ class InitialController < ApplicationController
                               })
     end
     render json: {
-      :articles => Article.all,
+      :articles => Article
+                     .joins("LEFT JOIN sections ON articles.section_id = sections.id")
+                     .order("articles.rank + 3 * sections.rank + 12 * articles.issue + 192 * articles.volume DESC"),
       :sections => Section.all,
       :comments => Comment.where.not(published_at: nil).all,
       :media => media_with_urls,

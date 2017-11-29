@@ -26,9 +26,11 @@ rails server
 ## AWS
 If you are using our `cli-uploader`, you need to be able to POST media files. You will need to be an IAM user for the Spectator Web AWS account. Request an account by e-mailling [stuyspecweb@gmail.com](mailto:stuyspecweb@gmail.com) or by messaging one of the editors on Facebook.
 
-Once you have an IAM account, go to the AWS console and navigate to the service "IAM". Go to _Users_, in the sidebar, and click on your username. Click the _Security Credentials_ tab and create an Access Key. It will prompt you to download a file with your new access key and secret key. Download it.
+While you wait for your beloved editors to get the account set up, watch this [IAM introduction](https://www.youtube.com/watch?v=Ul6FW4UANGc).
 
-Create a file in `stuy-spec-api/config` called `aws.yml` and set up your file like so:
+Once you have your IAM username and password, navigate to the [stuyspec AWS console](https://stuyspec.signin.aws.amazon.com/console) and log in. In the AWS console, navigate to the service "IAM". Go to _Users_, in the sidebar, and click on your username. Click the _Security Credentials_ tab and create an Access Key. It will prompt you to download a file with your new access key and secret key. Download it.
+
+Create a file in `stuy-spec-api/config` called `aws.yml` and set up your file with the access keys you just got. It should be formatted like so:
 ```
 development:
   access_key_id: YOUR_ACCESS_KEY_ID
@@ -40,10 +42,8 @@ production:
   secret_access_key: YOUR_SECRET_ACCESS_KEY
   bucket: stuyspec-media
 ```
+
 <!--
-
-
-
 ![alt text](https://i.imgur.com/uti8BnI.png))
 # Docker
 

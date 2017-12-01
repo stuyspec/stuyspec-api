@@ -60,6 +60,16 @@ Rails.application.configure do
 
   config.action_mailer.default_url_options = { :host => 'api.stuyspec.com' }
 
+  config.action_mailer.delivery_method = :smtp
+  config.action_mailer.smtp_settings = {
+	  :address => "smtp.gmail.com",
+	  :port => 587,
+	  :user_name => 'web@stuyspec.com',
+	  :password => ENV['EMAIL_PASSWORD'],
+          :authentication => 'plain',
+	  :enable_starttls_auto => true
+  }
+
   config.paperclip_defaults = {
     :storage => :s3,
     :s3_region => "us-east-1",

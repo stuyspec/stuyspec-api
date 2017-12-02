@@ -5,37 +5,43 @@ Section.create(
       name: 'News',
       slug: 'news',
       description: 'The news of Stuyvesant',
-      rank: 6
+      rank: 6,
+      is_visible: true
     },
     {
       name: 'Opinions',
       slug: 'opinions',
       description: 'The opinions of Stuyvesant',
-      rank: 5
+      rank: 5,
+      is_visible: true
     },
     {
       name: 'Features',
       slug: 'features',
       description: 'The features of Stuyvesant',
-      rank: 4
+      rank: 4,
+      is_visible: true
     },
     {
       name: 'Arts & Entertainment',
       slug: 'ae',
       description: 'The A&E of Stuyvesant',
-      rank: 3
+      rank: 3,
+      is_visible: true
     },
     {
       name: 'Humor',
       slug: 'humor',
       description: 'The humor of Stuyvesant',
-      rank: 2
+      rank: 2,
+      is_visible: true
     },
     {
       name: 'Sports',
       slug: 'sports',
       description: 'The sports of Stuyvesant',
-      rank: 1
+      rank: 1,
+      is_visible: true
     },
     # {
     #   name: 'Art',
@@ -53,113 +59,132 @@ Section.create(
       name: 'Campaign Coverage',
       slug:'campaign-coverage',
       description:'The campaign of Stuyvesant',
-      parent_id: 1
+      parent_id: 1,
+      is_visible: true
     },
     {
       name: 'Staff Editorials',
       slug:'staff-ed',
       description: 'The staff-ed of Stuyvesant',
-      parent_id: 2
+      parent_id: 2,
+      is_visible: true
     },
     {
       name: 'VOICES',
       slug: 'voices',
       description: 'The voices of Stuyvesant',
-      parent_id: 3
+      parent_id: 3,
+      is_visible: true
     },
     {
       name: '9/11',
       slug: '9-11',
       description: 'The 9/11 features of Stuyvesant',
-      parent_id: 3
+      parent_id: 3,
+      is_visible: true
     },
     {
       name: 'Creative Writing',
       slug: 'creative writing',
       description: 'The creative writing of Stuyvesant',
-      parent_id: 3
+      parent_id: 3,
+      is_visible: true
     },
     {
       name: 'College Essays',
       slug: 'college essays',
       description: 'The college essays of Stuyvesant',
-      parent_id: 3
+      parent_id: 3,
+      is_visible: true
     },
     { name: 'Film',
       slug: 'film',
       description: 'The film of Stuyvesant',
-      parent_id: 4
+      parent_id: 4,
+      is_visible: true
     },
     { name: 'Food',
       slug: 'food',
       description: 'The food of Stuyvesant',
-      parent_id: 4
+      parent_id: 4,
+      is_visible: true
     },
     {
       name: 'Literature',
       slug: 'literature',
       description: 'The literature of Stuyvesant',
-      parent_id: 4
+      parent_id: 4,
+      is_visible: true
     },
     {
       name: 'Music',
       slug: 'music',
       description: 'The music of Stuyvesant',
-      parent_id: 4
+      parent_id: 4,
+      is_visible: true
     },
     {
       name: 'Television',
       slug: 'television',
       description: 'The television of Stuyvesant',
-      parent_id: 4
+      parent_id: 4,
+      is_visible: true
     },
     {
       name: 'Theater',
       slug: 'theater',
       description: 'The theater pieces of Stuyvesant',
-      parent_id: 4
+      parent_id: 4,
+      is_visible: true
     },
     {
       name: 'Thinkpiece',
       slug: 'thinkpiece',
       description: 'The thinkpiece of Stuyvesant',
-      parent_id: 4
+      parent_id: 4,
+      is_visible: true
     },
     {
       name: 'SING!',
       slug: 'sing!',
       description: 'The sing of Stuyvesant',
-      parent_id: 4
+      parent_id: 4,
+      is_visible: true
     },
     {
       name: 'STC',
       slug: 'stc',
       description: 'The stc of Stuyvesant',
-      parent_id: 4
+      parent_id: 4,
+      is_visible: true
     },
     {
       name: 'Disrespectator',
       slug: 'disrespectator',
       description: 'The disrespectator of Stuyvesant',
-      parent_id: 5
+      parent_id: 5,
+      is_visible: true
     },
     {
       name: 'Spooktator',
       slug: 'spooktator',
       description: 'The spooktator of Stuyvesant',
-      parent_id: 5
+      parent_id: 5,
+      is_visible: true
     },
     {
       name: 'At Stuyvesant',
       slug: 'at-stuyvesant',
       description: 'The sports at Stuyvesant',
-      parent_id: 6
+      parent_id: 6,
+      is_visible: true
     },
     {
       name: 'Professional Sports',
       slug: 'professional-sports',
       description: 'Professional sports',
-      parent_id: 6
+      parent_id: 6,
+      is_visible: true
     },
   ]
 )

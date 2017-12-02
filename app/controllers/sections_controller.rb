@@ -4,7 +4,7 @@ class SectionsController < ApplicationController
 
   # GET /sections
   def index
-    @sections = Section.all
+    @sections = Section.where("is_visible = true")
 
     render json: @sections
   end

@@ -4,10 +4,9 @@ class SectionsController < ApplicationController
 
   # GET /sections
   def index
+    @sections = Section.where("is_visible = true")
     if params[:include_invisible]
       @sections = Section.all
-    else
-      @sections = Section.where("is_visible = true")
     end
 
     render json: @sections

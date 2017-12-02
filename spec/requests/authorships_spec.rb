@@ -5,7 +5,7 @@ RSpec.describe "Authorships", type: :request do
     it 'returns correct types' do
       get authorships_path
       expect_json_types(
-        '*',
+        '?',
         user_id: :integer,
         article_id: :integer
       )

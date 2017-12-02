@@ -1,5 +1,6 @@
 class SubscribersController < ApplicationController
   before_action :set_subscriber, only: [:show, :update, :destroy]
+  before_action :authenticate_admin!, only: [:create, :update, :destroy]
 
   # GET /subscribers
   def index

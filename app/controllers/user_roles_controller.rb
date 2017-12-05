@@ -1,6 +1,6 @@
 class UserRolesController < ApplicationController
-  before_action :set_user_role, only: [:show, :update, :destroy]
   before_action :authenticate_user!, only: [:create, :update, :destroy]
+  before_action :set_user_role, only: [:show, :update, :destroy]
 
   # GET /user_roles
   def index

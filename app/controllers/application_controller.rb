@@ -14,10 +14,9 @@ class ApplicationController < ActionController::API
   end
 
   def authenticate_admin!
-    authenticate_user!
     return render json: {
                     success: false,
-                    errors: ["You do not have the relevant permissions to create articles"]
+                    errors: ["You do not have the relevant permissions"]
                   }, status: 401 if current_user.is_admin?
   end
 

@@ -53,7 +53,7 @@ Rails.application.configure do
     :s3_region => "us-east-1",
     :url => ":s3_domain_url",
     :s3_endpoint => 's3-us-east-1.amazonaws.com',
-    :bucket => 'stuyspec-media-testing',
+    :bucket => 'stuy-spec-media',
     :s3_protocol => "https"
   }
   # Raises error for missing translations

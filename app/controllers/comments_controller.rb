@@ -1,5 +1,6 @@
 class CommentsController < ApplicationController
   before_action :authenticate_user!, only: [:create, :update, :destroy]
+  before_action :authenticate_author!, only: [:update, :destroy]
   before_action :set_comment, only: [:show, :update, :destroy]
 
 
@@ -34,8 +35,9 @@ class CommentsController < ApplicationController
 
   # POST /comments
   def create
-    @comment = Comment.new(comment_params)
-
+    @comment = Comment.new(
+      comment_params.merge(user_id: current_user.id)
+    )
     if @comment.save
       render json: @comment, status: :created, location: @comment
     else
@@ -66,6 +68,14 @@ class CommentsController < ApplicationController
   # Only allow a trusted parameter "white list" through.
   def comment_params
     params.require(:comment).permit(:content,
-                                    :text, :user_id, :article_id, :published_at)
+                                    :text,
+                                    :article_id,
+                                    :published_at)
+  end
+
+  def authenticate_author!
+    return render json: { success: false,
+                    errors: ["You are not the author of this comment"]
+                  }, status: 401 unless comment.is_author? current_user
   end
 end

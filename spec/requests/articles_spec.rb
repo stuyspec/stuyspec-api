@@ -2,9 +2,13 @@ require 'rails_helper'
 
 RSpec.describe "Articles", type: :request do
   before(:all) do
-    @user = User.find_or_create_by(
-      email: "jkao1@stuy.edu",
-    )
+    unless @user = User.where(email: "jkao1@stuy.edu").first
+      @user = User.create(
+        email: "jkao1@stuy.edu",
+        password: "hunter2hunter2",
+        password_confirmation: "hunter2hunter2"
+      )
+    end
   end
   describe "GET /articles" do
     it "returns correct types" do

@@ -1,0 +1,17 @@
+Types::QueryType = GraphQL::ObjectType.define do
+  name "Query"
+  # Add root-level fields here.
+  # They will be entry points for queries on your schema.
+
+  field :articles, !types[Types::ArticleType] do
+    # resolve would be called in order to fetch data for that field
+    resolve -> (obj, args, ctx) { Article.all }
+  end
+
+  field :articleByID do
+    type Types::ArticleType
+    argument :id, !types.ID
+    description "Find an article by ID"
+    resolve ->(obj, args, ctx) { Article.find(args["id"])}
+  end
+end

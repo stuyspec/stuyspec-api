@@ -1,9 +1,13 @@
 class SectionsController < ApplicationController
   before_action :set_section, only: [:show, :update, :destroy]
+  before_action :authenticate_admin!, only: [:create, :update, :destroy]
 
   # GET /sections
   def index
-    @sections = Section.all
+    @sections = Section.where("is_visible = true")
+    if params[:include_invisible]
+      @sections = Section.all
+    end
 
     render json: @sections
   end
@@ -46,6 +50,6 @@ class SectionsController < ApplicationController
 
     # Only allow a trusted parameter "white list" through.
     def section_params
-      params.require(:section).permit(:name, :description, :slug)
+      params.require(:section).permit(:name, :description, :slug, :parent_id, :rank)
     end
 end

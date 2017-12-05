@@ -1,14 +1,43 @@
 class ArticlesController < ApplicationController
   before_action :set_article, only: [:show, :update, :destroy]
+  before_action :authenticate_admin!, only: [:create, :update, :destroy]
 
   # GET /articles
   def index
     if params[:section_id]
       @section = Section.friendly.find(params[:section_id])
-      @articles = Article.where("section_id = ?", @section.id)
+      @articles = Article
+                    .where("section_id = ?", @section.id)
+                    .joins("LEFT JOIN sections ON articles.section_id = sections.id")
+                    .order("articles.rank + 3 * sections.rank + 12 * articles.issue + 192 * articles.volume DESC")
     else
-      @articles = Article.all
+      @articles = Article
+                   .joins("LEFT JOIN sections ON articles.section_id = sections.id")
+                   .order("articles.rank + 3 * sections.rank + 12 * articles.issue + 192 * articles.volume DESC")
     end
+
+    if params[:query]
+      @articles = PgSearch.multisearch(params[:query])
+    end
+
+    @articles = @articles.order(:created_at).reverse if params[:order_by] == 'date'
+
+    @articles = @articles.first(params[:limit].to_i) if params[:limit]
+
+    @articles = @articles.select(
+      :id,
+      :title,
+      :slug,
+      :volume,
+      :issue,
+      :is_published,
+      :created_at,
+      :updated_at,
+      :section_id,
+      :rank,
+      :summary
+    ) if params[:content] == 'false'
+
     render json: @articles
   end
 
@@ -19,11 +48,8 @@ class ArticlesController < ApplicationController
 
   # POST /articles
   def create
-    @section = Section.friendly.find(params[:section])
-    # Can't let people publish by default
-    @article = @section.articles.build(
-      article_params.merge(is_draft: true)
-    )
+    @section = Section.friendly.find(params[:section_id])
+    @article = @section.articles.build(article_params)
 
    if @article.save
       render json: @article, status: :created, location: @article
@@ -54,6 +80,20 @@ class ArticlesController < ApplicationController
 
     # Only allow a trusted parameter "white list" through.
     def article_params
-      params.require(:article).permit(:title, :slug, :content, :volume, :issue, :is_draft, :section)
+      params.require(:article).permit(
+        :title,
+        :slug,
+        :content,
+        :volume,
+        :issue,
+        :is_published,
+        :section_id,
+        :summary,
+        :rank,
+        :created_at
+      )
+    end
+    def find_combined_rank(article)
+      return article.rank + Section.friendly.find(article.section_id).rank * 1.5
     end
 end

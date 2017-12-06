@@ -19,4 +19,18 @@ Types::QueryType = GraphQL::ObjectType.define do
     # resolve would be called in order to fetch data for that field
     resolve -> (obj, args, ctx) { User.all }
   end
+
+  field :userByID do
+    type Types::UserType
+    argument :id, !types.ID
+    description "Find an user by ID"
+    resolve ->(obj, args, ctx) { User.find(args["id"])}
+  end
+
+  field :userByEmail do
+    type Types::UserType
+    argument :email, !types.String
+    description "Find an user by email"
+    resolve ->(obj, args, ctx) { User.find_by(email: args["email"])}
+  end
 end

@@ -33,4 +33,9 @@ Types::QueryType = GraphQL::ObjectType.define do
     description "Find an user by email"
     resolve ->(obj, args, ctx) { User.find_by(email: args["email"])}
   end
+
+  field :allMedia, !types[Types::MediumType] do
+    # resolve would be called in order to fetch data for that field
+    resolve -> (obj, args, ctx) { Medium.all }
+  end
 end

@@ -8,4 +8,6 @@ Types::ArticleType = GraphQL::ObjectType.define do
   field :contributors, types[!Types::UserType]
   field :media, types[Types::MediumType]
   field :outquotes, types[Types::OutquoteType]
+  field :issue, !types.Int
+  field :volume, !types.Int
 end

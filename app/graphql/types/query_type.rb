@@ -8,6 +8,11 @@ Types::QueryType = GraphQL::ObjectType.define do
     resolve -> (obj, args, ctx) { Article.all }
   end
 
+  field :allSections, !types[Types::SectionType] do
+    # resolve would be called in order to fetch data for that field
+    resolve -> (obj, args, ctx) { Section.all }
+  end
+
   field :articleByID do
     type Types::ArticleType
     argument :id, !types.ID

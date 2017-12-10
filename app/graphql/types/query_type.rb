@@ -48,5 +48,7 @@ Types::QueryType = GraphQL::ObjectType.define do
     }
   end
 
+  field :newsArticles, function: Resolvers::GetNewsArticles.new
+
   field :featuredArticle, function: Resolvers::GetFeaturedArticle.new
 end

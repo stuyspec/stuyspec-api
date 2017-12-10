@@ -15,6 +15,13 @@ Types::QueryType = GraphQL::ObjectType.define do
     resolve ->(obj, args, ctx) { Article.find(args["id"])}
   end
 
+  field :articleBySlug do
+    type Types::ArticleType
+    argument :slug, !types.String
+    description "Find an article by slug"
+    resolve ->(obj, args, ctx) { Article.friendly.find(args["slug"])}
+  end
+
   field :allUsers, !types[Types::UserType] do
     # resolve would be called in order to fetch data for that field
     resolve -> (obj, args, ctx) { User.all }

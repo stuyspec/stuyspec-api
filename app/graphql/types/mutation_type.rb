@@ -3,4 +3,5 @@ Types::MutationType = GraphQL::ObjectType.define do
 
   field :createArticle, function: Resolvers::CreateArticle.new
   field :createUser, function: Resolvers::CreateUser.new
+  field :deleteArticle, function: Resolvers::DeleteArticle.new
 end

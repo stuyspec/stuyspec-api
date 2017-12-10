@@ -6,4 +6,5 @@ Types::SectionType = GraphQL::ObjectType.define do
   field :description, types.String
   field :rank, !types.Int
   field :parent_section, Types::SectionType
+  field :subsections, types[Types::SectionType]
 end

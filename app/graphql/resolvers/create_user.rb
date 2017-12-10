@@ -6,15 +6,19 @@ class Resolvers::CreateUser < GraphQL::Function
   end
 
   argument :first_name, !types.String
+  argument :last_name, !types.String
   argument :auth_provider, !AuthProviderInput
 
   type Types::UserType
 
   def call(_obj, args, _ctx)
     User.create!(
-      name: args[:name],
-      email: args[:authProvider][:email][:email],
-      password: args[:authProvider][:email][:password]
+      first_name: args[:first_name],
+      last_name: args[:last_name],
+      email: args[:auth_provider][:email][:email],
+      password: args[:auth_provider][:email][:password],
+      password_confirmation: args[:auth_provider][:email][:password_confirmation],
+      created_at: Time.now
     )
   end
   

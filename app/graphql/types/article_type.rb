@@ -13,5 +13,4 @@ Types::ArticleType = GraphQL::ObjectType.define do
   field :issue, !types.Int
   field :volume, !types.Int
   field :section, !Types::SectionType
-
 end

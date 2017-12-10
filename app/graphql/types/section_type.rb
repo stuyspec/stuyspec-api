@@ -1,5 +1,6 @@
 Types::SectionType = GraphQL::ObjectType.define do
   name "Section"
+  field :id, !types.ID
   field :name, !types.String
   field :slug, !types.String
   field :description, types.String

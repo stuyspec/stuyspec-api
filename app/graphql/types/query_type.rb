@@ -12,7 +12,7 @@ Types::QueryType = GraphQL::ObjectType.define do
     type Types::ArticleType
     argument :id, !types.ID
     description "Find an article by ID"
-    resolve ->(obj, args, ctx) { Article.find(args["id"])}
+    resolve ->(obj, args, ctx) { Article.friendly.find(args["id"])}
   end
 
   field :allUsers, !types[Types::UserType] do

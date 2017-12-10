@@ -38,4 +38,6 @@ Types::QueryType = GraphQL::ObjectType.define do
     # resolve would be called in order to fetch data for that field
     resolve -> (obj, args, ctx) { Medium.all }
   end
+
+  field :featuredArticle, function: Resolvers::GetFeaturedArticle.new
 end

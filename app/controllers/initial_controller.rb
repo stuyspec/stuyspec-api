@@ -21,4 +21,11 @@ class InitialController < ApplicationController
       :outquotes => Outquote.all
     }
   end
+
+  def welcome
+    render json: {
+             message: "Welcome to StuySpec's API! We do not provide public documentation"\
+                      " at this moment, but you are welcome to use it anyways"
+           }
+  end
 end

@@ -68,6 +68,17 @@ Types::QueryType = GraphQL::ObjectType.define do
     }
   end
 
+  field :sectionBySlug do
+    type Types::SectionType
+    argument :slug, !types.String
+    description "Find an section by slug"
+    resolve ->(obj, args, ctx) { Section.friendly.find(args["slug"])}
+  end
+
+  field :topLevelSections, !types[Types::SectionType] do
+    resolve -> (obj, args, ctx) { Section.where(parent_id: nil) }
+  end
+
   field :newsArticles, function: Resolvers::GetNewsArticles.new
 
   field :featuredArticle, function: Resolvers::GetFeaturedArticle.new

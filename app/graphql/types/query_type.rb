@@ -78,6 +78,8 @@ Types::QueryType = GraphQL::ObjectType.define do
   field :topLevelSections, !types[Types::SectionType] do
     resolve -> (obj, args, ctx) { Section.where(parent_id: nil) }
   end
+  
+  field :topRankedArticles, function: Resolvers::GetTopRankedArticles.new
 
   field :newsArticles, function: Resolvers::GetNewsArticles.new
 

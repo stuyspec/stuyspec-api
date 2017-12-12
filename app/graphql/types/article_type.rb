@@ -11,6 +11,7 @@ Types::ArticleType = GraphQL::ObjectType.define do
   field :media, types[Types::MediumType]
   field :outquotes, types[Types::OutquoteType]
   field :issue, !types.Int
+  field :rank, types.Int
   field :volume, !types.Int
   field :section, !Types::SectionType
 end

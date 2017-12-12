@@ -55,6 +55,13 @@ Types::QueryType = GraphQL::ObjectType.define do
     resolve ->(obj, args, ctx) { User.find(args["id"])}
   end
 
+  field :userBySlug do
+    type Types::UserType
+    argument :slug, !types.String
+    description "Find an user by slug"
+    resolve ->(obj, args, ctx) { User.find_by(slug: args["slug"])}
+  end
+
   field :userByEmail do
     type Types::UserType
     argument :email, !types.String

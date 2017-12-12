@@ -1,6 +1,8 @@
 class MediaController < ApplicationController
+  # before_action :authenticate_user!, only: [:create, :update, :destroy]
+  # before_action :authenticate_admin!, only: [:create, :update, :destroy]
   before_action :set_medium, only: [:show, :update, :destroy]
-  before_action :authenticate_admin!, only: [:create, :update, :destroy]
+
 
   # GET /media
   def index

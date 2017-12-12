@@ -1,6 +1,7 @@
 class SectionsController < ApplicationController
-  before_action :set_section, only: [:show, :update, :destroy]
+  before_action :authenticate_user!, only: [:create, :update, :destroy]
   before_action :authenticate_admin!, only: [:create, :update, :destroy]
+  before_action :set_section, only: [:show, :update, :destroy]
 
   # GET /sections
   def index

@@ -56,6 +56,7 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 gem "olive_branch"
 # OmniAuth
 gem 'omniauth-github'
+
 gem 'paperclip'
 gem 'aws-sdk'
 gem 'airborne'
@@ -64,3 +65,4 @@ gem 'rack-throttle'
 
 gem 'pg_search'
 gem 'seed_dump'
+gem "graphql"

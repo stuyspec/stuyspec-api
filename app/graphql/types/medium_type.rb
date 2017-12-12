@@ -5,7 +5,7 @@ Types::MediumType = GraphQL::ObjectType.define do
   field :user, !Types::UserType
   field :title, !types.String
   field :media_type, !types.String
-  field :caption, !types.String
+  field :caption, types.String
   field :article, !Types::ArticleType
   field :attachment_url, !types.String
   field :medium_attachment_url, !types.String

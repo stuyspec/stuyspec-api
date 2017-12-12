@@ -26,6 +26,14 @@ Types::QueryType = GraphQL::ObjectType.define do
     }
   end
 
+  field :sectionsByParentSectionID do
+    type !types[Types::SectionType]
+    argument :section_id, !types.ID
+    resolve -> (obj, args, ctx) {
+      Section.where(parent_id: args["section_id"])
+    }
+  end
+
   field :articleByID do
     type Types::ArticleType
     argument :id, !types.ID
@@ -77,6 +85,10 @@ Types::QueryType = GraphQL::ObjectType.define do
 
   field :topLevelSections, !types[Types::SectionType] do
     resolve -> (obj, args, ctx) { Section.where(parent_id: nil) }
+  end
+
+  field :featuredSections, !types[Types::SectionType] do
+    resolve -> (obj, args, ctx) { Section.where("parent_id IS NULL OR name = '10/31 Terror Attack'") }
   end
 
   field :newsArticles, function: Resolvers::GetNewsArticles.new

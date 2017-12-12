@@ -17,13 +17,16 @@ class Resolvers::GetNewsArticles < GraphQL::Function
                " + 192 * articles.volume DESC")
         .first
 
-    secondary_article =
+    secondary_articles =
       Article
         .joins('JOIN sections ON articles.section_id = sections.id')
         .where("sections.name = 'News' AND articles.id != #{primary_article.id}")
         .order("articles.rank + 3 * sections.rank + 12 * articles.issue"\
                " + 192 * articles.volume DESC")
-        .first
-    return [primary_article, secondary_article]
+
+    if primary_article.nil?
+      return secondary_articles.first(3)
+    end
+    return [primary_article, secondary_articles.first, secondary_articles.second]
   end
 end

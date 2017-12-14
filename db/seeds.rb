@@ -6,7 +6,7 @@ Section.create(
       slug: 'news',
       description: 'The news of Stuyvesant',
       rank: 6,
-      is_visible: true
+      is_visible: true,
     },
     {
       name: 'Opinions',

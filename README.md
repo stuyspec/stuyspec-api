@@ -1,8 +1,7 @@
 <img src="https://imgur.com/aPbzogH.png"/>
 
 # Stuyvesant Spectator API
-This is the official API for the Stuyvesant Spectator. Currently it is used as a backing service
-for the Spectator website, but there are plans in the future to publish it as a public API.
+The official API for the Stuyvesant Spectator.
 
 ## Setting Up
 1. Clone the repo
@@ -41,6 +40,16 @@ production:
   access_key_id: YOUR_ACCESS_KEY_ID
   secret_access_key: YOUR_SECRET_ACCESS_KEY
   bucket: stuyspec-media
+```
+
+## Seeding
+If you want to use the API locally, you'll need media for articles. This section also requires that you set up AWS.
+
+Every model is sufficiently seeded in `seeds.rb` except for `Medium`. Navigate to the API directory and type `rails c` to bring you to the rails console. Download [this image](https://i.imgur.com/FdFg4qF.jpg) directly into the directory. On three separate prompts, type these three lines:
+```
+> Article.find_each(start:0, finish:10) do |article|
+> Medium.create(user_id: User.all.sample.id, article_id: article.id, title: 'sample for ' + article.title, media_type: 'photo', is_featured: true, attachment: File.open('FdFg4qF.jpg'))
+> end
 ```
 
 <!--

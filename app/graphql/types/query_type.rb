@@ -97,7 +97,7 @@ Types::QueryType = GraphQL::ObjectType.define do
   field :topRankedArticles, function: Resolvers::GetTopRankedArticles.new
 
   field :featuredSections, !types[Types::SectionType] do
-    resolve -> (obj, args, ctx) { Section.where("parent_id IS NULL OR name = '10/31 Terror Attack'") }
+    resolve -> (obj, args, ctx) { Section.where(parent_id: nil)}
   end
 
   field :newsArticles, function: Resolvers::GetNewsArticles.new

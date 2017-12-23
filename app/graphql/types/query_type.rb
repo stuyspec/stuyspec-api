@@ -34,6 +34,14 @@ Types::QueryType = GraphQL::ObjectType.define do
     }
   end
 
+  field :searchArticles do
+    type !types[Types::SearchDocumentType]
+    argument :query, !types.String
+    resolve -> (obj, args, ctx) {
+      PgSearch.multisearch(args["query"])
+    }
+  end
+  
   field :articleByID do
     type Types::ArticleType
     argument :id, !types.ID

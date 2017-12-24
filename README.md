@@ -28,14 +28,16 @@ a "container", basically making your configuration deterministic and reproducibl
 
 1. Follow steps 1-3 above
 
-2. Run `docker-compose up`. If you get an error saying it can't
+2. Run `docker-compose build`
+
+3. Run `docker-compose up`. If you get an error saying it can't
 connect to db, try stopping and rerunning.
 
-3. In a separate terminal instance, run `docker-compose run web rake db:create`. If there are a bunch of errors about being unable to connect to TCP/IP at 5432, just check the top of those errors to see if something like `Created database stuy-spec-api_development` was created. If so, then ignore the errors.
+4. In a separate terminal instance, run `docker-compose run web rake db:create`. If there are a bunch of errors about being unable to connect to TCP/IP at 5432, just check the top of those errors to see if something like `Created database stuy-spec-api_development` was created. If so, then ignore the errors.
 
-4. Run `docker-compose run web rails db:migrate db:seed`
+5. Run `docker-compose run web rails db:migrate db:seed`
 
-5. To start the server, run `docker-compose run web rails server`.
+6. To start the server, run `docker-compose run web rails server`.
 
 
 ## AWS

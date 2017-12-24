@@ -1,9 +1,9 @@
 class Resolvers::UpdateArticle < GraphQL::Function
   # arguments passed as "args"
   argument :id, !types.ID
-  argument :title, !types.String
-  argument :section_id, !types.Int
-  argument :content, !types.String
+  argument :title, types.String
+  argument :section_id, types.Int
+  argument :content, types.String
   argument :volume, types.Int
   argument :issue, types.Int
   argument :contributors, types[types.Int]
@@ -20,9 +20,9 @@ class Resolvers::UpdateArticle < GraphQL::Function
 
     # Transaction so that we don't update a malformed article
     Article.transaction do
-      @article.title = args["title"]
-      @article.section_id = args["section_id"]
-      @article.content = args["content"]
+      @article.title = args["title"] if args["title"]
+      @article.section_id = args["section_id"] if args["section_id"]
+      @article.content = args["content"] if args["content"]
       @article.volume = args["volume"] if args["volume"]
       @article.issue = args["issue"] if args["issue"]
 

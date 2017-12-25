@@ -3,9 +3,9 @@ class Resolvers::CreateArticle < GraphQL::Function
   argument :title, !types.String
   argument :section_id, !types.Int
   argument :content, !types.String
-  argument :volume, !types.Int
-  argument :issue, !types.Int
-  argument :contributors, types[!types.Int]
+  argument :volume, types.Int
+  argument :issue, types.Int
+  argument :contributors, !types[types.Int]
 
   # return type from the mutation
   type Types::ArticleType

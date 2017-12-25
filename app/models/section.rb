@@ -11,10 +11,10 @@ class Section < ApplicationRecord
   has_many :subsections, class_name: 'Section', foreign_key: "parent_id"
 
   def add_permalink
-    permalink = "/" + self.slug
+    permalink = "/#{self.slug}"
     parent_tracker = self.parent_section
     while (!parent_tracker.nil?)
-      permalink = "/" + parent_tracker.slug + permalink
+      permalink = "/#{parent_tracker.slug}#{permalink}"
       parent_tracker = parent_tracker.parent_section
     end
     self.permalink = permalink

@@ -22,6 +22,24 @@ $ rails db:create db:migrate db;seed
 rails server
 ```
 
+## Docker
+If the above doesn't work, you can use Docker. Docker encapsulates your runtime environment into
+a "container", basically making your configuration deterministic and reproducible.
+
+1. Follow steps 1-3 above
+
+2. Run `docker-compose build`
+
+3. Run `docker-compose up`. If you get an error saying it can't
+connect to db, try stopping and rerunning.
+
+4. In a separate terminal instance, run `docker-compose run web rake db:create`. If there are a bunch of errors about being unable to connect to TCP/IP at 5432, just check the top of those errors to see if something like `Created database stuy-spec-api_development` was created. If so, then ignore the errors.
+
+5. Run `docker-compose run web rails db:migrate db:seed`
+
+6. To start the server, run `docker-compose run web rails server`.
+
+
 ## AWS
 If you are using our `cli-uploader`, you need to be able to POST media files. You will need to be an IAM user for the Spectator Web AWS account. Request an account by e-mailling [stuyspecweb@gmail.com](mailto:stuyspecweb@gmail.com) or by messaging one of the editors on Facebook.
 

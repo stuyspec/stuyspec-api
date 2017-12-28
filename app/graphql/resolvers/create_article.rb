@@ -1,4 +1,4 @@
-class Resolvers::CreateArticle < GraphQL::Function
+class Resolvers::CreateArticle < Resolvers::MutationFunction
   # arguments passed as "args"
   argument :title, !types.String
   argument :section_id, !types.Int
@@ -14,7 +14,10 @@ class Resolvers::CreateArticle < GraphQL::Function
    # _obj - is parent object, which in this case is nil
   # args - are the arguments passed
   # _ctx - is the GraphQL context (which would be discussed later)
-  def call(_obj, args, _ctx)
+  def call(_obj, args, ctx)
+    if error = validate_user(ctx)
+      return error
+    end
     @article = Article.new(
       title: args["title"],
       section_id: args["section_id"],
@@ -25,7 +28,7 @@ class Resolvers::CreateArticle < GraphQL::Function
     args["contributors"].each do |id|
       @article.authorships.build(user_id: id)
     end
-    @article.save
+    generate_new_header(ctx) if @article.save
     return @article
   end
 end

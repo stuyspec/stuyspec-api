@@ -10,7 +10,8 @@ class Article < ApplicationRecord
            through: :authorships,
            dependent: :destroy,
            source: :user
-           
+
+  has_one :featured_media, class_name: "Medium"
   has_many :media, dependent: :destroy
   has_many :comments, dependent: :destroy
   has_many :outquotes, dependent: :destroy

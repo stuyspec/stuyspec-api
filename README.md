@@ -6,16 +6,16 @@ The official API for the Stuyvesant Spectator.
 ## Setting Up
 1. Clone the repo
 ```
-$ git clone https://github.com/stuyspec/stuy-spec-api.git`)
+$ git clone https://github.com/stuyspec/stuy-spec-api.git
 ```
 2. Follow the directions below to set up Rails. Ignore the MySQL section; instead, only complete the PostgreSQL section: https://gorails.com/setup/
 3. In the `stuy-spec-api` repository, create your [dotenv](https://github.com/bkeepers/dotenv) file.
 ```
-$ echo PG_HOST:localhost > .env
+$ echo PG_HOST=localhost > .env
 ```
 4. Create, migrate, and seed the database.
 ```
-$ rails db:create db:migrate db;seed
+$ rails db:create db:migrate db:seed
 ```
 5. To start the server, run:
 ```

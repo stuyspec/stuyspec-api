@@ -22,7 +22,7 @@ class User < ApplicationRecord
     self.send_confirmation_instructions
   end
 
-  def is_admin?
-    self.security_level < 1
+  def is_admin?(token, client_id)
+    self.valid_token?(token, client_id) && self.security_level > 1
   end
 end

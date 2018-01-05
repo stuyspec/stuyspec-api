@@ -9,7 +9,7 @@ class Resolvers::CreateUser < GraphQL::Function
   type Types::UserType
 
   def call(_obj, args, _ctx)
-    user = User.create!(
+    User.create!(
       first_name: args[:first_name],
       last_name: args[:last_name],
       email: args[:email],
@@ -17,7 +17,6 @@ class Resolvers::CreateUser < GraphQL::Function
       password_confirmation: args[:password_confirmation],
       created_at: Time.now
     )
-    user.send_confirmation_instructions
   end
   
 end

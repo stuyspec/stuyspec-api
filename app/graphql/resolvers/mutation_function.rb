@@ -7,10 +7,8 @@ class Resolvers::MutationFunction < GraphQL::Function
     client_id = @headers['client']
     token = @headers['access-token']
 
-    return GraphQL::ExecutionError.new("Invalid user token. Please log in") unless
-      @user && @user.is_admin?(token, client_id)
-    
-    return nil
+    valid_admin = @user && @user.is_admin?(token, client_id)
+    GraphQL::ExecutionError.new("Invalid user token. Please log in") unless valid_admin
   end
   
   def generate_new_header(ctx)

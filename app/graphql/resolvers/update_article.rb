@@ -16,9 +16,7 @@ class Resolvers::UpdateArticle < Resolvers::MutationFunction
   # args - are the arguments passed
   # _ctx - is the GraphQL context (which would be discussed later)
   def call(_obj, args, ctx)
-    if error = validate_user(ctx)
-      return error
-    end
+    validate_admin(ctx)
     @article = Article.find(args["id"])
 
     # Transaction so that we don't update a malformed article

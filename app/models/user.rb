@@ -17,7 +17,6 @@ class User < ApplicationRecord
     self.update(security_level: 0)
   end
 
-
   def send_admin_mail
     self.send_confirmation_instructions
   end

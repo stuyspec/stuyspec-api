@@ -10,9 +10,7 @@ class Resolvers::DeleteSection < Resolvers::MutationFunction
   # args - are the arguments passed
   # _ctx - is the GraphQL context (which would be discussed later)
   def call(_obj, args, ctx)
-    if error = validate_user(ctx)
-      return error
-    end
+    validate_admin(ctx)
     section = Section.find(args["id"]).destroy!
     generate_new_header(ctx) if section
     return section

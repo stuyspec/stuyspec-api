@@ -15,9 +15,7 @@ class Resolvers::CreateArticle < Resolvers::MutationFunction
   # args - are the arguments passed
   # _ctx - is the GraphQL context (which would be discussed later)
   def call(_obj, args, ctx)
-    if error = validate_user(ctx)
-      return error
-    end
+    validate_admin(ctx)
     @article = Article.new(
       title: args["title"],
       section_id: args["section_id"],

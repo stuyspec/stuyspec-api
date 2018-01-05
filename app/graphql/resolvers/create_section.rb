@@ -13,9 +13,7 @@ class Resolvers::CreateSection < Resolvers::MutationFunction
   # args - are the arguments passed
   # _ctx - is the GraphQL context (which would be discussed later)
   def call(_obj, args, ctx)
-    if error = validate_user(ctx)
-      return error
-    end
+    validate_admin(ctx)
     if args["parent_id"]
       parent_section = Section.find(args["parent_id"])
       section = parent_section.subsections.build(

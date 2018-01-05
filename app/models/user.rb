@@ -22,6 +22,6 @@ class User < ApplicationRecord
   end
 
   def is_admin?(token, client_id)
-    self.valid_token?(token, client_id) && self.security_level > 1
+    self.valid_token?(token, client_id) && self.security_level > 0
   end
 end

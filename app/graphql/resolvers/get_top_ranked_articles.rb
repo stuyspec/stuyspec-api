@@ -1,6 +1,7 @@
 class Resolvers::GetTopRankedArticles < GraphQL::Function
 
   argument :section_id, types.ID
+  argument :section_slug, types.String
   argument :limit, types.Int
   # return type from the mutation
   type types[Types::ArticleType]
@@ -16,6 +17,12 @@ class Resolvers::GetTopRankedArticles < GraphQL::Function
         .order("articles.rank + 3 * sections.rank + 12 * articles.issue"\
                " + 192 * articles.volume DESC")
     articles = articles.where(section_id: args["section_id"]) if args["section_id"]
+    if args["section_slug"]
+      section = Section.find_by(slug: args["section_slug"])
+      unless section.nil?
+        articles = articles.where(section_id: section.id)
+      end
+    end
     articles = articles.limit(args["limit"]) if args["limit"]
     return articles
   end

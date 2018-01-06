@@ -64,7 +64,7 @@ Section.create(
     },
     {
       name: 'Staff Editorials',
-      slug:'staff-ed',
+      slug:'staff-editorials',
       description: 'The staff-ed of Stuyvesant',
       parent_id: 2,
       is_visible: true
@@ -173,8 +173,8 @@ Section.create(
       is_visible: true
     },
     {
-      name: 'At Stuyvesant',
-      slug: 'at-stuyvesant',
+      name: 'Sports At Stuyvesant',
+      slug: 'sports-at-stuyvesant',
       description: 'The sports at Stuyvesant',
       parent_id: 6,
       is_visible: true

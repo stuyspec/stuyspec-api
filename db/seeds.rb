@@ -43,6 +43,13 @@ Section.create(
       rank: 1,
       is_visible: true
     },
+    {
+      name: '10/31 Terror Attack',
+      slug: '10-31-terror-attack',
+      description: '10/31 Terror Attack',
+      rank: 1,
+      is_visible: true
+    },
     # {
     #   name: 'Art',
     #   slug: 'art',
@@ -85,7 +92,7 @@ Section.create(
     },
     {
       name: 'Creative Writing',
-      slug: 'creative writing',
+      slug: 'creative-writing',
       description: 'The creative writing of Stuyvesant',
       parent_id: 3,
       is_visible: true

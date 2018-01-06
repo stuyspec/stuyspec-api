@@ -82,14 +82,7 @@ Types::QueryType = GraphQL::ObjectType.define do
     resolve -> (obj, args, ctx) { Medium.all }
   end
 
-  field :latestArticles do
-    type !types[Types::ArticleType]
-    argument :limit, !types.Int
-    description "Get the n latest articles"
-    resolve -> (obj, args, ctx) {
-      Article.order(created_at: :desc).limit(args["limit"])
-    }
-  end
+  field :latestArticles, function: Resolvers::GetLatestArticles.new
 
   field :sectionBySlug do
     type Types::SectionType
@@ -109,6 +102,8 @@ Types::QueryType = GraphQL::ObjectType.define do
   end
 
   field :newsArticles, function: Resolvers::GetNewsArticles.new
+
+  field :featuredArticles, function: Resolvers::GetFeaturedArticles.new
 
   field :featuredArticle, function: Resolvers::GetFeaturedArticle.new
 end

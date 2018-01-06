@@ -13,8 +13,11 @@ $ git clone https://github.com/stuyspec/stuy-spec-api.git
 ```
 $ echo PG_HOST=localhost > .env
 ```
-4. If you intend to use this API while working with client-app or cli-uploader, download [this image](https://i.imgur.com/FdFg4qF.jpg) directly into the repository directory. Then follow the setup instructions in the `AWS` section below.
-5. Create, migrate, and seed the database.
+4. If you intend to use this API while working with client-app or cli-uploader, follow the setup instructions in the `AWS` section below. Then create, migrate, and seed the database with media.
+```
+$ rails db:create db:migrate db:seed media=true
+```
+5. If you did not follow instruction 4, create, migrate, and seed the database.
 ```
 $ rails db:create db:migrate db:seed
 ```

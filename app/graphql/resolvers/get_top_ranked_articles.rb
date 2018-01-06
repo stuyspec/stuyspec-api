@@ -19,7 +19,9 @@ class Resolvers::GetTopRankedArticles < GraphQL::Function
     articles = articles.where(section_id: args["section_id"]) if args["section_id"]
     if args["section_slug"]
       section = Section.find_by(slug: args["section_slug"])
-      unless section.nil?
+      if section.nil?
+        return GraphQL::ExecutionError.new("Invalid section slug: #{args['section_slug']}")
+      else
         articles = articles.where(section_id: section.id)
       end
     end

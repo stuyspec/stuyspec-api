@@ -103,7 +103,9 @@ Types::QueryType = GraphQL::ObjectType.define do
     resolve -> (obj, args, ctx) { Section.where(parent_id: nil)}
   end
 
-  field :featuredArticles, function: Resolvers::GetFeaturedArticles.new
+  field :featuredArticlesBySectionID, function: Resolvers::GetFeaturedArticlesBySectionID.new
+
+  field :featuredArticlesBySectionSlug, function: Resolvers::GetFeaturedArticlesBySectionSlug.new
 
   field :featuredArticle, function: Resolvers::GetFeaturedArticle.new
 end

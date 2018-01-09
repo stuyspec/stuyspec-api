@@ -11,9 +11,9 @@ class Resolvers::GetFeaturedSubsection < GraphQL::Function
   def call(_obj, args, _ctx)
     section = Section.find(args['section_id'])
     if section.slug == '10-31-terror-attack'
-      return Section.find(slug: 'creative-response')
+      return Section.find_by(slug: 'creative-response')
     elsif section.slug == 'ae'
-      return Section.find(slug: 'music')
+      return Section.find_by(slug: 'music')
     end
     subsections = Section.where(parent_id: section.id)
     return subsections[0]

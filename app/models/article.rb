@@ -1,6 +1,10 @@
 class Article < ApplicationRecord
   include PgSearch
-  multisearchable :against => [:title, :summary, :content]
+  multisearchable :against => {
+    :title => 'A',
+    :summary => 'B',
+    :content => 'C'
+  }
   extend FriendlyId
   friendly_id :title, use: :slugged
   belongs_to :section, optional: true

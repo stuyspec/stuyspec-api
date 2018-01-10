@@ -153,7 +153,7 @@ Section.create(
     },
     {
       name: 'SING!',
-      slug: 'sing!',
+      slug: 'sing',
       description: 'The sing of Stuyvesant',
       parent_id: 4,
       is_visible: true

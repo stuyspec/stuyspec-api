@@ -91,9 +91,9 @@ Section.create(
       is_visible: true
     },
     {
-      name: 'Creative Writing',
-      slug: 'creative-writing',
-      description: 'The creative writing of Stuyvesant',
+      name: 'Creative Responses',
+      slug: 'creative-resposnes',
+      description: 'The creative resposnes of Stuyvesant',
       parent_id: 3,
       is_visible: true
     },

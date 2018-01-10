@@ -100,7 +100,7 @@ Types::QueryType = GraphQL::ObjectType.define do
   field :topRankedArticles, function: Resolvers::GetTopRankedArticles.new
 
   field :featuredSections, !types[Types::SectionType] do
-    resolve -> (obj, args, ctx) { Section.where(parent_id: nil)}
+    resolve -> (obj, args, ctx) { Section.where(is_featured: true)}
   end
 
   field :featuredArticlesBySectionID, function: Resolvers::GetFeaturedArticlesBySectionID.new

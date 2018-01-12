@@ -495,6 +495,11 @@ unless ENV['minimal']
     ]
   )
 
+  User.find_each do |user|
+    user.skip_confirmation!
+    user.save
+  end
+
   Article.find_each do |article|
     Authorship.create(user_id: users.sample.id, article_id: article.id)
     Outquote.create(article_id: article.id, text: 'Example outquote affecting the lives of many readers.')

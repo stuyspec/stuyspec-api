@@ -7,48 +7,55 @@ Section.create(
       description: 'The news of Stuyvesant',
       rank: 6,
       is_visible: true,
+      is_featured: true,
     },
     {
       name: 'Opinions',
       slug: 'opinions',
       description: 'The opinions of Stuyvesant',
       rank: 5,
-      is_visible: true
+      is_visible: true,
+      is_featured: true,
     },
     {
       name: 'Features',
       slug: 'features',
       description: 'The features of Stuyvesant',
       rank: 4,
-      is_visible: true
+      is_visible: true,
+      is_featured: true,
     },
     {
       name: 'Arts & Entertainment',
       slug: 'ae',
       description: 'The A&E of Stuyvesant',
       rank: 3,
-      is_visible: true
+      is_visible: true,
+      is_featured: true,
     },
     {
       name: 'Humor',
       slug: 'humor',
       description: 'The humor of Stuyvesant',
       rank: 2,
-      is_visible: true
+      is_visible: true,
+      is_featured: true,
     },
     {
       name: 'Sports',
       slug: 'sports',
       description: 'The sports of Stuyvesant',
       rank: 1,
-      is_visible: true
+      is_visible: true,
+      is_featured: true,
     },
     {
       name: '10/31 Terror Attack',
       slug: '10-31-terror-attack',
       description: '10/31 Terror Attack',
       rank: 1,
-      is_visible: true
+      is_visible: true,
+      is_featured: true,
     },
     # {
     #   name: 'Art',

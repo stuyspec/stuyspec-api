@@ -18,6 +18,12 @@ Types::QueryType = GraphQL::ObjectType.define do
     resolve -> (obj, args, ctx) { User.all }
   end
 
+  field :userByUID do
+    type Types::UserType
+    argument :uid, !types.String
+    description "Find user by UID"
+    resolve -> (obj, args, ctx)  { User.find_by(uid: args["uid"]) }
+
   field :articlesBySectionID do
     type !types[Types::ArticleType]
     argument :section_id, !types.ID
@@ -46,7 +52,7 @@ Types::QueryType = GraphQL::ObjectType.define do
     type Types::ArticleType
     argument :id, !types.ID
     description "Find an article by ID"
-    resolve ->(obj, args, ctx) { Article.find(args["id"])}
+    resolve -> (obj, args, ctx) { Article.find(args["id"]) }
   end
 
   field :articleBySlug do

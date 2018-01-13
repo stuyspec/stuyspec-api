@@ -99,8 +99,8 @@ Section.create(
     },
     {
       name: 'Creative Responses',
-      slug: 'creative-resposnes',
-      description: 'The creative resposnes of Stuyvesant',
+      slug: 'creative-responses',
+      description: 'The creative responses of Stuyvesant',
       parent_id: 3,
       is_visible: true
     },

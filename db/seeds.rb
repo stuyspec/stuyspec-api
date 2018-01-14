@@ -565,15 +565,19 @@ unless ENV['minimal']
     end
   end
 
-  if ENV['media']
-    Article.find_each(start:0, finish:10) do |article|    
+  # if ENV['media']
+  Section.where(parent_id: nil).find_each do |section|
+    puts section.name
+    Article.where(section_id: section.id)[0, 3].each do |article|
       Medium.create(
-        user_id: User.all.sample.id, 
-        article_id: article.id, 
-        title: 'sample for ' + article.title,
+        user_id: User.all.sample.id,
+        article_id: article.id,
+        title: 'A sample photo for ' + article.title,
         media_type: 'photo', 
         is_featured: true, 
-        attachment: File.open(Rails.root + 'db/sample_photo.jpg'))    
+        attachment: File.open(Rails.root + 'db/sample_photo.jpg')
+      )    
     end
+  # end
   end
 end

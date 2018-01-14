@@ -15,9 +15,9 @@ $ echo PG_HOST=localhost > .env
 ```
 4. If you intend to use this API while working with client-app or cli-uploader, follow the setup instructions in the `AWS` section below. Then create, migrate, and seed the database with media.
 ```
-$ rails db:create db:migrate db:seed media=true
+$ rails db:create db:migrate db:seed articles=true media=true
 ```
-5. If you did not follow instruction 4, create, migrate, and seed the database.
+5. If you did not use instruction 4, create, migrate, and seed the database.
 ```
 $ rails db:create db:migrate db:seed
 ```
@@ -62,18 +62,6 @@ production:
   access_key_id: YOUR_ACCESS_KEY_ID
   secret_access_key: YOUR_SECRET_ACCESS_KEY
   bucket: stuyspec-media
-```
-
-## Seeding
-
-If you want to use the API locally, you'll need media for articles. This section also requires that you set up AWS.
-
-Every model is sufficiently seeded in seeds.rb except for Medium. Navigate to the API directory and type rails c to bring you to the rails console. Download [this image](https://i.imgur.com/FdFg4qF.jpg) directly into the directory. On three separate prompts, type these three lines:
-
-```
-> Article.find_each(start:0, finish:10) do |article|
-> Medium.create(user_id: User.all.sample.id, article_id: article.id, title: 'sample for ' + article.title, media_type: 'photo', attachment: File.open('FdFg4qF.jpg'))
-> end
 ```
 
 <!--

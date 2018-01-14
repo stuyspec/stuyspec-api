@@ -230,7 +230,7 @@ Section.find_each do |section|
   end
 end
 
-unless ENV['minimal']
+if ENV['articles']
   Section.find_each.with_index do |section, index|
     Article.create([
                      {
@@ -564,16 +564,16 @@ unless ENV['minimal']
       UserRole.create(role_id: role.id, user_id: user.id)
     end
   end
-
-  if ENV['media']
-    Article.find_each(start:0, finish:10) do |article|    
-      Medium.create(
-        user_id: User.all.sample.id, 
-        article_id: article.id, 
-        title: 'sample for ' + article.title,
-        media_type: 'photo', 
-        is_featured: true, 
-        attachment: File.open(Rails.root + 'db/sample_photo.jpg'))    
-    end
-  end
 end
+
+if ENV['media']
+  Article.find_each(start:0, finish:10) do |article|    
+    Medium.create(
+      user_id: User.all.sample.id, 
+      article_id: article.id, 
+      title: 'sample for ' + article.title,
+      media_type: 'photo', 
+      is_featured: true, 
+      attachment: File.open(Rails.root + 'db/sample_photo.jpg'))    
+  end
+end    

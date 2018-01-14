@@ -13,8 +13,7 @@ RSpec.describe "Articles", type: :request do
     if @user.tokens
       @user.tokens = nil
       @user.save
-    end  
-
+    end
   end
   describe "GET /articles" do
     it "returns correct types" do

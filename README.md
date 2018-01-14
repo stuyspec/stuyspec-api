@@ -72,7 +72,7 @@ Every model is sufficiently seeded in seeds.rb except for Medium. Navigate to th
 
 ```
 > Article.find_each(start:0, finish:10) do |article|
-> Medium.create(user_id: User.all.sample.id, article_id: article.id, title: 'sample for ' + article.title, media_type: 'photo', is_featured: true, attachment: File.open('FdFg4qF.jpg'))
+> Medium.create(user_id: User.all.sample.id, article_id: article.id, title: 'sample for ' + article.title, media_type: 'photo', attachment: File.open('FdFg4qF.jpg'))
 > end
 ```
 

@@ -64,6 +64,18 @@ production:
   bucket: stuyspec-media
 ```
 
+## Seeding
+
+If you want to use the API locally, you'll need media for articles. This section also requires that you set up AWS.
+
+Every model is sufficiently seeded in seeds.rb except for Medium. Navigate to the API directory and type rails c to bring you to the rails console. Download [this image](https://i.imgur.com/FdFg4qF.jpg) directly into the directory. On three separate prompts, type these three lines:
+
+```
+> Article.find_each(start:0, finish:10) do |article|
+> Medium.create(user_id: User.all.sample.id, article_id: article.id, title: 'sample for ' + article.title, media_type: 'photo', attachment: File.open('FdFg4qF.jpg'))
+> end
+```
+
 <!--
 ![alt text](https://i.imgur.com/uti8BnI.png))
 # Docker

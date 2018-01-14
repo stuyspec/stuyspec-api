@@ -567,7 +567,6 @@ unless ENV['minimal']
 
   # if ENV['media']
   Section.where(parent_id: nil).find_each do |section|
-    puts section.name
     Article.where(section_id: section.id)[0, 3].each do |article|
       Medium.create(
         user_id: User.all.sample.id,

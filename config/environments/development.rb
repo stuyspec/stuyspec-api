@@ -44,10 +44,10 @@ Rails.application.configure do
  #    :address => "localhost", :port => 1025
  #  }
 
-  config.action_mailer.default_url_options = { :host => 'api.stuyspec.com'}
+  config.action_mailer.default_url_options = { :host => 'localhost:3000'}
   config.action_mailer.delivery_method = :smtp
   config.action_mailer.smtp_settings = {:address => "localhost", :port => 1025}
-
+  config.devise_token_auth.default_confirm_success_url = 'https://stuyspec.com'
   config.paperclip_defaults = {
     :storage => :s3,
     :s3_region => "us-east-1",

@@ -10,15 +10,10 @@ class User < ApplicationRecord
   has_many :user_roles
   has_many :roles, through: :user_roles, dependent: :destroy
   has_many :media
-  after_create :send_admin_mail
   after_create :init
 
   def init
     self.update(security_level: 0)
-  end
-
-  def send_admin_mail
-    self.send_confirmation_instructions
   end
 
   def is_admin?(token, client_id)

@@ -221,7 +221,7 @@ User.create({
   slug: 'jason-kao',
   email: 'jkao1@stuy.edu',
   password: 'local',
-  password: 'local',
+  password_confirmation: 'local',
   description: 'This account exists so Jason can upload articles',
   security_level: 1,
 })

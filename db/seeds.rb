@@ -212,8 +212,19 @@ editorial_board = User.create({
   password: 'we are the editorial board',
   password_confirmation: 'we are the editorial board',
   description: 'The Editorial Board'
-})    
+})
 UserRole.create(role_id: 1, user_id: editorial_board.id)
+
+User.create({
+  first_name: 'Jason',
+  last_name: 'Kao',
+  slug: 'jason-kao',
+  email: 'jkao1@stuy.edu',
+  password: 'local',
+  password: 'local',
+  description: 'This account exists so Jason can upload articles',
+  security_level: 1,
+})
 
 Section.find_each do |section|
   if section.parent_id == nil

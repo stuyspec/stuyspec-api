@@ -13,35 +13,42 @@ Section.create(
       slug: 'opinions',
       description: 'The opinions of Stuyvesant',
       rank: 5,
-      is_visible: true
+      is_visible: true,
     },
     {
       name: 'Features',
       slug: 'features',
       description: 'The features of Stuyvesant',
       rank: 4,
-      is_visible: true
+      is_visible: true,
     },
     {
       name: 'Arts & Entertainment',
       slug: 'ae',
       description: 'The A&E of Stuyvesant',
       rank: 3,
-      is_visible: true
+      is_visible: true,
     },
     {
       name: 'Humor',
       slug: 'humor',
       description: 'The humor of Stuyvesant',
       rank: 2,
-      is_visible: true
+      is_visible: true,
     },
     {
       name: 'Sports',
       slug: 'sports',
       description: 'The sports of Stuyvesant',
       rank: 1,
-      is_visible: true
+      is_visible: true,
+    },
+    {
+      name: '10/31 Terror Attack',
+      slug: '10-31-terror-attack',
+      description: '10/31 Terror Attack',
+      rank: 1,
+      is_visible: true,
     },
     # {
     #   name: 'Art',
@@ -64,7 +71,7 @@ Section.create(
     },
     {
       name: 'Staff Editorials',
-      slug:'staff-ed',
+      slug:'staff-editorials',
       description: 'The staff-ed of Stuyvesant',
       parent_id: 2,
       is_visible: true
@@ -84,9 +91,9 @@ Section.create(
       is_visible: true
     },
     {
-      name: 'Creative Writing',
-      slug: 'creative writing',
-      description: 'The creative writing of Stuyvesant',
+      name: 'Creative Responses',
+      slug: 'creative-responses',
+      description: 'The creative responses of Stuyvesant',
       parent_id: 3,
       is_visible: true
     },
@@ -146,7 +153,7 @@ Section.create(
     },
     {
       name: 'SING!',
-      slug: 'sing!',
+      slug: 'sing',
       description: 'The sing of Stuyvesant',
       parent_id: 4,
       is_visible: true
@@ -173,8 +180,8 @@ Section.create(
       is_visible: true
     },
     {
-      name: 'At Stuyvesant',
-      slug: 'at-stuyvesant',
+      name: 'Sports At Stuyvesant',
+      slug: 'sports-at-stuyvesant',
       description: 'The sports at Stuyvesant',
       parent_id: 6,
       is_visible: true
@@ -205,8 +212,19 @@ editorial_board = User.create({
   password: 'we are the editorial board',
   password_confirmation: 'we are the editorial board',
   description: 'The Editorial Board'
-})    
+})
 UserRole.create(role_id: 1, user_id: editorial_board.id)
+
+User.create({
+  first_name: 'Jason',
+  last_name: 'Kao',
+  slug: 'jason-kao',
+  email: 'jkao1@stuy.edu',
+  password: 'local',
+  password_confirmation: 'local',
+  description: 'This account exists so Jason can upload articles',
+  security_level: 1,
+})
 
 Section.find_each do |section|
   if section.parent_id == nil
@@ -233,7 +251,7 @@ unless ENV['minimal']
                                 'from the unstructured summer.',
                        section_id: section.id,
                        rank: 1,
-                       slug: section.name + '-database-article-with-index-' + index.to_s,
+                       slug: section.slug + '-database-article-with-index-' + index.to_s,
                        volume: 108,
                        issue: 1,
                        is_published: true,
@@ -294,7 +312,7 @@ unless ENV['minimal']
                                 'from the unstructured summer.',
                        section_id: section.id,
                        rank: 1,
-                       slug: section.name + '-database-article-with-index-' + index.to_s + '-numero-dos',
+                       slug: section.slug + '-database-article-with-index-' + index.to_s + '-numero-dos',
                        volume: 108,
                        issue: 1,
                        is_published: true,
@@ -355,7 +373,68 @@ unless ENV['minimal']
                                'the unstructured summer.',
                       section_id: section.id,
                       rank: 1,
-                      slug: section.name + '-database-article-with-index-' + index.to_s + '-numero-tres',
+                      slug: section.slug + '-database-article-with-index-' + index.to_s + '-numero-tres',
+                      volume: 108,
+                      issue: 1,
+                      is_published: true,
+                      content: '<p>StuyHacks held its fourth hackathon, StuyHacks'\
+                                'IV, on Saturday, May 27, and Sunday, May 28. The'\
+                                ' event provided an opportunity for 175 high-school'\
+                                'students from the U.S. and Canada to learn about '\
+                                'and to immerse themselves in computer science.'\
+                                '</p><p>A hackathon is an event where programmers'\
+                                ' can collaborate on a range of computer science '\
+                                'projects. The hackathon organizers secured the '\
+                                'sponsorship of a number of technology companies,'\
+                                'including Facebook, MakeSchool, RedSeal, and '\
+                                'ThoughtWorks, to subsidize the event. The event'\
+                                'was held in the Midtown office of ThoughtWorks.'\
+                                '</p><p>StuyHacks worked together with the computer'\
+                                'science department and the Dojo, which is an '\
+                                'afterschool community for computer science '\
+                                'enthusiasts, to recruit mentors to help teach at'\
+                                'the hackathon. “Mentors [were] generally college'\
+                                'students who are majoring in Computer Science or '\
+                                'Computer Engineering. Some mentors [were] also '\
+                                'students from Stuyvesant who are currently taking'\
+                                'post-AP level courses,” senior and StuyHacks '\
+                                'logistics director Prancing Goose said.</p><p>'\
+                                'During the hackathon, attendees were organized '\
+                                'into groups of two to four for a team-building '\
+                                'session. These teams competed against one another'\
+                                'as they worked on a variety of programming '\
+                                'projects, from developing a mobile app to building '\
+                                'robot.</p><p>Alongside the competitions, multiple'\
+                                'workshops were held throughout the event to teach'\
+                                'attendees different computer science skills and '\
+                                'languages. For example, junior Shakil Rafi led the '\
+                                'Android Development workshop, which taught '\
+                                'participants how to code apps for the Android '\
+                                'operating system. </p><p>At the end of StuyHacks IV'\
+                                ', a panel of judges evaluated the group projects'\
+                                'and gave out multiple awards based off of them.'\
+                                'Seniors Nicholas Ng, Anya Keller, Mikhail Kotlik,'\
+                                'and Daniel Monteagudo came in third place for the'\
+                                'best overall project award for their work on Politalk,'\
+                                'a website inspired by the 2016 election that connects'\
+                                'people with opposing political ideologies through '\
+                                'a chat app.</p><p>For future hackathons, StuyHacks'\
+                                'organizers hope to increase funding to expand the'\
+                                'event by reserving a larger venue and adding more'\
+                                'workshops. Despite this, StuyHacks IV was well '\
+                                'received by many of its attendees. “Having been to'\
+                                'past StuyHacks, it is amazing to see all the '\
+                                'improvements done over the years to benefit '\
+                                'programmers,” senior Kevin Zhang said.</p>'
+                     },
+                     {
+                       title: section.name + ' Database Article With Index ' + index.to_s + ' Numero Cuatro',
+                      summary: 'Unfortunately, all good things must come to an end.'\
+                               'We came into Stuyvesant last September, saved from'\
+                               'the unstructured summer.',
+                      section_id: section.id,
+                      rank: 1,
+                      slug: section.slug + '-database-article-with-index-' + index.to_s + '-numero-cuatro',
                       volume: 108,
                       issue: 1,
                       is_published: true,
@@ -469,8 +548,22 @@ unless ENV['minimal']
         password_confirmation: 'topsecret6',
         description: 'number six'
       },
+      {
+        first_name: 'Jason',
+        last_name: 'Kao',
+        slug: 'jason-kao',
+        email: 'jkao1@stuy.edu',
+        password: 'topsecret!',
+        password_confirmation: 'topsecret!',
+        description: 'Web Editor'
+      },
     ]
   )
+
+  User.find_each do |user|
+    user.skip_confirmation!
+    user.save
+  end
 
   Article.find_each do |article|
     Authorship.create(user_id: users.sample.id, article_id: article.id)
@@ -480,6 +573,21 @@ unless ENV['minimal']
   User.find_each do |user|
     Role.find_each do |role|
       UserRole.create(role_id: role.id, user_id: user.id)
+    end
+  end
+
+  if ENV['media']
+    Section.where(parent_id: nil).find_each do |section|
+      Article.where(section_id: section.id)[0, 3].each do |article|
+        Medium.create(
+          user_id: User.all.sample.id,
+          article_id: article.id,
+          title: 'A sample photo for ' + article.title,
+          media_type: 'photo', 
+          is_featured: true, 
+          attachment: File.open(Rails.root + 'db/sample_photo.jpg')
+        )    
+      end
     end
   end
 end

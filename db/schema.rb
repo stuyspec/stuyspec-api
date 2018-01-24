@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180112130710) do
+ActiveRecord::Schema.define(version: 20171211222546) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -27,7 +27,6 @@ ActiveRecord::Schema.define(version: 20180112130710) do
     t.bigint "section_id"
     t.integer "rank", default: 1
     t.string "summary"
-    t.bigint "featured_media"
     t.index ["section_id"], name: "index_articles_on_section_id"
   end
 
@@ -67,6 +66,7 @@ ActiveRecord::Schema.define(version: 20180112130710) do
     t.string "url"
     t.string "title"
     t.text "caption"
+    t.boolean "is_featured"
     t.string "media_type"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -111,7 +111,6 @@ ActiveRecord::Schema.define(version: 20180112130710) do
     t.integer "rank", default: 1
     t.boolean "is_visible"
     t.string "permalink"
-    t.boolean "is_featured", default: false, null: false
   end
 
   create_table "subscribers", force: :cascade do |t|

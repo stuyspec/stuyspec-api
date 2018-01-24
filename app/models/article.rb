@@ -19,4 +19,10 @@ class Article < ApplicationRecord
   def init
     self.update(is_published: false)
   end
+
+  def self.order_by_rank
+        Article
+        .joins("LEFT JOIN sections ON articles.section_id = sections.id")
+        .order("articles.rank + 3 * sections.rank + 12 * articles.issue + 192 * articles.volume DESC")
+  end
 end

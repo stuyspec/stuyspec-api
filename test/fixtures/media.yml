@@ -7,7 +7,7 @@ one:
   title: MyString
   caption: MyText
   is_featured: false
-  media_type: 
+  media_type: illustration
 
 two:
   user_id: 1
@@ -16,4 +16,4 @@ two:
   title: MyString
   caption: MyText
   is_featured: false
-  media_type: 
+  media_type: illustration

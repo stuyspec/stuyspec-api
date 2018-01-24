@@ -6,7 +6,7 @@ one:
   content: MyText
   volume: 1
   issue: 1
-  is_draft: false
+  is_published: false
   section: 
 
 two:
@@ -15,5 +15,5 @@ two:
   content: MyText
   volume: 1
   issue: 1
-  is_draft: false
+  is_published: false
   section: 

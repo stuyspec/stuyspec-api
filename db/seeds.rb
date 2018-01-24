@@ -548,15 +548,6 @@ unless ENV['minimal']
         password_confirmation: 'topsecret6',
         description: 'number six'
       },
-      {
-        first_name: 'Jason',
-        last_name: 'Kao',
-        slug: 'jason-kao',
-        email: 'jkao1@stuy.edu',
-        password: 'topsecret!',
-        password_confirmation: 'topsecret!',
-        description: 'Web Editor'
-      },
     ]
   )
 

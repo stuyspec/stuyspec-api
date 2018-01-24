@@ -64,6 +64,10 @@ production:
   bucket: stuyspec-media
 ```
 
+## Testing GraphQL
+
+Use [GraphiQL](https://github.com/graphql/graphiql) to test your GraphQL queries.
+
 <!--
 ![alt text](https://i.imgur.com/uti8BnI.png))
 # Docker

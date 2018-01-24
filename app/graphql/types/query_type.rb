@@ -111,4 +111,6 @@ Types::QueryType = GraphQL::ObjectType.define do
   field :newsArticles, function: Resolvers::GetNewsArticles.new
 
   field :featuredArticle, function: Resolvers::GetFeaturedArticle.new
+
+  field :columnArticles, function: Resolvers::GetColumnArticles.new
 end

@@ -12,7 +12,7 @@ class MediaControllerTest < ActionDispatch::IntegrationTest
 
   test "should create medium" do
     assert_difference('Medium.count') do
-      post media_url, params: { medium: { article_id: @medium.article_id, caption: @medium.caption, is_featured: @medium.is_featured, title: @medium.title, type: @medium.type, url: @medium.url, user_id: @medium.user_id } }, as: :json
+      post media_url, params: { medium: { article_id: @medium.article_id, caption: @medium.caption, is_featured: @medium.is_featured, title: @medium.title, media_type: @medium.media_type, url: @medium.url, user_id: @medium.user_id } }, as: :json
     end
 
     assert_response 201
@@ -24,7 +24,7 @@ class MediaControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should update medium" do
-    patch medium_url(@medium), params: { medium: { article_id: @medium.article_id, caption: @medium.caption, is_featured: @medium.is_featured, title: @medium.title, type: @medium.type, url: @medium.url, user_id: @medium.user_id } }, as: :json
+    patch medium_url(@medium), params: { medium: { article_id: @medium.article_id, caption: @medium.caption, is_featured: @medium.is_featured, title: @medium.title, media_type: @medium.media_type, url: @medium.url, user_id: @medium.user_id } }, as: :json
     assert_response 200
   end
 

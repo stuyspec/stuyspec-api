@@ -6,18 +6,22 @@ The official API for the Stuyvesant Spectator.
 ## Setting Up
 1. Clone the repo
 ```
-$ git clone https://github.com/stuyspec/stuy-spec-api.git`)
+$ git clone https://github.com/stuyspec/stuy-spec-api.git
 ```
 2. Follow the directions below to set up Rails. Ignore the MySQL section; instead, only complete the PostgreSQL section: https://gorails.com/setup/
 3. In the `stuy-spec-api` repository, create your [dotenv](https://github.com/bkeepers/dotenv) file.
 ```
-$ echo PG_HOST:localhost > .env
+$ echo PG_HOST=localhost > .env
 ```
-4. Create, migrate, and seed the database.
+4. If you intend to use this API while working with client-app or cli-uploader, follow the setup instructions in the `AWS` section below. Then create, migrate, and seed the database with media.
 ```
-$ rails db:create db:migrate db;seed
+$ rails db:create db:migrate db:seed media=true
 ```
-5. To start the server, run:
+5. If you did not follow instruction 4, create, migrate, and seed the database.
+```
+$ rails db:create db:migrate db:seed
+```
+6. To start the server, run:
 ```
 rails server
 ```
@@ -41,7 +45,7 @@ connect to db, try stopping and rerunning.
 
 
 ## AWS
-If you are using our `cli-uploader`, you need to be able to POST media files. You will need to be an IAM user for the Spectator Web AWS account. Request an account by e-mailling [stuyspecweb@gmail.com](mailto:stuyspecweb@gmail.com) or by messaging one of the editors on Facebook.
+If you are using our `cli-uploader` or seeding the database, you need to be able to POST media files. You will need to be an IAM user for the Spectator Web AWS account. Request an account by e-mailling [stuyspecweb@gmail.com](mailto:stuyspecweb@gmail.com) or by messaging one of the editors on Facebook.
 
 While you wait for your beloved editors to get the account set up, watch this [IAM introduction](https://www.youtube.com/watch?v=Ul6FW4UANGc).
 
@@ -58,16 +62,6 @@ production:
   access_key_id: YOUR_ACCESS_KEY_ID
   secret_access_key: YOUR_SECRET_ACCESS_KEY
   bucket: stuyspec-media
-```
-
-## Seeding
-If you want to use the API locally, you'll need media for articles. This section also requires that you set up AWS.
-
-Every model is sufficiently seeded in `seeds.rb` except for `Medium`. Navigate to the API directory and type `rails c` to bring you to the rails console. Download [this image](https://i.imgur.com/FdFg4qF.jpg) directly into the directory. On three separate prompts, type these three lines:
-```
-> Article.find_each(start:0, finish:10) do |article|
-> Medium.create(user_id: User.all.sample.id, article_id: article.id, title: 'sample for ' + article.title, media_type: 'photo', is_featured: true, attachment: File.open('FdFg4qF.jpg'))
-> end
 ```
 
 <!--

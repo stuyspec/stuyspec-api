@@ -46,7 +46,7 @@ Types::QueryType = GraphQL::ObjectType.define do
     type Types::ArticleType
     argument :id, !types.ID
     description "Find an article by ID"
-    resolve ->(obj, args, ctx) { Article.find(args["id"])}
+    resolve -> (obj, args, ctx) { Article.find(args["id"]) }
   end
 
   field :articleBySlug do
@@ -63,6 +63,13 @@ Types::QueryType = GraphQL::ObjectType.define do
     resolve ->(obj, args, ctx) { User.find(args["id"])}
   end
 
+  field :userByUID do
+    type Types::UserType
+    argument :uid, !types.String
+    description "Find user by UID"
+    resolve -> (obj, args, ctx) { User.find_by(uid: args["uid"]) }
+  end
+  
   field :userBySlug do
     type Types::UserType
     argument :slug, !types.String
@@ -82,14 +89,7 @@ Types::QueryType = GraphQL::ObjectType.define do
     resolve -> (obj, args, ctx) { Medium.all }
   end
 
-  field :latestArticles do
-    type !types[Types::ArticleType]
-    argument :limit, !types.Int
-    description "Get the n latest articles"
-    resolve -> (obj, args, ctx) {
-      Article.order(created_at: :desc).limit(args["limit"])
-    }
-  end
+  field :latestArticles, function: Resolvers::GetLatestArticles.new
 
   field :sectionBySlug do
     type Types::SectionType
@@ -101,6 +101,8 @@ Types::QueryType = GraphQL::ObjectType.define do
   field :topLevelSections, !types[Types::SectionType] do
     resolve -> (obj, args, ctx) { Section.where(parent_id: nil) }
   end
+
+  field :featuredSubsection, function: Resolvers::GetFeaturedSubsection.new
   
   field :topRankedArticles, function: Resolvers::GetTopRankedArticles.new
 
@@ -108,7 +110,9 @@ Types::QueryType = GraphQL::ObjectType.define do
     resolve -> (obj, args, ctx) { Section.where(parent_id: nil)}
   end
 
-  field :newsArticles, function: Resolvers::GetNewsArticles.new
+  field :featuredArticlesBySectionID, function: Resolvers::GetFeaturedArticlesBySectionID.new
+
+  field :featuredArticlesBySectionSlug, function: Resolvers::GetFeaturedArticlesBySectionSlug.new
 
   field :featuredArticle, function: Resolvers::GetFeaturedArticle.new
 

@@ -7,7 +7,7 @@ one:
   description: MyText
 
 two:
-  first_name: MyString
-  last_name: MyString
-  email: baz@quux.com
-  description: MyText
+  first_name: Bob
+  last_name: Zhao
+  email: bob@zhao.foo
+  description: Professor

@@ -87,6 +87,8 @@ This function is helpful if you know cli-uploader made a mistake or you want to 
 5. Navigate to the directory of the Rails API (`cd /var/app/current`).
 6. Here, you can run `rails console` and manipulate the database.
 
+To exit the Rails console, use `Ctrl-D`. To exit the SSH, use `Ctrl-D` as well.
+
 ## Testing GraphQL
 
 Use [GraphiQL](https://github.com/graphql/graphiql) to test your GraphQL queries.

@@ -81,11 +81,11 @@ The [Rails console](http://guides.rubyonrails.org/command_line.html#rails-consol
 ```
 This function is helpful if you know cli-uploader made a mistake or you want to make a small change in a record of the database. Here are the steps to open the Rails console for our production database:
 1. Install the Elastic Beanstalk CLI: ([Mac](https://docs.aws.amazon.com/elasticbeanstalk/latest/dg/eb-cli3-install-osx.html), [Linux](https://docs.aws.amazon.com/elasticbeanstalk/latest/dg/eb-cli3-install-linux.html), [Windows](https://docs.aws.amazon.com/elasticbeanstalk/latest/dg/eb-cli3-install-windows.html)).
-2. Run `$ eb init`. Select the default region as choice 1 (us-east-1). Select the default application as choice 1 (stuyspec-api-prod). **DO NOT** create a new application and **DO NOT** create a new environment.
+2. Run `eb init`. Select the default region as choice 1 (us-east-1). Select the default application as choice 1 (stuyspec-api-prod). **DO NOT** create a new application and **DO NOT** create a new environment.
 3. You'll need an SSH key to be able to SSH. This comes in the form of a `.pem` key file that you put into your home ssh directory (`~/.ssh`). Download the `.pem` key (either from Jason Kao or Nicholas Yang) and place it into the aforementioned directory. **NEVER** share this file publically.
 4. `eb ssh` and connect to our EB instance.
 5. Navigate to the directory of the Rails API (`cd /var/app/current`).
-6. Here, you can `rails c`.
+6. Here, you can run `rails console` and manipulate the database.
 
 ## Testing GraphQL
 

@@ -7,8 +7,8 @@ class User < ApplicationRecord
   has_many :authorships
   has_many :articles, through: :authorships, dependent: :destroy
   has_many :comments, dependent: :destroy
-  has_many :user_roles
-  has_many :roles, through: :user_roles, dependent: :destroy
+  has_many :profiles
+  has_many :roles, through: :profiles, dependent: :destroy
   has_many :media
   after_create :init
 

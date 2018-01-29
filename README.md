@@ -46,7 +46,7 @@ connect to db, try stopping and rerunning.
 
 ## AWS
 
-You will need to be an IAM user for the Spectator Web AWS account. Request an account by e-mailling [stuyspecweb@gmail.com](mailto:stuyspecweb@gmail.com) or by messaging one of the editors on Facebook.
+You will need to be an IAM user for the Spectator Web AWS account. Request an account by messaging one of the editors on Facebook.
 
 While you wait for your beloved editors to get the account set up, watch this [IAM introduction](https://www.youtube.com/watch?v=Ul6FW4UANGc).
 

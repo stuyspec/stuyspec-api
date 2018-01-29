@@ -13,7 +13,7 @@ $ git clone https://github.com/stuyspec/stuy-spec-api.git
 ```
 $ echo PG_HOST=localhost > .env
 ```
-4. If you intend to use this API while working with client-app or cli-uploader, follow the setup instructions in the `AWS` section below. Then create, migrate, and seed the database with media.
+4. If you intend to use this API while working with client-app or cli-uploader, follow the setup instructions in the [AWS S3](#setting-up-s3) section below. Then create, migrate, and seed the database with media.
 ```
 $ rails db:create db:migrate db:seed media=true
 ```
@@ -50,7 +50,7 @@ You will need to be an IAM user for the Spectator Web AWS account. Request an ac
 
 While you wait for your beloved editors to get the account set up, watch this [IAM introduction](https://www.youtube.com/watch?v=Ul6FW4UANGc).
 
-### Using S3
+### Setting up S3
 
 On S3 (simple storage service) we store static files like images and other media files. S3 configuration is required if you are using the `cli-uploader` to POST media files or you want to seed the database with the environment variable `media=true`.
 

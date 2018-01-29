@@ -565,9 +565,8 @@ unless ENV['minimal']
   if ENV['media']
     Section.where(parent_id: nil).find_each do |section|
       Article.where(section_id: section.id)[0, 3].each do |article|
-        Medium.create(
-          user_id: User.all.sample.id,
-          article_id: article.id,
+        article.media.build(
+          profile_id: Profile.order("RANDOM()").first.id,
           title: 'A sample photo for ' + article.title,
           media_type: 'photo', 
           is_featured: true, 

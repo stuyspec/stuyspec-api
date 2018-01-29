@@ -9,7 +9,7 @@ class User < ApplicationRecord
   has_many :comments, dependent: :destroy
   has_many :profiles
   has_many :roles, through: :profiles, dependent: :destroy
-  has_many :media
+  has_many :media, through: :profiles
   after_create :init
 
   def init

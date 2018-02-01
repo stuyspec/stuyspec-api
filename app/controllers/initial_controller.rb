@@ -16,7 +16,7 @@ class InitialController < ApplicationController
       :media => media_with_urls,
       :users => User.all,
       :roles => Role.all,
-      :user_roles => UserRole.all,
+      :profiles => Profile.all,
       :authorships => Authorship.all,
       :outquotes => Outquote.all
     }

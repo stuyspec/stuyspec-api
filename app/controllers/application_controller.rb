@@ -19,7 +19,7 @@ class ApplicationController < ActionController::API
     return render json: {
                     success: false,
                     errors: ["You do not have the relevant permissions"]
-                  }, status: 401 if not current_user.is_admin?(token, client_id)
+                  }, status: 401 unless current_user.is_admin?(token, client_id)
   end
 
 end

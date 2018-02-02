@@ -2,7 +2,7 @@ version: 2
 jobs:
   build:
     docker:
-      - image: circleci/ruby:2.5.0-node
+      - image: circleci/ruby:2.4.2-node
         environment:
           RAILS_ENV: test
           PG_HOST: 127.0.0.1

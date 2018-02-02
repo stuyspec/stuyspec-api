@@ -16,7 +16,7 @@ class User < ApplicationRecord
     self.update(security_level: 0)
   end
 
-  def is_admin?
-    self.security_level < 1
+  def is_admin?(token, client_id)
+    self.valid_token?(token, client_id) && self.security_level > 0
   end
 end

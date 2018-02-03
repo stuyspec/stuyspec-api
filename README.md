@@ -50,17 +50,25 @@ You will need to be an IAM user for the Spectator Web AWS account. Request an ac
 
 While you wait for your beloved editors to get the account set up, watch this [IAM introduction](https://www.youtube.com/watch?v=Ul6FW4UANGc).
 
+After you receive your login information, navigate to the [stuyspec AWS console](https://stuyspec.signin.aws.amazon.com/console) and log in. In the AWS console, navigate to the service "IAM". Go to _Users_, in the sidebar, and click on your username. Click the _Security Credentials_ tab and create an Access Key. It will prompt you to download a file with your new access key and secret key. Download it.
+
+If you don't have one already, navigate to your home directory (`cd ~/`) and make a directory called `.aws`. Then create a file called `config` with this content:
+```
+[default]
+region=us-east-2
+output=json
+```
+
+Next, create a file called `credentials` with this content:
+```
+[default]
+aws_access_key_id=YOUR_ACCESS_KEY_ID
+aws_secret_access=YOUR_SECRET_ACCESS
+```
+
 ### Setting up S3
 
-On S3 (simple storage service) we store static files like images and other media files. S3 configuration is required if you are using the `cli-uploader` to POST media files or you want to seed the database with the environment variable `media=true`.
-
-Navigate to the [stuyspec AWS console](https://stuyspec.signin.aws.amazon.com/console) and log in. In the AWS console, navigate to the service "IAM". Go to _Users_, in the sidebar, and click on your username. Click the _Security Credentials_ tab and create an Access Key. It will prompt you to download a file with your new access key and secret key. Download it.
-
-In your `.env` file, add the lines:
-```
-S3_ACCESS_KEY_ID=YOUR_ACCESS_KEY_ID
-S3_SECRET_ACCESS_KEY=YOUR_SECRET_ACCESS_KEY
-```
+Once the `~/.aws` directory is set up above, S3 should work automagically.
 
 ### Using Elastic Beanstalk
 

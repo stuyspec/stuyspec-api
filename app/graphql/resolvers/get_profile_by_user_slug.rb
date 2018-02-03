@@ -1,7 +1,7 @@
 class Resolvers::GetProfileByUserSlug < GraphQL::Function
 
-  argument :slug, !types.String
-  argument :role, !types.String
+  argument :user_slug, !types.String
+  argument :role_slug, !types.String
 
   # return type from the mutation
   type Types::ProfileType
@@ -11,6 +11,12 @@ class Resolvers::GetProfileByUserSlug < GraphQL::Function
   # args - are the arguments passed
   # _ctx - is the GraphQL context (which would be discussed later)
   def call(_obj, args, _ctx)
-    return Profile.joins(:user).joins(:role).where("users.slug = ? AND roles.title = ?", args["slug"], args["role"]).first
+    return Profile
+      .joins(:user, :role)
+      .find_by(
+        "users.slug = ? AND roles.slug = ?",
+        args["user_slug"],
+        args["role_slug"]
+      )
   end
 end

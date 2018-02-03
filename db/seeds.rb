@@ -557,8 +557,8 @@ unless ENV['minimal']
   end
 
   User.find_each do |user|
-    unless user.last_name == '' # departments are already contributors
-      Role.find_each do |role|
+    Role.find_each do |role|
+      unless user.last_name == '' and role.title == 'Contributor'# departments are already contributors
         Profile.create(role_id: role.id, user_id: user.id)
       end
     end
@@ -568,7 +568,7 @@ unless ENV['minimal']
     Section.where(parent_id: nil).find_each do |section|
       Article.where(section_id: section.id)[0, 3].each do |article|
         article.media.create(
-          profile_id: Profile.order("RANDOM()").first.id,
+          profile_id: Profile.joins(:role).where("roles.title = ?", "Photographer").order("RANDOM()").first.id,
           title: 'A sample photo for ' + article.title,
           media_type: 'photo', 
           is_featured: true, 

@@ -45,24 +45,54 @@ connect to db, try stopping and rerunning.
 
 
 ## AWS
-If you are using our `cli-uploader` or seeding the database, you need to be able to POST media files. You will need to be an IAM user for the Spectator Web AWS account. Request an account by e-mailling [stuyspecweb@gmail.com](mailto:stuyspecweb@gmail.com) or by messaging one of the editors on Facebook.
+
+You will need to be an IAM user for the Spectator Web AWS account. Request an account by messaging one of the editors on Facebook.
 
 While you wait for your beloved editors to get the account set up, watch this [IAM introduction](https://www.youtube.com/watch?v=Ul6FW4UANGc).
 
-Once you have your IAM username and password, navigate to the [stuyspec AWS console](https://stuyspec.signin.aws.amazon.com/console) and log in. In the AWS console, navigate to the service "IAM". Go to _Users_, in the sidebar, and click on your username. Click the _Security Credentials_ tab and create an Access Key. It will prompt you to download a file with your new access key and secret key. Download it.
+### Using S3
 
-Create a file in `stuy-spec-api/config` called `aws.yml` and set up your file with the access keys you just got. It should be formatted like so:
-```
-development:
-  access_key_id: YOUR_ACCESS_KEY_ID
-  secret_access_key: YOUR_SECRET_ACCESS_KEY
-  bucket: stuyspec-media-testing
+On S3 (simple storage service) we store static files like images and other media files. S3 configuration is required if you are using the `cli-uploader` to POST media files or you want to seed the database with the environment variable `media=true`.
 
-production:
-  access_key_id: YOUR_ACCESS_KEY_ID
-  secret_access_key: YOUR_SECRET_ACCESS_KEY
-  bucket: stuyspec-media
+Navigate to the [stuyspec AWS console](https://stuyspec.signin.aws.amazon.com/console) and log in. In the AWS console, navigate to the service "IAM". Go to _Users_, in the sidebar, and click on your username. Click the _Security Credentials_ tab and create an Access Key. It will prompt you to download a file with your new access key and secret key. Download it.
+
+In your `.env` file, add the lines:
 ```
+S3_ACCESS_KEY_ID=YOUR_ACCESS_KEY_ID
+S3_SECRET_ACCESS_KEY=YOUR_SECRET_ACCESS_KEY
+```
+
+### Using Elastic Beanstalk
+
+Elastic Beanstalk is an orchestration service offered from Amazon Web Services for deploying infrastructure which orchestrates various AWS services, including EC2 (a cloud computing service) and S3. It is where we host our production database.
+
+#### `rails console` 
+
+The [Rails console](http://guides.rubyonrails.org/command_line.html#rails-console) lets you interact with the Rails API from the command line with Ruby. For instance:
+```
+> a = Article.find_by(title: 'The Original Title')
+> a.title = 'New Title'
+> a.save
+```
+This function is helpful if you know cli-uploader made a mistake or you want to make a small change in a record of the database. Here are the steps to open the Rails console for our production database:
+
+1. Install the Elastic Beanstalk CLI: ([Mac](https://docs.aws.amazon.com/elasticbeanstalk/latest/dg/eb-cli3-install-osx.html), [Linux](https://docs.aws.amazon.com/elasticbeanstalk/latest/dg/eb-cli3-install-linux.html), [Windows](https://docs.aws.amazon.com/elasticbeanstalk/latest/dg/eb-cli3-install-windows.html)).
+
+2. Run `eb init`. Select the default region as choice 1 (us-east-1). Select the default application as choice 1 (stuyspec-api-prod). **DO NOT** create a new application and **DO NOT** create a new environment.
+
+3. You'll need an SSH key to be able to SSH. This comes in the form of a `.pem` key file that you put into your home ssh directory (`~/.ssh`). Download the `.pem` key (either from Jason Kao or Nicholas Yang) and place it into the aforementioned directory. **NEVER** share this file publically.
+
+4. `eb ssh` and connect to our EB instance.
+
+5. Navigate to the directory of the Rails API (`cd /var/app/current`).
+
+6. Here, you can run `rails console` and manipulate the database.
+
+To exit the Rails console, use `Ctrl-D`. To exit the SSH, use `Ctrl-D` as well.
+
+## Testing GraphQL
+
+Use [GraphiQL](https://github.com/graphql/graphiql) to test your GraphQL queries.
 
 <!--
 ![alt text](https://i.imgur.com/uti8BnI.png))

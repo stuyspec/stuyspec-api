@@ -557,8 +557,10 @@ unless ENV['minimal']
   end
 
   User.find_each do |user|
-    Role.find_each do |role|
-      Profile.create(role_id: role.id, user_id: user.id)
+    unless user.last_name == '' # departments are already contributors
+      Role.find_each do |role|
+        Profile.create(role_id: role.id, user_id: user.id)
+      end
     end
   end
 

@@ -7,6 +7,7 @@ Types::UserType = GraphQL::ObjectType.define do
   field :slug, !types.String
   field :description, types.String
   field :roles, types[Types::RoleType]
+  field :profiles, types[Types::ProfileType]
   field :articles, types[Types::ArticleType]
   field :media, types[Types::MediumType]
   field :comments, types[Types::CommentType]

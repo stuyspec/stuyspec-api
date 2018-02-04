@@ -213,7 +213,7 @@ editorial_board = User.create({
   password_confirmation: 'we are the editorial board',
   description: 'The Editorial Board'
 })
-UserRole.create(role_id: 1, user_id: editorial_board.id)
+Profile.create(role_id: 1, user_id: editorial_board.id)
 
 User.create({
   first_name: 'Jason',
@@ -237,7 +237,7 @@ Section.find_each do |section|
       password_confirmation: section.description,
       description: 'The ' + section.name + ' Department'
     })    
-    UserRole.create(role_id: 1, user_id: user.id)
+    Profile.create(role_id: 1, user_id: user.id)
   end
 end
 
@@ -551,11 +551,6 @@ unless ENV['minimal']
     ]
   )
 
-  User.find_each do |user|
-    user.skip_confirmation!
-    user.save
-  end
-
   Article.find_each do |article|
     Authorship.create(user_id: users.sample.id, article_id: article.id)
     Outquote.create(article_id: article.id, text: 'Example outquote affecting the lives of many readers.')
@@ -563,21 +558,22 @@ unless ENV['minimal']
 
   User.find_each do |user|
     Role.find_each do |role|
-      UserRole.create(role_id: role.id, user_id: user.id)
+      unless user.last_name == '' and role.title == 'Contributor'# departments are already contributors
+        Profile.create(role_id: role.id, user_id: user.id)
+      end
     end
   end
 
   if ENV['media']
     Section.where(parent_id: nil).find_each do |section|
       Article.where(section_id: section.id)[0, 3].each do |article|
-        Medium.create(
-          user_id: User.all.sample.id,
-          article_id: article.id,
+        article.media.create(
+          profile_id: Profile.joins(:role).where("roles.title = ?", "Photographer").order("RANDOM()").first.id,
           title: 'A sample photo for ' + article.title,
           media_type: 'photo', 
           is_featured: true, 
           attachment: File.open(Rails.root + 'db/sample_photo.jpg')
-        )    
+        )
       end
     end
   end

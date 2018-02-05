@@ -1,6 +1,6 @@
 class ChangeMediaUserIdToProfileId < ActiveRecord::Migration[5.1]
   def change
-    add_column :media, :profile_id, :integer
+    add_column :media, :profile_id, :bigint
     media_type_to_role = {
       "photo" => "Photographer",
       "illustration" => "Illustrator",

@@ -61,7 +61,6 @@ ActiveRecord::Schema.define(version: 20180129034322) do
   end
 
   create_table "media", force: :cascade do |t|
-    t.bigint "profile_id"
     t.bigint "article_id"
     t.string "url"
     t.string "title"
@@ -74,8 +73,8 @@ ActiveRecord::Schema.define(version: 20180129034322) do
     t.string "attachment_content_type"
     t.integer "attachment_file_size"
     t.datetime "attachment_updated_at"
+    t.integer "profile_id"
     t.index ["article_id"], name: "index_media_on_article_id"
-    t.index ["profile_id"], name: "index_media_on_profile_id"
   end
 
   create_table "outquotes", force: :cascade do |t|

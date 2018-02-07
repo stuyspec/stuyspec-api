@@ -67,4 +67,6 @@ gem 'pg_search'
 gem 'seed_dump'
 gem "graphql"
 
-gem 'bootsnap', require: false
+group :development, :production do
+  gem 'bootsnap', require: false
+end

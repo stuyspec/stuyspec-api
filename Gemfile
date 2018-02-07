@@ -60,7 +60,7 @@ gem 'omniauth-github'
 gem 'paperclip'
 gem 'aws-sdk'
 gem 'airborne'
-gem 'dotenv-rails', groups: [:development, :test]
+gem 'dotenv-rails', groups: [:development]
 gem 'rack-throttle'
 
 gem 'pg_search'

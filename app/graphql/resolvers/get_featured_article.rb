@@ -9,9 +9,9 @@ class Resolvers::GetFeaturedArticle < GraphQL::Function
   # _ctx - is the GraphQL context (which would be discussed later)
   def call(_obj, _args, _ctx)
     Article
-      .joins('JOIN media ON articles.id = media.article_id')
-      .joins('JOIN sections ON articles.section_id = sections.id')
+      .order_by_rank # already JOINS on Section
       .where("sections.name != 'News'")
+      .joins('JOIN media ON articles.id = media.article_id')
       .first
   end
 end

@@ -1,4 +1,4 @@
-class Resolvers::UpdateArticle < GraphQL::Function
+class Resolvers::UpdateArticle < Resolvers::MutationFunction
   # arguments passed as "args"
   argument :id, !types.ID
   argument :title, types.String
@@ -15,7 +15,8 @@ class Resolvers::UpdateArticle < GraphQL::Function
    # _obj - is parent object, which in this case is nil
   # args - are the arguments passed
   # _ctx - is the GraphQL context (which would be discussed later)
-  def call(_obj, args, _ctx)
+  def call(_obj, args, ctx)
+    validate_admin(ctx)
     @article = Article.find(args["id"])
 
     # Transaction so that we don't update a malformed article
@@ -31,7 +32,7 @@ class Resolvers::UpdateArticle < GraphQL::Function
           Authorship.find_or_create_by(user_id: id, article_id: @article.id)
         end
       end
-      @article.save
+      generate_new_header(ctx) if @article.save
     end
     return @article
   end

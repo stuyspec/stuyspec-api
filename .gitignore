@@ -27,6 +27,11 @@
 
 /.env
 
+# Emacs files
 \#*\#
 *~
 \.\#*
+
+# DB Prod Dumps
+/db/dumps
+*.sql

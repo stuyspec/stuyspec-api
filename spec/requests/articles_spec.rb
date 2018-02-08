@@ -6,8 +6,13 @@ RSpec.describe "Articles", type: :request do
       @user = User.create(
         email: "jkao1@stuy.edu",
         password: "hunter2hunter2",
-        password_confirmation: "hunter2hunter2"
+        password_confirmation: "hunter2hunter2",
+        security_level: 1
       )
+    end
+    if @user.tokens
+      @user.tokens = nil
+      @user.save
     end
   end
   describe "GET /articles" do
@@ -24,6 +29,7 @@ RSpec.describe "Articles", type: :request do
 
   describe "POST /articles" do
     it "creates new article" do
+      @user.create_new_auth_token
       auth_token = @user.create_new_auth_token
       post(articles_path,
            params: {

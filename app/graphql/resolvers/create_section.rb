@@ -1,4 +1,4 @@
-class Resolvers::CreateSection < GraphQL::Function
+class Resolvers::CreateSection < Resolvers::MutationFunction
   # arguments passed as "args"
   argument :name, !types.String
   argument :parent_id, types.Int
@@ -12,7 +12,8 @@ class Resolvers::CreateSection < GraphQL::Function
    # _obj - is parent object, which in this case is nil
   # args - are the arguments passed
   # _ctx - is the GraphQL context (which would be discussed later)
-  def call(_obj, args, _ctx)
+  def call(_obj, args, ctx)
+    validate_admin(ctx)
     if args["parent_id"]
       parent_section = Section.find(args["parent_id"])
       section = parent_section.subsections.build(
@@ -20,13 +21,14 @@ class Resolvers::CreateSection < GraphQL::Function
         description: args["description"],
         rank: args["rank"]
       )
-      section.save
+      generate_new_header(ctx) if section.save
     else
-      Section.create(
+      section = Section.create(
         name: args["name"],
         description: args["description"],
         rank: args["rank"]
       )
+      generate_new_header(ctx) if section
     end
   end
 end

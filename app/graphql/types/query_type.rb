@@ -115,4 +115,8 @@ Types::QueryType = GraphQL::ObjectType.define do
   field :featuredArticlesBySectionSlug, function: Resolvers::GetFeaturedArticlesBySectionSlug.new
 
   field :featuredArticle, function: Resolvers::GetFeaturedArticle.new
+
+  field :columnArticles, function: Resolvers::GetColumnArticles.new
+
+  field :profileByUserAndRole, function: Resolvers::GetProfileByUserAndRole.new
 end

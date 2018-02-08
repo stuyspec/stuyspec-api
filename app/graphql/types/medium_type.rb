@@ -2,6 +2,7 @@ Types::MediumType = GraphQL::ObjectType.define do
   name "Medium"
   field :id, !types.ID
   field :created_at, !types.String
+  field :profile, !Types::ProfileType
   field :user, !Types::UserType
   field :title, !types.String
   field :media_type, !types.String

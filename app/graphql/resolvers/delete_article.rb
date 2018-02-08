@@ -1,4 +1,4 @@
-class Resolvers::DeleteArticle < GraphQL::Function
+class Resolvers::DeleteArticle < Resolvers::MutationFunction
   # arguments passed as "args"
   argument :id, !types.ID
 
@@ -9,7 +9,10 @@ class Resolvers::DeleteArticle < GraphQL::Function
    # _obj - is parent object, which in this case is nil
   # args - are the arguments passed
   # _ctx - is the GraphQL context (which would be discussed later)
-  def call(_obj, args, _ctx)
-    Article.find(args["id"]).destroy!
+  def call(_obj, args, ctx)
+    validate_admin(ctx)
+    article = Article.find(args["id"]).destroy!
+    generate_new_header(ctx) if article
+    return article
   end
 end

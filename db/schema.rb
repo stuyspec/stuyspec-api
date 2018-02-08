@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171211222546) do
+ActiveRecord::Schema.define(version: 20180208032553) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -27,6 +27,7 @@ ActiveRecord::Schema.define(version: 20171211222546) do
     t.bigint "section_id"
     t.integer "rank", default: 1
     t.string "summary"
+    t.string "preview"
     t.index ["section_id"], name: "index_articles_on_section_id"
   end
 
@@ -61,7 +62,6 @@ ActiveRecord::Schema.define(version: 20171211222546) do
   end
 
   create_table "media", force: :cascade do |t|
-    t.bigint "user_id"
     t.bigint "article_id"
     t.string "url"
     t.string "title"
@@ -74,8 +74,8 @@ ActiveRecord::Schema.define(version: 20171211222546) do
     t.string "attachment_content_type"
     t.integer "attachment_file_size"
     t.datetime "attachment_updated_at"
+    t.bigint "profile_id"
     t.index ["article_id"], name: "index_media_on_article_id"
-    t.index ["user_id"], name: "index_media_on_user_id"
   end
 
   create_table "outquotes", force: :cascade do |t|
@@ -92,6 +92,13 @@ ActiveRecord::Schema.define(version: 20171211222546) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["searchable_type", "searchable_id"], name: "index_pg_search_documents_on_searchable_type_and_searchable_id"
+  end
+
+  create_table "profiles", force: :cascade do |t|
+    t.integer "user_id"
+    t.integer "role_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "roles", force: :cascade do |t|
@@ -117,13 +124,7 @@ ActiveRecord::Schema.define(version: 20171211222546) do
     t.string "email"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-  end
-
-  create_table "user_roles", force: :cascade do |t|
-    t.integer "user_id"
-    t.integer "role_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.index ["email"], name: "index_subscribers_on_email", unique: true
   end
 
   create_table "users", force: :cascade do |t|
@@ -143,7 +144,6 @@ ActiveRecord::Schema.define(version: 20171211222546) do
     t.datetime "confirmation_sent_at"
     t.string "unconfirmed_email"
     t.string "first_name"
-    t.string "username"
     t.string "image"
     t.string "email"
     t.json "tokens"

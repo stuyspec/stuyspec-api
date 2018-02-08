@@ -3,18 +3,18 @@ Rails.application.routes.draw do
   resources :outquotes
   resources :sections
   resources :articles
-  resources :user_roles
+  resources :profiles
   resources :subscribers
   resources :roles do
-    resources :user_roles
+    resources :profiles
   end
   resources :comments
   resources :media
   resources :authorships
   mount_devise_token_auth_for 'User', at: 'auth'
   resources :users do
-      resources :comments
-    resources :user_roles
+    resources :comments
+    resources :profiles
   end
   resources :sections do
     resources :articles do

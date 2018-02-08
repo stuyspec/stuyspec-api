@@ -10,7 +10,7 @@ class Article < ApplicationRecord
            through: :authorships,
            dependent: :destroy,
            source: :user
-           
+
   has_many :media, dependent: :destroy
   has_many :comments, dependent: :destroy
   has_many :outquotes, dependent: :destroy
@@ -18,4 +18,13 @@ class Article < ApplicationRecord
   def init
     self.update(is_published: false)
   end
+
+  def self.order_by_rank
+    Article
+      .joins("LEFT JOIN sections ON articles.section_id = sections.id")
+      .order("articles.rank + 3 * sections.rank + 12 * articles.issue + 192 * articles.volume DESC")
+  end
+
+   # TODO: generate cleaned/truncated content for summary if no summary provided
+   
 end

@@ -11,7 +11,7 @@ class Resolvers::GetFeaturedArticle < GraphQL::Function
     Article
       .order_by_rank # already JOINS on Section
       .where("sections.name != 'News'")
-      .joins('JOIN media ON articles.id = media.article_id')
+      .joins(:media)
       .first
   end
 end

@@ -4,7 +4,8 @@ Types::ArticleType = GraphQL::ObjectType.define do
   field :title, !types.String
   field :slug, !types.String
   field :content, !types.String
-  field :summary, types.String # TODO: summary is cleaned or a truncation of content
+  field :preview, types.String
+  field :summary, types.String
   field :created_at, !types.String
   field :comments, types[!Types::CommentType]
   field :contributors, types[!Types::UserType]

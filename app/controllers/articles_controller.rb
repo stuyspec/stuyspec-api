@@ -37,7 +37,7 @@ class ArticlesController < ApplicationController
       :updated_at,
       :section_id,
       :rank,
-      :summary
+      :preview
     ) if params[:content] == 'false'
 
     render json: @articles

@@ -13,7 +13,7 @@ Rails.application.routes.draw do
   resources :authorships
   mount_devise_token_auth_for 'User', at: 'auth'
   resources :users do
-      resources :comments
+    resources :comments
     resources :profiles
   end
   resources :sections do

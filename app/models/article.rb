@@ -24,4 +24,7 @@ class Article < ApplicationRecord
       .joins("LEFT JOIN sections ON articles.section_id = sections.id")
       .order("articles.rank + 3 * sections.rank + 12 * articles.issue + 192 * articles.volume DESC")
   end
+
+   # TODO: generate cleaned/truncated content for summary if no summary provided
+   
 end

@@ -118,5 +118,5 @@ Types::QueryType = GraphQL::ObjectType.define do
 
   field :columnArticles, function: Resolvers::GetColumnArticles.new
 
-  field :profileByUserSlug, function: Resolvers::GetProfileByUserSlug.new
+  field :profileByUserAndRole, function: Resolvers::GetProfileByUserAndRole.new
 end

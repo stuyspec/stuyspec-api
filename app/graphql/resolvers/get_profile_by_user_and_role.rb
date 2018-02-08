@@ -1,4 +1,4 @@
-class Resolvers::GetProfileByUserSlug < GraphQL::Function
+class Resolvers::GetProfileByUserAndRole < GraphQL::Function
 
   argument :user_slug, !types.String
   argument :role_slug, !types.String

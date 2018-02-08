@@ -43,7 +43,7 @@ Rails.application.configure do
  #  config.action_mailer.smtp_settings = {
  #    :address => "localhost", :port => 1025
  #  }
-
+ 
   config.action_mailer.default_url_options = { :host => 'localhost:3000'}
   config.action_mailer.delivery_method = :smtp
   config.action_mailer.smtp_settings = {:address => "localhost", :port => 1025}
@@ -52,8 +52,12 @@ Rails.application.configure do
     :s3_region => "us-east-1",
     :url => ":s3_domain_url",
     :s3_endpoint => 's3-us-east-1.amazonaws.com',
-    :bucket => 'stuyspec-media-testing',
-    :s3_protocol => "https"
+    :s3_protocol => "https",
+
+    # A DEV_PAPERCLIP_BUCKET variable can be used to specify the production 
+    # image bucket (stuyspec-images). This is useful for getting the correct
+    # URLs on images dumped from prod DB.
+    :bucket => ENV['DEV_PAPERCLIP_BUCKET'].presence || 'stuyspec-media-testing',
   }
   # Raises error for missing translations
   # config.action_view.raise_on_missing_translations = true

@@ -52,8 +52,12 @@ Rails.application.configure do
     :s3_region => "us-east-1",
     :url => ":s3_domain_url",
     :s3_endpoint => 's3-us-east-1.amazonaws.com',
+    :s3_protocol => "https",
+
+    # A DEV_PAPERCLIP_BUCKET variable can be used to specify the production 
+    # image bucket (stuyspec-images). This is useful for getting the correct
+    # URLs on images dumped from prod DB.
     :bucket => ENV['DEV_PAPERCLIP_BUCKET'].presence || 'stuyspec-media-testing',
-    :s3_protocol => "https"
   }
   # Raises error for missing translations
   # config.action_view.raise_on_missing_translations = true

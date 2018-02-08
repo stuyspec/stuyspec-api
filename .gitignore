@@ -32,5 +32,6 @@
 *~
 \.\#*
 
-# DB Dumps/Backups
+# DB Prod Dumps
+/db/dumps
 *.sql

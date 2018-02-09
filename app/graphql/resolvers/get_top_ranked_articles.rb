@@ -12,12 +12,10 @@ class Resolvers::GetTopRankedArticles < GraphQL::Function
   # _args - are the arguments passed
   # _ctx - is the GraphQL context (which would be discussed later)
   def call(_obj, args, _ctx)
-    articles =
-      Article
-        .joins("JOIN sections ON articles.section_id = sections.id")
-        .order("articles.rank + 3 * sections.rank + 12 * articles.issue"\
-               " + 192 * articles.volume DESC")
+    articles = Article.order_by_rank # joins Sections as well
+
     articles = articles.where(section_id: args["section_id"]) if args["section_id"]
+
     if args["section_slug"]
       section = Section.find_by(slug: args["section_slug"])
       if section.nil?
@@ -26,8 +24,15 @@ class Resolvers::GetTopRankedArticles < GraphQL::Function
         articles = articles.where(section_id: section.id)
       end
     end
-    articles = articles.joins(:media) if args["has_media"]
+
+    if args["has_media"]
+      unless articles.joins(:media).length == 0
+        articles = articles.joins(:media)
+      end
+    end
+
     articles = articles.limit(args["limit"]) if args["limit"]
+
     return articles
   end
 end

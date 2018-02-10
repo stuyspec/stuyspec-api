@@ -4,26 +4,19 @@ Types::QueryType = GraphQL::ObjectType.define do
   # They will be entry points for queries on your schema.
 
   field :allArticles, !types[Types::ArticleType] do
-    # resolve would be called in order to fetch data for that field
     resolve -> (obj, args, ctx) { Article.all }
   end
 
   field :allSections, !types[Types::SectionType] do
-    # resolve would be called in order to fetch data for that field
     resolve -> (obj, args, ctx) { Section.all }
   end
 
   field :allUsers, !types[Types::UserType] do
-    # resolve would be called in order to fetch data for that field
     resolve -> (obj, args, ctx) { User.all }
   end
 
-  field :articlesBySectionID do
-    type !types[Types::ArticleType]
-    argument :section_id, !types.ID
-    resolve -> (obj, args, ctx) {
-      Article.where(section_id: args["section_id"])
-    }
+  field :allMedia, !types[Types::MediumType] do
+    resolve -> (obj, args, ctx) { Medium.all }
   end
 
   field :sectionsByParentSectionID do
@@ -56,13 +49,6 @@ Types::QueryType = GraphQL::ObjectType.define do
     resolve ->(obj, args, ctx) { Article.friendly.find(args["slug"])}
   end
 
-  field :userByID do
-    type Types::UserType
-    argument :id, !types.ID
-    description "Find an user by ID"
-    resolve ->(obj, args, ctx) { User.find(args["id"])}
-  end
-
   field :userByUID do
     type Types::UserType
     argument :uid, !types.String
@@ -77,18 +63,6 @@ Types::QueryType = GraphQL::ObjectType.define do
     resolve ->(obj, args, ctx) { User.find_by(slug: args["slug"])}
   end
 
-  field :userByEmail do
-    type Types::UserType
-    argument :email, !types.String
-    description "Find an user by email"
-    resolve ->(obj, args, ctx) { User.find_by(email: args["email"])}
-  end
-
-  field :allMedia, !types[Types::MediumType] do
-    # resolve would be called in order to fetch data for that field
-    resolve -> (obj, args, ctx) { Medium.all }
-  end
-
   field :latestArticles, function: Resolvers::GetLatestArticles.new
 
   field :sectionBySlug do
@@ -98,10 +72,6 @@ Types::QueryType = GraphQL::ObjectType.define do
     resolve ->(obj, args, ctx) { Section.friendly.find(args["slug"])}
   end
 
-  field :topLevelSections, !types[Types::SectionType] do
-    resolve -> (obj, args, ctx) { Section.where(parent_id: nil) }
-  end
-
   field :featuredSubsection, function: Resolvers::GetFeaturedSubsection.new
   
   field :topRankedArticles, function: Resolvers::GetTopRankedArticles.new
@@ -109,8 +79,6 @@ Types::QueryType = GraphQL::ObjectType.define do
   field :featuredSections, !types[Types::SectionType] do
     resolve -> (obj, args, ctx) { Section.where(parent_id: nil)}
   end
-
-  field :featuredArticlesBySectionID, function: Resolvers::GetFeaturedArticlesBySectionID.new
 
   field :featuredArticlesBySectionSlug, function: Resolvers::GetFeaturedArticlesBySectionSlug.new
 

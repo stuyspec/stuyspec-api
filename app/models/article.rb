@@ -19,6 +19,10 @@ class Article < ApplicationRecord
     self.update(is_published: false)
   end
 
+  def published_comments
+    self.comments.where.not(published_at: nil)
+  end
+
   def self.order_by_rank
     Article
       .joins("LEFT JOIN sections ON articles.section_id = sections.id")

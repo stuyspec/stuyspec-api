@@ -18,6 +18,10 @@ Types::QueryType = GraphQL::ObjectType.define do
     resolve -> (obj, args, ctx) { User.all }
   end
 
+  field :allComments, !types[Types::CommentType] do
+    resolve -> (obj, args, ctx) { Comment.all }
+  end
+
   field :articlesBySectionID do
     type !types[Types::ArticleType]
     argument :section_id, !types.ID

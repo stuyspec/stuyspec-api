@@ -6,6 +6,8 @@ class Article < ApplicationRecord
   extend FriendlyId
   friendly_id :title, use: :slugged
 
+  # Sets how many articles are shown per page; this is aprt of the kaminari
+  # gem's pagination config.
   paginates_per 10
 
   belongs_to :section, optional: true
@@ -33,8 +35,8 @@ class Article < ApplicationRecord
       end
     end
 
-    # Replacing </p><p> is separate from the regex sub so we don't get two
-    # spaces in a row.
+    # Removes all HTML tags. We replace </p><p> separately so there are never
+    # two spaces in a row.
     self.update(preview, preview.gsub('</p><p>', ' ').gsub(/<\/?[^>]*>/, ' '))
   end
 
@@ -43,7 +45,5 @@ class Article < ApplicationRecord
       .joins(:section)
       .order("articles.rank + 3 * sections.rank + 12 * articles.issue + 192 * articles.volume DESC")
   end
-
-   # TODO: generate cleaned/truncated content for summary if no summary provided
    
 end

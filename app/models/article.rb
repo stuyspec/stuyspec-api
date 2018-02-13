@@ -24,8 +24,8 @@ class Article < ApplicationRecord
   def init
     self.update(is_published: false)
 
-    if self.summary.to_s.empty?
-        preview = self.content.split(' ')[0, 25].join(' ') + '...'
+    if self.summary.nil? or self.summary.summary.empty?
+      preview = self.content.split(' ')[0, 25].join(' ') + '...'
     else
       words = self.summary.split(' ')
       if words.length > 25

@@ -22,7 +22,9 @@ class Article < ApplicationRecord
   has_many :outquotes, dependent: :destroy
 
   after_initialize do |article|
-    article.update(is_published: false, preview: generate_preview(article))
+    if article.has_attribute?(:preview)
+      article.update(is_published: false, preview: generate_preview(article))
+    end
   end
 
   def generate_preview(article)

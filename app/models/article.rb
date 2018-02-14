@@ -21,23 +21,23 @@ class Article < ApplicationRecord
   has_many :comments, dependent: :destroy
   has_many :outquotes, dependent: :destroy
 
-  def init
-    self.update(is_published: false)
+  after_initialize do |article|
+    article.update(is_published: false, preview: generate_preview(article))
+  end
 
-    if self.summary.nil? or self.summary.summary.empty?
-      preview = self.content.split(' ')[0, 25].join(' ') + '...'
+  def generate_preview(article)
+    if article.summary.nil? || article.summary.empty?
+      preview = article.content.split(' ')[0, 25].join(' ') + '...'
     else
-      words = self.summary.split(' ')
+      words = article.summary.split(' ')
       if words.length > 25
         preview = words[0, 25].join(' ') + '...'
       else
-        preview = self.summary
+        preview = article.summary
       end
     end
 
-    # Removes all HTML tags. We replace </p><p> separately so there are never
-    # two spaces in a row.
-    self.update(preview, preview.gsub('</p><p>', ' ').gsub(/<\/?[^>]*>/, ' '))
+    return ActionView::Base.full_sanitizer.sanitize(preview)
   end
 
   def self.order_by_rank

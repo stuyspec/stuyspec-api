@@ -1,7 +1,7 @@
 class GenerateArticlePreviews < ActiveRecord::Migration[5.1]
   def up
     Article.all.each do |article|
-      if article.summary.to_s.empty?
+      if article.summary.nil? || article.summary.empty?
         preview = article.content.split(' ')[0, 25].join(' ') + '...'
       else
         words = article.summary.split(' ')
@@ -12,9 +12,8 @@ class GenerateArticlePreviews < ActiveRecord::Migration[5.1]
         end
       end
 
-      # Replacing </p><p> is separate from the regex sub so we don't get two
-      # spaces in a row.
-      article.update_attributes :preview => preview.gsub('</p><p>', ' ').gsub(/<\/?[^>]*>/, " ")
-    end      
+      preview = ActionView::Base.full_sanitizer.sanitize(preview)
+      article.update(preview: preview)
+    end
   end
 end

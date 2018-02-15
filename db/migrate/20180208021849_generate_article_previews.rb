@@ -12,9 +12,7 @@ class GenerateArticlePreviews < ActiveRecord::Migration[5.1]
         end
       end
 
-      # Replacing </p><p> is separate from the regex sub so we don't get two
-      # spaces in a row.
-      article.update_attributes :preview => preview.gsub('</p><p>', ' ').gsub(/<\/?[^>]*>/, " ")
+      article.update(preview: ActionView::Base.full_sanitizer.sanitize(preview))
     end      
   end
 end

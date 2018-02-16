@@ -29,21 +29,25 @@ class Article < ApplicationRecord
   end
 
   private
+
     def init
-      if self.summary.nil? || self.summary.empty?
-        preview = self.content.split(' ')[0, 25].join(' ') + '...'
+      preview = self.summary
+
+      if preview.nil? || preview.empty?
+        # This global replace before HTML tag sanitizing ensures we have spaces
+        # between paragraphs.
+        clean_content = self.content.gsub('</p><p>', ' ')
+        preview = ActionView::Base.full_sanitizer.sanitize(clean_content)
+          .split(' ')[0, 25]
+          .join(' ') + '...'
       else
-        words = self.summary.split(' ')
+        words = preview.split(' ')
         if words.length > 25
           preview = words[0, 25].join(' ') + '...'
-        else
-          preview = self.summary
         end
       end
 
-      # Removes all HTML tags. We replace </p><p> separately so there are never
-      # two spaces in a row.
-      self.preview = ActionView::Base.full_sanitizer.sanitize(preview)
+      self.preview = preview
     end
    
 end

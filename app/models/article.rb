@@ -8,9 +8,6 @@ class Article < ApplicationRecord
   extend FriendlyId
   friendly_id :title, use: :slugged
 
-  # Sets how many articles are shown per page
-  paginates_per 10
-
   belongs_to :section, optional: true
 
   has_many :authorships

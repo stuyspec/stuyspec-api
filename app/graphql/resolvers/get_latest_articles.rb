@@ -1,7 +1,8 @@
 class Resolvers::GetLatestArticles < GraphQL::Function
 
   argument :section_id, types.ID
-  argument :page, types.Int
+  argument :offset, types.Int
+  argument :limit, types.Int
 
   # return type from the mutation
   type types[Types::ArticleType]
@@ -13,7 +14,10 @@ class Resolvers::GetLatestArticles < GraphQL::Function
   def call(_obj, args, _ctx)
     articles = Article.order(created_at: :desc)
     articles = articles.where(section_id: args['section_id']) if args['section_id']
-    articles = articles.page(args['page']) if args['page']
+
+    articles = articles.offset(args['offset']) if args['offset']
+    articles = articles.limit(args['limit']) if args['limit']
+    
     return articles
   end
 end

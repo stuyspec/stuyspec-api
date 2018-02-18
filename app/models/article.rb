@@ -25,26 +25,28 @@ class Article < ApplicationRecord
       .order("articles.rank + 3 * sections.rank + 12 * articles.issue + 192 * articles.volume DESC")
   end
 
-  private
+  def init
+    self.preview = self.generate_preview()
+  end
 
-    def init
-      preview = self.summary
+  def generate_preview
+    preview = self.summary
 
-      if preview.nil? || preview.empty?
-        # This global replace before HTML tag sanitizing ensures we have spaces
-        # between paragraphs.
-        clean_content = self.content.gsub('</p><p>', ' ')
-        preview = ActionView::Base.full_sanitizer.sanitize(clean_content)
-          .split(' ')[0, 25]
-          .join(' ') + '...'
-      else
-        words = preview.split(' ')
-        if words.length > 25
-          preview = words[0, 25].join(' ') + '...'
-        end
+    if preview.nil? || preview.empty?
+      # This global replace before HTML tag sanitizing ensures we have spaces
+      # between paragraphs.
+      clean_content = self.content.gsub('</p><p>', ' ')
+      preview = ActionView::Base.full_sanitizer.sanitize(clean_content)
+        .split(' ')[0, 25]
+        .join(' ') + '...'
+    else
+      words = preview.split(' ')
+      if words.length > 25
+        preview = words[0, 25].join(' ') + '...'
       end
-
-      self.preview = preview
     end
+
+    return preview
+  end
    
 end

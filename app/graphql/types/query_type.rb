@@ -3,20 +3,16 @@ Types::QueryType = GraphQL::ObjectType.define do
   # Add root-level fields here.
   # They will be entry points for queries on your schema.
 
-  field :allArticles, !types[Types::ArticleType] do
-    resolve -> (obj, args, ctx) { Article.all }
-  end
-
   field :allSections, !types[Types::SectionType] do
     resolve -> (obj, args, ctx) { Section.all }
   end
 
-  field :allUsers, !types[Types::UserType] do
-    resolve -> (obj, args, ctx) { User.all }
-  end
-
-  field :allMedia, !types[Types::MediumType] do
-    resolve -> (obj, args, ctx) { Medium.all }
+  field :articlesBySectionID do
+    type !types[Types::ArticleType]
+    argument :section_id, !types.ID
+    resolve -> (obj, args, ctx) {
+      Article.where(section_id: args["section_id"])
+    }
   end
 
   field :sectionsByParentSectionID do

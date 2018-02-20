@@ -554,6 +554,10 @@ unless ENV['minimal']
   Article.find_each do |article|
     Authorship.create(user_id: users.sample.id, article_id: article.id)
     Outquote.create(article_id: article.id, text: 'Example outquote affecting the lives of many readers.')
+    Comment.create(user_id: users.sample.id, article_id: article.id, content: 'I loved this article! (unpublished comment)')
+    c = Comment.new(user_id: users.sample.id, article_id: article.id, content: 'I loved this article! (published comment)')
+    c.save!
+    c.publish
   end
 
   User.find_each do |user|

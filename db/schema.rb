@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180208032553) do
+ActiveRecord::Schema.define(version: 20180215150806) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -21,7 +21,7 @@ ActiveRecord::Schema.define(version: 20180208032553) do
     t.text "content"
     t.integer "volume"
     t.integer "issue"
-    t.boolean "is_published"
+    t.boolean "is_published", default: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.bigint "section_id"
@@ -46,7 +46,7 @@ ActiveRecord::Schema.define(version: 20180208032553) do
     t.text "content"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.string "published_at"
+    t.datetime "published_at"
   end
 
   create_table "friendly_id_slugs", force: :cascade do |t|

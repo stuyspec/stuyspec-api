@@ -17,6 +17,12 @@ Types::ArticleType = GraphQL::ObjectType.define do
   field :volume, !types.Int
   field :section, !Types::SectionType
 
+  field :comments, types[!Types::CommentType] do
+    resolve -> (obj, args, ctx) {
+      obj.comments.where.not(published_at: nil)
+    }
+  end
+
   field :created_at, types.String do
     resolve -> (obj, args, ctx) {
       obj.created_at.strftime('%Y/%m/%d %H:%M:%S %z')

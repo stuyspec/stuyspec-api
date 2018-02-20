@@ -33,6 +33,9 @@ class Article < ApplicationRecord
     preview = self.summary
 
     if preview.nil? || preview.empty?
+      if self.content.nil? || self.content.empty?
+        return nil
+      end
       # This global replace before HTML tag sanitizing ensures we have spaces
       # between paragraphs.
       clean_content = self.content.gsub('</p><p>', ' ')

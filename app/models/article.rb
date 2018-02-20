@@ -1,8 +1,13 @@
 class Article < ApplicationRecord
+
   include PgSearch
   multisearchable :against => [:title, :summary, :content]
+
   extend FriendlyId
   friendly_id :title, use: :slugged
+
+  paginates_per 10
+
   belongs_to :section, optional: true
 
   has_many :authorships

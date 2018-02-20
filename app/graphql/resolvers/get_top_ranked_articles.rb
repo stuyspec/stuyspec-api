@@ -2,8 +2,8 @@ class Resolvers::GetTopRankedArticles < GraphQL::Function
 
   argument :section_id, types.ID
   argument :section_slug, types.String
-  argument :limit, types.Int
   argument :has_media, types.Boolean
+  argument :limit, types.Int
   # return type from the mutation
   type types[Types::ArticleType]
 

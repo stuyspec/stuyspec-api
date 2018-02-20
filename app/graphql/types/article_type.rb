@@ -15,7 +15,7 @@ Types::ArticleType = GraphQL::ObjectType.define do
   field :media, types[Types::MediumType]
   field :outquotes, types[Types::OutquoteType]
 
-  field :comments, types[!Types::CommentType] do
+  field :published_comments, types[!Types::CommentType] do
     resolve -> (obj, args, ctx) {
       obj.comments.where.not(published_at: nil)
     }

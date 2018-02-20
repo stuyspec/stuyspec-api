@@ -8,7 +8,6 @@ Types::ArticleType = GraphQL::ObjectType.define do
   field :summary, types.String
   field :created_at, !types.String
   field :comments, types[!Types::CommentType]
-  field :published_comments, types[!Types::CommentType]
   field :contributors, types[!Types::UserType]
   field :media, types[Types::MediumType]
   field :outquotes, types[Types::OutquoteType]
@@ -16,4 +15,10 @@ Types::ArticleType = GraphQL::ObjectType.define do
   field :rank, types.Int
   field :volume, !types.Int
   field :section, !Types::SectionType
+
+  field :comments, types[!Types::CommentType] do
+    resolve -> (obj, args, ctx) {
+      obj.comments.where.not(published_at: nil)
+    }
+  end
 end

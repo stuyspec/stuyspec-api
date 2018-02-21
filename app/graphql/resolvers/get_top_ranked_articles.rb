@@ -27,7 +27,8 @@ class Resolvers::GetTopRankedArticles < GraphQL::Function
 
     if args["has_media"]
       unless articles.joins(:media).length == 0
-        articles = articles.joins(:media)
+        # uses SQL GROUP_BY clause to remove repeated articles from media JOIN
+        articles = articles.joins(:media).group('articles.id, sections.rank')        
       end
     end
 

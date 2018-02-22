@@ -98,6 +98,14 @@ This function is helpful if you know cli-uploader made a mistake or you want to 
 
 To exit the Rails console, use `Ctrl-D`. To exit the SSH, use `Ctrl-D` as well.
 
+#### Deploying `stuy-spec-api`
+
+1. Go to your local `stuy-spec-api` directory and check out and pull down the branch you want to deploy.
+
+2. Run `eb init`. Select the default region as choice 1 (us-east-1). Select the default application as choice 1 (stuyspec-api-prod). **DO NOT** create a new application and **DO NOT** create a new environment.
+
+3. Run `eb deploy`.
+
 ## Testing GraphQL
 
 Use [GraphiQL](https://github.com/graphql/graphiql) to test your GraphQL queries.

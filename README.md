@@ -1,32 +1,40 @@
 <img src="https://imgur.com/aPbzogH.png"/>
 
 # Stuyvesant Spectator API
+
 The official API for the Stuyvesant Spectator.
 
 ## Setting Up
+
 1. Clone the repo
 ```
 $ git clone https://github.com/stuyspec/stuy-spec-api.git
 ```
+
 2. Follow the directions below to set up Rails. Ignore the MySQL section; instead, only complete the PostgreSQL section: https://gorails.com/setup/
+
 3. In the `stuy-spec-api` repository, create your [dotenv](https://github.com/bkeepers/dotenv) file.
 ```
 $ echo PG_HOST=localhost > .env
 ```
+
 4. If you intend to use this API while working with client-app or cli-uploader, follow the setup instructions in the [AWS S3](#setting-up-s3) section below. Then create, migrate, and seed the database with media.
 ```
 $ rails db:create db:migrate db:seed media=true
 ```
+
 5. If you did not follow instruction 4, create, migrate, and seed the database.
 ```
 $ rails db:create db:migrate db:seed
 ```
+
 6. To start the server, run:
 ```
 rails server
 ```
 
 ## Docker
+
 If the above doesn't work, you can use Docker. Docker encapsulates your runtime environment into
 a "container", basically making your configuration deterministic and reproducible.
 
@@ -43,7 +51,6 @@ connect to db, try stopping and rerunning.
 
 6. To start the server, run `docker-compose run web rails server`.
 
-
 ## AWS
 
 You will need to be an IAM user for the Spectator Web AWS account. Request an account by messaging one of the editors on Facebook.
@@ -53,6 +60,7 @@ While you wait for your beloved editors to get the account set up, watch this [I
 After you receive your login information, navigate to the [stuyspec AWS console](https://stuyspec.signin.aws.amazon.com/console) and log in. In the AWS console, navigate to the service "IAM". Go to _Users_, in the sidebar, and click on your username. Click the _Security Credentials_ tab and create an Access Key. It will prompt you to download a file with your new access key and secret key. Download it.
 
 If you don't have one already, navigate to your home directory (`cd ~/`) and make a directory called `.aws`. Then create a file called `config` with this content:
+
 ```
 [default]
 region=us-east-2
@@ -60,6 +68,7 @@ output=json
 ```
 
 Next, create a file called `credentials` with this content:
+
 ```
 [default]
 aws_access_key_id=YOUR_ACCESS_KEY_ID
@@ -77,11 +86,13 @@ Elastic Beanstalk is an orchestration service offered from Amazon Web Services f
 #### `rails console` 
 
 The [Rails console](http://guides.rubyonrails.org/command_line.html#rails-console) lets you interact with the Rails API from the command line with Ruby. For instance:
+
 ```
 > a = Article.find_by(title: 'The Original Title')
 > a.title = 'New Title'
 > a.save
 ```
+
 This function is helpful if you know cli-uploader made a mistake or you want to make a small change in a record of the database. Here are the steps to open the Rails console for our production database:
 
 1. Install the Elastic Beanstalk CLI: ([Mac](https://docs.aws.amazon.com/elasticbeanstalk/latest/dg/eb-cli3-install-osx.html), [Linux](https://docs.aws.amazon.com/elasticbeanstalk/latest/dg/eb-cli3-install-linux.html), [Windows](https://docs.aws.amazon.com/elasticbeanstalk/latest/dg/eb-cli3-install-windows.html)).

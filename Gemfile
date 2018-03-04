@@ -66,7 +66,3 @@ gem 'rack-throttle'
 gem 'pg_search'
 gem 'seed_dump'
 gem 'graphql'
-
-group :development, :production do
-  gem 'bootsnap', require: false
-end

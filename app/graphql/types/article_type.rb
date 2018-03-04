@@ -8,19 +8,11 @@ Types::ArticleType = GraphQL::ObjectType.define do
   field :preview, types.String
   field :volume, !types.Int
   field :issue, !types.Int
-  field :rank, types.Int
   field :section, !Types::SectionType
   field :comments, types[!Types::CommentType]
   field :contributors, types[!Types::UserType]
-  field :outquotes, types[Types::OutquoteType]
-
-  # We want media shown in the order they were uploaded, which is by
-  # reverse id.
-  field :media, types[!Types::MediumType] do
-    resolve -> (obj, args, ctx) {
-      obj.media.reverse
-    }
-  end
+  field :outquotes, types[Types::OutquoteType]  
+  field :media, types[!Types::MediumType]
 
   field :published_comments, types[!Types::CommentType] do
     resolve -> (obj, args, ctx) {

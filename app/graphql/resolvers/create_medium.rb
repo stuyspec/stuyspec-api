@@ -6,7 +6,8 @@ class Resolvers::CreateMedium < Resolvers::MutationFunction
   argument :caption, !types.String
   argument :media_type, !types.String
   argument :attachmentBase64, as: :attachment do
-    type !type.String
+    type !types.String
+    description 'The base64 encoded version of the attachment to upload.'
   end
 
   # return type from the mutation

@@ -3,6 +3,9 @@ class Resolvers::CreateArticle < Resolvers::MutationFunction
   argument :title, !types.String
   argument :section_id, !types.Int
   argument :content, !types.String
+  argument :summary, types.String
+  argument :created_at, types.String
+  argument :outquotes, types[types.String]
   argument :volume, types.Int
   argument :issue, types.Int
   argument :contributors, !types[types.Int]
@@ -21,10 +24,17 @@ class Resolvers::CreateArticle < Resolvers::MutationFunction
       section_id: args["section_id"],
       content: args["content"],
       volume: args["volume"],
-      issue: args["issue"]
+      issue: args["issue"],
+      summary: args["summary"],
+      created_at: args["created_at"],
     )
     args["contributors"].each do |id|
       @article.authorships.build(user_id: id)
+    end
+    if args["outquotes"]
+      args["outquotes"].each do |text|
+        @article.outquotes.build(text: text)
+      end
     end
     generate_new_header(ctx) if @article.save
     return @article

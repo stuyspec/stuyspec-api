@@ -59,6 +59,16 @@ Types::QueryType = GraphQL::ObjectType.define do
     resolve ->(obj, args, ctx) { User.find_by(slug: args["slug"])}
   end
 
+  field :userByFirstLast do
+    type Types::UserType
+    argument :first_name, !types.String
+    argument :last_name, !types.String
+    description "Find user by first and last names"
+    resolve -> (obj, args, ctx) {
+      User.find_by(first_name: args["first_name"], last_name: args["last_name"])
+    }
+  end
+
   field :latestArticles, function: Resolvers::GetLatestArticles.new
 
   field :sectionBySlug do

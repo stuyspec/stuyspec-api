@@ -1,10 +1,10 @@
 class Resolvers::CreateMedium < Resolvers::MutationFunction
   # arguments passed as "args"
-  argument :title, !types.String
-  argument :article_id, !types.Int
-  argument :profile_id, !types.Int
-  argument :caption, !types.String
-  argument :media_type, !types.String
+  argument :title, types.String
+  argument :article_id, types.Int
+  argument :profile_id, types.Int
+  argument :caption, types.String
+  argument :media_type, types.String
   argument :attachmentBase64, as: :attachment do
     type !types.String
     description 'The base64 encoded version of the attachment to upload.'
@@ -18,14 +18,10 @@ class Resolvers::CreateMedium < Resolvers::MutationFunction
   # args - are the arguments passed
   # _ctx - is the GraphQL context (which would be discussed later)
   def call(_obj, args, ctx)
-    validate_admin(ctx)
-    @medium = Medium.new(
-      title: args["title"],
-      article_id: args["article_id"],
-      profile_id: args["profile_id"],
-      caption: args["caption"],
-      media_type: args["media_type"],
-    )
+    if !validate_admin(ctx)
+      return GraphQL::ExecutionError.new("Invalid user token. Please log in")
+    end
+    @medium = Medium.new(args.to_h)
     generate_new_header(ctx) if @medium.save
     return @medium
   end

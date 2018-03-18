@@ -7,8 +7,7 @@ class Resolvers::MutationFunction < GraphQL::Function
     client_id = @headers['client']
     token = @headers['access-token']
 
-    valid_admin = @user && @user.is_admin?(token, client_id)
-    GraphQL::ExecutionError.new("Invalid user token. Please log in") unless valid_admin
+    return @user && @user.is_admin?(token, client_id)
   end
   
   def generate_new_header(ctx)
@@ -28,6 +27,7 @@ class Resolvers::MutationFunction < GraphQL::Function
   
   def set_user(ctx)
     uid = @headers["uid"]
+    puts uid
     @user = User.find_by(email: uid)
   end
 end

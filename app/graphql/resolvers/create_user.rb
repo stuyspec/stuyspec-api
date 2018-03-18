@@ -12,12 +12,14 @@ class Resolvers::CreateUser < Resolvers::MutationFunction
     if !admin_is_valid(ctx)
       return GraphQL::ExecutionError.new("Invalid user token. Please log in.")
     end
-    emailTaker = User.find_by(email: args["email"])
-    if !emailTaker.nil?
+
+    emailUser = User.find_by(email: args["email"])
+    if !emailUser.nil?
       return GraphQL::ExecutionError.new(
-        "Email taken by %s %s." % [emailTaker.first_name, emailTaker.last_name]
+        "Email taken by %s %s." % [emailUser.first_name, emailUser.last_name]
       )
     end
+
     @new_user = User.new(
       first_name: args[:first_name],
       last_name: args[:last_name],
@@ -26,7 +28,7 @@ class Resolvers::CreateUser < Resolvers::MutationFunction
       password_confirmation: args[:password_confirmation],
       created_at: Time.now
     )
-    generate_new_header(ctx) if @new_user.save
+    generate_new_header(ctx) if @new_user.save!
     return @new_user
   end
   

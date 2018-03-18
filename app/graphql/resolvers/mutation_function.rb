@@ -27,7 +27,6 @@ class Resolvers::MutationFunction < GraphQL::Function
   
   def set_user(ctx)
     uid = @headers["uid"]
-    puts uid
     @user = User.find_by(email: uid)
   end
 end

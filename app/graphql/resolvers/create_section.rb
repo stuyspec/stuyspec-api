@@ -13,8 +13,8 @@ class Resolvers::CreateSection < Resolvers::MutationFunction
   # args - are the arguments passed
   # _ctx - is the GraphQL context (which would be discussed later)
   def call(_obj, args, ctx)
-    if !validate_admin(ctx)
-      return GraphQL::ExecutionError.new("Invalid user token. Please log in")
+    if !admin_is_valid(ctx)
+      return GraphQL::ExecutionError.new("Invalid user token. Please log in.")
     end
     if args["parent_id"]
       parent_section = Section.find(args["parent_id"])

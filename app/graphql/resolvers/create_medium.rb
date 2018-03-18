@@ -18,9 +18,9 @@ class Resolvers::CreateMedium < Resolvers::MutationFunction
   # args - are the arguments passed
   # _ctx - is the GraphQL context (which would be discussed later)
   def call(_obj, args, ctx)
-    # if !validate_admin(ctx)
-    #   return GraphQL::ExecutionError.new("Invalid user token. Please log in")
-    # end
+    if !admin_is_valid(ctx)
+      return GraphQL::ExecutionError.new("Invalid user token. Please log in.")
+    end
     media_type = args["media_type"]
     if media_type != "illustration" && media_type != "photo"
       return GraphQL::ExecutionError.new(
@@ -45,7 +45,7 @@ class Resolvers::CreateMedium < Resolvers::MutationFunction
       attachment: args["attachment"],
     )
     @medium.save!
-    # generate_new_header(ctx) if @medium.save
+    generate_new_header(ctx) if @medium.save
     return @medium
   end
 end

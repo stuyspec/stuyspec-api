@@ -1,6 +1,6 @@
 class Resolvers::MutationFunction < GraphQL::Function
   
-  def validate_admin(ctx)
+  def admin_is_valid(ctx)
     set_headers(ctx)
     set_user(ctx)
     

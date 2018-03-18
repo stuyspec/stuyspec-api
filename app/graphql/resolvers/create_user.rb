@@ -9,8 +9,8 @@ class Resolvers::CreateUser < Resolvers::MutationFunction
   type Types::UserType
 
   def call(_obj, args, ctx)    
-    if !validate_admin(ctx)
-      return GraphQL::ExecutionError.new("Invalid user token. Please log in")
+    if !admin_is_valid(ctx)
+      return GraphQL::ExecutionError.new("Invalid user token. Please log in.")
     end
     emailTaker = User.find_by(email: args["email"])
     if !emailTaker.nil?

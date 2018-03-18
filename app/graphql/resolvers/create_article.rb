@@ -1,4 +1,5 @@
 class Resolvers::CreateArticle < Resolvers::MutationFunction
+  
   # arguments passed as "args"
   argument :title, !types.String
   argument :section_id, !types.Int
@@ -18,8 +19,8 @@ class Resolvers::CreateArticle < Resolvers::MutationFunction
   # args - are the arguments passed
   # _ctx - is the GraphQL context (which would be discussed later)
   def call(_obj, args, ctx)
-    if !validate_admin(ctx)
-      return GraphQL::ExecutionError.new("Invalid user token. Please log in")
+    if !admin_is_valid(ctx)
+      return GraphQL::ExecutionError.new("Invalid user token. Please log in.")
     end
     @article = Article.new(
       title: args["title"],

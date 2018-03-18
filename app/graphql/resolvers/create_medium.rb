@@ -37,10 +37,10 @@ class Resolvers::CreateMedium < Resolvers::MutationFunction
     end
     role = Role.find_by(title: roleTitle)
 
-    profile = Profile.find_by(role_id: role.id, user_id: args["user_id"])
-    if profile.nil?
-      profile = Profile.create(role_id: role.id, user_id: args["user_id"])
-    end
+    profile = Profile.find_or_create_by(
+      role_id: role.id,
+      user_id: args["user_id"]
+    )
 
     @medium = Medium.new(
       title: args["title"],

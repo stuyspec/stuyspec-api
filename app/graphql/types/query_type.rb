@@ -59,7 +59,7 @@ Types::QueryType = GraphQL::ObjectType.define do
     resolve ->(obj, args, ctx) { User.find_by(slug: args["slug"])}
   end
 
-  field :userByFirstLast do
+  field :userByFirstLastName do
     type Types::UserType
     argument :first_name, !types.String
     argument :last_name, !types.String

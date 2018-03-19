@@ -15,6 +15,18 @@ Types::QueryType = GraphQL::ObjectType.define do
     }
   end
 
+  field :articleByContent do
+    type Types::ArticleType
+    argument :content, !types.String
+    resolve -> (obj, args, ctx) {
+      article = Article.find_by(content: args["content"])
+      if article.nil?
+        return GraphQL::ExecutionError.new("No article found.")
+      end
+      return article
+    }
+  end
+
   field :sectionsByParentSectionID do
     type !types[Types::SectionType]
     argument :section_id, !types.ID
@@ -57,6 +69,16 @@ Types::QueryType = GraphQL::ObjectType.define do
     argument :slug, !types.String
     description "Find an user by slug"
     resolve ->(obj, args, ctx) { User.find_by(slug: args["slug"])}
+  end
+
+  field :userByFirstLastName do
+    type Types::UserType
+    argument :first_name, !types.String
+    argument :last_name, !types.String
+    description "Find user by first and last names"
+    resolve -> (obj, args, ctx) {
+      User.find_by(first_name: args["first_name"], last_name: args["last_name"])
+    }
   end
 
   field :latestArticles, function: Resolvers::GetLatestArticles.new

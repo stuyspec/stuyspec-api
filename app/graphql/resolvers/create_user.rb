@@ -13,10 +13,10 @@ class Resolvers::CreateUser < Resolvers::MutationFunction
       return GraphQL::ExecutionError.new("Invalid user token. Please log in.")
     end
 
-    emailUser = User.find_by(email: args["email"])
-    if !emailUser.nil?
+    email_user = User.find_by(email: args["email"])
+    if !email_user.nil?
       return GraphQL::ExecutionError.new(
-        "Email taken by %s %s." % [emailUser.first_name, emailUser.last_name]
+        "Email taken by %s %s." % [email_user.first_name, email_user.last_name]
       )
     end
 

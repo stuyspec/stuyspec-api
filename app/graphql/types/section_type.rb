@@ -9,4 +9,6 @@ Types::SectionType = GraphQL::ObjectType.define do
   field :parent_section, Types::SectionType
   field :subsections, types[Types::SectionType]
   field :articles, types[Types::ArticleType]
+
+  field :parent_id, types.ID
 end

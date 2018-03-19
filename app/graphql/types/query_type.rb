@@ -15,6 +15,18 @@ Types::QueryType = GraphQL::ObjectType.define do
     }
   end
 
+  field :articleByContent do
+    type Types::ArticleType
+    argument :content, !types.String
+    resolve -> (obj, args, ctx) {
+      article = Article.find_by(content: args["content"])
+      if article.nil?
+        return GraphQL::ExecutionError.new("No article found.")
+      end
+      return article
+    }
+  end
+
   field :sectionsByParentSectionID do
     type !types[Types::SectionType]
     argument :section_id, !types.ID

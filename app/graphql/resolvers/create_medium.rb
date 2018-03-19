@@ -23,34 +23,36 @@ class Resolvers::CreateMedium < Resolvers::MutationFunction
       return GraphQL::ExecutionError.new("Invalid user token. Please log in.")
     end
 
-    media_type = args["media_type"]
-    if media_type != "illustration" && media_type != "photo"
-      return GraphQL::ExecutionError.new(
-        "#{media_type} is currently unsupported"
+    ActiveRecord::Base.transaction do
+      media_type = args["media_type"]
+      if media_type != "illustration" && media_type != "photo"
+        return GraphQL::ExecutionError.new(
+          "#{media_type} is currently unsupported"
+        )
+      end
+
+      if media_type == "illustration"
+        roleTitle = "Illustrator"
+      else      
+        roleTitle = "Photographer"
+      end
+      role = Role.find_by(title: roleTitle)
+
+      profile = Profile.find_or_create_by(
+        role_id: role.id,
+        user_id: args["user_id"]
       )
+
+      @medium = Medium.new(
+        title: args["title"],
+        article_id: args["article_id"],
+        profile_id: profile.id,
+        caption: args["caption"],
+        media_type: args["media_type"],
+        attachment: args["attachment"],
+      )
+      generate_new_header(ctx) if @medium.save!
     end
-
-    if media_type == "illustration"
-      roleTitle = "Illustrator"
-    else      
-      roleTitle = "Photographer"
-    end
-    role = Role.find_by(title: roleTitle)
-
-    profile = Profile.find_or_create_by(
-      role_id: role.id,
-      user_id: args["user_id"]
-    )
-
-    @medium = Medium.new(
-      title: args["title"],
-      article_id: args["article_id"],
-      profile_id: profile.id,
-      caption: args["caption"],
-      media_type: args["media_type"],
-      attachment: args["attachment"],
-    )
-    generate_new_header(ctx) if @medium.save!
     return @medium
   end
 end

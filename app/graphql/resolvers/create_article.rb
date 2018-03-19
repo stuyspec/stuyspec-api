@@ -22,24 +22,26 @@ class Resolvers::CreateArticle < Resolvers::MutationFunction
     if !admin_is_valid(ctx)
       return GraphQL::ExecutionError.new("Invalid user token. Please log in.")
     end
-    @article = Article.new(
-      title: args["title"],
-      section_id: args["section_id"],
-      content: args["content"],
-      volume: args["volume"],
-      issue: args["issue"],
-      summary: args["summary"],
-      created_at: args["created_at"],
-    )
-    args["contributors"].each do |id|
-      @article.authorships.build(user_id: id)
-    end
-    if args["outquotes"]
-      args["outquotes"].each do |text|
-        @article.outquotes.build(text: text)
+    ActiveRecord::Base.transaction do
+      @article = Article.new(
+        title: args["title"],
+        section_id: args["section_id"],
+        content: args["content"],
+        volume: args["volume"],
+        issue: args["issue"],
+        summary: args["summary"],
+        created_at: args["created_at"],
+      )
+      args["contributors"].each do |id|
+        @article.authorships.build(user_id: id)
       end
+      if args["outquotes"]
+        args["outquotes"].each do |text|
+          @article.outquotes.build(text: text)
+        end
+      end
+      generate_new_header(ctx) if @article.save
     end
-    generate_new_header(ctx) if @article.save
     return @article
   end
 end

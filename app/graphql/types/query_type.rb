@@ -19,6 +19,8 @@ Types::QueryType = GraphQL::ObjectType.define do
     type Types::ArticleType
     argument :content, !types.String
     resolve -> (obj, args, ctx) {
+      # There are metadata tags (e.g. spec-img-carousel) we want to ignore.
+      content = args["content"][args["content"].index("<p>")..-1]
       article = Article.find_by(content: args["content"])
       if article.nil?
         return GraphQL::ExecutionError.new("No article found.")

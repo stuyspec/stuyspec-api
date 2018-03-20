@@ -26,7 +26,7 @@ class Resolvers::CreateUser < Resolvers::MutationFunction
       email: args[:email],
       password: args[:password],
       password_confirmation: args[:password_confirmation],
-      created_at: Time.now
+      created_at: Time.now,
     )
     generate_new_header(ctx) if @new_user.save!
     return @new_user

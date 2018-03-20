@@ -14,6 +14,11 @@ class User < ApplicationRecord
 
   def init
     self.update(security_level: 0)
+    slug = (self.first_name + ' ' + self.last_name).parameterize
+    while !User.find_by(slug: slug).nil?
+      slug += '-' + ([*('0'..'9')]-%w(0 1 I O)).sample(8).join
+    end
+    self.update(slug: slug)
   end
 
   def is_admin?(token, client_id)

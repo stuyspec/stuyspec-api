@@ -15,9 +15,12 @@ class Article < ApplicationRecord
            through: :authorships,
            dependent: :destroy,
            source: :user
-  has_many :media, dependent: :destroy
   has_many :comments, dependent: :destroy
   has_many :outquotes, dependent: :destroy
+
+  # We want media shown in the order they were uploaded, which is by
+  # order of ascending created_at.
+  has_many :media, -> { order(created_at: :asc) }, dependent: :destroy
 
   def self.order_by_rank
     Article

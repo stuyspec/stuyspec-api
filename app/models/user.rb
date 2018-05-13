@@ -14,8 +14,8 @@ class User < ApplicationRecord
 
   def init
     self.update(security_level: 0)
-    first_name = self.first_name.presence || ''
-    last_name = self.last_name.presence || ''
+    first_name = self.first_name || ''
+    last_name = self.last_name || ''
     slug = (first_name + ' ' + last_name).parameterize
     while !User.find_by(slug: slug).nil?
       slug += '-' + ([*('0'..'9')]-%w(0 1 I O)).sample(8).join

@@ -8,10 +8,14 @@ class Resolvers::GetFeaturedArticle < GraphQL::Function
   # _args - are the arguments passed
   # _ctx - is the GraphQL context (which would be discussed later)
   def call(_obj, _args, _ctx)
-    Article
-      .order_by_rank # already JOINS on Section
-      #.where("sections.name != 'News'")
-      .joins(:media)
-      .first
+
+    # Article
+    #   .order_by_rank # already JOINS on Section
+    #   .where("sections.name != 'News'")
+    #   .joins(:media)
+    #   .first
+
+    Article.find_by(slug: 'meet-the-2018-2019-big-sib-chairs')
+
   end
 end

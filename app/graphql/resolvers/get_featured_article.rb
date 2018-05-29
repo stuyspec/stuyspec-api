@@ -10,7 +10,7 @@ class Resolvers::GetFeaturedArticle < GraphQL::Function
   def call(_obj, _args, _ctx)
     Article
       .order_by_rank # already JOINS on Section
-      .where("sections.name != 'News'")
+      #.where("sections.name != 'News'")
       .joins(:media)
       .first
   end

@@ -81,6 +81,10 @@ Types::QueryType = GraphQL::ObjectType.define do
     }
   end
 
+field :allUsersWithRoles, !types[Types::UserType] do
+    resolve -> (obj, args, ctx) { User.all.select do |user| user.roles.any? end }
+  end
+
   field :latestArticles, function: Resolvers::GetLatestArticles.new
 
   field :sectionBySlug do

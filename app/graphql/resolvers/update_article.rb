@@ -4,6 +4,9 @@ class Resolvers::UpdateArticle < Resolvers::MutationFunction
   argument :title, types.String
   argument :section_id, types.Int
   argument :content, types.String
+  argument :summary, types.String
+  argument :created_at, types.String
+  argument :outquotes, types[types.String]
   argument :volume, types.Int
   argument :issue, types.Int
   argument :contributors, types[types.Int]
@@ -16,7 +19,9 @@ class Resolvers::UpdateArticle < Resolvers::MutationFunction
   # args - are the arguments passed
   # _ctx - is the GraphQL context (which would be discussed later)
   def call(_obj, args, ctx)
-    validate_admin(ctx)
+    if !admin_is_valid(ctx)
+      return GraphQL::ExecutionError.new("Invalid user token. Please log in.")
+    end
     @article = Article.find(args["id"])
 
     # Transaction so that we don't update a malformed article
@@ -24,8 +29,17 @@ class Resolvers::UpdateArticle < Resolvers::MutationFunction
       @article.title = args["title"] if args["title"]
       @article.section_id = args["section_id"] if args["section_id"]
       @article.content = args["content"] if args["content"]
+      @article.summary = args["summary"] if args["summary"]
+      @article.created_at = args["created_at"] if args["created_at"]
       @article.volume = args["volume"] if args["volume"]
       @article.issue = args["issue"] if args["issue"]
+
+      if args["outquotes"]
+        @article.outquotes.clear
+        args["outquotes"].each do |text|
+          @article.outquotes.build(text: text)
+        end
+      end
 
       if args["contributors"]
         args["contributors"].each do |id|

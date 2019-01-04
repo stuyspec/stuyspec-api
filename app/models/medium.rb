@@ -2,7 +2,6 @@ class Medium < ApplicationRecord
   belongs_to :article
   belongs_to :profile
   has_one :user, through: :profile
-
   has_attached_file :attachment,
                     storage: :s3,
                     styles: { medium: "300x300>", thumb: "100x100>" },

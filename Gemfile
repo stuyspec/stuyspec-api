@@ -1,5 +1,7 @@
 source 'https://rubygems.org'
 
+ruby '2.4.2'
+
 git_source(:github) do |repo_name|
   repo_name = "#{repo_name}/#{repo_name}" unless repo_name.include?("/")
   "https://github.com/#{repo_name}.git"
@@ -36,6 +38,7 @@ gem 'puma', '~> 3.7'
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
+  gem 'rspec_junit_formatter'
   gem 'rspec-rails', '~> 3.5'
 end
 
@@ -53,4 +56,13 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 gem "olive_branch"
 # OmniAuth
 gem 'omniauth-github'
+
 gem 'paperclip'
+gem 'aws-sdk'
+gem 'airborne'
+gem 'dotenv-rails', groups: [:development]
+gem 'rack-throttle'
+
+gem 'pg_search'
+gem 'seed_dump'
+gem 'graphql'

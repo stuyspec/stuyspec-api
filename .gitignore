@@ -14,10 +14,24 @@
 !/tmp/.keep
 /spec-env
 .byebug_history
-
+/public/system/media
 # Elastic Beanstalk Files
 .elasticbeanstalk/*
 !.elasticbeanstalk/*.cfg.yml
 !.elasticbeanstalk/*.global.yml
 
+.DS_Store
+
 .idea/*
+/public/system
+
+/.env
+
+# Emacs files
+\#*\#
+*~
+\.\#*
+
+# DB Prod Dumps
+/db/dumps
+*.sql

@@ -13,5 +13,13 @@ class ApplicationController < ActionController::API
     end
   end
 
+  def authenticate_admin!
+    token = request.headers["access-token"]
+    client_id = request.headers["client"]
+    return render json: {
+                    success: false,
+                    errors: ["You do not have the relevant permissions"]
+                  }, status: 401 unless current_user.is_admin?(token, client_id)
+  end
 
 end

@@ -14,10 +14,10 @@ jobs:
 
       - run: sudo apt-get install python-dev python-pip
       - run: sudo pip install awsebcli --upgrade --user
-	  - run: cd
-	  - run: git clone https://github.com/stuyspec/stuyspec.com.git
-	  - run: cd stuyspec.com
-	  - run: git checkout master
+      - run: cd
+      - run: git clone https://github.com/stuyspec/stuyspec.com.git
+      - run: cd stuyspec.com
+      - run: git checkout master
       - run: npm run build
       - run: mv build client-app
       - run: cd

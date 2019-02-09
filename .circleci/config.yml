@@ -2,39 +2,38 @@ version: 2
 jobs:
   build:
     docker:
-      - image: circleci/ruby:2.4.2-node
-        environment:
-          RAILS_ENV: test
-          PG_HOST: 127.0.0.1
-      - image: circleci/postgres:9.4.12-alpine
+      # specify the version you desire here
+      - image: circleci/python:3.6.1
+      # Specify service dependencies here if necessary
+      # CircleCI maintains a library of pre-built images
+      # documented at https://circleci.com/docs/2.0/circleci-images/
+      # - image: circleci/mongo:3.4.4
+    working_directory: ~/stuy-spec-api
     steps:
       - checkout
 
-      # Restore bundle cache
-      - restore_cache:
-          key: rails-demo-{{ checksum "Gemfile.lock" }}
-
-      # Bundle install dependencies
-      - run: bundle install --path vendor/bundle
-      # Store bundle cache
-      - save_cache:
-          key: rails-demo-{{ checksum "Gemfile.lock" }}
-          paths:
-            - vendor/bundle
-
-      # Database setup
-      - run: bundle exec rake db:create
-      - run: bundle exec rake db:schema:load
-
-      # Run rspec in parallel
-      - type: shell
-        command: |
-          bundle exec rspec --profile 10 \
-                            --format RspecJunitFormatter \
-                            --out test_results/rspec.xml \
-                            --format progress \
-                            $(circleci tests glob "spec/**/*_spec.rb" | circleci tests split --split-by=timings)
-
-      # Save test results for timing analysis
-      - store_test_results:
-          path: test_results
+      - run: sudo apt-get install python-dev python-pip
+      - run: sudo pip install awsebcli --upgrade --user
+	  - run: cd
+	  - run: git clone https://github.com/stuyspec/stuyspec.com.git
+	  - run: cd stuyspec.com
+	  - run: git checkout master
+      - run: npm run build
+      - run: mv build client-app
+      - run: cd
+      - run: cd stuy-spec-api
+      - run: git checkout master
+      - run: cp -af ~/client-app/client-app public/
+      - run: cd
+      - run: zip -r ~/stuy-spec-api/archive/api.zip ~/stuy-spec-api
+      - run: cd stuy-spec-api
+      - deploy:
+          name: Deploy to AWS S3
+          command: |
+            #if [ "${CIRCLE_BRANCH}" == "staging" ]; then
+              #aws s3 sync ~/client-app/dist/prod s3://staging.stuyspec.com
+            if [ "${CIRCLE_BRANCH}" == "master" ]; then
+              eb deploy --staged
+            else
+              echo "We do not deploy on the ${CIRCLE_BRANCH} branch."
+            fi

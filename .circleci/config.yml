@@ -3,39 +3,53 @@ jobs:
   build:
     docker:
       # specify the version you desire here
-      - image: circleci/python:3.6.1
+      - image: circleci/node:10.15
       # Specify service dependencies here if necessary
       # CircleCI maintains a library of pre-built images
       # documented at https://circleci.com/docs/2.0/circleci-images/
       # - image: circleci/mongo:3.4.4
-    working_directory: ~/stuy-spec-api
+    working_directory: ~/stuyspec-api
     steps:
       - checkout
 
       - run: |
           sudo apt-get install python-dev python-pip
-          sudo pip install awsebcli --upgrade --user
+          pip install awsebcli --upgrade --user
           cd
-          git clone https://github.com/stuyspec/stuyspec.com.git
+		  git clone https://github.com/stuyspec/stuyspec.com.git
+		  git checkout master
+      # Download and cache dependencies
+      - restore_cache:
+          keys:
+          - v1-dependencies-{{ checksum "~/stuyspec.com/package.json" }}
+          # fallback to using the latest cache if no exact match is found
+          - v1-dependencies-
+      - run: |
+	      cd stuyspec.com
+	      npm install
+      - save_cache:
+          paths:
+            - ~/stuyspec.com/node_modules
+          key: v1-dependencies-{{ checksum "~/stuyspec.com/package.json" }}
+      - run: |
           cd stuyspec.com
+          CI=false npm run build
+	  - run: |
           git checkout master
-          sudo apt-get install npm
-          npm install
-          npm run build
-          mv build client-app
-          cd
-          cd stuy-spec-api
-          git checkout master
-          cp -af ~/client-app/client-app public/
-          cd
-          zip -r ~/stuy-spec-api/archive/api.zip ~/stuy-spec-api
+          mkdir public/client-app
+          cp -af ~/stuyspec.com/build/* public/client-app
+          cd ~/stuyspec-api
+          zip -r ~/api.zip ./*
+          mv ~/api.zip ~/stuyspec-api/
       - deploy:
           name: Deploy to AWS S3
           command: |
             #if [ "${CIRCLE_BRANCH}" == "staging" ]; then
               #aws s3 sync ~/client-app/dist/prod s3://staging.stuyspec.com
             if [ "${CIRCLE_BRANCH}" == "master" ]; then
-              eb deploy --staged
+              cd ~/stuyspec-api
+              printf "1\n1\n\n" | ~/.local/bin/eb init
+              ~/.local/bin/eb deploy --staged
             else
               echo "We do not deploy on the ${CIRCLE_BRANCH} branch."
             fi

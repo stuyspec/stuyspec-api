@@ -12,23 +12,23 @@ jobs:
     steps:
       - checkout
 
-      - run: sudo apt-get install python-dev python-pip
-      - run: sudo pip install awsebcli --upgrade --user
-      - run: cd
-      - run: git clone https://github.com/stuyspec/stuyspec.com.git
-      - run: cd stuyspec.com
-      - run: git checkout master
-      - run: sudo apt-get install npm
-      - run: npm install
-      - run: npm run build
-      - run: mv build client-app
-      - run: cd
-      - run: cd stuy-spec-api
-      - run: git checkout master
-      - run: cp -af ~/client-app/client-app public/
-      - run: cd
-      - run: zip -r ~/stuy-spec-api/archive/api.zip ~/stuy-spec-api
-      - run: cd stuy-spec-api
+      - run: |
+          sudo apt-get install python-dev python-pip
+          sudo pip install awsebcli --upgrade --user
+          cd
+          git clone https://github.com/stuyspec/stuyspec.com.git
+          cd stuyspec.com
+          git checkout master
+          sudo apt-get install npm
+          npm install
+          npm run build
+          mv build client-app
+          cd
+          cd stuy-spec-api
+          git checkout master
+          cp -af ~/client-app/client-app public/
+          cd
+          zip -r ~/stuy-spec-api/archive/api.zip ~/stuy-spec-api
       - deploy:
           name: Deploy to AWS S3
           command: |

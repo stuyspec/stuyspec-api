@@ -1,2 +1,2 @@
 deploy:
-  artifact: /archive/api.zip
+  artifact: ~/stuyspec-api/archive/api.zip

@@ -17,6 +17,7 @@ jobs:
           pip install awsebcli --upgrade --user
           cd
           git clone https://github.com/stuyspec/stuyspec.com.git
+          cd stuyspec.com
           git checkout master
       # Download and cache dependencies
       - restore_cache:

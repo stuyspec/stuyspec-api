@@ -18,7 +18,7 @@ jobs:
       - run: git clone https://github.com/stuyspec/stuyspec.com.git
       - run: cd stuyspec.com
       - run: git checkout master
-      - run: sudo apt-get install node
+      - run: sudo apt-get install npm
       - run: npm install
       - run: npm run build
       - run: mv build client-app

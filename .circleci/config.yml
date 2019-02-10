@@ -15,9 +15,9 @@ jobs:
       - run: |
           sudo apt-get install python-dev python-pip
           pip install awsebcli --upgrade --user
-	  cd
-	  git clone https://github.com/stuyspec/stuyspec.com.git
-	  git checkout master
+          cd
+          git clone https://github.com/stuyspec/stuyspec.com.git
+          git checkout master
       # Download and cache dependencies
       - restore_cache:
           keys:
@@ -25,8 +25,8 @@ jobs:
           # fallback to using the latest cache if no exact match is found
           - v1-dependencies-
       - run: |
-	      cd stuyspec.com
-	      npm install
+          cd stuyspec.com
+          npm install
       - save_cache:
           paths:
             - ~/stuyspec.com/node_modules
@@ -34,7 +34,7 @@ jobs:
       - run: |
           cd stuyspec.com
           CI=false npm run build
-	  - run: |
+      - run: |
           git checkout master
           mkdir public/client-app
           cp -af ~/stuyspec.com/build/* public/client-app

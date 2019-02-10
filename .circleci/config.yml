@@ -26,14 +26,14 @@ jobs:
           # fallback to using the latest cache if no exact match is found
           - v1-dependencies-
       - run: |
-          cd stuyspec.com
+          cd ~/stuyspec.com
           npm install
       - save_cache:
           paths:
             - ~/stuyspec.com/node_modules
           key: v1-dependencies-{{ checksum "~/stuyspec.com/package.json" }}
       - run: |
-          cd stuyspec.com
+          cd ~/stuyspec.com
           CI=false npm run build
       - run: |
           git checkout master

@@ -2,39 +2,55 @@ version: 2
 jobs:
   build:
     docker:
-      - image: circleci/ruby:2.4.2-node
-        environment:
-          RAILS_ENV: test
-          PG_HOST: 127.0.0.1
-      - image: circleci/postgres:9.4.12-alpine
+      # specify the version you desire here
+      - image: circleci/node:10.15
+      # Specify service dependencies here if necessary
+      # CircleCI maintains a library of pre-built images
+      # documented at https://circleci.com/docs/2.0/circleci-images/
+      # - image: circleci/mongo:3.4.4
+    working_directory: ~/stuyspec-api
     steps:
       - checkout
 
-      # Restore bundle cache
+      - run: |
+          sudo apt-get install python-dev python-pip
+          pip install awsebcli --upgrade --user
+          cd
+          git clone https://github.com/stuyspec/stuyspec.com.git
+          cd stuyspec.com
+          git checkout master
+      # Download and cache dependencies
       - restore_cache:
-          key: rails-demo-{{ checksum "Gemfile.lock" }}
-
-      # Bundle install dependencies
-      - run: bundle install --path vendor/bundle
-      # Store bundle cache
+          keys:
+          - v1-dependencies-{{ checksum "~/stuyspec.com/package.json" }}
+          # fallback to using the latest cache if no exact match is found
+          - v1-dependencies-
+      - run: |
+          cd ~/stuyspec.com
+          npm install
       - save_cache:
-          key: rails-demo-{{ checksum "Gemfile.lock" }}
           paths:
-            - vendor/bundle
-
-      # Database setup
-      - run: bundle exec rake db:create
-      - run: bundle exec rake db:schema:load
-
-      # Run rspec in parallel
-      - type: shell
-        command: |
-          bundle exec rspec --profile 10 \
-                            --format RspecJunitFormatter \
-                            --out test_results/rspec.xml \
-                            --format progress \
-                            $(circleci tests glob "spec/**/*_spec.rb" | circleci tests split --split-by=timings)
-
-      # Save test results for timing analysis
-      - store_test_results:
-          path: test_results
+            - ~/stuyspec.com/node_modules
+          key: v1-dependencies-{{ checksum "~/stuyspec.com/package.json" }}
+      - run: |
+          cd ~/stuyspec.com
+          CI=false npm run build
+      - run: |
+          git checkout master
+          mkdir public/client-app
+          cp -af ~/stuyspec.com/build/* public/client-app
+          cd ~/stuyspec-api
+          zip -r ~/api.zip ./*
+          mv ~/api.zip ~/stuyspec-api/
+      - deploy:
+          name: Deploy to AWS S3
+          command: |
+            #if [ "${CIRCLE_BRANCH}" == "staging" ]; then
+              #aws s3 sync ~/client-app/dist/prod s3://staging.stuyspec.com
+            if [ "${CIRCLE_BRANCH}" == "master" ]; then
+              cd ~/stuyspec-api
+              printf "1\n1\n\n" | ~/.local/bin/eb init
+              ~/.local/bin/eb deploy --staged
+            else
+              echo "We do not deploy on the ${CIRCLE_BRANCH} branch."
+            fi

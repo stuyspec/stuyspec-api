@@ -15,9 +15,9 @@ jobs:
       - run: |
           sudo apt-get install python-dev python-pip
           pip install awsebcli --upgrade --user
-          cd
-		  git clone https://github.com/stuyspec/stuyspec.com.git
-		  git checkout master
+	  cd
+	  git clone https://github.com/stuyspec/stuyspec.com.git
+	  git checkout master
       # Download and cache dependencies
       - restore_cache:
           keys:

@@ -7,7 +7,7 @@ class ClientAppController < ActionController::Base
       "It contains sections such as news, features, opinions, arts & entertainment, humor, sports, photography, art, layout, copy, "\
       "business, and web. With such a wide range of topics, readers would never run out of reading material, which makes this "\
       "newspaper awesome!"
-    @url = params[:section] and params[:slug] ? "https://stuyspec.com/#{params[:section]}/#{params[:slug]}"
+    @url = (params[:section] and params[:slug]) ? "https://stuyspec.com/#{params[:section]}/#{params[:slug]}"
       : "https://stuyspec.com"
     render template: "client_app/index", status: :ok
   end

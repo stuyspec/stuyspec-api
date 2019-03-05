@@ -104,7 +104,4 @@ Rails.application.configure do
 
   # Do not dump schema after migrations.
   config.active_record.dump_schema_after_migration = false
-
-  # Support subdomains
-  config.action_dispatch.tld_length = 2
 end

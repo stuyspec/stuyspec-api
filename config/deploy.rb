@@ -40,14 +40,15 @@ task :upload_client_app do
     execute "if cd stuyspec.com; then git pull; else git clone https://github.com/stuyspec/stuyspec.com.git; cd stuyspec.com; fi"
     execute "cd stuyspec.com; npm install"
     execute "cd stuyspec.com; npm run build"
-    execute "cd stuyspec.com; rsync --remove-source-files build client-app"
+    execute "cd stuyspec.com; rm -rf client-app; cp -a build/ client-app/"
+    execute "cd stuyspec.com; ls -a"
   end
   on roles(:app) do
     upload! "./stuyspec.com/client-app", release_path + "public", recursive: true
   end
 end
 
-# after "deploy:started", "clone_client_app"
-# after "deploy:started", "build_client_app"
+# after "deploy:updated", "clone_client_app"
+# after "deploy:updated", "build_client_app"
 
 after "deploy:published", "upload_client_app"

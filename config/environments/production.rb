@@ -24,7 +24,7 @@ Rails.application.configure do
   #  config.public_file_server.enabled = ENV['RAILS_SERVE_STATIC_FILES'].present?
 
   # serve public items for client-app and cms integration
-  # config.serve_static_assets = true
+  config.serve_static_assets = true
 
 
   # Enable serving of images, stylesheets, and JavaScripts from an asset server.

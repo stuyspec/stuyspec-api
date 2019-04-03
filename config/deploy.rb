@@ -20,35 +20,34 @@ task :clone_client_app do
 end
 
 task :build_client_app do
-  on roles(:app) do
-    within release_path do
-      within "./public" do
-        execute "mkdir", "client-app"
-      end
-      within "./stuyspec.com" do
-        execute "git", "checkout master"
-        execute "npm", "install"
-        execute "npm", "run build"
-        execute "mv", "./build/* ../public/client-app/"
-      end
-    end
-  end
-end
-
-task :upload_client_app do
   run_locally do
     execute "if cd stuyspec.com; then git pull; else git clone https://github.com/stuyspec/stuyspec.com.git; cd stuyspec.com; fi"
     execute "cd stuyspec.com; npm install"
     execute "cd stuyspec.com; npm run build"
     execute "cd stuyspec.com; rm -rf client-app; cp -a build/ client-app/"
-    execute "cd stuyspec.com; ls -a"
   end
+end
+
+task :build_cms do
+  run_locally do
+    execute "if cd cms; then git pull; else git clone https://github.com/stuyspec/cms.git; cd cms; fi"
+    execute "cd cms; npm install"
+    execute "cd cms; npm run build"
+    execute "cd cms; rm -rf cms; cp -a build/ cms/"
+  end
+end
+
+task :upload_apps do
   on roles(:app) do
     upload! "./stuyspec.com/client-app", release_path + "public", recursive: true
+    upload! "./cms/cms", release_path + "public", recursive: true
   end
 end
 
 # after "deploy:updated", "clone_client_app"
 # after "deploy:updated", "build_client_app"
 
-after "deploy:published", "upload_client_app"
+before "deploy:starting", "build_client_app"
+before "deploy:starting", "build_cms"
+
+before "deploy:publishing", "upload_apps"

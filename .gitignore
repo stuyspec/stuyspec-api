@@ -20,8 +20,16 @@
 !.elasticbeanstalk/*.cfg.yml
 !.elasticbeanstalk/*.global.yml
 
-#client-app or stuyspec.com files. These are managed in the stuyspec.com repo
+# client-app or stuyspec.com files. These are managed in the stuyspec.com repo
 /public/client_app/*
+# cms folders managed in cms repo
+/public/cms/*
+
+# ignore folders used during Capistrano deploy
+/stuyspec.com
+/cms
+
+/vendor
 
 .DS_Store
 

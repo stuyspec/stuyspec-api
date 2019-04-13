@@ -40,4 +40,9 @@ Rails.application.routes.draw do
     get '/', to: 'client_app#index' 
   end
 
+   constraints(subdomain: "cms") do
+    get '/', to: 'cms#index'
+    get '/*all', to: 'cms#index'
+  end
+
 end

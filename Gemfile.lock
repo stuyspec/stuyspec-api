@@ -777,7 +777,7 @@ DEPENDENCIES
   olive_branch
   omniauth-github
   omniauth-google
-  paperclip
+  paperclip (~> 5.1)
   pg (~> 0.18)
   pg_search
   puma (~> 3.7)

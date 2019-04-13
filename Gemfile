@@ -57,7 +57,7 @@ gem "olive_branch"
 # OmniAuth
 gem 'omniauth-github'
 
-gem 'paperclip'
+gem 'paperclip', '~> 5.1'
 gem 'aws-sdk'
 gem 'airborne'
 gem 'dotenv-rails', groups: [:development]

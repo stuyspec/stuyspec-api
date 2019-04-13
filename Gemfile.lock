@@ -772,6 +772,8 @@ GEM
       capistrano (~> 3.0)
       sshkit (~> 1.2)
     climate_control (0.2.0)
+    cocaine (0.5.8)
+      climate_control (>= 0.0.3, < 1.0)
     concurrent-ruby (1.1.5)
     crass (1.0.4)
     devise (4.6.2)
@@ -862,12 +864,12 @@ GEM
       oauth2 (~> 1.1)
       omniauth (~> 1.9)
     orm_adapter (0.5.0)
-    paperclip (5.3.0)
+    paperclip (5.1.0)
       activemodel (>= 4.2.0)
       activesupport (>= 4.2.0)
+      cocaine (~> 0.5.5)
       mime-types
       mimemagic (~> 0.3.0)
-      terrapin (~> 0.6.0)
     pg (0.21.0)
     pg_search (2.1.5)
       activerecord (>= 4.2)
@@ -956,8 +958,6 @@ GEM
     sshkit (1.18.2)
       net-scp (>= 1.1.2)
       net-ssh (>= 2.8.0)
-    terrapin (0.6.0)
-      climate_control (>= 0.0.3, < 1.0)
     thor (0.20.3)
     thread_safe (0.3.6)
     tzinfo (1.2.5)
@@ -991,7 +991,7 @@ DEPENDENCIES
   olive_branch
   omniauth-github
   omniauth-google
-  paperclip (~> 5.1)
+  paperclip (= 5.1.0)
   pg (~> 0.18)
   pg_search
   puma (~> 3.7)

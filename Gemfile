@@ -11,7 +11,7 @@ end
 gem 'friendly_id', '~> 5.1.0'
 
 # For authentication
-gem 'devise_token_auth'
+gem 'devise_token_auth', '1.0.0'
 gem 'omniauth-google'
 
 # Fixes CORS issues

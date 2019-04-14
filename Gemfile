@@ -68,6 +68,8 @@ gem "olive_branch"
 gem 'omniauth-github'
 
 gem 'paperclip', '5.1.0'
+# avoid OOM on large Paperclip attachment uploads
+gem 'posix-spawn'
 gem 'aws-sdk'
 gem 'airborne'
 gem 'dotenv-rails', groups: [:development]

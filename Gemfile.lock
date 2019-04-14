@@ -874,6 +874,7 @@ GEM
     pg_search (2.1.5)
       activerecord (>= 4.2)
       activesupport (>= 4.2)
+    posix-spawn (0.3.13)
     puma (3.12.1)
     rack (2.0.7)
     rack-cors (1.0.3)
@@ -994,6 +995,7 @@ DEPENDENCIES
   paperclip (= 5.1.0)
   pg (~> 0.18)
   pg_search
+  posix-spawn
   puma (~> 3.7)
   rack-cors
   rack-throttle

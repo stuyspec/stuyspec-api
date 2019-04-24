@@ -45,6 +45,10 @@ class Resolvers::UpdateArticle < Resolvers::MutationFunction
         @article.contributors.clear
         args["contributors"].each do |id|
           Authorship.find_or_create_by(user_id: id, article_id: @article.id)
+
+          # Adds contributor role to user if not yet present
+          u = User.find_by(id: id)
+          u.roles << Role.first unless u.nil? || u.roles.include?(Role.first)
         end
       end
       generate_new_header(ctx) if @article.save

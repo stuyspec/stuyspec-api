@@ -6,10 +6,10 @@ class Resolvers::UpdateArticle < Resolvers::MutationFunction
   argument :content, types.String
   argument :summary, types.String
   argument :created_at, types.String
-  argument :outquotes, types[types.String]
+  argument :outquotes, types[!types.String]
   argument :volume, types.Int
   argument :issue, types.Int
-  argument :contributors, types[types.Int]
+  argument :contributors, types[!types.Int]
 
   # return type from the mutation
   type Types::ArticleType

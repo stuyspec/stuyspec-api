@@ -6,10 +6,10 @@ class Resolvers::CreateArticle < Resolvers::MutationFunction
   argument :content, !types.String
   argument :summary, types.String
   argument :created_at, types.String
-  argument :outquotes, types[types.String]
-  argument :volume, types.Int
-  argument :issue, types.Int
-  argument :contributors, !types[types.Int]
+  argument :outquotes, types[!types.String]
+  argument :volume, !types.Int
+  argument :issue, !types.Int
+  argument :contributors, !types[!types.Int]
 
   # return type from the mutation
   type Types::ArticleType
@@ -34,6 +34,10 @@ class Resolvers::CreateArticle < Resolvers::MutationFunction
       )
       args["contributors"].each do |id|
         @article.authorships.build(user_id: id)
+
+        # Adds contributor role to user if not yet present
+        u = User.find_by(id: id)
+        u.roles << Role.first unless u.nil? || u.roles.include?(Role.first)
       end
       if args["outquotes"]
         args["outquotes"].each do |text|

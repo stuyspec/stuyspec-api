@@ -42,6 +42,7 @@ class Resolvers::UpdateArticle < Resolvers::MutationFunction
       end
 
       if args["contributors"]
+        @article.contributors.clear
         args["contributors"].each do |id|
           Authorship.find_or_create_by(user_id: id, article_id: @article.id)
         end

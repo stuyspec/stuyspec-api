@@ -1,7 +1,7 @@
 class Resolvers::CreateMedium < Resolvers::MutationFunction
 
   # arguments passed as "args"
-  argument :title, types.String
+  argument :title, !types.String
   argument :article_id, !types.Int
   argument :user_id, !types.Int
   argument :caption, types.String

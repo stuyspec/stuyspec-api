@@ -864,7 +864,7 @@ GEM
       oauth2 (~> 1.1)
       omniauth (~> 1.9)
     orm_adapter (0.5.0)
-    paperclip (5.1.0)
+    paperclip (5.2.1)
       activemodel (>= 4.2.0)
       activesupport (>= 4.2.0)
       cocaine (~> 0.5.5)
@@ -987,11 +987,11 @@ DEPENDENCIES
   dotenv-rails
   friendly_id (~> 5.1.0)
   graphql
-  listen (>= 3.0.5, < 3.2)
+  listen (< 3.2)
   olive_branch
   omniauth-github
   omniauth-google
-  paperclip (= 5.1.0)
+  paperclip (= 5.2.1)
   pg (~> 0.18)
   pg_search
   puma (~> 3.7)

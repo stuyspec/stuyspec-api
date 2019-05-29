@@ -14,10 +14,11 @@ class Resolvers::MutationFunction < GraphQL::Function
     set_headers(ctx)
     set_user(ctx)
 
-    client_id = @headers['client']
-    new_auth_header = @user.create_new_auth_token(client_id)
-    response = ctx[:response]
-    response.headers.merge!(new_auth_header)
+    # Updates headers: functionality turned off
+    # client_id = @headers['client']
+    # new_auth_header = @user.create_new_auth_token(client_id)
+    # response = ctx[:response]
+    # response.headers.merge!(new_auth_header)
   end
 
   private

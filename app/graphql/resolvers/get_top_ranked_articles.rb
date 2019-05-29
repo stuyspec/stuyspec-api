@@ -1,4 +1,4 @@
-class Resolvers::GetTopRankedArticles < GraphQL::Function
+class Resolvers::GetTopRankedArticles < Resolvers::ArticleQueryFunction
 
   argument :section_id, types.ID
   argument :section_slug, types.String
@@ -33,6 +33,7 @@ class Resolvers::GetTopRankedArticles < GraphQL::Function
     end
 
     articles = articles.limit(args["limit"]) if args["limit"]
+    articles = select_published(articles)
 
     return articles
   end

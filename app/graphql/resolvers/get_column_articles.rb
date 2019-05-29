@@ -1,4 +1,4 @@
-class Resolvers::GetColumnArticles < GraphQL::Function
+class Resolvers::GetColumnArticles < Resolvers::ArticleQueryFunction
 
   # return type from the mutation
   type types[Types::ArticleType]
@@ -21,7 +21,7 @@ class Resolvers::GetColumnArticles < GraphQL::Function
                               .offset(6)
                               .where.not(id: left_column_articles)
                               .first(2)
-    return [*left_column_articles, *right_column_articles]
+    return select_published([*left_column_articles, *right_column_articles])
   end
 end
  

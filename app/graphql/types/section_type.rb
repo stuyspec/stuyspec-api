@@ -8,7 +8,11 @@ Types::SectionType = GraphQL::ObjectType.define do
   field :rank, !types.Int
   field :parent_section, Types::SectionType
   field :subsections, types[Types::SectionType]
-  field :articles, types[Types::ArticleType]
+  field :articles, types[!Types::ArticleType] do 
+    resolve -> (obj, args, ctx) {
+      Resolvers::ArticleQueryFunction.select_published(obj.articles)
+    }
+  end
 
   field :parent_id, types.ID
 end

@@ -1,4 +1,4 @@
-class Resolvers::GetLatestArticles < GraphQL::Function
+class Resolvers::GetLatestArticles < Resolvers::ArticleQueryFunction
 
   argument :section_id, types.ID
   argument :offset, types.Int
@@ -17,6 +17,8 @@ class Resolvers::GetLatestArticles < GraphQL::Function
 
     articles = articles.offset(args['offset']) if args['offset']
     articles = articles.limit(args['limit']) if args['limit']
+
+    articles = select_published(articles)
     
     return articles
   end

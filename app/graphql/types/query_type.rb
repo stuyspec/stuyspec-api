@@ -99,7 +99,7 @@ field :allUsersWithRoles, !types[Types::UserType] do
   field :topRankedArticles, function: Resolvers::GetTopRankedArticles.new
 
   field :featuredSections, !types[Types::SectionType] do
-    resolve -> (obj, args, ctx) { Section.where(parent_id: nil)}
+    resolve -> (obj, args, ctx) { Section.where(parent_id: nil).order("rank DESC") }
   end
 
   field :featuredArticlesBySectionSlug, function: Resolvers::GetFeaturedArticlesBySectionSlug.new

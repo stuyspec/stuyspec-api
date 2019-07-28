@@ -17,8 +17,7 @@ class Resolvers::GetFeaturedArticlesBySectionSlug < Resolvers::ArticleQueryFunct
         .where("sections.slug = '#{args['section_slug']}'")
         .order("articles.rank + 3 * sections.rank + 12 * articles.issue"\
                " + 192 * articles.volume DESC")
-        .first
-    )
+    ).first
 
     primary_article_id = if primary_article.nil? then -1 else primary_article.id end
     secondary_articles =

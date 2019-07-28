@@ -10,6 +10,7 @@ class Resolvers::UpdateArticle < Resolvers::MutationFunction
   argument :volume, types.Int
   argument :issue, types.Int
   argument :contributors, types[!types.Int]
+  argument :is_published, types.Boolean
 
   # return type from the mutation
   type Types::ArticleType
@@ -33,6 +34,7 @@ class Resolvers::UpdateArticle < Resolvers::MutationFunction
       @article.created_at = args["created_at"] if args["created_at"]
       @article.volume = args["volume"] if args["volume"]
       @article.issue = args["issue"] if args["issue"]
+      @article.is_published = args["is_published"] if args["is_published"]
 
       if args["outquotes"]
         @article.outquotes.clear

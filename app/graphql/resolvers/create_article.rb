@@ -10,6 +10,7 @@ class Resolvers::CreateArticle < Resolvers::MutationFunction
   argument :volume, !types.Int
   argument :issue, !types.Int
   argument :contributors, !types[!types.Int]
+  argument :is_published, types.Boolean
 
   # return type from the mutation
   type Types::ArticleType
@@ -31,7 +32,7 @@ class Resolvers::CreateArticle < Resolvers::MutationFunction
         issue: args["issue"],
         summary: args["summary"],
         created_at: args["created_at"],
-        is_published: true
+        is_published: args["is_published"] || true
       )
       args["contributors"].each do |id|
         @article.authorships.build(user_id: id)

@@ -6,7 +6,7 @@ class Resolvers::ArticleQueryFunction < GraphQL::Function
             return nil
         end
         
-        return articles.select do |a| !a.nil? && a.is_published end
+        return articles.where(is_published: true)
     end
 
 end

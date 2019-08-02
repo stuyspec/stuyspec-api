@@ -17,9 +17,7 @@ class Resolvers::GetLatestArticles < Resolvers::ArticleQueryFunction
 
     articles = articles.offset(args['offset']) if args['offset']
     articles = articles.limit(args['limit']) if args['limit']
-
-    articles = select_published(articles)
     
-    return articles
+    return articles.published
   end
 end

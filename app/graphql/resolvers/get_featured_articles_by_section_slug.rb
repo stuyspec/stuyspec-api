@@ -10,24 +10,23 @@ class Resolvers::GetFeaturedArticlesBySectionSlug < Resolvers::ArticleQueryFunct
   # _ctx - is the GraphQL context (which would be discussed later)
   def call(_obj, args, _ctx)
     primary_article =
-    select_published(
       Article
         .joins('JOIN media ON articles.id = media.article_id')
         .joins('JOIN sections ON articles.section_id = sections.id')
         .where("sections.slug = '#{args['section_slug']}'")
         .order("articles.rank + 3 * sections.rank + 12 * articles.issue"\
                " + 192 * articles.volume DESC")
-    ).first
+        .published
+        .first
 
     primary_article_id = if primary_article.nil? then -1 else primary_article.id end
     secondary_articles =
-    select_published(
       Article
         .joins('JOIN sections ON articles.section_id = sections.id')
         .where("sections.slug = '#{args['section_slug']}' AND articles.id != #{primary_article_id}")
         .order("articles.rank + 3 * sections.rank + 12 * articles.issue"\
                " + 192 * articles.volume DESC")
-    )
+        .published
 
     if primary_article.nil?
       return secondary_articles.first(3)

@@ -20,7 +20,7 @@ class Resolvers::UpdateArticle < Resolvers::MutationFunction
   # args - are the arguments passed
   # _ctx - is the GraphQL context (which would be discussed later)
   def call(_obj, args, ctx)
-    if !admin_is_valid(ctx)
+    if !Authentication::admin_is_valid(ctx)
       return GraphQL::ExecutionError.new("Invalid user token. Please log in.")
     end
     @article = Article.find(args["id"])
@@ -53,7 +53,7 @@ class Resolvers::UpdateArticle < Resolvers::MutationFunction
           u.roles << Role.first unless u.nil? || u.roles.include?(Role.first)
         end
       end
-      generate_new_header(ctx) if @article.save
+      Authentication::generate_new_header(ctx) if @article.save
     end
     return @article
   end

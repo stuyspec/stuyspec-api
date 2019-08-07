@@ -54,5 +54,13 @@ class Article < ApplicationRecord
 
     return preview
   end
+
+  def self.published
+    return where(is_published: true)
+  end
+
+  def self.unpublished
+    return where(is_published: false)
+  end
    
 end

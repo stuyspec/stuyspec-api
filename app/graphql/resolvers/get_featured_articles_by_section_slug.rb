@@ -1,4 +1,4 @@
-class Resolvers::GetFeaturedArticlesBySectionSlug < GraphQL::Function
+class Resolvers::GetFeaturedArticlesBySectionSlug < Resolvers::ArticleQueryFunction
 
   argument :section_slug, !types.String
   # return type from the mutation
@@ -16,6 +16,7 @@ class Resolvers::GetFeaturedArticlesBySectionSlug < GraphQL::Function
         .where("sections.slug = '#{args['section_slug']}'")
         .order("articles.rank + 3 * sections.rank + 12 * articles.issue"\
                " + 192 * articles.volume DESC")
+        .published
         .first
 
     primary_article_id = if primary_article.nil? then -1 else primary_article.id end
@@ -25,6 +26,7 @@ class Resolvers::GetFeaturedArticlesBySectionSlug < GraphQL::Function
         .where("sections.slug = '#{args['section_slug']}' AND articles.id != #{primary_article_id}")
         .order("articles.rank + 3 * sections.rank + 12 * articles.issue"\
                " + 192 * articles.volume DESC")
+        .published
 
     if primary_article.nil?
       return secondary_articles.first(3)

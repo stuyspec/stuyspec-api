@@ -13,7 +13,7 @@ class Resolvers::CreateSection < Resolvers::MutationFunction
   # args - are the arguments passed
   # _ctx - is the GraphQL context (which would be discussed later)
   def call(_obj, args, ctx)
-    if !admin_is_valid(ctx)
+    if !Authentication::admin_is_valid(ctx)
       return GraphQL::ExecutionError.new("Invalid user token. Please log in.")
     end
     if args["parent_id"]
@@ -23,14 +23,14 @@ class Resolvers::CreateSection < Resolvers::MutationFunction
         description: args["description"],
         rank: args["rank"]
       )
-      generate_new_header(ctx) if section.save
+      Authentication::generate_new_header(ctx) if section.save
     else
       section = Section.create(
         name: args["name"],
         description: args["description"],
         rank: args["rank"]
       )
-      generate_new_header(ctx) if section
+      Authentication::generate_new_header(ctx) if section
     end
   end
 end

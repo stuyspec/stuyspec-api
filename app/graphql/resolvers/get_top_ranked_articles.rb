@@ -1,4 +1,4 @@
-class Resolvers::GetTopRankedArticles < GraphQL::Function
+class Resolvers::GetTopRankedArticles < Resolvers::ArticleQueryFunction
 
   argument :section_id, types.ID
   argument :section_slug, types.String
@@ -12,7 +12,7 @@ class Resolvers::GetTopRankedArticles < GraphQL::Function
   # _args - are the arguments passed
   # _ctx - is the GraphQL context (which would be discussed later)
   def call(_obj, args, _ctx)
-    articles = Article.order_by_rank # joins Sections as well
+    articles = Article.order_by_rank.published # joins Sections as well
 
     articles = articles.where(section_id: args["section_id"]) if args["section_id"]
 
@@ -33,6 +33,7 @@ class Resolvers::GetTopRankedArticles < GraphQL::Function
     end
 
     articles = articles.limit(args["limit"]) if args["limit"]
+    articles = articles
 
     return articles
   end

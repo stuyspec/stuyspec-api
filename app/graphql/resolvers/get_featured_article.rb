@@ -1,4 +1,4 @@
-class Resolvers::GetFeaturedArticle < GraphQL::Function
+class Resolvers::GetFeaturedArticle < Resolvers::ArticleQueryFunction
 
   # return type from the mutation
   type Types::ArticleType
@@ -9,11 +9,13 @@ class Resolvers::GetFeaturedArticle < GraphQL::Function
   # _ctx - is the GraphQL context (which would be discussed later)
   def call(_obj, _args, _ctx)
 
-    Article
+    articles = Article
       .order_by_rank # already JOINS on Section
       .where("sections.name != 'News'")
       .joins(:media)
-      .first
+      .published
+
+    return articles.first
 
   end
 end

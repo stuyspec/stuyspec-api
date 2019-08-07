@@ -10,6 +10,7 @@ class Resolvers::CreateArticle < Resolvers::MutationFunction
   argument :volume, !types.Int
   argument :issue, !types.Int
   argument :contributors, !types[!types.Int]
+  argument :is_published, types.Boolean
 
   # return type from the mutation
   type Types::ArticleType
@@ -19,7 +20,7 @@ class Resolvers::CreateArticle < Resolvers::MutationFunction
   # args - are the arguments passed
   # _ctx - is the GraphQL context (which would be discussed later)
   def call(_obj, args, ctx)
-    if !admin_is_valid(ctx)
+    if !Authentication::admin_is_valid(ctx)
       return GraphQL::ExecutionError.new("Invalid user token. Please log in.")
     end
     ActiveRecord::Base.transaction do
@@ -31,6 +32,7 @@ class Resolvers::CreateArticle < Resolvers::MutationFunction
         issue: args["issue"],
         summary: args["summary"],
         created_at: args["created_at"],
+        is_published: args["is_published"] || true
       )
       args["contributors"].each do |id|
         @article.authorships.build(user_id: id)
@@ -44,7 +46,7 @@ class Resolvers::CreateArticle < Resolvers::MutationFunction
           @article.outquotes.build(text: text)
         end
       end
-      generate_new_header(ctx) if @article.save
+      Authentication::(ctx) if @article.save
     end
     return @article
   end

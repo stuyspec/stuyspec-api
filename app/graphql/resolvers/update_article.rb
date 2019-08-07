@@ -10,6 +10,7 @@ class Resolvers::UpdateArticle < Resolvers::MutationFunction
   argument :volume, types.Int
   argument :issue, types.Int
   argument :contributors, types[!types.Int]
+  argument :is_published, types.Boolean
 
   # return type from the mutation
   type Types::ArticleType
@@ -19,7 +20,7 @@ class Resolvers::UpdateArticle < Resolvers::MutationFunction
   # args - are the arguments passed
   # _ctx - is the GraphQL context (which would be discussed later)
   def call(_obj, args, ctx)
-    if !admin_is_valid(ctx)
+    if !Authentication::admin_is_valid(ctx)
       return GraphQL::ExecutionError.new("Invalid user token. Please log in.")
     end
     @article = Article.find(args["id"])
@@ -33,6 +34,7 @@ class Resolvers::UpdateArticle < Resolvers::MutationFunction
       @article.created_at = args["created_at"] if args["created_at"]
       @article.volume = args["volume"] if args["volume"]
       @article.issue = args["issue"] if args["issue"]
+      @article.is_published = args["is_published"] if args["is_published"]
 
       if args["outquotes"]
         @article.outquotes.clear
@@ -51,7 +53,7 @@ class Resolvers::UpdateArticle < Resolvers::MutationFunction
           u.roles << Role.first unless u.nil? || u.roles.include?(Role.first)
         end
       end
-      generate_new_header(ctx) if @article.save
+      Authentication::generate_new_header(ctx) if @article.save
     end
     return @article
   end

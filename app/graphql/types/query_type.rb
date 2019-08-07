@@ -11,7 +11,7 @@ Types::QueryType = GraphQL::ObjectType.define do
     type !types[Types::ArticleType]
     argument :section_id, !types.ID
     resolve -> (obj, args, ctx) {
-      Article.where(section_id: args["section_id"])
+      Resolvers::ArticleQueryFunction(Article.where(section_id: args["section_id"]))
     }
   end
 
@@ -39,7 +39,8 @@ Types::QueryType = GraphQL::ObjectType.define do
     type !types[Types::SearchDocumentType]
     argument :query, !types.String
     resolve -> (obj, args, ctx) {
-      PgSearch.multisearch(args["query"])
+      results = PgSearch.multisearch(args["query"])
+      results.select{ |r| !r.nil? || r.searchable.is_published }
     }
   end
   

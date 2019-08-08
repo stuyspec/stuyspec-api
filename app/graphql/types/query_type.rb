@@ -88,6 +88,8 @@ field :allUsersWithRoles, !types[Types::UserType] do
 
   field :latestArticles, function: Resolvers::GetLatestArticles.new
 
+  field :latestUnpublishedArticles, function: Resolvers::GetLatestUnpublishedArticles.new
+
   field :sectionBySlug do
     type Types::SectionType
     argument :slug, !types.String

@@ -33,7 +33,7 @@ class Resolvers::CreateArticle < Resolvers::MutationFunction
         issue: args["issue"],
         summary: args["summary"],
         created_at: args["created_at"],
-        is_published: args["is_published"] || true
+        is_published: !!args["is_published"]
       )
       args["contributors"].each do |id|
         @article.authorships.build(user_id: id)

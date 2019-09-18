@@ -52,7 +52,7 @@ Types::QueryType = GraphQL::ObjectType.define do
         return GraphQL::ExecutionError.new("Invalid user token. Please log in.")
       end
       results = PgSearch.multisearch(args["query"])
-      results.select{ |r| !r.nil? && !r.searchable.is_published) }
+      results.select{ |r| !r.nil? && !r.searchable.is_published }
     }
   end
   

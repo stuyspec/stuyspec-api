@@ -10,7 +10,8 @@ class Resolvers::CreateArticle < Resolvers::MutationFunction
   argument :volume, !types.Int
   argument :issue, !types.Int
   argument :contributors, !types[!types.Int]
-  argument :is_published, types.Boolean
+  argument :is_published, types.Boolean,
+  argument :media_ids: types[!types.Int]
 
   # return type from the mutation
   type Types::ArticleType
@@ -32,7 +33,7 @@ class Resolvers::CreateArticle < Resolvers::MutationFunction
         issue: args["issue"],
         summary: args["summary"],
         created_at: args["created_at"],
-        is_published: args["is_published"] || true
+        is_published: !!args["is_published"]
       )
       args["contributors"].each do |id|
         @article.authorships.build(user_id: id)
@@ -46,7 +47,14 @@ class Resolvers::CreateArticle < Resolvers::MutationFunction
           @article.outquotes.build(text: text)
         end
       end
-      Authentication::(ctx) if @article.save
+      
+      if args["media_ids"] then
+        args["media_ids"].each do |medium|
+          @medium = Medium.find_by(id: medium)
+          @medium.article = @article if @medium
+        end
+      end
+      Authentication::generate_new_header(ctx) if @article.save
     end
     return @article
   end

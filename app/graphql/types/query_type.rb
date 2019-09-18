@@ -43,6 +43,18 @@ Types::QueryType = GraphQL::ObjectType.define do
       results.select{ |r| !r.nil? || r.searchable.is_published }
     }
   end
+
+  field :searchUnpublishedArticles do
+    type !types[Types::SearchDocumentType]
+    argument :query, !types.String
+    resolve -> (obj, args, ctx) {
+      if !Authentication::admin_is_valid(ctx)
+        return GraphQL::ExecutionError.new("Invalid user token. Please log in.")
+      end
+      results = PgSearch.multisearch(args["query"])
+      results.select{ |r| !r.nil? && !r.searchable.is_published) }
+    }
+  end
   
   field :articleByID do
     type Types::ArticleType

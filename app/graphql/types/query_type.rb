@@ -48,7 +48,7 @@ Types::QueryType = GraphQL::ObjectType.define do
     type !types[Types::SearchDocumentType]
     argument :query, !types.String
     resolve -> (obj, args, ctx) {
-      if !Authentication::admin_is_valid(ctx)
+      if !Authentication::editor_is_valid(ctx)
         return GraphQL::ExecutionError.new("Invalid user token. Please log in.")
       end
       results = PgSearch.multisearch(args["query"])

@@ -23,7 +23,11 @@ class User < ApplicationRecord
     self.update(slug: slug)
   end
 
-  def is_admin?(token, client_id)
+  def is_editor?(token, client_id)
     self.valid_token?(token, client_id) && self.security_level > 0
+  end
+
+  def is_admin?(token, client_id)
+    self.valid_token?(token, client_id) && self.security_level > 1
   end
 end

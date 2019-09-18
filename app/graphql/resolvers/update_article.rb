@@ -10,8 +10,8 @@ class Resolvers::UpdateArticle < Resolvers::MutationFunction
   argument :volume, types.Int
   argument :issue, types.Int
   argument :contributors, types[!types.Int]
-  argument :is_published, types.Boolean,
-  argument :media_ids: types[!types.Int]
+  argument :is_published, types.Boolean
+  argument :media_ids, types[!types.Int]
 
   # return type from the mutation
   type Types::ArticleType

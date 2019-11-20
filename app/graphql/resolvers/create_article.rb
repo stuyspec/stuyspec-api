@@ -56,7 +56,7 @@ class Resolvers::CreateArticle < Resolvers::MutationFunction
       if args["media_ids"] then
         args["media_ids"].each do |medium|
           @medium = Medium.find_by(id: medium)
-          @medium.article = @article if @medium
+          @article.media << @medium if @medium
         end
       end
       Authentication::generate_new_header(ctx) if @article.save

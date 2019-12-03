@@ -40,7 +40,7 @@ Types::QueryType = GraphQL::ObjectType.define do
     argument :query, !types.String
     resolve -> (obj, args, ctx) {
       results = PgSearch.multisearch(args["query"])
-      results.select{ |r| !r.nil? || r.searchable.is_published }
+      results.select{ |r| !r.nil? && r.searchable.is_published }
     }
   end
 

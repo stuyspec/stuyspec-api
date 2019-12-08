@@ -18,7 +18,7 @@ class Resolvers::GetFeaturedArticlesBySectionSlug < Resolvers::ArticleQueryFunct
       Article
         .joins('JOIN media ON articles.id = media.article_id')
         .joins('JOIN sections ON articles.section_id = sections.id')
-        .where("sections.slug = ?", @section_slugs)
+        .where("sections.slug IN ?", @section_slugs)
         .order("articles.rank + 3 * sections.rank + 12 * articles.issue"\
                " + 192 * articles.volume DESC")
         .published
@@ -28,7 +28,7 @@ class Resolvers::GetFeaturedArticlesBySectionSlug < Resolvers::ArticleQueryFunct
     secondary_articles =
       Article
         .joins('JOIN sections ON articles.section_id = sections.id')
-        .where("sections.slug = ?' AND articles.id != ?", @section_slugs, primary_article_id)
+        .where("sections.slug IN ? AND articles.id != ?", @section_slugs, primary_article_id)
         .order("articles.rank + 3 * sections.rank + 12 * articles.issue"\
                " + 192 * articles.volume DESC")
         .published

@@ -24,7 +24,7 @@ class Resolvers::CreateMedium < Resolvers::MutationFunction
   # args - are the arguments passed
   # _ctx - is the GraphQL context (which would be discussed later)
   def call(_obj, args, ctx)
-    if !Authentication::admin_is_valid(ctx)
+    if !Authentication::editor_is_valid(ctx)
       return GraphQL::ExecutionError.new("Invalid user token. Please log in.")
     end
 

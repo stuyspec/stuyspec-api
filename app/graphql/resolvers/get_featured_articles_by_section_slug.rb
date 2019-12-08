@@ -9,7 +9,7 @@ class Resolvers::GetFeaturedArticlesBySectionSlug < Resolvers::ArticleQueryFunct
   # _args - are the arguments passed
   # _ctx - is the GraphQL context (which would be discussed later)
   def call(_obj, args, _ctx)
-    @section = Section.find(section_id)
+    @section = Section.find_by(slug: section_slug)
     return GraphQL::ExecutionError.new("No such section found") if !@section
 
     @section_slugs = [args['section_slug']].concat(@section.subsections.map { |s| s.slug })
@@ -28,7 +28,7 @@ class Resolvers::GetFeaturedArticlesBySectionSlug < Resolvers::ArticleQueryFunct
     secondary_articles =
       Article
         .joins('JOIN sections ON articles.section_id = sections.id')
-        .where("sections.slug = ?' AND articles.id != ?", @section_ids, primary_article_id)
+        .where("sections.slug = ?' AND articles.id != ?", @section_slugs, primary_article_id)
         .order("articles.rank + 3 * sections.rank + 12 * articles.issue"\
                " + 192 * articles.volume DESC")
         .published

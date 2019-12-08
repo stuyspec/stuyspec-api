@@ -9,7 +9,7 @@ class Resolvers::GetFeaturedArticlesBySectionSlug < Resolvers::ArticleQueryFunct
   # _args - are the arguments passed
   # _ctx - is the GraphQL context (which would be discussed later)
   def call(_obj, args, _ctx)
-    @section = Section.find_by(slug: section_slug)
+    @section = Section.find_by(slug: args['section_slug'])
     return GraphQL::ExecutionError.new("No such section found") if !@section
 
     @section_slugs = [args['section_slug']].concat(@section.subsections.map { |s| s.slug })

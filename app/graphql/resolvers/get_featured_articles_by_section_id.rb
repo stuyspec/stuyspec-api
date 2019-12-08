@@ -9,11 +9,16 @@ class Resolvers::GetFeaturedArticlesBySectionID < Resolvers::ArticleQueryFunctio
   # _args - are the arguments passed
   # _ctx - is the GraphQL context (which would be discussed later)
   def call(_obj, args, _ctx)
+    @section = Section.find(section_id)
+    return GraphQL::ExecutionError.new("No such section found") if !@section
+
+    @section_ids = [args['section_id']].concat(@section.subsections.map { |s| s.id })
+
     primary_article =
         Article
         .joins('JOIN media ON articles.id = media.article_id')
         .joins('JOIN sections ON articles.section_id = sections.id')
-        .where("sections.id = #{args['section_id']}")
+        .where("sections.id = ?", @section_ids)
         .order("articles.rank + 3 * sections.rank + 12 * articles.issue"\
                " + 192 * articles.volume DESC")
         .published
@@ -22,7 +27,7 @@ class Resolvers::GetFeaturedArticlesBySectionID < Resolvers::ArticleQueryFunctio
     secondary_articles =
       Article
         .joins('JOIN sections ON articles.section_id = sections.id')
-        .where("sections.id = #{args['section_id']} AND articles.id != #{primary_article.id}")
+        .where("sections.id = ? AND articles.id != ?", @section_ids, primary_article.id)
         .order("articles.rank + 3 * sections.rank + 12 * articles.issue"\
                " + 192 * articles.volume DESC")
         .published

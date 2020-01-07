@@ -1,9 +1,14 @@
 class Resolvers::CreateMedium < Resolvers::MutationFunction
 
   # arguments passed as "args"
+  # TODO: make is_featured mandatory
   argument :title, !types.String
   argument :article_id, types.Int
   argument :user_id, !types.Int
+  argument :is_featured do
+    type types.Boolean
+    description 'Whether the medium will be shown at the top of its article.'
+  end
   argument :caption, types.String
   argument :media_type, !types.String
   argument :attachment_b64, as: :attachment do
@@ -19,7 +24,7 @@ class Resolvers::CreateMedium < Resolvers::MutationFunction
   # args - are the arguments passed
   # _ctx - is the GraphQL context (which would be discussed later)
   def call(_obj, args, ctx)
-    if !Authentication::admin_is_valid(ctx)
+    if !Authentication::editor_is_valid(ctx)
       return GraphQL::ExecutionError.new("Invalid user token. Please log in.")
     end
 
@@ -47,6 +52,7 @@ class Resolvers::CreateMedium < Resolvers::MutationFunction
         title: args["title"],
         article_id: args["article_id"],
         profile_id: profile.id,
+        is_featured: args["is_featured"] || false,
         caption: args["caption"],
         media_type: args["media_type"],
         attachment: args["attachment"],

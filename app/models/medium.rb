@@ -1,5 +1,5 @@
 class Medium < ApplicationRecord
-  belongs_to :article
+  belongs_to :article, optional: true
   belongs_to :profile
   has_one :user, through: :profile
   has_attached_file :attachment,

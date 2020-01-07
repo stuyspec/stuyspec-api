@@ -40,7 +40,7 @@ Types::QueryType = GraphQL::ObjectType.define do
     argument :query, !types.String
     resolve -> (obj, args, ctx) {
       results = PgSearch.multisearch(args["query"])
-      results.select{ |r| !r.nil? || r.searchable.is_published }
+      results.select{ |r| !r.nil? && r.searchable.is_published }
     }
   end
 
@@ -48,11 +48,11 @@ Types::QueryType = GraphQL::ObjectType.define do
     type !types[Types::SearchDocumentType]
     argument :query, !types.String
     resolve -> (obj, args, ctx) {
-      if !Authentication::admin_is_valid(ctx)
+      if !Authentication::editor_is_valid(ctx)
         return GraphQL::ExecutionError.new("Invalid user token. Please log in.")
       end
       results = PgSearch.multisearch(args["query"])
-      results.select{ |r| !r.nil? && !r.searchable.is_published) }
+      results.select{ |r| !r.nil? && !(r.searchable.is_published) }
     }
   end
   
@@ -114,7 +114,7 @@ field :allUsersWithRoles, !types[Types::UserType] do
   field :topRankedArticles, function: Resolvers::GetTopRankedArticles.new
 
   field :featuredSections, !types[Types::SectionType] do
-    resolve -> (obj, args, ctx) { Section.where(parent_id: nil)}
+    resolve -> (obj, args, ctx) { Section.where(parent_id: nil).order("rank DESC") }
   end
 
   field :featuredArticlesBySectionSlug, function: Resolvers::GetFeaturedArticlesBySectionSlug.new

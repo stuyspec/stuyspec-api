@@ -5,7 +5,14 @@ Types::MediumType = GraphQL::ObjectType.define do
   field :profile, !Types::ProfileType
   field :user, !Types::UserType
   field :title, !types.String
-  field :media_type, !types.String
+  field :media_type do
+    type !types.String
+    description 'Currently supports "illustration" and "photo".'
+  end
+  field :is_featured do
+    type !types.Boolean
+    description 'Whether the medium will be shown at the top of its article.'
+  end
   field :caption, types.String
   field :article, Types::ArticleType
   field :attachment_url, !types.String

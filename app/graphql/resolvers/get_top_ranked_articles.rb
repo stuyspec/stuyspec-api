@@ -4,6 +4,7 @@ class Resolvers::GetTopRankedArticles < Resolvers::ArticleQueryFunction
   argument :section_slug, types.String
   argument :has_media, types.Boolean
   argument :limit, types.Int
+  argument :include_subsections, types.Boolean
   # return type from the mutation
   type types[Types::ArticleType]
 
@@ -14,15 +15,23 @@ class Resolvers::GetTopRankedArticles < Resolvers::ArticleQueryFunction
   def call(_obj, args, _ctx)
     articles = Article.order_by_rank.published # joins Sections as well
 
-    articles = articles.where(section_id: args["section_id"]) if args["section_id"]
-
-    if args["section_slug"]
-      section = Section.find_by(slug: args["section_slug"])
-      if section.nil?
-        return GraphQL::ExecutionError.new("Invalid section slug: #{args['section_slug']}")
+    if args['section_id'] || args['section_slug']
+      if args['section_id']
+        section = Section.find(args['section_id'])
       else
-        articles = articles.where(section_id: section.id)
+        section = Section.find_by(slug: args['section_slug'])
       end
+
+      return GraphQL::ExecutionError.new("Invalid section id or slug") if section.nil?
+
+      if args['include_subsections']
+        section_ids = section.subsections.map do |s| s.id end
+        section_ids << section.id
+      else
+        section_ids = section.id
+      end
+
+      articles = articles.where(section_id: section_ids)
     end
 
     if args["has_media"]
@@ -33,7 +42,6 @@ class Resolvers::GetTopRankedArticles < Resolvers::ArticleQueryFunction
     end
 
     articles = articles.limit(args["limit"]) if args["limit"]
-    articles = articles
 
     return articles
   end

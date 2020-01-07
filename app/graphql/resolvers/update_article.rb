@@ -36,7 +36,7 @@ class Resolvers::UpdateArticle < Resolvers::MutationFunction
       @article.title = args["title"] if args["title"]
       @article.section_id = args["section_id"] if args["section_id"]
       @article.content = args["content"] if args["content"]
-      @article.summary = args["summary"] if args["summary"]
+      @article.preview = args["summary"] if args["summary"]
       @article.created_at = args["created_at"] if args["created_at"]
       @article.volume = args["volume"] if args["volume"]
       @article.issue = args["issue"] if args["issue"]

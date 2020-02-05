@@ -21,7 +21,10 @@ Rails.application.configure do
 
   # Disable serving static files from the `/public` folder by default since
   # Apache or NGINX already handles this.
-  config.public_file_server.enabled = ENV['RAILS_SERVE_STATIC_FILES'].present?
+  #  config.public_file_server.enabled = ENV['RAILS_SERVE_STATIC_FILES'].present?
+
+  # serve public items for client-app and cms integration
+  config.serve_static_assets = true
 
 
   # Enable serving of images, stylesheets, and JavaScripts from an asset server.
@@ -58,18 +61,26 @@ Rails.application.configure do
   # Set this to true and configure the email server for immediate delivery to raise delivery errors.
   # config.action_mailer.raise_delivery_errors = false
 
-  config.action_mailer.default_url_options = { :host => 'api.stuyspec.xyz' }
+  config.action_mailer.default_url_options = { :host => 'api.stuyspec.com' }
+
   config.action_mailer.delivery_method = :smtp
   config.action_mailer.smtp_settings = {
-    address:              'mail.gandi.net',
-    port:                 587,
-    user_name:            ENV['STUY_SPEC_MAIL_USERNAME'],
-    domain:               'stuyspec.xyz',
-    password:             ENV['STUY_SPEC_MAIL_PASSWORD'],
-    authentication:       'login',
-    enable_starttls_auto: true
+	  :address => "smtp.gmail.com",
+	  :port => 587,
+	  :user_name => 'web@stuyspec.com',
+	  :password => ENV['EMAIL_PASSWORD'],
+          :authentication => 'plain',
+	  :enable_starttls_auto => true
   }
-  config.mailer_sender = "info@stuyspec.xyz"
+
+  config.paperclip_defaults = {
+    :storage => :s3,
+    :s3_region => "us-east-1",
+    :url => ":s3_domain_url",
+    :s3_endpoint => 's3-us-east-1.amazonaws.com',
+    :bucket => 'stuyspec-images',
+    :s3_protocol => "https"
+  }
 
   # Enable locale fallbacks for I18n (makes lookups for any locale fall back to
   # the I18n.default_locale when a translation cannot be found).
@@ -93,10 +104,4 @@ Rails.application.configure do
 
   # Do not dump schema after migrations.
   config.active_record.dump_schema_after_migration = false
-
-  config.paperclip_defaults = {
-    :storage => :s3,
-    :s3_host_name => 's3-website-us-east-1.amazonaws.com',
-    :bucket => 'stuy-spec-media'
-  }
 end

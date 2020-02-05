@@ -26,8 +26,7 @@ Rails.application.configure do
     config.cache_store = :null_store
   end
 
-  # Don't care if the mailer can't send.
-  config.action_mailer.raise_delivery_errors = false
+  config.action_mailer.raise_delivery_errors = true
 
   config.action_mailer.perform_caching = false
 
@@ -37,14 +36,28 @@ Rails.application.configure do
   # Raise an error on page load if there are pending migrations.
   config.active_record.migration_error = :page_load
 
-  config.action_mailer.default_url_options = { :host => 'localhost' }
+ # config.action_mailer.default_url_options = {
+ #    :host => 'localhost:3000'
+ #  }
+ #  config.action_mailer.delivery_method = :smtp
+ #  config.action_mailer.smtp_settings = {
+ #    :address => "localhost", :port => 1025
+ #  }
+ 
+  config.action_mailer.default_url_options = { :host => 'localhost:3000'}
   config.action_mailer.delivery_method = :smtp
-  config.action_mailer.smtp_settings = { :address => "localhost", :port => 1025 }
+  config.action_mailer.smtp_settings = {:address => "localhost", :port => 1025}
   config.paperclip_defaults = {
     :storage => :s3,
     :s3_region => "us-east-1",
-    :s3_host_name => 's3-website-us-east-1.amazonaws.com',
-    :bucket => 'stuy-spec-media'
+    :url => ":s3_domain_url",
+    :s3_endpoint => 's3-us-east-1.amazonaws.com',
+    :s3_protocol => "https",
+
+    # A DEV_PAPERCLIP_BUCKET variable can be used to specify the production 
+    # image bucket (stuyspec-images). This is useful for getting the correct
+    # URLs on images dumped from prod DB.
+    :bucket => ENV['DEV_PAPERCLIP_BUCKET'].presence || 'stuyspec-media-testing',
   }
   # Raises error for missing translations
   # config.action_view.raise_on_missing_translations = true
@@ -52,4 +65,7 @@ Rails.application.configure do
   # Use an evented file watcher to asynchronously detect changes in source code,
   # routes, locales, etc. This feature depends on the listen gem.
   config.file_watcher = ActiveSupport::EventedFileUpdateChecker
+
+  # For local subdomain support
+  config.action_dispatch.tld_length = 0
 end

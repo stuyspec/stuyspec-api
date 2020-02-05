@@ -1,0 +1,11 @@
+# These variables override Devise's default copy. Defaults:
+# - https://github.com/plataformatec/devise/blob/master/config/locales/en.yml
+# - https://github.com/lynndylanhurley/devise_token_auth/blob/123cfb730ebaf4e2acc124edd39e68816cb0b8cf/config/locales/en.yml
+
+en:
+  devise:
+    mailer:
+      confirmation_instructions:
+        subject: "The Spectator Web Department: Confirmation Instructions"
+        confirm_link_msg: "You are receiving this e-mail either because you registered on our website or your first creations have just been added to the website."
+        confirm_account_link: "Confirm your account"

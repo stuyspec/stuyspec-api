@@ -1,29 +1,48 @@
 Rails.application.routes.draw do
-  resources :user_roles
-  resources :roles do
-    resources :user_roles
-  end
-  resources :comments do
-    resources :replies
-  end
-  resources :replies
-  resources :media
-  resources :authorships
-  mount_devise_token_auth_for 'User', at: 'auth'
-  resources :users do
-    resources :replies
-    resources :comments
-    resources :user_roles
-  end
-  resources :sections do
-    resources :articles do
-      resources :media
+  constraints(subdomain: "api") do
+    post "/graphql", to: "graphql#execute"
+    resources :outquotes
+    resources :sections
+    resources :articles
+    resources :profiles
+    resources :subscribers
+    resources :roles do
+      resources :profiles
     end
-  end
-  resources :articles do
-    resources :authorships
-    resources :media
     resources :comments
+    resources :media
+    resources :authorships
+    mount_devise_token_auth_for 'User', at: 'auth'
+    resources :users do
+      resources :comments
+      resources :profiles
+    end
+    resources :sections do
+      resources :articles do
+        resources :media
+      end
+    end
+    resources :articles do
+      resources :outquotes
+      resources :authorships
+      resources :media
+      resources :comments
+    end
+
+    get '/init', to: 'initial#index'
+    get '/', to: 'initial#welcome'
+    # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
   end
-  # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
+
+  constraints lambda { |request| request.subdomain == "www" or request.subdomain == "" } do
+    get '/:section/:slug', to: 'client_app#index'
+    get '/*all', to: 'client_app#index'
+    get '/', to: 'client_app#index' 
+  end
+
+   constraints(subdomain: "cms") do
+    get '/', to: 'cms#index'
+    get '/*all', to: 'cms#index'
+  end
+
 end

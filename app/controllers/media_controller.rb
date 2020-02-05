@@ -1,11 +1,18 @@
 class MediaController < ApplicationController
+  # before_action :authenticate_user!, only: [:create, :update, :destroy]
+  # before_action :authenticate_admin!, only: [:create, :update, :destroy]
   before_action :set_medium, only: [:show, :update, :destroy]
+
 
   # GET /media
   def index
     @media = Medium.all
 
-    render json: @media
+    render json: @media.to_json(methods: [
+                                  :attachment_url,
+                                  :medium_attachment_url,
+                                  :thumb_attachment_url
+                                ])
   end
 
   # GET /media/1
@@ -65,7 +72,7 @@ class MediaController < ApplicationController
         :title,
         :caption,
         :is_featured,
-        :type,
+        :media_type,
         :attachment
       )
     end

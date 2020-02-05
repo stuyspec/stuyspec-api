@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170906132304) do
+ActiveRecord::Schema.define(version: 20180215150806) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -21,12 +21,13 @@ ActiveRecord::Schema.define(version: 20170906132304) do
     t.text "content"
     t.integer "volume"
     t.integer "issue"
-    t.boolean "is_published"
+    t.boolean "is_published", default: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.bigint "section_id"
     t.integer "rank", default: 1
     t.string "summary"
+    t.string "preview"
     t.index ["section_id"], name: "index_articles_on_section_id"
   end
 
@@ -45,7 +46,7 @@ ActiveRecord::Schema.define(version: 20170906132304) do
     t.text "content"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.string "published_at"
+    t.datetime "published_at"
   end
 
   create_table "friendly_id_slugs", force: :cascade do |t|
@@ -61,27 +62,41 @@ ActiveRecord::Schema.define(version: 20170906132304) do
   end
 
   create_table "media", force: :cascade do |t|
-    t.bigint "user_id"
     t.bigint "article_id"
     t.string "url"
     t.string "title"
     t.text "caption"
     t.boolean "is_featured"
-    t.string "type"
+    t.string "media_type"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "attachment_file_name"
     t.string "attachment_content_type"
     t.integer "attachment_file_size"
     t.datetime "attachment_updated_at"
+    t.bigint "profile_id"
     t.index ["article_id"], name: "index_media_on_article_id"
-    t.index ["user_id"], name: "index_media_on_user_id"
   end
 
-  create_table "replies", force: :cascade do |t|
-    t.integer "comment_id"
-    t.integer "user_id"
+  create_table "outquotes", force: :cascade do |t|
+    t.integer "article_id"
+    t.text "text"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "pg_search_documents", force: :cascade do |t|
     t.text "content"
+    t.string "searchable_type"
+    t.bigint "searchable_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["searchable_type", "searchable_id"], name: "index_pg_search_documents_on_searchable_type_and_searchable_id"
+  end
+
+  create_table "profiles", force: :cascade do |t|
+    t.integer "user_id"
+    t.integer "role_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -101,13 +116,15 @@ ActiveRecord::Schema.define(version: 20170906132304) do
     t.datetime "updated_at", null: false
     t.integer "parent_id"
     t.integer "rank", default: 1
+    t.boolean "is_visible"
+    t.string "permalink"
   end
 
-  create_table "user_roles", force: :cascade do |t|
-    t.integer "user_id"
-    t.integer "role_id"
+  create_table "subscribers", force: :cascade do |t|
+    t.string "email"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["email"], name: "index_subscribers_on_email", unique: true
   end
 
   create_table "users", force: :cascade do |t|
@@ -127,7 +144,6 @@ ActiveRecord::Schema.define(version: 20170906132304) do
     t.datetime "confirmation_sent_at"
     t.string "unconfirmed_email"
     t.string "first_name"
-    t.string "username"
     t.string "image"
     t.string "email"
     t.json "tokens"
@@ -141,6 +157,7 @@ ActiveRecord::Schema.define(version: 20170906132304) do
     t.string "profile_content_type"
     t.integer "profile_file_size"
     t.datetime "profile_updated_at"
+    t.integer "security_level", default: 0
     t.index ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true

@@ -1,9 +1,14 @@
 class SectionsController < ApplicationController
+  before_action :authenticate_user!, only: [:create, :update, :destroy]
+  before_action :authenticate_admin!, only: [:create, :update, :destroy]
   before_action :set_section, only: [:show, :update, :destroy]
 
   # GET /sections
   def index
-    @sections = Section.all
+    @sections = Section.where("is_visible = true")
+    if params[:include_invisible]
+      @sections = Section.all
+    end
 
     render json: @sections
   end

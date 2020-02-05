@@ -3,3 +3,4 @@ class RenameNicknameToUsername < ActiveRecord::Migration[5.1]
     rename_column :users, :nickname, :username
   end
 end
+

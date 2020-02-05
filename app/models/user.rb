@@ -36,7 +36,8 @@ class User < ApplicationRecord
 
   def is_admin?(token, client_id)
     self.valid_token?(token, client_id) && self.security_level > 1
-  
+  end
+
   def profile_url
     profile.url
   end

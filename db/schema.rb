@@ -153,11 +153,11 @@ ActiveRecord::Schema.define(version: 20180215150806) do
     t.string "last_name"
     t.string "slug"
     t.string "description"
+    t.integer "security_level", default: 0
     t.string "profile_file_name"
     t.string "profile_content_type"
     t.integer "profile_file_size"
     t.datetime "profile_updated_at"
-    t.integer "security_level", default: 0
     t.index ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true

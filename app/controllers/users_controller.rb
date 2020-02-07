@@ -22,7 +22,12 @@ class UsersController < ApplicationController
     @user = User.new(user_params)
 
     if @user.save
-      render json: @user, status: :created, location: @user
+      render json: @user.to_json(
+             :only => [:id, :username, :first_name, :last_name],
+             :methods => [:profile_url,
+                          :medium_profile_url,
+                          :thumb_profile_url]
+      ), status: :created, location: @user
     else
       render json: @user.errors, status: :unprocessable_entity
     end

@@ -13,11 +13,11 @@ class User < ApplicationRecord
   has_many :media, through: :profiles
   after_create :init
 
-  has_attached_file :profile,
+  has_attached_file :profile_picture,
                     storage: :s3,
                     styles: { medium: "300x300>", thumb: "100x100>" },
                     default_url: "/images/:style/missing.png"
-  validates_attachment :profile,
+  validates_attachment :profile_picture,
                        content_type: { content_type: ["image/jpeg", "image/gif", "image/png"] }
   def init
     self.update(security_level: 0)
@@ -39,14 +39,14 @@ class User < ApplicationRecord
   end
 
   def profile_url
-    profile.url
+    profile_picture.url
   end
 
   def medium_profile_url
-    profile.url :medium
+    profile_picture.url :medium
   end
 
   def thumb_profile_url
-    profile.url :thumb
+    profile_picture.url :thumb
   end
 end

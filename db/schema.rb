@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20200207211221) do
+ActiveRecord::Schema.define(version: 20200209144504) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -154,10 +154,6 @@ ActiveRecord::Schema.define(version: 20200207211221) do
     t.string "slug"
     t.string "description"
     t.integer "security_level", default: 0
-    t.string "profile_file_name"
-    t.string "profile_content_type"
-    t.integer "profile_file_size"
-    t.datetime "profile_updated_at"
     t.string "profile_picture_file_name"
     t.string "profile_picture_content_type"
     t.integer "profile_picture_file_size"

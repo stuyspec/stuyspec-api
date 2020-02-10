@@ -56,6 +56,18 @@ Types::QueryType = GraphQL::ObjectType.define do
     }
   end
   
+  field :userByFirstName do
+    type Types::UserType
+    argument :first_name, !types.String
+    description "Find user by first name"
+    resolve -> (obj, args, ctx) {
+      if !Authentication::editor_is_valid(ctx)
+        return GraphQL::ExecutionError.new("Invalid user token. Please log in.")
+      end
+      User.find_by(first_name: args["first_name"])
+    }
+  end
+    
   field :articleByID do
     type Types::ArticleType
     argument :id, !types.ID
@@ -93,7 +105,7 @@ Types::QueryType = GraphQL::ObjectType.define do
       User.find_by(first_name: args["first_name"], last_name: args["last_name"])
     }
   end
-
+  
 field :allUsersWithRoles, !types[Types::UserType] do
     resolve -> (obj, args, ctx) { User.all.select do |user| user.roles.any? end }
   end

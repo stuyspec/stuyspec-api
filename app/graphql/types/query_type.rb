@@ -56,8 +56,8 @@ Types::QueryType = GraphQL::ObjectType.define do
     }
   end
   
-  field :searchUserBySlug do
-    type Types::UserType
+  field :searchUsers do
+    type !types[Types::UserType]
     argument :query, !types.String
     description "Find users by slug"
     resolve -> (obj, args, ctx) {
@@ -65,6 +65,7 @@ Types::QueryType = GraphQL::ObjectType.define do
         return GraphQL::ExecutionError.new("Invalid user token. Please log in.")
       end
       results = PgSearch.multisearch(args["query"])
+      results.map{|r| r.searchable if r.searchable_type == 'User'}.compact
     }
   end
     

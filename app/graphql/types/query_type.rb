@@ -56,15 +56,15 @@ Types::QueryType = GraphQL::ObjectType.define do
     }
   end
   
-  field :userByFirstName do
+  field :searchUserBySlug do
     type Types::UserType
-    argument :first_name, !types.String
-    description "Find user by first name"
+    argument :query, !types.String
+    description "Find users by slug"
     resolve -> (obj, args, ctx) {
       if !Authentication::editor_is_valid(ctx)
         return GraphQL::ExecutionError.new("Invalid user token. Please log in.")
       end
-      User.find_by(first_name: args["first_name"])
+      results = PgSearch.multisearch(args["query"])
     }
   end
     

@@ -11,9 +11,7 @@ class UsersController < ApplicationController
   def show
     render json: @user.to_json(
              :only => [:id, :username, :first_name, :last_name],
-             :methods => [:profile_url,
-                          :medium_profile_url,
-                          :thumb_profile_url]
+             :methods => [:profile_url]
            )
   end
 
@@ -24,9 +22,7 @@ class UsersController < ApplicationController
     if @user.save
       render json: @user.to_json(
              :only => [:id, :username, :first_name, :last_name],
-             :methods => [:profile_url,
-                          :medium_profile_url,
-                          :thumb_profile_url]
+             :methods => [:profile_url]
       ), status: :created, location: @user
     else
       render json: @user.errors, status: :unprocessable_entity

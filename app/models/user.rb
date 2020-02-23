@@ -5,6 +5,9 @@ class User < ApplicationRecord
          :validatable, :omniauthable, :confirmable
   include DeviseTokenAuth::Concerns::User
 
+  include PgSearch
+  multisearchable against: :slug
+
   has_many :authorships
   has_many :articles, through: :authorships, dependent: :destroy
   has_many :comments, dependent: :destroy
@@ -40,13 +43,5 @@ class User < ApplicationRecord
 
   def profile_url
     profile_picture.url
-  end
-
-  def medium_profile_url
-    profile_picture.url :medium
-  end
-
-  def thumb_profile_url
-    profile_picture.url :thumb
   end
 end

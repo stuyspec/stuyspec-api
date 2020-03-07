@@ -1,6 +1,7 @@
 class Resolvers::UpdateUser < Resolvers::MutationFunction
   # arguments passed as "args"
-  argument :first_name, !types.String
+  argument :id, !types.ID
+  argument :first_name, types.String
   argument :last_name, types.String
   argument :email, types.String
   argument :profile_picture, as: :attatchment do
@@ -20,21 +21,19 @@ class Resolvers::UpdateUser < Resolvers::MutationFunction
       return GraphQL::ExecutionError.new("Invalid user token. Please log in.")
     end
     
-    @user = Article.find(first_name: args["first_name"])
+    @user = User.find(args["id"])
 
     # Transaction so that we don't update a malformed article
     User.transaction do
-      media_type = args["media_type"]
-
       @user.first_name = args["first_name"] if args["first_name"]
       @user.last_name = args["last_name"] if args["last_name"]
       @user.email = args["email"] if args["email"]
       @user.profile_picture = args["profile_picture"] if args["profile_picture"]
-
+      if args["first_name"] or args["last_name"]
+        @user.slug = args["first_name"].downcase + "_" + args["last_name"].downcase
       end
-
       Authentication::generate_new_header(ctx) if @user.save!
-  end
-
+    end
     return @user
+  end
 end

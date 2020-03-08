@@ -4,7 +4,7 @@ class Resolvers::UpdateUser < Resolvers::MutationFunction
   argument :first_name, types.String
   argument :last_name, types.String
   argument :email, types.String
-  argument :profile_picture, as: :attatchment do
+  argument :profile_picture_b64, as: :attatchment do
       type types.String
       description 'The base64 encoded bersion of the attatchment to upload.'
   end
@@ -30,7 +30,7 @@ class Resolvers::UpdateUser < Resolvers::MutationFunction
       @user.email = args["email"] if args["email"]
       @user.profile_picture = args["profile_picture"] if args["profile_picture"]
       if args["first_name"] or args["last_name"]
-        @user.slug = args["first_name"].downcase + "_" + args["last_name"].downcase
+        @user.slug = args["first_name"].downcase + "-" + args["last_name"].downcase
       end
       Authentication::generate_new_header(ctx) if @user.save!
     end

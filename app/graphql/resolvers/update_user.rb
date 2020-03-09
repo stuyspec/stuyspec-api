@@ -4,7 +4,8 @@ class Resolvers::UpdateUser < Resolvers::MutationFunction
   argument :first_name, types.String
   argument :last_name, types.String
   argument :email, types.String
-  argument :profile_picture_b64, as: :attatchment do
+  argument :role, types.String
+  argument :profile_picture_b64, as: :attachment do
       type types.String
       description 'The base64 encoded bersion of the attatchment to upload.'
   end
@@ -28,9 +29,21 @@ class Resolvers::UpdateUser < Resolvers::MutationFunction
       @user.first_name = args["first_name"] if args["first_name"]
       @user.last_name = args["last_name"] if args["last_name"]
       @user.email = args["email"] if args["email"]
-      @user.profile_picture = args["profile_picture"] if args["profile_picture"]
+      @user.profile_picture = args["attachment"] if args["attachment"]
       if args["first_name"] or args["last_name"]
-        @user.slug = args["first_name"].downcase + "-" + args["last_name"].downcase
+        save = "-" + @user.slug.split("-")[-1]
+        @user.slug = args["first_name"].downcase + "-" + args["last_name"].downcase + save
+      end
+      if args["role"]
+        if args["role"] == "Contributor" && !@user.roles.any? {|h| h.id == 1 }
+          @user.roles << Role.first
+        end
+        if args["role"] == "Illustrator" && !@user.roles.any? {|h| h.id == 2 }
+          @user.roles << Role.second
+        end
+        if args["role"] == "Photographer" && !@user.roles.any? {|h| h.id == 3 }
+          @user.roles << Role.third
+        end
       end
       Authentication::generate_new_header(ctx) if @user.save!
     end

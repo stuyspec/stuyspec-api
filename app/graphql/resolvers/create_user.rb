@@ -5,7 +5,8 @@ class Resolvers::CreateUser < Resolvers::MutationFunction
   argument :email, !types.String
   argument :password, !types.String
   argument :password_confirmation, !types.String
-  argument :profile_picture, as: :attachment do
+  argument :role, !types.String
+  argument :profile_picture_b64, as: :attachment do
       type types.String
       description 'The base64 encoded version of the profile picture.'
   end
@@ -31,8 +32,18 @@ class Resolvers::CreateUser < Resolvers::MutationFunction
       password: args[:password],
       password_confirmation: args[:password_confirmation],
       created_at: Time.now,
-      profile_picture: args["attatchment"] || nil,
+      profile_picture: args["attachment"] || nil,
     )
+    if args["role"] == "Contributor"
+      @new_user.roles << Role.first
+    end
+    if args["role"] == "Illustrator"
+      @new_user.roles << Role.second
+    end
+    if args["role"] == "Photographer"
+      @new_user.roles << Role.third
+    end
+
     Authentication::generate_new_header(ctx) if @new_user.save!
     return @new_user
   end

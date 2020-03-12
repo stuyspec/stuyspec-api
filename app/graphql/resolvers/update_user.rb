@@ -32,6 +32,7 @@ class Resolvers::UpdateUser < Resolvers::MutationFunction
       @user.profile_picture = args["attachment"] if args["attachment"]
       if args["first_name"] or args["last_name"]
         save = "-" + @user.slug.split("-")[-1]
+        save = "" if save =~ /\d/ else save
         @user.slug = args["first_name"].downcase + "-" + args["last_name"].downcase + save
       end
       if args["role"]

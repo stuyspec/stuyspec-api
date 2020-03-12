@@ -8,4 +8,5 @@ Types::MutationType = GraphQL::ObjectType.define do
   field :createSection, function: Resolvers::CreateSection.new
   field :deleteArticle, function: Resolvers::DeleteArticle.new
   field :deleteSection, function: Resolvers::DeleteSection.new
+  field :updateUser, function: Resolvers::UpdateUser.new
 end

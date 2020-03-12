@@ -7,6 +7,11 @@ class InitialController < ApplicationController
                                 thumb_attachment_url: medium.thumb_attachment_url
                               })
     end
+    users_with_urls = User.all.map do |user|
+      user.attributes.merge({
+                                profile_url: user.profile_url,
+                            })
+    end
     render json: {
       :articles => Article
                      .joins("LEFT JOIN sections ON articles.section_id = sections.id")

@@ -1,9 +1,9 @@
 class Resolvers::UpdateUser < Resolvers::MutationFunction
   # arguments passed as "args"
   argument :id, !types.ID
-  argument :first_name, types.String
-  argument :last_name, types.String
-  argument :email, types.String
+  argument :first_name, types.String!
+  argument :last_name, types.String!
+  argument :email, types.String!
   argument :role, types.String
   argument :profile_picture_b64, as: :attachment do
       type types.String
@@ -23,6 +23,9 @@ class Resolvers::UpdateUser < Resolvers::MutationFunction
     end
     
     @user = User.find(args["id"])
+    if @user == nil
+      return GraphQL::ExecutionError.new("Invalid user. Please check the query.")
+    end
 
     # Transaction so that we don't update a malformed article
     User.transaction do
@@ -35,16 +38,9 @@ class Resolvers::UpdateUser < Resolvers::MutationFunction
         save = "" if save =~ /\d/ else save
         @user.slug = args["first_name"].downcase + "-" + args["last_name"].downcase + save
       end
-      if args["role"]
-        if args["role"] == "Contributor" && !@user.roles.any? {|h| h.id == 1 }
-          @user.roles << Role.first
-        end
-        if args["role"] == "Illustrator" && !@user.roles.any? {|h| h.id == 2 }
-          @user.roles << Role.second
-        end
-        if args["role"] == "Photographer" && !@user.roles.any? {|h| h.id == 3 }
-          @user.roles << Role.third
-        end
+      role = Role.find_by(slug: args["role"])
+      if args["role"] and role != nil and not @user.roles.includes(role)
+        @user.roles << role
       end
       Authentication::generate_new_header(ctx) if @user.save!
     end

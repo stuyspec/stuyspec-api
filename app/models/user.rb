@@ -4,6 +4,10 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :trackable,
          :validatable, :omniauthable, :confirmable
   include DeviseTokenAuth::Concerns::User
+
+  include PgSearch
+  multisearchable against: :slug
+
   has_many :authorships
   has_many :articles, through: :authorships, dependent: :destroy
   has_many :comments, dependent: :destroy
@@ -12,6 +16,11 @@ class User < ApplicationRecord
   has_many :media, through: :profiles
   after_create :init
 
+  has_attached_file :profile_picture,
+                    storage: :s3,
+                    default_url: "/images/:style/missing.png"
+  validates_attachment :profile_picture,
+                       content_type: { content_type: ["image/jpeg", "image/gif", "image/png"] }
   def init
     self.update(security_level: 0)
     first_name = self.first_name || ''
@@ -29,5 +38,9 @@ class User < ApplicationRecord
 
   def is_admin?(token, client_id)
     self.valid_token?(token, client_id) && self.security_level > 1
+  end
+
+  def profile_url
+    profile_picture.url
   end
 end

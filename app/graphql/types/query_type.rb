@@ -40,6 +40,7 @@ Types::QueryType = GraphQL::ObjectType.define do
     argument :query, !types.String
     resolve -> (obj, args, ctx) {
       results = PgSearch.multisearch(args["query"])
+      results = results.select{ |r| r.searchable_type == 'Article'}
       results.select{ |r| !r.nil? && r.searchable.is_published }
     }
   end
@@ -52,10 +53,24 @@ Types::QueryType = GraphQL::ObjectType.define do
         return GraphQL::ExecutionError.new("Invalid user token. Please log in.")
       end
       results = PgSearch.multisearch(args["query"])
+      results = results.select{ |r| r.searchable_type == 'Article'}
       results.select{ |r| !r.nil? && !(r.searchable.is_published) }
     }
   end
   
+  field :searchUsers do
+    type !types[Types::UserType]
+    argument :query, !types.String
+    description "Find users by slug"
+    resolve -> (obj, args, ctx) {
+      if !Authentication::editor_is_valid(ctx)
+        return GraphQL::ExecutionError.new("Invalid user token. Please log in.")
+      end
+      results = PgSearch.multisearch(args["query"])
+      results.map{|r| r.searchable if r.searchable_type == 'User'}.compact
+    }
+  end
+    
   field :articleByID do
     type Types::ArticleType
     argument :id, !types.ID
@@ -93,7 +108,7 @@ Types::QueryType = GraphQL::ObjectType.define do
       User.find_by(first_name: args["first_name"], last_name: args["last_name"])
     }
   end
-
+  
 field :allUsersWithRoles, !types[Types::UserType] do
     resolve -> (obj, args, ctx) { User.all.select do |user| user.roles.any? end }
   end

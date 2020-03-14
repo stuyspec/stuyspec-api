@@ -69,3 +69,5 @@ Rails.application.configure do
   # For local subdomain support
   config.action_dispatch.tld_length = 0
 end
+
+Paperclip.options[:command_path] = "/usr/local/bin/"

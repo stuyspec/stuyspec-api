@@ -1,9 +1,9 @@
 class Resolvers::UpdateUser < Resolvers::MutationFunction
   # arguments passed as "args"
   argument :id, !types.ID
-  argument :first_name, types.String!
-  argument :last_name, types.String!
-  argument :email, types.String!
+  argument :first_name, !types.String
+  argument :last_name, !types.String
+  argument :email, !types.String
   argument :role, types.String
   argument :profile_picture_b64, as: :attachment do
       type types.String
@@ -32,6 +32,9 @@ class Resolvers::UpdateUser < Resolvers::MutationFunction
       @user.first_name = args["first_name"] if args["first_name"]
       @user.last_name = args["last_name"] if args["last_name"]
       @user.email = args["email"] if args["email"]
+      if args["attachment"] == nil
+        @user.profile_picture = "/images/:style/missing.png"
+      end
       @user.profile_picture = args["attachment"] if args["attachment"]
       if args["first_name"] or args["last_name"]
         save = "-" + @user.slug.split("-")[-1]

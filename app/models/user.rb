@@ -6,7 +6,7 @@ class User < ApplicationRecord
   include DeviseTokenAuth::Concerns::User
 
   include PgSearch
-  multisearchable :against => :slug
+  multisearchable :against => [:email, :slug]
 
   has_many :authorships
   has_many :articles, through: :authorships, dependent: :destroy

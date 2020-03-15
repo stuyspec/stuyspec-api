@@ -30,6 +30,9 @@ class Resolvers::UpdateArticle < Resolvers::MutationFunction
     end
 
     @article = Article.find(args["id"])
+    if @article == nil
+      return GraphQL::ExecutionError.new("Invalid article. Please try another query.")
+    end
 
     # Transaction so that we don't update a malformed article
     Article.transaction do

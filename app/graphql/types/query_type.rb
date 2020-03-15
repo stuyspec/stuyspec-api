@@ -66,7 +66,7 @@ Types::QueryType = GraphQL::ObjectType.define do
       if !Authentication::editor_is_valid(ctx)
         return GraphQL::ExecutionError.new("Invalid user token. Please log in.")
       end
-      results = PgSearch.multisearch(args["query"])
+      results = PgSearch.multisearch(args["query"].sub(" ", "-").downcase)
       results.map{|r| r.searchable if r.searchable_type == 'User'}.compact
     }
   end

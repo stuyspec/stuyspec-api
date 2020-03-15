@@ -6,7 +6,7 @@ class User < ApplicationRecord
   include DeviseTokenAuth::Concerns::User
 
   include PgSearch
-  multisearchable against => [:email, :slug]
+  multisearchable :against => :slug
 
   has_many :authorships
   has_many :articles, through: :authorships, dependent: :destroy
@@ -18,7 +18,6 @@ class User < ApplicationRecord
 
   has_attached_file :profile_picture,
                     storage: :s3,
-                    default_url: "/images/:style/missing.png"
   validates_attachment :profile_picture,
                        content_type: { content_type: ["image/jpg", "image/jpeg", "image/gif", "image/png"] }
   def init

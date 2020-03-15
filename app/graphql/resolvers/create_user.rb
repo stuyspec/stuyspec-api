@@ -34,14 +34,10 @@ class Resolvers::CreateUser < Resolvers::MutationFunction
       created_at: Time.now,
       profile_picture: args["attachment"] || nil,
     )
-    if args["role"] == "Contributor"
-      @new_user.roles << Role.first
-    end
-    if args["role"] == "Illustrator"
-      @new_user.roles << Role.second
-    end
-    if args["role"] == "Photographer"
-      @new_user.roles << Role.third
+    
+    role = Role.find_by(slug: args["role"])
+    if args["role"] and role != nil
+      @new_user.roles << role
     end
 
     Authentication::generate_new_header(ctx) if @new_user.save!

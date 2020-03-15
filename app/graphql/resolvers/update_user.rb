@@ -1,9 +1,9 @@
 class Resolvers::UpdateUser < Resolvers::MutationFunction
   # arguments passed as "args"
   argument :id, !types.ID
-  argument :first_name, types.String
-  argument :last_name, types.String
-  argument :email, types.String
+  argument :first_name, !types.String
+  argument :last_name, !types.String
+  argument :email, !types.String
   argument :role, types.String
   argument :profile_picture_b64, as: :attachment do
       type types.String
@@ -23,28 +23,27 @@ class Resolvers::UpdateUser < Resolvers::MutationFunction
     end
     
     @user = User.find(args["id"])
+    if @user == nil
+      return GraphQL::ExecutionError.new("Invalid user. Please check the query.")
+    end
 
     # Transaction so that we don't update a malformed article
     User.transaction do
       @user.first_name = args["first_name"] if args["first_name"]
       @user.last_name = args["last_name"] if args["last_name"]
       @user.email = args["email"] if args["email"]
+      if args["attachment"] == nil
+        @user.profile_picture = "/images/:style/missing.png"
+      end
       @user.profile_picture = args["attachment"] if args["attachment"]
       if args["first_name"] or args["last_name"]
         save = "-" + @user.slug.split("-")[-1]
         save = "" if save =~ /\d/ else save
         @user.slug = args["first_name"].downcase + "-" + args["last_name"].downcase + save
       end
-      if args["role"]
-        if args["role"] == "Contributor" && !@user.roles.any? {|h| h.id == 1 }
-          @user.roles << Role.first
-        end
-        if args["role"] == "Illustrator" && !@user.roles.any? {|h| h.id == 2 }
-          @user.roles << Role.second
-        end
-        if args["role"] == "Photographer" && !@user.roles.any? {|h| h.id == 3 }
-          @user.roles << Role.third
-        end
+      role = Role.find_by(slug: args["role"])
+      if args["role"] and role != nil and not @user.roles.includes(role)
+        @user.roles << role
       end
       Authentication::generate_new_header(ctx) if @user.save!
     end

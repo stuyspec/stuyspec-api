@@ -19,7 +19,7 @@ class User < ApplicationRecord
   has_attached_file :profile_picture,
                     storage: :s3,
   validates_attachment :profile_picture,
-                       content_type: { content_type: ["image/jpeg", "image/gif", "image/png"] }
+                       content_type: { content_type: ["image/jpg", "image/jpeg", "image/gif", "image/png"] }
   def init
     self.update(security_level: 0)
     first_name = self.first_name || ''

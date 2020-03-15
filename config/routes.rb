@@ -36,6 +36,7 @@ Rails.application.routes.draw do
 
   constraints lambda { |request| request.subdomain == "www" or request.subdomain == "" } do
     get '/:section/:slug', to: 'client_app#index'
+    get '/:section/:subsection/:slug', to: 'client_app#index'
     get '/*all', to: 'client_app#index'
     get '/', to: 'client_app#index' 
   end

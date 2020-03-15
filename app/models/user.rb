@@ -6,7 +6,7 @@ class User < ApplicationRecord
   include DeviseTokenAuth::Concerns::User
 
   include PgSearch
-  multisearchable against: :slug
+  multisearchable against => [:email, :slug]
 
   has_many :authorships
   has_many :articles, through: :authorships, dependent: :destroy
@@ -20,7 +20,7 @@ class User < ApplicationRecord
                     storage: :s3,
                     default_url: "/images/:style/missing.png"
   validates_attachment :profile_picture,
-                       content_type: { content_type: ["image/jpeg", "image/gif", "image/png"] }
+                       content_type: { content_type: ["image/jpg", "image/jpeg", "image/gif", "image/png"] }
   def init
     self.update(security_level: 0)
     first_name = self.first_name || ''

@@ -41,8 +41,8 @@ class Resolvers::UpdateUser < Resolvers::MutationFunction
         save = "" if save =~ /\d/ else save
         @user.slug = args["first_name"].downcase + "-" + args["last_name"].downcase + save
       end
-      role = Role.find_by(slug: args["role"])
-      if args["role"] and role != nil and not @user.roles.includes(role)
+      role = Role.find_by(title: args["role"])
+      if args["role"] and role != nil and !@user.roles.include?(role)
         @user.roles << role
       end
       Authentication::generate_new_header(ctx) if @user.save!

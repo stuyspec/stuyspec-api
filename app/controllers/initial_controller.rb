@@ -9,7 +9,7 @@ class InitialController < ApplicationController
     end
     users_with_urls = User.all.map do |user|
       user.attributes.merge({
-                                profile_url: user.profile_url,
+                                profile_pic_url: user.profile_pic_url,
                             })
     end
     render json: {

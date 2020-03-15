@@ -18,7 +18,6 @@ class User < ApplicationRecord
 
   has_attached_file :profile_picture,
                     storage: :s3,
-                    default_url: "/images/:style/missing.png"
   validates_attachment :profile_picture,
                        content_type: { content_type: ["image/jpeg", "image/gif", "image/png"] }
   def init

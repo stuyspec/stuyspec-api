@@ -5,7 +5,7 @@ class User < ApplicationRecord
          :validatable, :omniauthable, :confirmable
   include DeviseTokenAuth::Concerns::User
 
-  include PgSearch
+  include PgSearch::Model
   multisearchable :against => [:email, :slug]
 
   has_many :authorships

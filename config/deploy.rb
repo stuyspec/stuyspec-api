@@ -35,7 +35,7 @@ task :upload_apps do
   end
 end
 
-before "deploy:starting", "build_client_app"
-before "deploy:starting", "build_cms"
+#before "deploy:starting", "build_client_app"
+#before "deploy:starting", "build_cms"
 
 before "deploy:publishing", "upload_apps"

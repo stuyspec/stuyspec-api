@@ -1193,7 +1193,7 @@ DEPENDENCIES
   aws-sdk
   byebug
   capistrano (~> 3.12)
-  capistrano-bundler (~> 1.5)
+  capistrano-bundler (~> 1.6)
   capistrano-passenger
   capistrano-rails (~> 1.4)
   capistrano-rvm

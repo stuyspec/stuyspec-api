@@ -1192,7 +1192,7 @@ DEPENDENCIES
   airborne
   aws-sdk
   byebug
-  capistrano (~> 3.10)
+  capistrano (~> 3.12)
   capistrano-bundler (~> 1.5)
   capistrano-passenger
   capistrano-rails (~> 1.4)

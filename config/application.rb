@@ -11,6 +11,7 @@ require "action_view/railtie"
 require "action_cable/engine"
 # require "sprockets/railtie"
 require "rails/test_unit/railtie"
+require "rack/throttle"
 
 # Require the gems listed in Gemfile, including any gems
 # you've limited to :test, :development, or :production.
@@ -20,6 +21,28 @@ module StuySpecApi
   class Application < Rails::Application
     # Initialize configuration defaults for originally generated Rails version.
     config.load_defaults 5.1
+
+    config.middleware.insert_before 0, Rack::Cors do
+      allow do
+        origins '*'
+        resource '*', :headers => :any,
+                 :methods => [
+                     :get,
+                     :post,
+                     :put,
+                     :delete,
+                     :options
+                 ],
+                 :expose  => ['access-token', 'expiry', 'token-type', 'uid', 'client']
+      end
+    end
+    config.middleware.use OliveBranch::Middleware
+    config.session_store :cookie_store, key: '_interslice_session'
+    config.middleware.use ActionDispatch::Cookies # Required for all session management
+    config.middleware.use ActionDispatch::Session::CookieStore, config.session_options
+    config.middleware.use Rack::Throttle::Minute, :max => 1000
+    config.time_zone = 'Eastern Time (US & Canada)'
+    config.active_record.default_timezone = :local # Or :utc
 
     # Settings in config/environments/* take precedence over those specified here.
     # Application configuration should go into files in config/initializers

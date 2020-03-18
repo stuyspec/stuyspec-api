@@ -24,7 +24,7 @@ class Resolvers::UpdateUser < Resolvers::MutationFunction
     
     @user = User.find(args["id"])
 
-    # Transaction so that we don't update a malformed article
+    # Transaction so that we don't update a malformed user
     User.transaction do
       @user.first_name = args["first_name"] if args["first_name"]
       @user.last_name = args["last_name"] if args["last_name"]
@@ -35,16 +35,9 @@ class Resolvers::UpdateUser < Resolvers::MutationFunction
         save = "" if save =~ /\d/ else save
         @user.slug = args["first_name"].downcase + "-" + args["last_name"].downcase + save
       end
-      if args["role"]
-        if args["role"] == "Contributor" && !@user.roles.any? {|h| h.id == 1 }
-          @user.roles << Role.first
-        end
-        if args["role"] == "Illustrator" && !@user.roles.any? {|h| h.id == 2 }
-          @user.roles << Role.second
-        end
-        if args["role"] == "Photographer" && !@user.roles.any? {|h| h.id == 3 }
-          @user.roles << Role.third
-        end
+      role = Role.find_by(title: args["role"])
+      if args["role"] and role != nil and !@user.roles.include?(role)
+        @user.roles << role
       end
       Authentication::generate_new_header(ctx) if @user.save!
     end

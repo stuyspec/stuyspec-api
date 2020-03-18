@@ -1,6 +1,6 @@
 source 'https://rubygems.org'
 
-ruby '2.4.2'
+ruby '2.7.0'
 
 git_source(:github) do |repo_name|
   repo_name = "#{repo_name}/#{repo_name}" unless repo_name.include?("/")
@@ -11,13 +11,14 @@ end
 gem 'friendly_id', '~> 5.1.0'
 
 # For authentication
-gem 'devise_token_auth', '1.0.0'
+gem 'devise_token_auth', '~> 1.1.3' 
+
 gem 'omniauth-google'
 
 # Fixes CORS issues
 gem 'rack-cors', :require => 'rack/cors'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails', '~> 5.1.2'
+gem 'rails', '~> 6.0.2.1'
 # Use postgresql as the database for Active Record
 gem 'pg', '~> 0.18'
 # Use Puma as the app server
@@ -48,11 +49,11 @@ group :development do
   gem 'spring'
   gem 'spring-watcher-listen', '~> 2.0.0'
 
-  gem "capistrano", "~> 3.10", require: false
+  gem "capistrano", "~> 3.12", require: false
   gem "capistrano-rails", "~> 1.4", require: false
   gem 'capistrano-rvm', require: false
   gem 'capistrano-passenger', require: false
-  gem 'capistrano-bundler', '~> 1.5', require: false
+  gem 'capistrano-bundler', '~> 1.6', require: false
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem

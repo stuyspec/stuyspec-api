@@ -1,11 +1,12 @@
 class User < ApplicationRecord
   # Include default devise modules.
+  extend Devise::Models
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable,
          :validatable, :omniauthable, :confirmable
   include DeviseTokenAuth::Concerns::User
 
-  include PgSearch
+  include PgSearch::Model
   multisearchable :against => [:email, :slug]
 
   has_many :authorships
@@ -18,7 +19,7 @@ class User < ApplicationRecord
 
   has_attached_file :profile_picture,
                     storage: :s3,
-                    default_url: "/images/:style/missing.png"
+                    default_url: ""
   validates_attachment :profile_picture,
                        content_type: { content_type: ["image/jpg", "image/jpeg", "image/gif", "image/png"] }
   def init
@@ -40,7 +41,7 @@ class User < ApplicationRecord
     self.valid_token?(token, client_id) && self.security_level > 1
   end
 
-  def profile_url
+  def profile_pic_url
     profile_picture.url
   end
 end

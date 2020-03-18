@@ -2,7 +2,7 @@ class Article < ApplicationRecord
 
   before_create :init
 
-  include PgSearch
+  include PgSearch::Model
   multisearchable :against => [:title, :summary, :content]
 
   extend FriendlyId

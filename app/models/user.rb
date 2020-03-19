@@ -1,12 +1,13 @@
 class User < ApplicationRecord
   # Include default devise modules.
+  extend Devise::Models
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable,
          :validatable, :omniauthable, :confirmable
   include DeviseTokenAuth::Concerns::User
 
-  include PgSearch
-  multisearchable :against => :slug
+  include PgSearch::Model
+  multisearchable :against => [:email, :slug]
 
   has_many :authorships
   has_many :articles, through: :authorships, dependent: :destroy

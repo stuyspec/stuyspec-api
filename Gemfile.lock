@@ -1084,7 +1084,7 @@ GEM
       activerecord (>= 5.2)
       activesupport (>= 5.2)
     puma (3.12.4)
-    rack (2.2.2)
+    rack (2.2.3)
     rack-cors (1.1.1)
       rack (>= 2.0.0)
     rack-test (1.1.0)

@@ -215,16 +215,15 @@ editorial_board = User.create({
 })
 Profile.create(role_id: 1, user_id: editorial_board.id)
 
-User.create({
-  first_name: 'Jason',
-  last_name: 'Kao',
-  slug: 'jason-kao',
-  email: 'jkao1@stuy.edu',
-  password: 'local',
-  password_confirmation: 'local',
-  description: 'This account exists so Jason can upload articles',
-  security_level: 1,
+u = User.create({
+  first_name: 'Victor',
+  last_name: 'Siu',
+  email: 'vsiu10@stuy.edu',
+  password: 'testlocal',
+  description: 'This account exists so I can test locally',
+  security_level: 2
 })
+u.update(security_level:2)
 
 Section.find_each do |section|
   if section.parent_id == nil
@@ -553,11 +552,11 @@ unless ENV['minimal']
 
   Article.find_each do |article|
     Authorship.create(user_id: users.sample.id, article_id: article.id)
-    Outquote.create(article_id: article.id, text: 'Example outquote affecting the lives of many readers.')
-    Comment.create(user_id: users.sample.id, article_id: article.id, content: 'I loved this article! (unpublished comment)')
-    c = Comment.new(user_id: users.sample.id, article_id: article.id, content: 'I loved this article! (published comment)')
-    c.save!
-    c.publish
+    #Outquote.create(article_id: article.id, text: 'Example outquote affecting the lives of many readers.')
+    #Comment.create(user_id: users.sample.id, article_id: article.id, content: 'I loved this article! (unpublished comment)')
+    #c = Comment.new(user_id: users.sample.id, article_id: article.id, content: 'I loved this article! (published comment)')
+    #c.save!
+    #c.publish
   end
 
   User.find_each do |user|

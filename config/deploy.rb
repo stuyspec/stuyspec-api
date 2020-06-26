@@ -1,23 +1,14 @@
 # config valid for current version and patch releases of Capistrano
-lock "~> 3.11.0"
+lock "~> 3.12.0"
 
 set :rvm_type, :user
-set :rvm_ruby_version, '2.4.2'
+set :rvm_ruby_version, '2.7.0'
 
 set :application, "stuyspec-api"
 set :repo_url, "https://github.com/stuyspec/stuyspec-api.git"
 #set :migration_role, :app
 set :deploy_to, "/home/ubuntu/deploy"
 set :branch, "master"
-
-task :clone_client_app do
-  on roles(:app) do
-    within release_path do
-      execute "rm", "-rf stuyspec.com"
-      execute "git", "clone https://github.com/stuyspec/stuyspec.com.git"
-    end
-  end
-end
 
 task :build_client_app do
   run_locally do
@@ -43,9 +34,6 @@ task :upload_apps do
     upload! "./cms/cms", release_path + "public", recursive: true
   end
 end
-
-after "deploy:updated", "clone_client_app"
-after "deploy:updated", "build_client_app"
 
 before "deploy:starting", "build_client_app"
 before "deploy:starting", "build_cms"

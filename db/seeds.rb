@@ -223,6 +223,7 @@ u = User.create({
   description: 'This account exists so I can test locally',
   security_level: 2
 })
+u.confirm
 u.update(security_level:2)
 
 Section.find_each do |section|

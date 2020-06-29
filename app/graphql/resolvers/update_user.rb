@@ -4,7 +4,7 @@ class Resolvers::UpdateUser < Resolvers::MutationFunction
   argument :first_name, types.String
   argument :last_name, types.String
   argument :email, types.String
-  argument :role, types.String
+  argument :role, !types[types.String]
   argument :profile_picture_b64, as: :attachment do
       type types.String
       description 'The base64 encoded bersion of the attatchment to upload.'
@@ -35,9 +35,12 @@ class Resolvers::UpdateUser < Resolvers::MutationFunction
         save = "" if save =~ /\d/ else save
         @user.slug = args["first_name"].downcase + "-" + args["last_name"].downcase + save
       end
-      role = Role.find_by(title: args["role"])
-      if args["role"] and role != nil and !@user.roles.include?(role)
-        @user.roles << role
+      @user.roles.clear
+      args["role"].each do |role|
+        roley = Role.find_by(title: role)
+        if roley and role != nil
+          @user.roles << roley
+        end
       end
       Authentication::generate_new_header(ctx) if @user.save!
     end

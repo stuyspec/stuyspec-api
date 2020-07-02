@@ -35,9 +35,9 @@ class Resolvers::CreateUser < Resolvers::MutationFunction
       profile_picture: args["attachment"] || nil,
     )
     args["role"].each do |role|
-      roley = Role.find_by(title: role)
-      if roley and role != nil and !@new_user.roles.include?(roley)
-        @new_user.roles << roley
+      @role = Role.find_by(title: role)
+      if @role and role != nil and !@new_user.roles.include?(@role)
+        @new_user.roles << @role
       end
     end
     Authentication::generate_new_header(ctx) if @new_user.save!

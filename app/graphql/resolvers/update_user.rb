@@ -37,9 +37,9 @@ class Resolvers::UpdateUser < Resolvers::MutationFunction
       end
       @user.roles.clear
       args["role"].each do |role|
-        roley = Role.find_by(title: role)
-        if roley and role != nil
-          @user.roles << roley
+        @role = Role.find_by(title: role)
+        if @role and role != nil
+          @user.roles << @role
         end
       end
       Authentication::generate_new_header(ctx) if @user.save!

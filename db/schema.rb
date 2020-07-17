@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_02_09_144504) do
+ActiveRecord::Schema.define(version: 2020_06_30_195920) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -118,6 +118,7 @@ ActiveRecord::Schema.define(version: 2020_02_09_144504) do
     t.integer "rank", default: 1
     t.boolean "is_visible"
     t.string "permalink"
+    t.bigint "article_id", default: [], array: true
   end
 
   create_table "subscribers", force: :cascade do |t|

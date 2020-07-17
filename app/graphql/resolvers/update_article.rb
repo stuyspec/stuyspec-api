@@ -2,7 +2,7 @@ class Resolvers::UpdateArticle < Resolvers::MutationFunction
   # arguments passed as "args"
   argument :id, !types.ID
   argument :title, types.String
-  argument :section_id, types.Int
+  argument :section_id, types[!types.Int]
   argument :content, types.String
   argument :summary, types.String
   argument :created_at, types.String
@@ -34,7 +34,6 @@ class Resolvers::UpdateArticle < Resolvers::MutationFunction
     # Transaction so that we don't update a malformed article
     Article.transaction do
       @article.title = args["title"] if args["title"]
-      @article.section_id = args["section_id"] if args["section_id"]
       @article.content = args["content"] if args["content"]
       @article.preview = args["summary"] if args["summary"]
       @article.created_at = args["created_at"] if args["created_at"]
@@ -46,6 +45,14 @@ class Resolvers::UpdateArticle < Resolvers::MutationFunction
         @article.outquotes.clear
         args["outquotes"].each do |text|
           @article.outquotes.build(text: text)
+        end
+      end
+        
+      if args["section_id"]
+        @article.sections.clear
+        args["section_id"].each do |section|
+          @section = Section.find_by(id: section)
+          @section.articles.build(@article)
         end
       end
 

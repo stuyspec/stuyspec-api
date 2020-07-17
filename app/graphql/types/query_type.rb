@@ -6,7 +6,7 @@ Types::QueryType = GraphQL::ObjectType.define do
   field :allSections, !types[Types::SectionType] do
     resolve -> (obj, args, ctx) { Section.all }
   end
-
+  # Will cause errors if used
   field :articlesBySectionID do
     type !types[Types::ArticleType]
     argument :section_id, !types.ID

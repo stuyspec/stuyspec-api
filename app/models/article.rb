@@ -8,7 +8,7 @@ class Article < ApplicationRecord
   extend FriendlyId
   friendly_id :title, use: :slugged
 
-  belongs_to :section, optional: true
+  has_many :sections
 
   has_many :authorships
   has_many :contributors,
@@ -24,7 +24,6 @@ class Article < ApplicationRecord
 
   def self.order_by_rank
     Article
-      .joins(:section)
       .order("articles.rank + 3 * sections.rank + 12 * articles.issue + 192 * articles.volume DESC")
   end
 

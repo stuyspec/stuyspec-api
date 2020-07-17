@@ -2,7 +2,7 @@ class Resolvers::CreateArticle < Resolvers::MutationFunction
   
   # arguments passed as "args"
   argument :title, !types.String
-  argument :section_id, !types.Int
+  argument :section_ids, !types[!types.Int]
   argument :content, !types.String
   argument :summary, types.String
   argument :created_at, types.String
@@ -32,7 +32,6 @@ class Resolvers::CreateArticle < Resolvers::MutationFunction
     ActiveRecord::Base.transaction do
       @article = Article.new(
         title: args["title"],
-        section_id: args["section_id"],
         content: args["content"],
         volume: args["volume"],
         issue: args["issue"],
@@ -40,6 +39,12 @@ class Resolvers::CreateArticle < Resolvers::MutationFunction
         created_at: args["created_at"],
         is_published: !!args["is_published"]
       )
+
+      args["section_ids"].each do |section|
+        @section = Section.find_by(id: section)
+        @section.articles << @article
+      end
+
       args["contributors"].each do |id|
         @article.authorships.build(user_id: id)
 

@@ -9,12 +9,12 @@ class ArticlesController < ApplicationController
     if params[:section_id]
       @section = Section.friendly.find(params[:section_id])
       @articles = Article
-                    .where("section_id = ?", @section.id)
-                    .joins("LEFT JOIN sections ON articles.section_id = sections.id")
+                    #.where("sections.id = ?", @section.id)
+                    .joins("LEFT JOIN sections ON sections.id = ANY articles.sections")
                     .order("articles.rank + 3 * sections.rank + 12 * articles.issue + 192 * articles.volume DESC")
     else
       @articles = Article
-                   .joins("LEFT JOIN sections ON articles.section_id = sections.id")
+                   .joins("LEFT JOIN sections ON sections.id = ANY articles.sections")
                    .order("articles.rank + 3 * sections.rank + 12 * articles.issue + 192 * articles.volume DESC")
     end
 
@@ -35,7 +35,6 @@ class ArticlesController < ApplicationController
       :is_published,
       :created_at,
       :updated_at,
-      :section_id,
       :rank,
       :preview
     ) if params[:content] == 'false'
@@ -50,9 +49,6 @@ class ArticlesController < ApplicationController
 
   # POST /articles
   def create
-    @section = Section.friendly.find(params[:section_id])
-    @article = @section.articles.build(article_params)
-
    if @article.save
       render json: @article, status: :created, location: @article
    else
@@ -94,8 +90,5 @@ class ArticlesController < ApplicationController
         :rank,
         :created_at
       )
-    end
-    def find_combined_rank(article)
-      return article.rank + Section.friendly.find(article.section_id).rank * 1.5
     end
 end

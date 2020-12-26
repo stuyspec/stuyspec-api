@@ -13,7 +13,7 @@ $ git clone https://github.com/stuyspec/stuy-spec-api.git
 
 2. Follow the directions below to set up Rails. Ignore the MySQL section; instead, only complete the PostgreSQL section: https://gorails.com/setup/
 
-3. On linux, go to /etc/postgresql/YOUR_VERSION/main/pg_hba.conf. At the bottom, change the method to trust for all lines that start with local all or host all.
+3. On linux, go to /etc/postgresql/YOUR_VERSION/main/pg_hba.conf. At the bottom, change the method to trust for all lines that start with local all or host all. Then, run `sudo systemctl restart postgresql`
 
 4. In the `stuy-spec-api` repository, create your [dotenv](https://github.com/bkeepers/dotenv) file.
 ```

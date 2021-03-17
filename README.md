@@ -13,22 +13,24 @@ $ git clone https://github.com/stuyspec/stuy-spec-api.git
 
 2. Follow the directions below to set up Rails. Ignore the MySQL section; instead, only complete the PostgreSQL section: https://gorails.com/setup/
 
-3. In the `stuy-spec-api` repository, create your [dotenv](https://github.com/bkeepers/dotenv) file.
+3. On linux, go to /etc/postgresql/YOUR_VERSION/main/pg_hba.conf. At the bottom, change the method to trust for all lines that start with local all or host all. Then, run `sudo systemctl restart postgresql`
+
+4. In the `stuy-spec-api` repository, create your [dotenv](https://github.com/bkeepers/dotenv) file.
 ```
 $ echo PG_HOST=localhost > .env
 ```
 
-4. If you intend to use this API while working with client-app or cli-uploader, follow the setup instructions in the [AWS S3](#setting-up-s3) section below. Then create, migrate, and seed the database with media.
+5. If you intend to use this API while working with client-app or cli-uploader, follow the setup instructions in the [AWS S3](#setting-up-s3) section below. Then create, migrate, and seed the database with media.
 ```
 $ rails db:create db:migrate db:seed media=true
 ```
 
-5. If you did not follow instruction 4, create, migrate, and seed the database.
+6. If you did not follow instruction 4, create, migrate, and seed the database.
 ```
 $ rails db:create db:migrate db:seed
 ```
 
-6. To start the server, run:
+7. To start the server, run:
 ```
 rails server
 ```

@@ -8,16 +8,8 @@ class Resolvers::GetColumnArticles < Resolvers::ArticleQueryFunction
   # _args - are the arguments passed
   # _ctx - is the GraphQL context (which would be discussed later)
   def call(_obj, _args, _ctx)
-    main_left_column_articles = Article.order_by_rank.published.offset(6).first(2)
-    outquotes_article = Article
-                          .order_by_rank
-                          .published
-                          .offset(6)
-                          .joins(:outquotes)
-                          .where.not(id: main_left_column_articles)
-                          .first
-
-    left_column_articles = [*main_left_column_articles, outquotes_article]
+    main_left_column_articles = Article.order_by_rank.published.offset(6).first(3)
+    left_column_articles = [*main_left_column_articles]
     right_column_articles = 
                             Article
                               .order_by_rank

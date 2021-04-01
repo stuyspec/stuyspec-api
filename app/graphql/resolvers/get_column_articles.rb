@@ -13,7 +13,6 @@ class Resolvers::GetColumnArticles < Resolvers::ArticleQueryFunction
     right_column_articles = 
                             Article
                               .order_by_rank
-                              .find_by(section_id:31)
                               .published
                               .offset(6)
                               .where.not(id: left_column_articles)

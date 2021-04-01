@@ -11,7 +11,7 @@ class Resolvers::GetFeaturedArticle < Resolvers::ArticleQueryFunction
 
     articles = Article
       .order_by_rank # already JOINS on Section
-      .where("sections.name != 'News'")
+      .where("sections.name = 'Arts and Enterntainment'")
       .joins(:media)
       .published
 

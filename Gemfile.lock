@@ -1030,7 +1030,9 @@ GEM
     mime-types (3.3.1)
       mime-types-data (~> 3.2015)
     mime-types-data (3.2019.1009)
-    mimemagic (0.3.4)
+    mimemagic (0.3.10)
+      nokogiri (~> 1)
+      rake
     mini_mime (1.0.2)
     mini_portile2 (2.4.0)
     minitest (5.14.0)
@@ -1044,7 +1046,7 @@ GEM
     nio4r (2.5.2)
     nokogiri (1.10.9)
       mini_portile2 (~> 2.4.0)
-    oauth (0.5.4)
+    oauth (0.5.6)
     oauth2 (1.4.4)
       faraday (>= 0.8, < 2.0)
       jwt (>= 1.0, < 3.0)
@@ -1083,7 +1085,7 @@ GEM
     pg_search (2.3.2)
       activerecord (>= 5.2)
       activesupport (>= 5.2)
-    puma (3.12.4)
+    puma (3.12.6)
     rack (2.2.2)
     rack-cors (1.1.1)
       rack (>= 2.0.0)
@@ -1182,7 +1184,7 @@ GEM
       rack (>= 2.0.6)
     websocket-driver (0.7.1)
       websocket-extensions (>= 0.1.0)
-    websocket-extensions (0.1.4)
+    websocket-extensions (0.1.5)
     zeitwerk (2.3.0)
 
 PLATFORMS
@@ -1208,7 +1210,7 @@ DEPENDENCIES
   paperclip (= 5.2.1)
   pg (~> 0.18)
   pg_search
-  puma (~> 3.7)
+  puma (~> 3.12)
   rack-cors
   rack-throttle
   rails (~> 6.0.2.1)

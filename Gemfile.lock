@@ -1086,7 +1086,8 @@ GEM
     pg_search (2.3.2)
       activerecord (>= 5.2)
       activesupport (>= 5.2)
-    puma (3.12.6)
+    puma (4.3.8)
+      nio4r (~> 2.0)
     racc (1.5.2)
     rack (2.2.2)
     rack-cors (1.1.1)
@@ -1212,7 +1213,7 @@ DEPENDENCIES
   paperclip (= 5.2.1)
   pg (~> 0.18)
   pg_search
-  puma (~> 3.12)
+  puma (~> 4.3)
   rack-cors
   rack-throttle
   rails (~> 6.0.2.1)

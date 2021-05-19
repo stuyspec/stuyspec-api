@@ -22,13 +22,13 @@ module Authentication
     def self.generate_new_header(ctx)
       # currently disable header change
 
-      headers = Authentication::get_headers(ctx)
-      user = Authentication::get_user(headers)
+      #headers = Authentication::get_headers(ctx)
+      #user = Authentication::get_user(headers)
   
-      client_id = headers['client']
-      new_auth_header = user.create_new_auth_token(client_id)
-      response = ctx[:response]
-      response.headers.merge!(new_auth_header)
+      #client_id = headers['client']
+      #new_auth_header = user.create_new_auth_token(client_id)
+      #response = ctx[:response]
+      #response.headers.merge!(new_auth_header)
     end
   
     def self.get_headers(ctx)

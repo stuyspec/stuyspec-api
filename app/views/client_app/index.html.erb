@@ -29,14 +29,15 @@
     -->
     <title>The Stuyvesant Spectator - The Pulse of the Stuyvesant Student Body</title>
 
-    <!-- Google Analytics -->
+    <!-- Google Analytics + Ads -->
     <script>
         window.ga = window.ga || function () { (ga.q = ga.q || []).push(arguments) }; ga.l = +new Date;
         ga('create', 'UA-110467163-1', 'auto');
         ga('send', 'pageview');
     </script>
     <script async src='https://www.google-analytics.com/analytics.js'></script>
-    <!-- End Google Analytics -->
+    <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+    <!-- End Google Analytics + Ads-->
 
     <script>
         window.fbAsyncInit = function () {
@@ -58,9 +59,6 @@
             fjs.parentNode.insertBefore(js, fjs);
         }(document, 'script', 'facebook-jssdk'));
     </script>
-    <!--MailChimp-->
-    <script id="mcjs">!function(c,h,i,m,p){m=c.createElement(h),p=c.getElementsByTagName(h)[0],m.async=1,m.src=i,p.parentNode.insertBefore(m,p)}(document,"script","https://chimpstatic.com/mcjs-connected/js/users/d92e8c831515555b06ae9eeea/768f3ee1b4d81fcf07ff483cf.js");</script>
-    <!--End MailChimp-->
 </head>
 
 <%=raw render file: "public/client-app/index.html" %>

@@ -89,7 +89,7 @@ The [Rails console](http://guides.rubyonrails.org/command_line.html#rails-consol
 
 This function is helpful if you know cli-uploader made a mistake or you want to make a small change in a record of the database. Here are the steps to open the Rails console for our production database:
 
-1. You'll need an SSH key to be able to SSH. This comes in the form of a `.pem` key file that you put into your home ssh directory (`~/.ssh`). Download the `.pem` key (ask the current Web Editors if you need help with that) and place it into the aforementioned directory. **NEVER**, and we mean `**NEVER**` share this file publically.
+1. You'll need an SSH key to be able to SSH. This comes in the form of a `.pem` key file that you put into your home ssh directory (`~/.ssh`). Download the `.pem` key (ask the current Web Editors if you need help with that) and place it into the aforementioned directory. **NEVER** share this file publically.
 
 2. Use the `ssh` command to connect to our Lightsail instance. You can find the IP by following ssh instructions on [Lightsail](https://lightsail.aws.amazon.com/ls/webapp/home/instances)
 

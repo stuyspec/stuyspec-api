@@ -77,14 +77,6 @@ aws_access_key_id=YOUR_ACCESS_KEY_ID
 aws_secret_access=YOUR_SECRET_ACCESS
 ```
 
-### Setting up S3
-
-Once the `~/.aws` directory is set up above, S3 should work automagically.
-
-### Using Elastic Beanstalk
-
-Elastic Beanstalk is an orchestration service offered from Amazon Web Services for deploying infrastructure which orchestrates various AWS services, including EC2 (a cloud computing service) and S3. It is where we host our production database.
-
 #### `rails console` 
 
 The [Rails console](http://guides.rubyonrails.org/command_line.html#rails-console) lets you interact with the Rails API from the command line with Ruby. For instance:
@@ -97,17 +89,13 @@ The [Rails console](http://guides.rubyonrails.org/command_line.html#rails-consol
 
 This function is helpful if you know cli-uploader made a mistake or you want to make a small change in a record of the database. Here are the steps to open the Rails console for our production database:
 
-1. Install the Elastic Beanstalk CLI: ([Mac](https://docs.aws.amazon.com/elasticbeanstalk/latest/dg/eb-cli3-install-osx.html), [Linux](https://docs.aws.amazon.com/elasticbeanstalk/latest/dg/eb-cli3-install-linux.html), [Windows](https://docs.aws.amazon.com/elasticbeanstalk/latest/dg/eb-cli3-install-windows.html)).
+1. You'll need an SSH key to be able to SSH. This comes in the form of a `.pem` key file that you put into your home ssh directory (`~/.ssh`). Download the `.pem` key (ask the current Web Editors if you need help with that) and place it into the aforementioned directory. **NEVER**, and we mean `**NEVER**` share this file publically.
 
-2. Run `eb init`. Select the default region as choice 1 (us-east-1). Select the default application as choice 1 (stuyspec-api-prod). **DO NOT** create a new application and **DO NOT** create a new environment.
+2. Use the `ssh` command to connect to our Lightsail instance. You can find the IP by following ssh instructions on [Lightsail](https://lightsail.aws.amazon.com/ls/webapp/home/instances)
 
-3. You'll need an SSH key to be able to SSH. This comes in the form of a `.pem` key file that you put into your home ssh directory (`~/.ssh`). Download the `.pem` key (either from Jason Kao or Nicholas Yang) and place it into the aforementioned directory. **NEVER** share this file publically.
+3. Once you're in, navigate to the directory of the Rails API (`cd /deploy/current`).
 
-4. `eb ssh` and connect to our EB instance.
-
-5. Navigate to the directory of the Rails API (`cd /var/app/current`).
-
-6. Here, you can run `rails console` and manipulate the database.
+6. Here, you can run `rails console` or `rails c` for short to manipulate the database.
 
 To exit the Rails console, use `Ctrl-D`. To exit the SSH, use `Ctrl-D` as well.
 
@@ -115,9 +103,7 @@ To exit the Rails console, use `Ctrl-D`. To exit the SSH, use `Ctrl-D` as well.
 
 1. Go to your local `stuy-spec-api` directory and check out and pull down the branch you want to deploy.
 
-2. Run `eb init`. Select the default region as choice 1 (us-east-1). Select the default application as choice 1 (stuyspec-api-prod). **DO NOT** create a new application and **DO NOT** create a new environment.
-
-3. Run `eb deploy`.
+2. Run `bundle exec cap production deploy`. The automatic capistrano script spearheaded by [Darius Jankauskas](https://github.com/DJankauskas) should do the trick. Thanks Darius!
 
 ## Testing GraphQL
 

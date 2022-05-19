@@ -16,6 +16,8 @@ class Resolvers::GetFeaturedSubsection < GraphQL::Function
       return Section.find_by(slug: 'black-lives-matter')
     elsif section.slug == 'ae'
       return Section.find_by(slug: 'music')
+    elsif section.slug == 'opinions'
+      return Section.find_by(slug: 'financial-literacy')
     end
     subsections = Section.where(parent_id: section.id)
     return subsections[0]

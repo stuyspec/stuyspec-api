@@ -9,6 +9,7 @@ set :repo_url, "https://github.com/stuyspec/stuyspec-api.git"
 #set :migration_role, :app
 set :deploy_to, "/home/ubuntu/deploy"
 set :branch, "master"
+set :passenger_restart_with_touch, false
 
 task :build_client_app do
   run_locally do

@@ -22,21 +22,4 @@ class ApplicationController < ActionController::API
                   }, status: 401 unless current_user.is_admin?(token, client_id)
   end
 
-  # rescue_from ActiveRecord::RecordNotFound do |exception|
-  rescue_from ActiveRecord::RecordNotFound do |exception|
-    render json: {
-      success: false,
-      errors: ["Record not found"]
-    }, status: 404
-  end
-
-  # missing template
-  rescue_from ActionView::MissingTemplate do |exception|
-    Rails.logger.error exception "Missing template"
-    render json: {
-      success: false,
-      errors: ["Missing template"]
-    }, status: 404
-  end
-
 end

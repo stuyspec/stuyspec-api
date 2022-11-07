@@ -107,7 +107,7 @@ To exit the Rails console, use `Ctrl-D`. To exit the SSH, use `Ctrl-D` as well.
 
 ## Testing GraphQL
 
-Use [GraphQL](https://github.com/graphql/graphiql) to test your GraphQL queries.
+Use [GraphiQL](https://github.com/graphql/graphiql) to test your GraphQL queries.
 
 <!--
 ![alt text](https://i.imgur.com/uti8BnI.png))

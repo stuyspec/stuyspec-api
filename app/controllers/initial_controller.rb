@@ -12,18 +12,20 @@ class InitialController < ApplicationController
                                 profile_pic_url: user.profile_pic_url,
                             })
     end
+    # restrict the following to logged in users
+    
     render json: {
       :articles => Article
                      .joins("LEFT JOIN sections ON articles.section_id = sections.id")
                      .order("articles.rank + 3 * sections.rank + 12 * articles.issue + 192 * articles.volume DESC"),
       :sections => Section.where("is_visible = true"),
-      :comments => Comment.where.not(published_at: nil).all,
-      :media => media_with_urls,
-      :users => User.all,
+      # :comments => Comment.where.not(published_at: nil).all,
+      # :media => media_with_urls,
+      # :users => User.all,
       :roles => Role.all,
-      :profiles => Profile.all,
-      :authorships => Authorship.all,
-      :outquotes => Outquote.all
+      # :profiles => Profile.all,
+      # :authorships => Authorship.all,
+      # :outquotes => Outquote.all
     }
   end
 

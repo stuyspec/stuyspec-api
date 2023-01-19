@@ -979,7 +979,7 @@ GEM
     climate_control (0.2.0)
     cocaine (0.5.8)
       climate_control (>= 0.0.3, < 1.0)
-    concurrent-ruby (1.1.6)
+    concurrent-ruby (1.1.10)
     crass (1.0.6)
     devise (4.7.1)
       bcrypt (~> 3.0)
@@ -1004,14 +1004,14 @@ GEM
     ffi (1.12.2)
     friendly_id (5.1.0)
       activerecord (>= 4.0.0)
-    globalid (0.4.2)
-      activesupport (>= 4.2.0)
+    globalid (1.0.1)
+      activesupport (>= 5.0)
     graphql (1.10.5)
     hashie (4.1.0)
     http-accept (1.7.0)
     http-cookie (1.0.3)
       domain_name (~> 0.5)
-    i18n (1.8.2)
+    i18n (1.12.0)
       concurrent-ruby (~> 1.0)
     jmespath (1.4.0)
     jwt (2.2.1)
@@ -1035,7 +1035,7 @@ GEM
       rake
     mini_mime (1.0.2)
     mini_portile2 (2.5.0)
-    minitest (5.14.0)
+    minitest (5.17.0)
     multi_json (1.14.1)
     multi_xml (0.6.0)
     multipart-post (2.1.1)
@@ -1177,7 +1177,7 @@ GEM
       net-ssh (>= 2.8.0)
     thor (1.0.1)
     thread_safe (0.3.6)
-    tzinfo (1.2.6)
+    tzinfo (1.2.10)
       thread_safe (~> 0.1)
     unf (0.1.4)
       unf_ext
@@ -1187,7 +1187,7 @@ GEM
     websocket-driver (0.7.1)
       websocket-extensions (>= 0.1.0)
     websocket-extensions (0.1.5)
-    zeitwerk (2.3.0)
+    zeitwerk (2.6.6)
 
 PLATFORMS
   ruby
